@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     Vector3 playerPosition;
 
     //stores the player look direction
-    Vector3 playerLookDirection;
+    public Vector3 playerLookDirection;
 
 
 

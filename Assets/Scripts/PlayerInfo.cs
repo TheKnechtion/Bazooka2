@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerInfo:MonoBehaviour, IDamagable
@@ -16,8 +17,9 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         {
             return _instance;
         }
-    }
+    }    
 
+    private WeaponController weaponController;
 
     public int currentHP;
     public int maximumHP = 50;
@@ -76,15 +78,29 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
         //sets the player look direction based on the player origin and the mouse cursor location
         playerLookDirection = new Vector3(playerPosition.x + mousePos.x, playerPosition.y, playerPosition.z + mousePos.y).normalized;
+        Debug.Log("Database count "+WeaponDatabase.Instance().dataCount);
     }
 
     private void Awake()
     {
         _instance = this;
+        weaponController= GetComponent<WeaponController>();
     }
 
     public void TakeDamage(int passedDamage)
     {
         currentHP -= passedDamage;
+    }
+
+
+    //Call method to add any WeaponInfo to list Weapons
+    public void AddWeapon(string passedWeapon)
+    {
+        WeaponInfo newWep = weaponController.MakeWeapon(passedWeapon);
+        
+        if (newWep != null) { ownedWeapons.Add(newWep); }
+
+        //For now, the player uses the FIRST weapon they aquire
+        currentWeapon = ownedWeapons.First();
     }
 }

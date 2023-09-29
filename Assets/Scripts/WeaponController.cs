@@ -6,9 +6,11 @@ using UnityEngine;
 public class WeaponController:MonoBehaviour
 {
     WeaponInfo tempWeaponInfo = new WeaponInfo();
+
     List<WeaponInfo> weaponDatabase = new List<WeaponInfo>();
 
-
+    PlayerManager playerUser = null;
+    EnemyInfo enemyUser = null;
 
     Vector3 position;
 
@@ -21,7 +23,10 @@ public class WeaponController:MonoBehaviour
 
     private void Awake()
     {
-        weaponDatabase = new WeaponDatabase().Weapon_Database;
+        Debug.Log("WepController Awake at "+gameObject.name);
+        getUserComponent();
+        //weaponDatabase = new WeaponDatabase().Weapon_Database;
+       // weaponDatabase = WeaponDatabase.Instance().Weapon_Database;
     }
 
 
@@ -29,16 +34,37 @@ public class WeaponController:MonoBehaviour
     //Utility for finding appropriate weapon data based on passed in string
     public WeaponInfo MakeWeapon(string weaponName)
     {
-        weaponDatabase = new WeaponDatabase().Weapon_Database;
+        Debug.Log("Calling from "+gameObject.name);
 
-        tempWeaponInfo = weaponDatabase.First(weapon => weapon.weaponName.Equals(weaponName));
+        //weaponDatabase = new WeaponDatabase().Weapon_Database;
+        weaponDatabase = WeaponDatabase.Instance().Weapon_Database;
 
-        weaponDatabase.Clear();
+        WeaponInfo item = weaponDatabase.FirstOrDefault(weapon => weapon.weaponName.Contains(weaponName));
+        if (item != null)
+        {
+            tempWeaponInfo = item;
+        }
 
+        
         return tempWeaponInfo;
     }
 
+    private void getUserComponent()
+    {
+        playerUser = gameObject.GetComponentInParent<PlayerManager>();
+        enemyUser = gameObject.GetComponentInParent<EnemyInfo>();
 
+        if (playerUser != null)
+        {
+            Debug.Log("User is a: " + playerUser.gameObject.name);
+        }
+        else if (enemyUser != null)
+        {
+            Debug.Log("User is a: " + enemyUser.gameObject.name);
+        }
+    }
+
+    
 
 }
 

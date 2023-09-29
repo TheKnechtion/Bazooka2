@@ -23,7 +23,7 @@ public class EnemyInfo : MonoBehaviour, IDamagable
 
 
     //controls enemy's weapon
-    WeaponController weaponController = new WeaponController();
+    WeaponController weaponController;
 
 
     //Used by the enemy to track how far the player is
@@ -50,6 +50,7 @@ public class EnemyInfo : MonoBehaviour, IDamagable
 
     private void Start()
     {
+        weaponController= GetComponent<WeaponController>(); 
         currentWeapon = weaponController.MakeWeapon("Test_Weapon");
 
 

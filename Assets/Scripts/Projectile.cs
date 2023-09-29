@@ -31,13 +31,11 @@ public class Projectile : MonoBehaviour
     bool isSpawning = true;
 
 
-    CapsuleCollider caster;
+    public CapsuleCollider caster;
     SphereCollider thisProjectileCollider;
 
     private void Start()
     {
-        //caster = GetComponent<CapsuleCollider>();
-        //thisProjectileCollider = GetComponent<SphereCollider>();
         //Physics.IgnoreCollision(thisProjectileCollider, caster);
 
 
@@ -160,5 +158,10 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public void CollidersToIgnore(CapsuleCollider casterCapsule)
+    {
+        thisProjectileCollider = GetComponent<SphereCollider>();
+        Physics.IgnoreCollision(thisProjectileCollider, casterCapsule);
+    }
 
 }

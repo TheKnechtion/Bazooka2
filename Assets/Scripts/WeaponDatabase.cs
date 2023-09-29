@@ -1,22 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 
 public class WeaponDatabase
 {
 
     //implement singleton functionality in the weapon database
-    /*
-    static WeaponDatabase _instance;
-    public static WeaponDatabase instance
+
+    public int dataCount;
+    public int CallCount;
+    private static WeaponDatabase _instance;
+    private static readonly object _lock = new object();
+    public static WeaponDatabase Instance()
     {
-        get
+        if (_instance == null)
         {
-            return _instance;
+            
+            //This is so if there are multiple calls at the same time,
+            //the first thread is the only one to make instance. Only one.
+            lock (_lock)
+            {
+                _instance = new WeaponDatabase();
+            }
         }
+        return _instance;  
     }
-    */
-    public WeaponDatabase()
+
+    //public static WeaponDatabase instance
+    //{
+        
+    //    get
+    //    {
+    //        return _instance;
+    //    }
+    //}
+
+    //Only this class can make itself
+    private WeaponDatabase()
     {
+        dataCount++;
         Weapon_Database = new List<WeaponInfo>();
 
 
@@ -98,7 +120,7 @@ public class WeaponDatabase
         AI_TestWeapon.timeBetweenProjectileFire = 0.8f;
         AI_TestWeapon.timeBeforeDespawn = 10.0f;
         AI_TestWeapon.homingStrength = 0.0f;
-        Weapon_Database.Add(testWeapon2);
+        Weapon_Database.Add(AI_TestWeapon);
     }
 
 

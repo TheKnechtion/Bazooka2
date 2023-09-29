@@ -5,12 +5,14 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     string itemTag;
+    [SerializeField] private string wepName;
     WeaponInfo tempWeaponInfo;
-    WeaponController tempWeaponController = new WeaponController();
+    //WeaponController tempWeaponController;
 
     private void Awake()
     {
-
+        wepName = gameObject.name;
+        itemTag= gameObject.tag;
 
     }
 
@@ -21,10 +23,12 @@ public class Item : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             
-            tempWeaponInfo = tempWeaponController.MakeWeapon(gameObject.name);
+            //tempWeaponInfo = tempWeaponController.MakeWeapon(gameObject.name);
 
             //on collision, add the weapon to the player's owned weapons
-            other.gameObject.GetComponent<PlayerInfo>().currentWeapon = tempWeaponInfo;
+                
+            //other.gameObject.GetComponent<PlayerInfo>().currentWeapon = tempWeaponInfo;
+            other.gameObject.GetComponent<PlayerInfo>().AddWeapon(wepName);
 
             Destroy(gameObject);
         }

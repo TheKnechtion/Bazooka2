@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponInfo : MonoBehaviour
+public class WeaponInfo
 {
+    //Casuing null issues when creating new WeaponInfo's
+    public WeaponInfo() { }
 
     //name of weapon
     public string weaponName;
