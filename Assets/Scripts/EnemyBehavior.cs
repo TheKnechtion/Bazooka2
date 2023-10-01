@@ -115,9 +115,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
         //kill if below 0 hp
         if (health <= 0) 
-        { 
-            GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten = true; 
-            Destroy(gameObject); 
+        {
+            Die();
         }
     }
 
@@ -157,11 +156,18 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     }
 
 
-
-
     //set the position of the enemy based on a passed value
     public void SetPosition(Vector3 position)
     {
         this.transform.position = position;
     }
+
+    //called when enemuy hp is at or below 0
+    public void Die()
+    {
+
+        GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten = true;
+        Destroy(gameObject);
+    }
+
 }

@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        txtExporter = new Exporter();
+
         //creates an exporter usable to the game manager
         //txtExporter = new Exporter();
 
