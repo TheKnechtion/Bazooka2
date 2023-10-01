@@ -19,14 +19,14 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     }
 
 
-    public int currentHP;
-    public int maximumHP = 50;
+    public int currentHP = 10;
+    public int maximumHP = 10;
 
     public int shield;
 
 
     public float dashCooldown = 3.0f;
-    public float movementSpeed = 0.1f;
+    public float movementSpeed = 1.0f;
 
     //player's currently equipped weapon
     public WeaponInfo currentWeapon;
@@ -45,9 +45,6 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
     //stores the player look direction
     public Vector3 playerLookDirection = new Vector3();
-
-
-
 
 
     private void Start()
@@ -76,6 +73,25 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
         //sets the player look direction based on the player origin and the mouse cursor location
         playerLookDirection = new Vector3(playerPosition.x + mousePos.x, playerPosition.y, playerPosition.z + mousePos.y).normalized;
+
+
+        //if the player's hp drops to 0 or less
+        if(currentHP <= 0) 
+        {
+            //the player object is destroyed and the playerloses method is called
+            Death();
+        }
+
+    }
+
+    //handles player death
+    void Death()
+    {
+        //calls the 
+        GameObject.Find("GameManager").GetComponent<GameManager>().PlayerLoses();
+
+        //destroy's the player game object
+        Destroy(this.gameObject);
     }
 
     private void Awake()
@@ -83,6 +99,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         _instance = this;
     }
 
+    //the method used to pass damage from projectiles
     public void TakeDamage(int passedDamage)
     {
         currentHP -= passedDamage;

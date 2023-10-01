@@ -6,20 +6,31 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     Camera cam;
-    [SerializeField] GameObject playerObject;
+    GameObject playerObject;
     Vector3 playerPosition;
 
+
+
+
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
-        cam = Camera.main;
+        playerObject = GameObject.Find("Player");
     }
+
+    
 
     // Update is called once per frame
     void Update()
     {
         playerPosition = playerObject.transform.position;
 
-        cam.transform.position = new Vector3(playerPosition.x, 12, playerPosition.z - 4);
+        this.gameObject.transform.position = new Vector3(playerPosition.x, 12, playerPosition.z - 4);
     }
 }

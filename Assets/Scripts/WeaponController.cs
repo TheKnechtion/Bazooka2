@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeaponController:MonoBehaviour
 {
-    WeaponInfo tempWeaponInfo = new WeaponInfo();
+    WeaponInfo tempWeaponInfo;
     List<WeaponInfo> weaponDatabase = new List<WeaponInfo>();
 
 
@@ -21,7 +21,7 @@ public class WeaponController:MonoBehaviour
 
     private void Awake()
     {
-        weaponDatabase = new WeaponDatabase().Weapon_Database;
+
     }
 
 

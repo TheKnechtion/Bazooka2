@@ -10,6 +10,8 @@ public class Item : MonoBehaviour
 
     private void Awake()
     {
+        //if the current room is beaten, this destroys itself on spawn
+        if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
 
 
     }

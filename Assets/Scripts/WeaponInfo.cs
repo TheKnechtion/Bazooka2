@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class WeaponInfo : MonoBehaviour
+public class WeaponInfo
 {
 
     //name of weapon
@@ -14,6 +13,8 @@ public class WeaponInfo : MonoBehaviour
 
     //The type of path the projectile follows
     public ProjectilePath projectilePath;
+
+    public string ProjectileName;
 
 
     //whether or not the project explodes when it despawns

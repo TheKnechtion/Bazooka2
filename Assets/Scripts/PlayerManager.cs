@@ -24,7 +24,6 @@ public class PlayerManager : MonoBehaviour
 
     float timeBetweenShots = 0.0f;
 
-    int shotsFired = 0;
 
     WeaponInfo currentWeaponInfo = new WeaponInfo();
 
@@ -35,9 +34,11 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        playerPosition = PlayerInfo.instance.playerPosition;
+        playerPosition = this.gameObject.transform.position;
 
-        currentWeapon = PlayerInfo.instance.currentWeapon;
+        currentWeapon = this.gameObject.GetComponent<PlayerInfo>().currentWeapon;
+            
+            //PlayerInfo.instance.currentWeapon;
 
         //sets the player look direction based on the player origin and the mouse cursor location
         playerLookDirection = PlayerInfo.instance.playerLookDirection;
@@ -59,8 +60,6 @@ public class PlayerManager : MonoBehaviour
        
         if (timeBetweenShots <= 0.0f)
         {
-    
-            Debug.Log("Hello");
 
             timeBetweenShots = currentWeapon.timeBetweenProjectileFire;
           
@@ -71,6 +70,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
         _playerController = new PlayerController();
 
     }
@@ -95,7 +95,7 @@ public class PlayerManager : MonoBehaviour
        
         projectilePrefab = Resources.Load(currentWeapon.projectileType.ToString());
 
-        currentEntity = Instantiate(projectilePrefab as GameObject, playerPosition, new Quaternion(0, 0, 0, 0));
+        currentEntity = Instantiate(projectilePrefab as GameObject, playerPosition+playerLookDirection, new Quaternion(0, 0, 0, 0));
 
         
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentWeapon;
