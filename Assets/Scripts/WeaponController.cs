@@ -29,11 +29,13 @@ public class WeaponController:MonoBehaviour
     //Utility for finding appropriate weapon data based on passed in string
     public WeaponInfo MakeWeapon(string weaponName)
     {
-        weaponDatabase = new WeaponDatabase().Weapon_Database;
+        weaponDatabase = WeaponDatabase.Instance().Weapon_Database;
 
-        tempWeaponInfo = weaponDatabase.First(weapon => weapon.weaponName.Equals(weaponName));
-
-        weaponDatabase.Clear();
+        WeaponInfo item = weaponDatabase.FirstOrDefault(weapon => weapon.weaponName.Contains(weaponName));
+        if (item != null) 
+        {
+            tempWeaponInfo = item;
+        }
 
         return tempWeaponInfo;
     }

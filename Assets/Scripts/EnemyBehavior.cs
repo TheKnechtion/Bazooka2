@@ -40,7 +40,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
 
     //controls enemy's weapon
-    WeaponController weaponController = new WeaponController();
+    WeaponController weaponController;
 
 
     //Used by the enemy to track how far the player is
@@ -73,6 +73,10 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     {
         //ensures that if the room  is beaten, this won't spawn again
         if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
+
+        //Pass the weapon script that attacthed to the object
+        weaponController = gameObject.GetComponent<WeaponController>();
+        currentEnemyWeapon = weaponController.MakeWeapon("AI_TestWeapon");
 
         //set the enemy name to that of the game object
         enemyName = this.gameObject.name;
@@ -143,7 +147,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         //instantiates the projectile prefab
         projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
 
-        currentEntity = Instantiate(projectilePrefab as GameObject, enemyPosition+enemyLookDirection, new Quaternion(0, 0, 0, 0));
+        currentEntity = Instantiate(projectilePrefab as GameObject, enemyPosition+ 2*(enemyLookDirection), new Quaternion(0, 0, 0, 0));
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
         currentEntity.GetComponent<Projectile>().direction = enemyLookDirection;
         currentEntity.GetComponent<Renderer>().material = projectileMaterial;

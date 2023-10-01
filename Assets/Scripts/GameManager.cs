@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum GameState {Playing, Lose, Win }
 public class GameManager : MonoBehaviour
 {
     //linked list that holds room data
@@ -18,8 +20,13 @@ public class GameManager : MonoBehaviour
     //Other scripts that want to print results
     Exporter txtExporter;
 
+    private bool playerWin, playerLose;
+    private GameState state;
+
     private void Awake()
     {
+        state = GameState.Playing;
+
         txtExporter = new Exporter();
 
         //creates an exporter usable to the game manager
@@ -73,6 +80,24 @@ public class GameManager : MonoBehaviour
             PlayerWins();
 
             didOnce = true;
+        }
+
+
+
+        //I imagine we use this later in development
+        switch (state)
+        {
+            case GameState.Playing:
+                //code for Playing state
+                break;
+            case GameState.Lose:
+                //code for when player Dies
+                break;
+            case GameState.Win:
+                //code for when player Wins
+                break;
+            default:
+                break;
         }
     }
 

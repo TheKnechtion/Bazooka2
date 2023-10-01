@@ -6,6 +6,24 @@ using UnityEngine;
 //version one of the weapon database
 public class WeaponDatabase
 {
+    private static WeaponDatabase _instance;
+    private static readonly object _lock = new object();
+
+    public static WeaponDatabase Instance()
+    {
+        if (_instance == null)
+        {
+            //This is so if there are mulitple calls at the same time,
+            //the first thread is the only one to make the instance. Only one.
+            lock(_lock)
+            {
+                _instance = new WeaponDatabase();
+            }
+        }
+        return _instance;
+    }
+
+
     //constructs the database
     public WeaponDatabase()
     {
@@ -156,7 +174,7 @@ public class WeaponDatabase
 
         //AI_TestWeapon - for enemyAI tests
         WeaponInfo AI_TestWeapon = new WeaponInfo();
-        AI_TestWeapon.weaponName = "Test_Weapon2";
+        AI_TestWeapon.weaponName = "AI_TestWeapon";
         AI_TestWeapon.projectileType = ProjectileType.Gun;
         AI_TestWeapon.projectilePath = ProjectilePath.Straight;
 

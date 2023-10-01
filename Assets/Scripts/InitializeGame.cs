@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 public class InitializeGame : MonoBehaviour
@@ -30,7 +31,7 @@ public class InitializeGame : MonoBehaviour
     }
 
     GameObject LoadPrefabFromString(string prefabName)
-    {
+    {        
         return (Resources.Load(prefabName) as GameObject);
     }
 

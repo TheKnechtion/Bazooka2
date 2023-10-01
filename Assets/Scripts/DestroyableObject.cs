@@ -41,7 +41,12 @@ public class DestroyableObject : MonoBehaviour, IDamagable
 
         if (health <= 0)
         {
-            Destroy(this.gameObject);
+           Die();
         }
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
     }
 }
