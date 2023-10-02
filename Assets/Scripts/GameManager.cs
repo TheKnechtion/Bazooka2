@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     GameObject timerText;
     private Timer evacTimer;
+    private EvacExit Exit;
 
     //Used to export winning results to the txt file.
     //Other scripts that want to print results
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     private bool playerWin, playerLose, evacTime;
     private GameState state;
+
 
     private void Awake()
     {
@@ -43,10 +45,20 @@ public class GameManager : MonoBehaviour
         //sets the initial current node equal to the head node
         currentNode = roomDatabase.headNode;
 
-        evacTimer = new Timer(10.0f);
+        //Everything related to the Exit
+        Exit = GameObject.Find("Evac_Exit").GetComponent<EvacExit>();
+        Exit.OnPlayerExit += Exit_OnPlayerExit;
+        Exit.gameObject.SetActive(false);
+        evacTimer = new Timer(30.0f);
 
         //prevent the game manager game object from being destroyed between scenes
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    //Event for when player enters the Exit
+    private void Exit_OnPlayerExit(object sender, EventArgs e)
+    {
+        PlayerWins();
     }
 
     private void Start()
@@ -124,6 +136,7 @@ public class GameManager : MonoBehaviour
         //Check if all nodes are cleared
         if (roomDatabase.roomList.Last().isRoomBeaten)
         {
+            Exit.gameObject.SetActive(true);
             evacTime = true;
             Debug.Log("Time for Evac!!!");
         }
