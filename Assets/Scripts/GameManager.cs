@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -16,16 +18,19 @@ public class GameManager : MonoBehaviour
     GameObject winnerText;
     GameObject loserText;
 
+    GameObject timerText;
+    private Timer evacTimer;
+
     //Used to export winning results to the txt file.
     //Other scripts that want to print results
     Exporter txtExporter;
 
-    private bool playerWin, playerLose;
+    private bool playerWin, playerLose, evacTime;
     private GameState state;
 
     private void Awake()
     {
-        state = GameState.Playing;
+        //state = GameState.Playing;
 
         txtExporter = new Exporter();
 
@@ -37,6 +42,8 @@ public class GameManager : MonoBehaviour
 
         //sets the initial current node equal to the head node
         currentNode = roomDatabase.headNode;
+
+        evacTimer = new Timer(10.0f);
 
         //prevent the game manager game object from being destroyed between scenes
         DontDestroyOnLoad(this.gameObject);
@@ -74,31 +81,53 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //checks if the this node of the tail node/final room, then checks if the final room has been beaten
-        if(currentNode.nextNode == null && currentNode.isRoomBeaten && !didOnce)
-        {
-            //activates the player win ui element
-            PlayerWins();
+        //if(currentNode.nextNode == null && currentNode.isRoomBeaten && !didOnce)
+        //{
+        //    //activates the player win ui element
+        //    PlayerWins();
 
-            didOnce = true;
-        }
+        //    didOnce = true;
+        //}
 
+        CheckAllRoomsCleared();
 
-
+        #region Game State machine
         //I imagine we use this later in development
-        switch (state)
+        //switch (state)
+        //{
+        //    case GameState.Playing:
+        //        //code for Playing state
+        //        break;
+        //    case GameState.Lose:
+        //        //code for when player Dies
+        //        break;
+        //    case GameState.Win:
+        //        //code for when player Wins
+        //        break;
+        //    default:
+        //        break;
+        //}
+        #endregion
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (evacTime)
         {
-            case GameState.Playing:
-                //code for Playing state
-                break;
-            case GameState.Lose:
-                //code for when player Dies
-                break;
-            case GameState.Win:
-                //code for when player Wins
-                break;
-            default:
-                break;
+            evacTimer.tickTimer(Time.deltaTime);
+            Debug.Log("EVAC TIME: " + evacTimer.TimeLeft);
         }
+    }
+    private void CheckAllRoomsCleared()
+    {
+        //Check if all nodes are cleared
+        if (roomDatabase.roomList.Last().isRoomBeaten)
+        {
+            evacTime = true;
+            Debug.Log("Time for Evac!!!");
+        }
+
     }
 
     //used to track the player's HP upon beating the game or dying

@@ -2,12 +2,21 @@
 
 
 //this contains the room database linked list
+using System.Collections.Generic;
+
 public class RoomDatabase
 {
     //reference the head node of the linked list.
     //public so that it can be used as an entry
     //point to the list for the game manager.
-    public DoublyNode headNode;
+
+    public DoublyNode headNode; //Is a room
+    public List<DoublyNode> roomList;
+
+    public RoomDatabase()
+    { 
+        roomList = new List<DoublyNode>();
+    }
 
     //creates the room database
     public void CreateLinkedList()
@@ -28,6 +37,11 @@ public class RoomDatabase
         tailNode.previousNode = middleNode;
         tailNode.nextNode = null;
 
+        //We add these to a list of DoublyNodes to iterate through it 
+        //for data checking
+        roomList.Add(headNode);
+        roomList.Add(middleNode);
+        roomList.Add(tailNode);
     }
 
 }
