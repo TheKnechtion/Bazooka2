@@ -76,7 +76,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
         //Pass the weapon script that attacthed to the object
         weaponController = gameObject.GetComponent<WeaponController>();
-        currentEnemyWeapon = weaponController.MakeWeapon("AI_TestWeapon");
 
         //set the enemy name to that of the game object
         enemyName = this.gameObject.name;

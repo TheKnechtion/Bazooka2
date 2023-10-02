@@ -34,7 +34,7 @@ public class WeaponDatabase
         //Test weapon 1
         WeaponInfo testWeapon = new WeaponInfo();
         testWeapon.weaponName = "Test_Weapon";
-        testWeapon.ProjectileName = "Gun";
+        testWeapon.ProjectileName = "Test_WeaponProjectile";
         testWeapon.projectileType = ProjectileType.Gun;
         testWeapon.projectilePath = ProjectilePath.Straight;
 

@@ -93,7 +93,7 @@ public class PlayerManager : MonoBehaviour
     void Shoot()
     {
        
-        projectilePrefab = Resources.Load(currentWeapon.projectileType.ToString());
+        projectilePrefab = Resources.Load(currentWeapon.ProjectileName);
 
         currentEntity = Instantiate(projectilePrefab as GameObject, playerPosition+playerLookDirection, new Quaternion(0, 0, 0, 0));
 
