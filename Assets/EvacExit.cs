@@ -5,16 +5,17 @@ using UnityEngine;
 
 public class EvacExit : MonoBehaviour
 {
-    public event EventHandler OnPlayerExit;
+    public static event EventHandler OnPlayerExit;
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider other)
     {
         //Check if the object colliding is Player
-        if (collision.gameObject.GetComponent<PlayerInfo>())
+        if (other.gameObject.GetComponent<PlayerInfo>())
         {
+            //We raise event that player has left 
+
+            Debug.Log("Player has enter Exit Trigger");
             OnPlayerExit?.Invoke(this, EventArgs.Empty);
         }
-        
     }
 }

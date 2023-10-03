@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     GameObject timerText;
     private Timer evacTimer;
     private EvacExit Exit;
+    private GameObject exit;
+    private Transform ExitPosition;
 
     //Used to export winning results to the txt file.
     //Other scripts that want to print results
@@ -46,19 +48,22 @@ public class GameManager : MonoBehaviour
         currentNode = roomDatabase.headNode;
 
         //Everything related to the Exit
-        Exit = GameObject.Find("Evac_Exit").GetComponent<EvacExit>();
-        Exit.OnPlayerExit += Exit_OnPlayerExit;
-        Exit.gameObject.SetActive(false);
-        evacTimer = new Timer(30.0f);
+        exit = Resources.Load("Evac_Exit") as GameObject;
+        EvacExit.OnPlayerExit += Exit_OnPlayerExit;
+
+        evacTimer = new Timer(3.0f);
 
         //prevent the game manager game object from being destroyed between scenes
         DontDestroyOnLoad(this.gameObject);
     }
 
+
     //Event for when player enters the Exit
     private void Exit_OnPlayerExit(object sender, EventArgs e)
     {
-        PlayerWins();
+        Debug.Log("PLayer should be winning");
+        playerWin = true;
+        //PlayerWins();
     }
 
     private void Start()
@@ -70,6 +75,8 @@ public class GameManager : MonoBehaviour
         //hides the winner and loser UI elements 
         winnerText.SetActive(false);
         loserText.SetActive(false);
+
+        
     }
 
     //used by the Door script to travel to previous rooms
@@ -103,6 +110,11 @@ public class GameManager : MonoBehaviour
 
         CheckAllRoomsCleared();
 
+        if (evacTime)
+        {
+            CheckPlayerWin();
+        }
+
         #region Game State machine
         //I imagine we use this later in development
         //switch (state)
@@ -122,11 +134,26 @@ public class GameManager : MonoBehaviour
         #endregion
     }
 
+    private void CheckPlayerWin()
+    {
+        if (evacTimer.timerFinished() && !playerWin)
+        {
+            evacTime = false;
+            evacTimer.Zero();
+            PlayerLoses();
+        }
+
+        if (evacTimer.TimeLeft>0 && playerWin)
+        {
+            PlayerWins();
+        }
+    }
 
     private void FixedUpdate()
     {
         if (evacTime)
         {
+
             evacTimer.tickTimer(Time.deltaTime);
             Debug.Log("EVAC TIME: " + evacTimer.TimeLeft);
         }
@@ -136,11 +163,26 @@ public class GameManager : MonoBehaviour
         //Check if all nodes are cleared
         if (roomDatabase.roomList.Last().isRoomBeaten)
         {
-            Exit.gameObject.SetActive(true);
+            //We want to set the the Exit to activate
+            //Exit.gameObject.SetActive(true);
+
+            SpawnExit(exit);
             evacTime = true;
-            Debug.Log("Time for Evac!!!");
         }
 
+    }
+
+    private void SpawnExit(GameObject exit)
+    {
+        exit = Instantiate(exit, ExitPosition);
+        if (exit)
+        {
+            Debug.Log("Exit has spawned");
+        }
+        else
+        {
+            Debug.Log("There is no exit Spawned");
+        }
     }
 
     //used to track the player's HP upon beating the game or dying
@@ -170,5 +212,7 @@ public class GameManager : MonoBehaviour
         loserText.SetActive(true);
 
     }
+
+    
 
 }
