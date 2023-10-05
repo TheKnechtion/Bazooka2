@@ -12,7 +12,6 @@ public class DoublyNode
     //holds data for is the player has won the game
     public bool isWinner { get; set; }
     
-    //private EnemyInfo[] enemyArray { get; set; } ---- In the future we can probably us an enemy array for clearing a room
 
     //constructor for a doublynode
     public DoublyNode()

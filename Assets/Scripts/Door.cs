@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class Door : MonoBehaviour
 {
     bool roomCleared = false;
-
-
+    bool leaveRoom;
+    //public static event EventHandler OnNextRoom;
     private void OnTriggerEnter(Collider other)
     {
         //checks the doubly linked list room database for whether or not this current node has been beaten
@@ -23,7 +24,12 @@ public class Door : MonoBehaviour
             
             //transitions to the unity scene that has a name matching the name of the door game object
             SceneManager.LoadSceneAsync(this.gameObject.name);
+
+            //OnNextRoom?.Invoke(this, EventArgs.Empty);
         }
     }
+
     
+
+
 }

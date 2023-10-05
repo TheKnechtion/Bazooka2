@@ -23,10 +23,13 @@ public class Button : MonoBehaviour
         if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
 
         //finds the position of an enemy spawn node
-            //spawnPosition = GameObject.Find("EnemySpawnNode").transform.position;
+        //spawnPosition = GameObject.Find("EnemySpawnNode").transform.position;
+        spawnObject = GameObject.Find("EnemySpawns");
         GetSpawnPoints();
 
         enemySpawnManager = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>();
+
+        triggered = false;
 
         rng = new System.Random();
         enemyType = rng.Next(0, 2);
@@ -36,10 +39,13 @@ public class Button : MonoBehaviour
     //triggers if the player or their projectile collides with this game object's collider
     private void OnTriggerEnter(Collider other)
     {
-
         //spawn an unseen enemy from the enemy database
-            //enemySpawnManager.SpawnEnemy(spawnPosition);
-        SpawnEnemies(enemyType);
+        //enemySpawnManager.SpawnEnemy(spawnPosition);
+        if (!triggered)
+        {
+            triggered = true;
+            SpawnEnemies(enemyType);
+        }
 
 
         //destroy the button game object

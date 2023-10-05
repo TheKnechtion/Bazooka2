@@ -18,6 +18,10 @@ public class EnemySpawnManager : MonoBehaviour
     //this tracks all enemies the player hasn't seen yet, based on the enemy database
     List<string> listOfUnseenEnemiesInCurrentPlaythough;
 
+
+    private Transform[] spawnPositions;
+    [SerializeField] private GameObject spawnObject;
+
     public void Start()
     {
         //create an enemy database that will be used by the spawn manager
@@ -28,8 +32,6 @@ public class EnemySpawnManager : MonoBehaviour
 
         //fill the list of enemies the player hasn't seen yet with info from the enemy database
         foreach(EnemyInfo enemy in enemyDatabase) {listOfUnseenEnemiesInCurrentPlaythough.Add(enemy.name);}
-
-
     }
 
     //used by a button to spawn an enemy the player hasn't seen yet at the location of an enemy spawn node
@@ -65,6 +67,20 @@ public class EnemySpawnManager : MonoBehaviour
         //removes the spawned enemy from the list of enemies the player hasn't encountered this playthrough
         listOfUnseenEnemiesInCurrentPlaythough.Remove(tempEnemyInfo.name);
 
+    }
+
+    public void GetSpawnPoints()
+    {
+        spawnObject = GameObject.Find("EnemySpawns");
+        spawnPositions = spawnObject.GetComponentsInChildren<Transform>();
+    }
+
+    public void SpawnEnemies(int n)
+    {
+        for (int i = 1; i < spawnPositions.Length; i++)
+        {
+            SpawnEnemy(spawnPositions[i].transform.position, n);
+        }
     }
 
     //used to quickly load an object as a game object

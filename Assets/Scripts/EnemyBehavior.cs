@@ -122,8 +122,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             Ray wallDetect = new Ray(gameObject.transform.position, enemyLookDirection);
             RaycastHit hit;
-            Debug.DrawRay(gameObject.transform.position, enemyLookDirection * 5, Color.black);
-            if (Physics.Raycast(wallDetect, out hit, 100, environmentMask))
+            Debug.DrawRay(gameObject.transform.position, enemyLookDirection.normalized, Color.black);
+            if (Physics.Raycast(wallDetect, out hit, 10, environmentMask))
             {
                 Debug.Log("I hit a wall");
                 nav.MoveToPlayer(isAggrod);
@@ -135,6 +135,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
             if (inShootRange && hit.collider == null)
             {
+                Debug.Log("I should be shooting");
                 HandleShooting();
             }
             
