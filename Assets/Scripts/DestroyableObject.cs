@@ -30,7 +30,7 @@ public class DestroyableObject : MonoBehaviour, IDamagable
     {
         position = this.gameObject.transform.position;
 
-        GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().SpawnEnemy(new Vector3(2 - i + position.x, 1, i + position.z));
+        //GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().SpawnEnemy(new Vector3(2 - i + position.x, 1, i + position.z));
         i++;
 
     }

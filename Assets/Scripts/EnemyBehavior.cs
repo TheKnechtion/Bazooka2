@@ -46,13 +46,17 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //Used by the enemy to track how far the player is
     float enemyPlayerTracker;
 
-
     float timeBetweenShots;
 
-    //Used to determine how far the player has to be for the enemy to stop attacking
+    //Used to determine how far the player has to be for the enemy to stop attacking    
     float enemyAttackRange_BecomeAggro = 10.0f;
+    float enemyAttackRange_AttackRange = 9.0f;
+    bool isAggrod, inShootRange;
 
-    bool isAggrod;
+    [SerializeField] private LayerMask playerMask;
+    [SerializeField] private LayerMask environmentMask;
+
+    private Navigation nav;
 
 
     //Used to determine how far the player has to be for the enemy to start attacking
@@ -85,14 +89,18 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
         //sets the initial state of an enemy to docile
         isAggrod = false;
+        inShootRange = false;
 
+        nav = GetComponent<Navigation>();
         //create the red projectile material used by the enemy projectiles
         projectileMaterial = Resources.Load("Red") as Material;
-
     }
 
     private void Update()
     {
+        inShootRange = false;
+        isAggrod= false;
+
         //track the enemy position
         enemyPosition = this.transform.position;
 
@@ -106,10 +114,31 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         enemyLookDirection = (playerPosition - enemyPosition).normalized;
 
         //if the player gets within range, the enemy will shoot
-        if (enemyPlayerTracker < enemyAttackRange_BecomeAggro) { isAggrod = true; }
 
-        //if the player is out of range, the enemy will stop shooting
-        if (enemyPlayerTracker > enemyAttackRange_ExitAggro) { isAggrod = false; }
+        isAggrod = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_BecomeAggro, playerMask);
+        inShootRange = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_AttackRange, playerMask);
+
+        if (isAggrod)
+        {
+            Ray wallDetect = new Ray(gameObject.transform.position, enemyLookDirection);
+            RaycastHit hit;
+            Debug.DrawRay(gameObject.transform.position, enemyLookDirection * 5, Color.black);
+            if (Physics.Raycast(wallDetect, out hit, 100, environmentMask))
+            {
+                Debug.Log("I hit a wall");
+                nav.MoveToPlayer(isAggrod);
+            }
+            else
+            {
+                Debug.Log("Not hitting wall");
+            }
+
+            if (inShootRange && hit.collider == null)
+            {
+                HandleShooting();
+            }
+            
+        }
 
 
         //tracks time between shots, stopping at 0.
@@ -121,16 +150,29 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             Die();
         }
+
+        Debug.Log("Is Aggrod: "+isAggrod);
     }
 
     private void FixedUpdate()
     {
         //if the enemy is aggro'd, it will shoot at the player
-        if (isAggrod == true) { HandleShooting(); }
+        //if (inShootRange == true)
+        //{
+        //    HandleShooting(); 
+        //}
+    }
+    private void PositionAndShoot()
+    { 
+        
     }
 
     private void HandleShooting()
     {
+        //Raycast to check if wall is between Enemy and Player
+              //implementing...
+
+
         //manages how quick the player shoots based on their currently equipped weapon
         if (timeBetweenShots <= 0.0f)
         {
@@ -140,6 +182,10 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         }
     }
 
+    private void moveToPlayer()
+    { 
+        //Use naveAgent script to move to player
+    }
 
     void Shoot()
     {
@@ -171,6 +217,15 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
         GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten = true;
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(gameObject.transform.position, enemyAttackRange_BecomeAggro);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(gameObject.transform.position, enemyAttackRange_AttackRange);
     }
 
 }

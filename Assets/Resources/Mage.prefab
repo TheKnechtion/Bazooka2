@@ -153,6 +153,12 @@ MonoBehaviour:
   AP: 0
   DEF: 0
   health: 2
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  environmentMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &-3226481535720285474
 MonoBehaviour:
   m_ObjectHideFlags: 0

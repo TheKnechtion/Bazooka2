@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     GameObject timerText;
     private Timer evacTimer;
-    private EvacExit Exit;
     private GameObject exit;
     private Transform ExitPosition;
 
@@ -29,6 +28,9 @@ public class GameManager : MonoBehaviour
     Exporter txtExporter;
 
     private bool playerWin, playerLose, evacTime;
+
+    public static bool EvacTime = false;
+
     private GameState state;
 
 
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
         exit = Resources.Load("Evac_Exit") as GameObject;
         EvacExit.OnPlayerExit += Exit_OnPlayerExit;
 
-        evacTimer = new Timer(3.0f);
+        evacTimer = new Timer(25.0f);
 
         //prevent the game manager game object from being destroyed between scenes
         DontDestroyOnLoad(this.gameObject);
@@ -110,7 +112,7 @@ public class GameManager : MonoBehaviour
 
         CheckAllRoomsCleared();
 
-        if (evacTime)
+        if (EvacTime)
         {
             CheckPlayerWin();
         }
@@ -151,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (evacTime)
+        if (EvacTime)
         {
 
             evacTimer.tickTimer(Time.deltaTime);
@@ -167,7 +169,7 @@ public class GameManager : MonoBehaviour
             //Exit.gameObject.SetActive(true);
 
             SpawnExit(exit);
-            evacTime = true;
+            EvacTime = true;
         }
 
     }
@@ -175,6 +177,7 @@ public class GameManager : MonoBehaviour
     private void SpawnExit(GameObject exit)
     {
         exit = Instantiate(exit, ExitPosition);
+
         if (exit)
         {
             Debug.Log("Exit has spawned");
@@ -210,7 +213,6 @@ public class GameManager : MonoBehaviour
         txtExporter.Export("Loser", playerHP, "Results.txt");
 
         loserText.SetActive(true);
-
     }
 
     

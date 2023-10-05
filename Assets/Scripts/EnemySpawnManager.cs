@@ -33,10 +33,12 @@ public class EnemySpawnManager : MonoBehaviour
     }
 
     //used by a button to spawn an enemy the player hasn't seen yet at the location of an enemy spawn node
-    public void SpawnEnemy(Vector3 position)
+    public void SpawnEnemy(Vector3 position, int n)
     {
         //stores info for an enemy the player hasn't seen yet
-        tempEnemyInfo = enemyDatabase.First(enemy => listOfUnseenEnemiesInCurrentPlaythough.Contains(enemy.name));
+        
+        tempEnemyInfo = enemyDatabase[n];
+        //tempEnemyInfo = enemyDatabase.First(enemy => listOfUnseenEnemiesInCurrentPlaythough.Contains(enemy.name));
 
         //load the appropriate enemy prefab based on the enemy name
         tempGameObject = LoadResource(tempEnemyInfo.name);

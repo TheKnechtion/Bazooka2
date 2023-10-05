@@ -18,6 +18,14 @@ public class Navigation : MonoBehaviour
     void Update()
     {
         //Always setting destination to the players position
-        agent.destination = PlayerInfo.instance.playerPosition;
+        
+    }
+
+    public void MoveToPlayer(bool n)
+    {
+        if (n == true)
+        {
+            agent.destination = PlayerInfo.instance.playerPosition;
+        }
     }
 }
