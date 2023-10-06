@@ -76,7 +76,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     private void Start()
     {
         //ensures that if the room  is beaten, this won't spawn again
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
+        //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
 
         //Pass the weapon script that attacthed to the object
         weaponController = gameObject.GetComponent<WeaponController>();
@@ -131,17 +131,17 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             Debug.DrawRay(gameObject.transform.position, enemyLookDirection.normalized, Color.black);
             if (Physics.Raycast(wallDetect, out hit, 10, environmentMask))
             {
-                Debug.Log("I hit a wall");
+                //Debug.Log("I hit a wall");
                 nav.MoveToPlayer(isAggrod);
             }
             else
             {
-                Debug.Log("Not hitting wall");
+                //Debug.Log("Not hitting wall");
             }
 
             if (inShootRange && hit.collider == null)
             {
-                Debug.Log("I should be shooting");
+                //Debug.Log("I should be shooting");
                 HandleShooting();
             }
             
@@ -203,7 +203,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //called when enemuy hp is at or below 0
     public void Die()
     {
-        GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten = true;
+        GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().UpdateEnemyCount();
         Destroy(gameObject);
     }
 

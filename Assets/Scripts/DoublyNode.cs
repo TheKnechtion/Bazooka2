@@ -16,10 +16,13 @@ public class DoublyNode
     //For seeing if room enemies spawned
     public bool spawnedEnemies, spawnedEnemiesEvac;
 
+    public bool beatEvacRoom { get; set; }
+
     //constructor for a doublynode
     public DoublyNode()
     {
         //----------//
+        beatEvacRoom = false;
         spawnedEnemies= false;
         spawnedEnemiesEvac= false;
     }

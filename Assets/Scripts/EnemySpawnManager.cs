@@ -22,6 +22,8 @@ public class EnemySpawnManager : MonoBehaviour
     private Transform[] spawnPositions;
     [SerializeField] private GameObject spawnObject;
 
+    public static int enemyCount;
+
     public void Start()
     {
         //create an enemy database that will be used by the spawn manager
@@ -100,9 +102,70 @@ public class EnemySpawnManager : MonoBehaviour
 
     }
 
+
+
+    public void SpawnEnemyByTag(Vector3 position, string name)
+    {
+        //stores info for an enemy the player hasn't seen yet
+
+        tempEnemyInfo = enemyDatabase.First(enemy => enemy.name == name);
+        //tempEnemyInfo = enemyDatabase.First(enemy => listOfUnseenEnemiesInCurrentPlaythough.Contains(enemy.name));
+
+        //load the appropriate enemy prefab based on the enemy name
+        tempGameObject = LoadResource(tempEnemyInfo.name);
+
+        //instantiate the prefab at the passed in position (an enemy spawn node)
+        tempGameObject = Instantiate(tempGameObject, position, new Quaternion(0, 0, 0, 0));
+
+        //sets the name of the game object to the enemy's name in the database
+        tempGameObject.name = tempEnemyInfo.name;
+
+        //sets the health of the enemy from the database
+        tempGameObject.GetComponent<EnemyBehavior>().health = tempEnemyInfo.HP;
+
+        //sets the def of the enemy from the database (no use in this game, but it sets it)
+        tempGameObject.GetComponent<EnemyBehavior>().DEF = tempEnemyInfo.DEF;
+
+        //sets the MP of the enemy from the database (no use in this game, but it sets it)
+        tempGameObject.GetComponent<EnemyBehavior>().MP = tempEnemyInfo.MP;
+
+        //sets the def of the enemy from the database
+        //(This is currently only used for the knight. It sets a value in the weapon database for the knight's weapon.)
+        tempGameObject.GetComponent<EnemyBehavior>().AP = tempEnemyInfo.AP;
+
+
+
+    }
+
+
+    public void UpdateEnemyCount()
+    {
+        enemyCount--;
+        CheckIfAllEnemiesAreBeaten();
+    }
+
+    void CheckIfAllEnemiesAreBeaten()
+    {
+
+        if (enemyCount == 0 && !gameObject.GetComponent<GameManager>().currentNode.isRoomBeaten)
+        {
+            gameObject.GetComponent<GameManager>().currentNode.isRoomBeaten = true;
+        }
+        else if(enemyCount == 0 && !gameObject.GetComponent<GameManager>().currentNode.beatEvacRoom)
+        {
+            gameObject.GetComponent<GameManager>().currentNode.beatEvacRoom = true;
+        }
+    }
+
     public void GetSpawnPoints()
     {
         spawnObject = GameObject.Find("EnemySpawns");
+        spawnPositions = spawnObject.GetComponentsInChildren<Transform>();
+    }
+
+    public void GetEvacSpawnPoint()
+    {
+        spawnObject = GameObject.Find("EvacEnemySpawns");
         spawnPositions = spawnObject.GetComponentsInChildren<Transform>();
     }
 
@@ -111,6 +174,17 @@ public class EnemySpawnManager : MonoBehaviour
         for (int i = 1; i < spawnPositions.Length; i++)
         {
             SpawnEnemy(spawnPositions[i].transform.position, n);
+        }
+    }
+
+    string currentName;
+    public void SpawnEnemiesByTag()
+    {
+        for (int i = 1; i < spawnPositions.Length; i++)
+        {
+            enemyCount = spawnPositions.Length-1;
+            currentName = spawnPositions[i].tag;
+            SpawnEnemyByTag(spawnPositions[i].transform.position, currentName);
         }
     }
 

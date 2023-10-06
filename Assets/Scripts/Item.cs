@@ -4,27 +4,42 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    string itemTag, wepName;
+    string itemTag, itemName;
     WeaponInfo tempWeaponInfo;
     WeaponController tempWeaponController = new WeaponController();
 
     private void Awake()
     {
-        wepName = gameObject.name;
+        itemName = gameObject.name;
 
         //if the current room is beaten, this destroys itself on spawn
         if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); }
     }
 
+
+    /*
+    private void FixedUpdate()
+    {
+        gameObject.GetComponent<Rigidbody>().rotation = new Quaternion(0, 1, 0, 0);
+    }
+    */
+
     private void OnTriggerEnter(Collider other)
     {
         itemTag = gameObject.tag;
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && itemTag == "Weapon")
         {
-            other.gameObject.GetComponent<PlayerInfo>().AddWeapon(wepName);
+            other.gameObject.GetComponent<PlayerInfo>().AddWeapon(itemName);
             Destroy(this.gameObject);
         }
+
+        if(other.gameObject.tag == "Player" && itemTag == "Health")
+        {
+            other.gameObject.GetComponent<PlayerInfo>().Heal_HP(5);
+            Destroy(this.gameObject);
+        }
+
     }
 
 

@@ -34,7 +34,7 @@ public class WeaponDatabase
         //Test weapon 1
         WeaponInfo testWeapon = new WeaponInfo();
         testWeapon.weaponName = "Test_Weapon";
-        testWeapon.ProjectileName = "Test_WeaponProjectile";
+        testWeapon.ProjectileName = "Gun";
         testWeapon.projectileType = ProjectileType.Gun;
         testWeapon.projectilePath = ProjectilePath.Straight;
 
@@ -62,6 +62,7 @@ public class WeaponDatabase
         //Test weapon 2
         WeaponInfo testWeapon2 = new WeaponInfo();
         testWeapon2.weaponName = "Test_Weapon2";
+        testWeapon2.ProjectileName = "Gun";
         testWeapon2.projectileType = ProjectileType.Gun;
         testWeapon2.projectilePath = ProjectilePath.Straight;
 
@@ -98,7 +99,7 @@ public class WeaponDatabase
         mageWeapon.doesBounce = false;
         mageWeapon.isHoming = false;
 
-        mageWeapon.damage = 5;
+        mageWeapon.damage = 3;
         mageWeapon.splashDamage = 1;
         mageWeapon.maxProjectilesOnScreen = 3;
         mageWeapon.numberOfProjectilesPerShot = 1;
@@ -137,7 +138,7 @@ public class WeaponDatabase
         dwarfWeapon.projectileSpeed = 14.0f;
         dwarfWeapon.radiusOfProjectile = 1.0f;
         dwarfWeapon.splashDamageRadius = 1.0f;
-        dwarfWeapon.timeBetweenProjectileFire = 0.8f;
+        dwarfWeapon.timeBetweenProjectileFire = 0.6f;
         dwarfWeapon.timeBeforeDespawn = 10.0f;
         dwarfWeapon.homingStrength = 0.0f;
         Weapon_Database.Add(dwarfWeapon);

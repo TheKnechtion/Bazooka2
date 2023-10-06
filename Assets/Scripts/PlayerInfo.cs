@@ -20,8 +20,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     }
 
 
-    public int currentHP = 10;
-    public int maximumHP = 10;
+    public int currentHP = 15;
+    public int maximumHP = 15;
 
     public int shield;
 
@@ -34,7 +34,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
     public List<WeaponInfo> ownedWeapons = new List<WeaponInfo>();
 
-    private WeaponController wepController;
+    private WeaponController weaponController;
 
 
     //store the current player position
@@ -52,7 +52,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
     private void Start()
     {
-        wepController= GetComponent<WeaponController>();
+        weaponController = GetComponent<WeaponController>();
         currentHP = maximumHP;
     }
 
@@ -109,15 +109,25 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         currentHP -= passedDamage;
     }
 
+
+    public void Heal_HP(int amount)
+    {
+        currentHP += amount;
+
+        currentHP = (maximumHP < currentHP) ? maximumHP : currentHP;
+
+
+    }
+
     public void AddWeapon(string passedWeapon)
     { 
-        WeaponInfo newWep = wepController.MakeWeapon(passedWeapon);
-        if (newWep != null)
+        WeaponInfo newWeapon = weaponController.MakeWeapon(passedWeapon);
+        if (newWeapon != null)
         {
-            ownedWeapons.Add(newWep);
+            ownedWeapons.Add(newWeapon);
         }
 
-        currentWeapon = ownedWeapons.First();
+        //currentWeapon = ownedWeapons.First();
     }
 
 }

@@ -21,11 +21,14 @@ public class PlayerManager : MonoBehaviour
     GameObject currentEntity;
     WeaponInfo currentWeapon;
 
-
     float timeBetweenShots = 0.0f;
 
+    float scrollValue;
 
-    WeaponInfo currentWeaponInfo = new WeaponInfo();
+    int ownedWeaponCount;
+    int weaponIndex = 0;
+
+    List<WeaponInfo> playerOwnedWeapons;
 
     private void Start()
     {
@@ -34,19 +37,29 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        CheckWeaponChange();
+
         playerPosition = this.gameObject.transform.position;
 
-        currentWeapon = this.gameObject.GetComponent<PlayerInfo>().currentWeapon;
-            
-            //PlayerInfo.instance.currentWeapon;
+        playerOwnedWeapons = this.gameObject.GetComponent<PlayerInfo>().ownedWeapons;
+
+        ownedWeaponCount = playerOwnedWeapons.Count;
+
+        weaponIndex = weaponIndex % ownedWeaponCount;
+
+        currentWeapon = this.gameObject.GetComponent<PlayerInfo>().ownedWeapons[weaponIndex];
+
+
 
         //sets the player look direction based on the player origin and the mouse cursor location
         playerLookDirection = PlayerInfo.instance.playerLookDirection;
 
-
         pressed = _playerController.PlayerActions.Shoot.IsPressed();
 
-        if (pressed) { HandleShooting(); }
+        if (pressed) 
+        { 
+            HandleShooting(); 
+        }
 
         //tracks time between shots, stopping at 0.
         timeBetweenShots = (timeBetweenShots > 0) ? timeBetweenShots -= Time.deltaTime : 0;
@@ -54,7 +67,33 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    
+
+    private void CheckWeaponChange()
+    {
+        scrollValue = _playerController.PlayerActions.ChangeWeapon.ReadValue<float>();
+
+        if (scrollValue > 0)
+        {
+            weaponIndex++;
+        }
+
+        if (scrollValue < 0)
+        {
+            weaponIndex--;
+        }
+
+        if (weaponIndex < 0)
+        {
+            weaponIndex = ownedWeaponCount - 1;
+        }
+
+
+    }
+
+
+
+
+
     private void HandleShooting()
     {
        

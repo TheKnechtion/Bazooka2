@@ -44,14 +44,14 @@ public class PlayerMovement : MonoBehaviour
         moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
 
 
-        dashCooldown = (dashCooldown > 0) ? dashCooldown-=Time.deltaTime:dashCooldown;
+        //dashCooldown = (dashCooldown > 0) ? dashCooldown-=Time.deltaTime:dashCooldown;
 
-        dash = _playerController.PlayerMovement.Dash.IsPressed();
+        //dash = _playerController.PlayerMovement.Dash.IsPressed();
     }
 
 
 
-
+    
     // Update is called once per frame
     void FixedUpdate()
     {

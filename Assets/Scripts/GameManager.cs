@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     private GameObject exit;
     private Transform ExitPosition;
 
+    bool canSpawnEnemies = false;
+
     public static bool EvacTime = false;
 
     private GameState state;
@@ -75,6 +77,9 @@ public class GameManager : MonoBehaviour
         //prevent the game manager game object from being destroyed between scenes
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(exit);
+
+
+        canSpawnEnemies = true;
     }
 
 
@@ -84,8 +89,8 @@ public class GameManager : MonoBehaviour
     //and in the 'beaten' room before I switch to the next room.
     private void SceneManager_changedRoom(Scene arg0, Scene arg1)   
     {
-     //   spawnedEnemies = false;
-        SpawnEnemies();
+        //   spawnedEnemies = false;
+        canSpawnEnemies = true;
     }
 
     //private void Door_OnNextRoom(object sender, EventArgs e)
@@ -152,7 +157,8 @@ public class GameManager : MonoBehaviour
         //    SpawnEnemies();
         //}
 
-        if (currentNode == roomDatabase.headNode)
+        
+        if (currentNode == roomDatabase.headNode && !currentNode.isRoomBeaten)
         {
             SpawnEnemies();
         }
@@ -162,11 +168,12 @@ public class GameManager : MonoBehaviour
 
         if (EvacTime)
         {
+            SpawnEnemies();
             CheckPlayerWin();
         }
 
-        Debug.Log("Spawned Enemies: "+currentNode.spawnedEnemies);
-        Debug.Log("Spawned EVAcEnemies: " + currentNode.spawnedEnemiesEvac);
+        //Debug.Log("Spawned Enemies: "+currentNode.spawnedEnemies);
+        //Debug.Log("Spawned EVAcEnemies: " + currentNode.spawnedEnemiesEvac);
 
         #region Game State machine
         //I imagine we use this later in development
@@ -191,18 +198,21 @@ public class GameManager : MonoBehaviour
     {
         System.Random n = new System.Random();
 
-        
+        //check if the evac event begins
+        //else check if the room has been beaten
+        //if either is true, spawn appropriate enemies
+        //!currentNode.spawnedEnemiesEvac
         if (EvacTime && !currentNode.spawnedEnemiesEvac)
         {
-            enemySpawner.GetSpawnPoints();
-            enemySpawner.SpawnEnemies(n.Next(0, 2));
+            enemySpawner.GetEvacSpawnPoint();
+            enemySpawner.SpawnEnemiesByTag();
             currentNode.spawnedEnemiesEvac = true;
         }
         else if (!currentNode.isRoomBeaten && !currentNode.spawnedEnemies)
         {
             enemySpawner.GetSpawnPoints();
             //enemySpawner.SpawnEnemies(n.Next(0, 2));
-            enemySpawner.SpawnEnemies(0);
+            enemySpawner.SpawnEnemiesByTag();
             currentNode.spawnedEnemies = true;
         }
 
@@ -220,6 +230,8 @@ public class GameManager : MonoBehaviour
 
     private void CheckPlayerWin()
     {
+        Debug.Log(evacTimer.TimeLeft);
+
         if (evacTimer.timerFinished() && !playerWin)
         {
             EvacTime = false;
@@ -247,7 +259,7 @@ public class GameManager : MonoBehaviour
     private void CheckAllRoomsCleared()
     {
         //Check if all nodes are cleared
-        if (roomDatabase.roomList.Last().isRoomBeaten)
+        if (currentNode.nextNode == null & currentNode.isRoomBeaten)
         {
             //We want to set the the Exit to activate if not already
             if (!exitSpawned)
