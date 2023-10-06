@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     private GameObject exit;
     private Transform ExitPosition;
 
-    bool canSpawnEnemies = false;
+    bool canSpawn = false;
 
     public static bool EvacTime = false;
 
@@ -79,7 +79,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(exit);
 
 
-        canSpawnEnemies = true;
     }
 
 
@@ -89,8 +88,7 @@ public class GameManager : MonoBehaviour
     //and in the 'beaten' room before I switch to the next room.
     private void SceneManager_changedRoom(Scene arg0, Scene arg1)   
     {
-        //   spawnedEnemies = false;
-        canSpawnEnemies = true;
+        currentNode.spawnedEnemies = false;
     }
 
     //private void Door_OnNextRoom(object sender, EventArgs e)
@@ -157,18 +155,25 @@ public class GameManager : MonoBehaviour
         //    SpawnEnemies();
         //}
 
-        
-        if (currentNode == roomDatabase.headNode && !currentNode.isRoomBeaten)
+
+        if (!currentNode.spawnedEnemies)
         {
             SpawnEnemies();
+            currentNode.spawnedEnemies = true;
         }
+        
+        //if (!currentNode.isRoomBeaten && !currentNode.spawnedEnemies)
+        //{
+        //    SpawnEnemies();
+        //    currentNode.spawnedEnemies = true;
+        //}
+        
 
 
         CheckAllRoomsCleared();
 
         if (EvacTime)
         {
-            SpawnEnemies();
             CheckPlayerWin();
         }
 
@@ -208,7 +213,7 @@ public class GameManager : MonoBehaviour
             enemySpawner.SpawnEnemiesByTag();
             currentNode.spawnedEnemiesEvac = true;
         }
-        else if (!currentNode.isRoomBeaten && !currentNode.spawnedEnemies)
+        else if (!currentNode.isRoomBeaten && !currentNode)
         {
             enemySpawner.GetSpawnPoints();
             //enemySpawner.SpawnEnemies(n.Next(0, 2));
