@@ -11,12 +11,17 @@ public class DoublyNode
 
     //holds data for is the player has won the game
     public bool isWinner { get; set; }
-    
+
+
+    //For seeing if room enemies spawned
+    public bool spawnedEnemies, spawnedEnemiesEvac;
 
     //constructor for a doublynode
     public DoublyNode()
     {
-
+        //----------//
+        spawnedEnemies= false;
+        spawnedEnemiesEvac= false;
     }
 }
 

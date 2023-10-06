@@ -35,10 +35,41 @@ public class EnemySpawnManager : MonoBehaviour
     }
 
     //used by a button to spawn an enemy the player hasn't seen yet at the location of an enemy spawn node
+    public void SpawnEnemy(Vector3 position)
+    {
+        //stores info for an enemy the player hasn't seen yet
+        tempEnemyInfo = enemyDatabase.First(enemy => listOfUnseenEnemiesInCurrentPlaythough.Contains(enemy.name));
+
+        //load the appropriate enemy prefab based on the enemy name
+        tempGameObject = LoadResource(tempEnemyInfo.name);
+
+        //instantiate the prefab at the passed in position (an enemy spawn node)
+        tempGameObject = Instantiate(tempGameObject, position, new Quaternion(0,0,0,0));
+
+        //sets the name of the game object to the enemy's name in the database
+        tempGameObject.name = tempEnemyInfo.name;
+
+        //sets the health of the enemy from the database
+        tempGameObject.GetComponent<EnemyBehavior>().health = tempEnemyInfo.HP;
+
+        //sets the def of the enemy from the database (no use in this game, but it sets it)
+        tempGameObject.GetComponent<EnemyBehavior>().DEF = tempEnemyInfo.DEF;
+
+        //sets the MP of the enemy from the database (no use in this game, but it sets it)
+        tempGameObject.GetComponent<EnemyBehavior>().MP = tempEnemyInfo.MP;
+
+        //sets the def of the enemy from the database
+        //(This is currently only used for the knight. It sets a value in the weapon database for the knight's weapon.)
+        tempGameObject.GetComponent<EnemyBehavior>().AP = tempEnemyInfo.AP;
+
+        //removes the spawned enemy from the list of enemies the player hasn't encountered this playthrough
+        listOfUnseenEnemiesInCurrentPlaythough.Remove(tempEnemyInfo.name);
+    }
+
     public void SpawnEnemy(Vector3 position, int n)
     {
         //stores info for an enemy the player hasn't seen yet
-        
+
         tempEnemyInfo = enemyDatabase[n];
         //tempEnemyInfo = enemyDatabase.First(enemy => listOfUnseenEnemiesInCurrentPlaythough.Contains(enemy.name));
 
@@ -46,7 +77,7 @@ public class EnemySpawnManager : MonoBehaviour
         tempGameObject = LoadResource(tempEnemyInfo.name);
 
         //instantiate the prefab at the passed in position (an enemy spawn node)
-        tempGameObject = Instantiate(tempGameObject, position, new Quaternion(0,0,0,0));
+        tempGameObject = Instantiate(tempGameObject, position, new Quaternion(0, 0, 0, 0));
 
         //sets the name of the game object to the enemy's name in the database
         tempGameObject.name = tempEnemyInfo.name;

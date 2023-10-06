@@ -114,7 +114,13 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         enemyLookDirection = (playerPosition - enemyPosition).normalized;
 
         //if the player gets within range, the enemy will shoot
+            //if (enemyPlayerTracker < enemyAttackRange_BecomeAggro) { isAggrod = true; }
 
+        //if the player is out of range, the enemy will stop shooting
+            //if (enemyPlayerTracker > enemyAttackRange_ExitAggro) { isAggrod = false; }
+
+
+        //Determines aggro of the enemy
         isAggrod = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_BecomeAggro, playerMask);
         inShootRange = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_AttackRange, playerMask);
 
@@ -151,29 +157,16 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             Die();
         }
-
-        Debug.Log("Is Aggrod: "+isAggrod);
     }
 
     private void FixedUpdate()
     {
         //if the enemy is aggro'd, it will shoot at the player
-        //if (inShootRange == true)
-        //{
-        //    HandleShooting(); 
-        //}
-    }
-    private void PositionAndShoot()
-    { 
-        
+        //if (isAggrod == true) { HandleShooting(); }
     }
 
     private void HandleShooting()
     {
-        //Raycast to check if wall is between Enemy and Player
-              //implementing...
-
-
         //manages how quick the player shoots based on their currently equipped weapon
         if (timeBetweenShots <= 0.0f)
         {
@@ -181,11 +174,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
             Shoot();
         }
-    }
-
-    private void moveToPlayer()
-    { 
-        //Use naveAgent script to move to player
     }
 
     void Shoot()
@@ -215,7 +203,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //called when enemuy hp is at or below 0
     public void Die()
     {
-
         GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten = true;
         Destroy(gameObject);
     }

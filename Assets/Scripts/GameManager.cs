@@ -15,26 +15,29 @@ public class GameManager : MonoBehaviour
     
     //the current room/scene the player is loaded into
     public DoublyNode currentNode;
-    private DoublyNode prevNode;
 
-    private EnemySpawnManager enemySpawner;
-    bool spawnedEnemies;
+    
     
 
     //text displayed if the player wins or loses
     GameObject winnerText;
     GameObject loserText;
 
-    GameObject timerText;
-    private Timer evacTimer;
-    private GameObject exit;
-    private Transform ExitPosition;
+    
 
     //Used to export winning results to the txt file.
     //Other scripts that want to print results
     Exporter txtExporter;
 
     private bool playerWin, playerLose, exitSpawned;
+
+    private EnemySpawnManager enemySpawner;
+    bool spawnedEnemies, evacSpawnedEnemies;
+
+    GameObject timerText;
+    private Timer evacTimer;
+    private GameObject exit;
+    private Transform ExitPosition;
 
     public static bool EvacTime = false;
 
@@ -49,12 +52,11 @@ public class GameManager : MonoBehaviour
 
         enemySpawner = gameObject.GetComponent<EnemySpawnManager>();
 
-        //Door.OnNextRoom += Door_OnNextRoom;
+        SceneManager.activeSceneChanged += SceneManager_changedRoom;
+
 
         //creates an exporter usable to the game manager
         //txtExporter = new Exporter();
-
-        SceneManager.activeSceneChanged += SceneManager_changedRoom;
 
         //create the room database as a linked list
         roomDatabase.CreateLinkedList();
@@ -82,7 +84,7 @@ public class GameManager : MonoBehaviour
     //and in the 'beaten' room before I switch to the next room.
     private void SceneManager_changedRoom(Scene arg0, Scene arg1)   
     {
-        spawnedEnemies = false;
+     //   spawnedEnemies = false;
         SpawnEnemies();
     }
 
@@ -111,8 +113,6 @@ public class GameManager : MonoBehaviour
         loserText.SetActive(false);
 
         exitSpawned = false;
-        //prevNode = currentNode;
-        //SpawnEnemies(); 
     }
 
 
@@ -136,12 +136,6 @@ public class GameManager : MonoBehaviour
     bool didOnce = false;
     private void Update()
     {
-        if (currentNode == roomDatabase.headNode)
-        {
-            SpawnEnemies();
-        }
-        
-
         //checks if the this node of the tail node/final room, then checks if the final room has been beaten
         //if(currentNode.nextNode == null && currentNode.isRoomBeaten && !didOnce)
         //{
@@ -151,12 +145,28 @@ public class GameManager : MonoBehaviour
         //    didOnce = true;
         //}
 
+
+        //---------------//
+        //if (!currentNode.spawnedEnemies)
+        //{
+        //    SpawnEnemies();
+        //}
+
+        if (currentNode == roomDatabase.headNode)
+        {
+            SpawnEnemies();
+        }
+
+
         CheckAllRoomsCleared();
 
         if (EvacTime)
         {
             CheckPlayerWin();
         }
+
+        Debug.Log("Spawned Enemies: "+currentNode.spawnedEnemies);
+        Debug.Log("Spawned EVAcEnemies: " + currentNode.spawnedEnemiesEvac);
 
         #region Game State machine
         //I imagine we use this later in development
@@ -182,21 +192,30 @@ public class GameManager : MonoBehaviour
         System.Random n = new System.Random();
 
         
-        if (EvacTime)
+        if (EvacTime && !currentNode.spawnedEnemiesEvac)
         {
-            Debug.Log("Evac en Spawn");
             enemySpawner.GetSpawnPoints();
             enemySpawner.SpawnEnemies(n.Next(0, 2));
-            spawnedEnemies = true;
+            currentNode.spawnedEnemiesEvac = true;
         }
-        else if (!currentNode.isRoomBeaten && !spawnedEnemies)
+        else if (!currentNode.isRoomBeaten && !currentNode.spawnedEnemies)
         {
-            Debug.Log("Rgular spawn");
             enemySpawner.GetSpawnPoints();
             //enemySpawner.SpawnEnemies(n.Next(0, 2));
             enemySpawner.SpawnEnemies(0);
-            spawnedEnemies = true;
+            currentNode.spawnedEnemies = true;
         }
+
+
+
+        //else if (!currentNode.isRoomBeaten && !spawnedEnemies)
+        //{
+        //    Debug.Log("Rgular spawn");
+        //    enemySpawner.GetSpawnPoints();
+        //    //enemySpawner.SpawnEnemies(n.Next(0, 2));
+        //    enemySpawner.SpawnEnemies(0);
+        //    spawnedEnemies = true;
+        //}
     }
 
     private void CheckPlayerWin()
@@ -230,12 +249,9 @@ public class GameManager : MonoBehaviour
         //Check if all nodes are cleared
         if (roomDatabase.roomList.Last().isRoomBeaten)
         {
-            Debug.Log("All Cleared");
-
-            //We want to set the the Exit to activate
+            //We want to set the the Exit to activate if not already
             if (!exitSpawned)
             {
-                Debug.Log("Spawning ecit");
                 //SpawnExit(exit);
                 exit.SetActive(true);
                 exitSpawned = true;
