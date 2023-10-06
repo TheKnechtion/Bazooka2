@@ -7,9 +7,6 @@ public class RaycastController : MonoBehaviour
     //store the lineRenderer on the player
     [SerializeField] LineRenderer lineRenderer;
 
-    //store the player game object
-    [SerializeField] GameObject gameObject;
-
     //store the current player position
     Vector3 playerPosition;
 
@@ -37,31 +34,26 @@ public class RaycastController : MonoBehaviour
 
     public LayerMask ignoreProjectileLayerObjects;
 
+
     // Start is called before the first frame update
     void Start()
     {
         //get the position of the center of the screen
         centerScreen = new Vector2(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
 
-        currentPlayerInfo = PlayerInfo.instance;
+        currentPlayerInfo = this.gameObject.GetComponent<PlayerInfo>();
     }
 
+    
 
 
     // Update is called once per frame
     void Update()
     {
-
-
-    }
-
-    //Updates after update, used for physics related calculations and functions
-    private void FixedUpdate()
-    {
-        //sets the player look direction based on the player origin and the mouse cursor location
+                //sets the player look direction based on the player origin and the mouse cursor location
         playerLookDirection = currentPlayerInfo.playerLookDirection;
 
-        playerPosition = currentPlayerInfo.playerPosition;
+        playerPosition = this.gameObject.transform.position;
 
 
         //set line renderer position to current player location
@@ -98,6 +90,13 @@ public class RaycastController : MonoBehaviour
 
             lineRenderer.SetPosition(2, playerPosition);
         }
+
+    }
+
+    //Updates after update, used for physics related calculations and functions
+    private void FixedUpdate()
+    {
+
 
     }
 

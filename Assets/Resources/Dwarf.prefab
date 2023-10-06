@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 983842142651193537}
   - component: {fileID: 8798182921244195786}
   - component: {fileID: 4522180545653480118}
-  - component: {fileID: 1735447306002530690}
   - component: {fileID: 7369481429291270148}
+  - component: {fileID: 1760635255958306705}
+  - component: {fileID: 6003787125563225187}
   m_Layer: 0
   m_Name: Dwarf
   m_TagString: Enemy
@@ -109,19 +110,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1735447306002530690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190300567397523253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a7a52fc5452e7e46892e40d3205f190, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2
 --- !u!54 &7369481429291270148
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,3 +137,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1760635255958306705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190300567397523253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895612c024ae59148b8862e30dcd2897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MP: 0
+  AP: 0
+  DEF: 0
+  health: 2
+--- !u!114 &6003787125563225187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190300567397523253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43582dd49d3c564c89243f4ecbae9d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

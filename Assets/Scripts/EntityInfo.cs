@@ -9,7 +9,7 @@ public class EntityInfo : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        if (health <= 0) { Destroy(gameObject); }
+        if (health <= 0) { Die(); }
     }
 
     public void TakeDamage(int passedDamage)
@@ -30,4 +30,8 @@ public class EntityInfo : MonoBehaviour, IDamagable
 
     }
 
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }

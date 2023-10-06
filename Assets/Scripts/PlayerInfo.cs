@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerInfo:MonoBehaviour, IDamagable
@@ -8,7 +9,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     //example of a singleton pattern
     //concept was learned about from user "ericbegue" on the unity forum
     //https://forum.unity.com/threads/best-way-to-find-player-in-the-scene.391663/
-    static PlayerInfo _instance;
+    private static PlayerInfo _instance;
 
     public static PlayerInfo instance
     {
@@ -19,19 +20,21 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     }
 
 
-    public int currentHP;
-    public int maximumHP = 50;
+    public int currentHP = 10;
+    public int maximumHP = 10;
 
     public int shield;
 
 
     public float dashCooldown = 3.0f;
-    public float movementSpeed = 0.1f;
+    public float movementSpeed = 1.0f;
 
     //player's currently equipped weapon
     public WeaponInfo currentWeapon;
 
     public List<WeaponInfo> ownedWeapons = new List<WeaponInfo>();
+
+    private WeaponController wepController;
 
 
     //store the current player position
@@ -47,11 +50,9 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     public Vector3 playerLookDirection = new Vector3();
 
 
-
-
-
     private void Start()
     {
+        wepController= GetComponent<WeaponController>();
         currentHP = maximumHP;
     }
 
@@ -76,6 +77,25 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
         //sets the player look direction based on the player origin and the mouse cursor location
         playerLookDirection = new Vector3(playerPosition.x + mousePos.x, playerPosition.y, playerPosition.z + mousePos.y).normalized;
+
+
+        //if the player's hp drops to 0 or less
+        if(currentHP <= 0) 
+        {
+            //the player object is destroyed and the playerloses method is called
+            Die();
+        }
+
+    }
+
+    //handles player death
+    public void Die()
+    {
+        //calls the 
+        GameObject.Find("GameManager").GetComponent<GameManager>().PlayerLoses();
+
+        //destroy's the player game object
+        Destroy(this.gameObject);
     }
 
     private void Awake()
@@ -83,8 +103,21 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         _instance = this;
     }
 
+    //the method used to pass damage from projectiles
     public void TakeDamage(int passedDamage)
     {
         currentHP -= passedDamage;
     }
+
+    public void AddWeapon(string passedWeapon)
+    { 
+        WeaponInfo newWep = wepController.MakeWeapon(passedWeapon);
+        if (newWep != null)
+        {
+            ownedWeapons.Add(newWep);
+        }
+
+        currentWeapon = ownedWeapons.First();
+    }
+
 }

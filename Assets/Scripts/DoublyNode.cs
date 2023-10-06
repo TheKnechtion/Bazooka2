@@ -1,18 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DoublyNode : MonoBehaviour
+public class DoublyNode
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //holds data for the next node
+    public DoublyNode nextNode { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    //holds data for the previous node
+    public DoublyNode previousNode { get; set; }
+    
+    //holds data for if the current room has been beaten
+    public bool isRoomBeaten { get; set; }
+
+    //holds data for is the player has won the game
+    public bool isWinner { get; set; }
+    
+    //private EnemyInfo[] enemyArray { get; set; } ---- In the future we can probably us an enemy array for clearing a room
+
+    //constructor for a doublynode
+    public DoublyNode()
     {
-        
+
     }
 }
+
+
+/*
+
+    list<string> EnemyNames
+
+    number of defeated enemies
+
+    list of items
+
+    list of picked up items
+
+*/

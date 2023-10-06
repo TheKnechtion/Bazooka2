@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
 
     public Vector3 direction;
 
-    int damage;
+    public int damage;
     float despawnTime;
     float magnitude;
     int numberOfBounces;
@@ -56,52 +56,43 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, despawnTime);
     }
 
-    private void Awake()
-    {
 
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-    }
 
 
     private void FixedUpdate()
     {
-        gameObject.transform.Translate(direction * magnitude);
+
+        this.gameObject.GetComponent<Rigidbody>().velocity = direction * magnitude;
+
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy" && !isSpawning)
+
+
+        if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyInfo>().TakeDamage(damage);
+            collision.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
             DealSplashDamage();
-            Destroy(gameObject, 0.03f);
+            Destroy(gameObject);
         }
 
         
-        if(collision.gameObject.tag == "Player" && !isSpawning)
+        if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerInfo>().TakeDamage(damage);
             DealSplashDamage();
-            Destroy(gameObject, 0.03f);
-        
+            Destroy(gameObject);
         }
+
+        if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
         
         
-        
-        
-        if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject,0.05f); }
+        if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
 
 
-        if (collision.gameObject.tag == "BounceSurface" && numberOfBounces > 0)
+        if (numberOfBounces > 0)
         {
             collisionNormal = new Vector2(collision.contacts[0].normal.x, collision.contacts[0].normal.z).normalized;
 
@@ -114,17 +105,6 @@ public class Projectile : MonoBehaviour
 
         }
 
-
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        isSpawning = false;
-    }
-
-
-    private void Bounce()
-    {
 
     }
 

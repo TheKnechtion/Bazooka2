@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 moveInput;
     PlayerController _playerController;
-    public float speed = 0.1f;
+    public float speed = 1.0f;
 
     bool dash = false;
 
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         
         //basic player movement
         //moves the game object this script is attached to based on WASD input 
-        transform.Translate(new Vector3(moveInput.x, 0, moveInput.y) * speed);
+        this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(moveInput.x, 0, moveInput.y) * speed;
     }
 
 
