@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
             enemySpawner.SpawnEnemiesByTag();
             currentNode.spawnedEnemiesEvac = true;
         }
-        else if (!currentNode.isRoomBeaten && !currentNode)
+        else if (!currentNode.isRoomBeaten)
         {
             enemySpawner.GetSpawnPoints();
             //enemySpawner.SpawnEnemies(n.Next(0, 2));
