@@ -88,7 +88,11 @@ public class GameManager : MonoBehaviour
     //and in the 'beaten' room before I switch to the next room.
     private void SceneManager_changedRoom(Scene arg0, Scene arg1)   
     {
-        currentNode.spawnedEnemies = false;
+        //currentNode.spawnedEnemies = false;
+        
+        //We set this to true so that we can safely spawn enemies into the scene they're supposed to be in,
+        //Once we do so we switch it false
+        canSpawn= true;
     }
 
     //private void Door_OnNextRoom(object sender, EventArgs e)
@@ -156,19 +160,23 @@ public class GameManager : MonoBehaviour
         //}
 
 
-        if (!currentNode.spawnedEnemies)
-        {
-            SpawnEnemies();
-            currentNode.spawnedEnemies = true;
-        }
-        
+        //if (!currentNode.spawnedEnemies)
+        //{
+        //    SpawnEnemies();
+        //    currentNode.spawnedEnemies = true;
+        //}
+
         //if (!currentNode.isRoomBeaten && !currentNode.spawnedEnemies)
         //{
         //    SpawnEnemies();
         //    currentNode.spawnedEnemies = true;
         //}
-        
 
+        if (canSpawn)
+        {
+            SpawnEnemies();
+            canSpawn = false;
+        }
 
         CheckAllRoomsCleared();
 

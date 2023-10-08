@@ -132,10 +132,11 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             if (Physics.Raycast(wallDetect, out hit, 10, environmentMask))
             {
                 //Debug.Log("I hit a wall");
-                nav.MoveToPlayer(isAggrod);
+                nav.MoveToPlayer(isAggrod, false);
             }
             else
             {
+                nav.MoveToPlayer(isAggrod, true);
                 //Debug.Log("Not hitting wall");
             }
 
@@ -172,7 +173,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             timeBetweenShots = currentEnemyWeapon.timeBetweenProjectileFire;
 
-            Shoot();
+            //Shoot();
         }
     }
 

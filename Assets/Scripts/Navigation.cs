@@ -7,6 +7,9 @@ using UnityEngine.AI;
 public class Navigation : MonoBehaviour
 {
     private NavMeshAgent agent;
+    Vector3 playerPos, thisPos;
+    float distance;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,14 +21,26 @@ public class Navigation : MonoBehaviour
     void Update()
     {
         //Always setting destination to the players position
-        
+        thisPos = gameObject.transform.position;
+        playerPos = PlayerInfo.instance.playerPosition;
     }
 
-    public void MoveToPlayer(bool n)
+    public void MoveToPlayer(bool n, bool stopAtDistance)
     {
+        distance = Vector3.Distance(playerPos, thisPos);
         if (n == true)
         {
-            agent.destination = PlayerInfo.instance.playerPosition;
+            if (stopAtDistance)
+            {
+                agent.stoppingDistance = 5;
+                agent.destination = playerPos;
+                
+            }
+            else
+            { 
+                agent.stoppingDistance = 0;
+                agent.destination = playerPos;
+            }
         }
     }
 }
