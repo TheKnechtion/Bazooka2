@@ -42,6 +42,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //controls enemy's weapon
     WeaponController weaponController;
 
+    [SerializeField] private bool SetToAttack;
+
 
     //Used by the enemy to track how far the player is
     float enemyPlayerTracker;
@@ -140,11 +142,15 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
                 //Debug.Log("Not hitting wall");
             }
 
-            if (inShootRange && hit.collider == null)
+            if (SetToAttack)
             {
-                //Debug.Log("I should be shooting");
-                HandleShooting();
+                if (inShootRange && hit.collider == null)
+                {
+                    //Debug.Log("I should be shooting");
+                    HandleShooting();
+                }
             }
+            
             
         }
 
@@ -173,7 +179,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             timeBetweenShots = currentEnemyWeapon.timeBetweenProjectileFire;
 
-            //Shoot();
+            Shoot();
         }
     }
 
