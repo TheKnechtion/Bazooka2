@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     //text displayed if the player wins or loses
     GameObject winnerText;
     GameObject loserText;
+    GameObject timerText;
 
-    
 
     //Used to export winning results to the txt file.
     //Other scripts that want to print results
@@ -31,15 +31,22 @@ public class GameManager : MonoBehaviour
 
     private bool playerWin, playerLose, exitSpawned;
 
+    //Events for UI
+
+    public static event EventHandler OnPlayerWin;
+    public static event EventHandler OnPlayerLose;
+    public static event EventHandler OnEvacStart;
+
     private EnemySpawnManager enemySpawner;
     bool spawnedEnemies, evacSpawnedEnemies;
 
-    GameObject timerText;
-    private Timer evacTimer;
+    
+    public static Timer evacTimer;
     private GameObject exit;
     private Transform ExitPosition;
 
     bool canSpawn = false;
+    bool evacStarted = false;
 
     public static bool EvacTime = false;
 
@@ -92,13 +99,8 @@ public class GameManager : MonoBehaviour
         
         //We set this to true so that we can safely spawn enemies into the scene they're supposed to be in,
         //Once we do so we switch it false
-        canSpawn= true;
+            canSpawn= true;
     }
-
-    //private void Door_OnNextRoom(object sender, EventArgs e)
-    //{
-    //    spawnedEnemies = false;
-    //}
 
 
     //Event for when player enters the Exit
@@ -115,9 +117,12 @@ public class GameManager : MonoBehaviour
         winnerText = GameObject.Find("Winner");
         loserText = GameObject.Find("Loser");
 
+        EvacTime = true;
+
         //hides the winner and loser UI elements 
-        winnerText.SetActive(false);
-        loserText.SetActive(false);
+            //winnerText.SetActive(false);
+            //loserText.SetActive(false);
+            //timerText.SetActive(false);
 
         exitSpawned = false;
     }
@@ -178,7 +183,7 @@ public class GameManager : MonoBehaviour
             canSpawn = false;
         }
 
-        CheckAllRoomsCleared();
+        //CheckAllRoomsCleared();
 
         if (EvacTime)
         {
@@ -224,7 +229,6 @@ public class GameManager : MonoBehaviour
         else if (!currentNode.isRoomBeaten)
         {
             enemySpawner.GetSpawnPoints();
-            //enemySpawner.SpawnEnemies(n.Next(0, 2));
             enemySpawner.SpawnEnemiesByTag();
             currentNode.spawnedEnemies = true;
         }
@@ -277,8 +281,10 @@ public class GameManager : MonoBehaviour
             //We want to set the the Exit to activate if not already
             if (!exitSpawned)
             {
-                //SpawnExit(exit);
+                //Raise the evacTimer event for UI Timer
+                OnEvacStart?.Invoke(this, EventArgs.Empty);
                 exit.SetActive(true);
+                    //timerText.SetActive(true);
                 exitSpawned = true;
                 EvacTime = true;
             }           
@@ -297,11 +303,14 @@ public class GameManager : MonoBehaviour
     //activates the player win ui element
     public void PlayerWins()
     {
+        //Raise the win event for UI
+        OnPlayerWin?.Invoke(this, EventArgs.Empty); 
+
         playerHP = GameObject.Find("Player").GetComponent<PlayerInfo>().currentHP;
 
         currentNode.isWinner = true;
 
-        winnerText.SetActive(true);
+            //winnerText.SetActive(true);
 
         //uses the txtExporter attached to this script to output results
         txtExporter.Export("Winner", playerHP, "Results.txt");
@@ -310,12 +319,15 @@ public class GameManager : MonoBehaviour
     //activates the player lose ui element
     public void PlayerLoses()
     {
+        //Raise the Lose event for UI
+        OnPlayerLose?.Invoke(this, EventArgs.Empty);
+
         playerHP = 0;
 
         //uses the txtExporter attached to this script to output results
         txtExporter.Export("Loser", playerHP, "Results.txt");
 
-        loserText.SetActive(true);
+            //loserText.SetActive(true);
     }
 
     
