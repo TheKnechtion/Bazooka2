@@ -10,8 +10,10 @@ public class UI_Manager : MonoBehaviour
 
     CanvasState UI_state;
 
-    [SerializeField] private GameObject textSpace;
-    private TextMeshProUGUI textRenderer;
+    [SerializeField] private GameObject ObjSpace;
+    [SerializeField] private GameObject StatusSpace;
+    private TextMeshProUGUI objRenderer;
+    private TextMeshProUGUI statusRenderer;
 
     private string[] thingsToSay;
     
@@ -25,8 +27,8 @@ public class UI_Manager : MonoBehaviour
 
     private void Start()
     {
-        textRenderer = textSpace.GetComponent<TextMeshProUGUI>();
-
+        objRenderer = ObjSpace.GetComponent<TextMeshProUGUI>();
+        statusRenderer = StatusSpace.GetComponent<TextMeshProUGUI>();
 
         //Subscribes UI_Manager to GameManager. We use events to 
 
@@ -46,16 +48,17 @@ public class UI_Manager : MonoBehaviour
         switch (UI_state)
         {
             case CanvasState.WIN:
-                textRenderer.text = thingsToSay[1];
+                statusRenderer.text = thingsToSay[1];
                 break;
             case CanvasState.LOSE:
-                textRenderer.text = thingsToSay[0];
+                statusRenderer.text = thingsToSay[0];
                 break;
             case CanvasState.EVAC:
 
                 //We grab the Static GameManager timer and pass it to the canvases timer float;
                 timerTime = GameManager.evacTimer.TimeLeft;     
-                textRenderer.text = timerTime.ToString();
+                //textRenderer.text = timerTime.ToString();
+                objRenderer.SetText("Evacuate the Mission Zone!\n{0.00}", timerTime);
                 break;
 
             case CanvasState.NONE:
