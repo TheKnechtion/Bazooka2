@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,7 +66,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     float enemyAttackRange_ExitAggro = 15.0f;
 
     //holds the reference to the projectile object in the resources folder
-    Object projectilePrefab;
+    UnityEngine.Object projectilePrefab;
 
     //holds the projectile game object reference
     GameObject currentEntity;
@@ -73,7 +74,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //holds the material that makes all the enemy projectiles red
     Material projectileMaterial;
 
-
+    public event EventHandler OnTakeDamage;
 
     private void Start()
     {
@@ -96,6 +97,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         nav = GetComponent<Navigation>();
         //create the red projectile material used by the enemy projectiles
         projectileMaterial = Resources.Load("Red") as Material;
+
     }
 
     private void Update()
@@ -198,6 +200,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     public void TakeDamage(int passedDamage)
     {
         health -= passedDamage;
+        OnTakeDamage?.Invoke(this, EventArgs.Empty);
     }
 
 
@@ -222,5 +225,4 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, enemyAttackRange_AttackRange);
     }
-
 }

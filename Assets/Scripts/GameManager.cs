@@ -117,13 +117,13 @@ public class GameManager : MonoBehaviour
         winnerText = GameObject.Find("Winner");
         loserText = GameObject.Find("Loser");
 
-        EvacTime = true;
 
         //hides the winner and loser UI elements 
-            //winnerText.SetActive(false);
-            //loserText.SetActive(false);
-            //timerText.SetActive(false);
+        //winnerText.SetActive(false);
+        //loserText.SetActive(false);
+        //timerText.SetActive(false);
 
+        
         exitSpawned = false;
     }
 
@@ -177,13 +177,22 @@ public class GameManager : MonoBehaviour
         //    currentNode.spawnedEnemies = true;
         //}
 
+        //if (EvacTime)
+        //{
+        //    if (!didOnce)             This was for testing the event without clearing all rooms
+        //    {
+        //        OnEvacStart?.Invoke(this, EventArgs.Empty);
+        //        didOnce= true;
+        //    }           
+        //}
+
         if (canSpawn)
         {
             SpawnEnemies();
             canSpawn = false;
         }
 
-        //CheckAllRoomsCleared();
+       // CheckAllRoomsCleared();
 
         if (EvacTime)
         {
@@ -247,7 +256,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckPlayerWin()
     {
-        Debug.Log(evacTimer.TimeLeft);
+       // Debug.Log(evacTimer.TimeLeft);
 
         if (evacTimer.timerFinished() && !playerWin)
         {

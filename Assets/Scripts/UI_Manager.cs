@@ -15,10 +15,11 @@ public class UI_Manager : MonoBehaviour
     private TextMeshProUGUI objRenderer;
     private TextMeshProUGUI statusRenderer;
 
-    private string[] thingsToSay;
+    private string[] statusArray, objArray;
     
     float timerTime;
     bool timerStarted;
+    int minuteCount, secondCount;
 
     void Awake()
     {
@@ -32,15 +33,13 @@ public class UI_Manager : MonoBehaviour
 
         //Subscribes UI_Manager to GameManager. We use events to 
 
-        UI_state = CanvasState.EVAC;
+        UI_state = CanvasState.NONE;
 
         GameManager.OnPlayerLose += GameManager_OnPlayerLose;
         GameManager.OnPlayerWin += GameManager_OnPlayerWin;
         GameManager.OnEvacStart += GameManager_OnEvacStart;
 
         populateTextArray();
-
-        timerStarted= false;
     }
 
     private void Update()
@@ -48,32 +47,47 @@ public class UI_Manager : MonoBehaviour
         switch (UI_state)
         {
             case CanvasState.WIN:
-                statusRenderer.text = thingsToSay[1];
+                statusRenderer.text = statusArray[1];
                 break;
             case CanvasState.LOSE:
-                statusRenderer.text = thingsToSay[0];
+                statusRenderer.text = statusArray[0];
                 break;
             case CanvasState.EVAC:
 
                 //We grab the Static GameManager timer and pass it to the canvases timer float;
-                timerTime = GameManager.evacTimer.TimeLeft;     
-                //textRenderer.text = timerTime.ToString();
-                objRenderer.SetText("Evacuate the Mission Zone!\n{0.00}", timerTime);
+                timerTime = GameManager.evacTimer.TimeLeft;
+
+                minuteCount = (int)(timerTime / 60);
+                secondCount = (int)(timerTime % 60);
+                objRenderer.SetText($"Evacuate the Mission Zone!\n{minuteCount}:{secondCount}");
+                    
                 break;
 
             case CanvasState.NONE:
+                objRenderer.text = statusArray[2];
+                statusRenderer.text = statusArray[2];
                 break;
             default:
                UI_state = CanvasState.NONE;
                 break;
         }
+
+        Debug.Log("UI state "+ UI_state);
     }
 
     private void populateTextArray()
     { 
-        thingsToSay = new string[2];
-        thingsToSay[0] = "You Lose";
-        thingsToSay[1] = "You Win";
+        statusArray = new string[3];
+        statusArray[0] = "You Lose";
+        statusArray[1] = "You Win";
+        statusArray[2] = "";
+
+        
+
+        objArray = new string[3];
+        objArray[0] = "Defeat all enemies!";
+        objArray[1] = $"Evacuate the Mission Zone!\n{minuteCount}:{secondCount}";
+        objArray[2] = "";
     }
 
     private void GameManager_OnEvacStart(object sender, System.EventArgs e)

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -3226481535720285474}
   - component: {fileID: -3949067216127744040}
   - component: {fileID: 6687429348699494110}
+  - component: {fileID: -5151762463255760223}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Enemy
@@ -155,6 +156,7 @@ MonoBehaviour:
   AP: 0
   DEF: 0
   health: 2
+  SetToAttack: 1
   playerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -207,3 +209,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fd986336af45f41970847d81ff0924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5151762463255760223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7259220062818489093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d815ba2c0b5b6d459d8e717e0fa73ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 40c04461df5367346ade33975fdb56e0, type: 2}
+  - {fileID: 2100000, guid: 1e673d8c3829d1844ae048ab8241635b, type: 2}
