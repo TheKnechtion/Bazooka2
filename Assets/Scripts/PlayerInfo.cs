@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInfo:MonoBehaviour, IDamagable
 {
@@ -49,6 +51,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     //stores the player look direction
     public Vector3 playerLookDirection = new Vector3();
 
+    public event EventHandler OnTakeDamage;
 
     private void Start()
     {
@@ -106,6 +109,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     //the method used to pass damage from projectiles
     public void TakeDamage(int passedDamage)
     {
+        OnTakeDamage?.Invoke(this, EventArgs.Empty);
         currentHP -= passedDamage;
     }
 
