@@ -75,6 +75,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     Material projectileMaterial;
 
     public event EventHandler OnTakeDamage;
+    public event EventHandler OnDeath;
+    private bool CanDestroy = false;
 
     private void Start()
     {
@@ -100,6 +102,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     }
 
+
+    bool CalledDie = false;
     private void Update()
     {
         inShootRange = false;
@@ -164,7 +168,11 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         //kill if below 0 hp
         if (health <= 0) 
         {
-            Die();
+            if (!CalledDie)
+            {
+                Die();
+                CalledDie= true;
+            }           
         }
     }
 
@@ -213,8 +221,16 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //called when enemuy hp is at or below 0
     public void Die()
     {
+        OnDeath?.Invoke(this, EventArgs.Empty); //This is for the enemy death particles to activate
+
         GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().UpdateEnemyCount();
-        Destroy(gameObject);
+        
+        //Destroy(gameObject);  There is a new Death script that handles destroiyng object and visuals
+    }
+
+    private void DeathVisualFinsihed(object sender, EventArgs e)
+    {
+        CanDestroy = true;
     }
 
     private void OnDrawGizmosSelected()

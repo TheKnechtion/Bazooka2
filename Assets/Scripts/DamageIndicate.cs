@@ -11,21 +11,38 @@ public class DamageIndicate : MonoBehaviour
     private Renderer render;
 
     private EnemyBehavior enemy; //The specific enemy we are affecting;
+    private PlayerInfo player;
 
     // Start is called before the first frame update
     void Start()
     {
         render = GetComponent<Renderer>();
 
-        enemy= GetComponent<EnemyBehavior>();
-        enemy.OnTakeDamage += EnemyBehavior_OnTakeDamage;
+        
+
+        if (TryGetComponent<EnemyBehavior>(out EnemyBehavior en))
+        {
+            enemy = en;
+            enemy.OnTakeDamage += OnDamaged;
+        }
+
+        if (TryGetComponent<PlayerInfo>(out PlayerInfo info))
+        {
+            player = info;
+            player.OnTakeDamage += OnDamaged;
+        }
     
     }
 
-    private void EnemyBehavior_OnTakeDamage(object sender, System.EventArgs e)
+    private void OnDamaged(object sender, System.EventArgs e)
     {
         StartCoroutine(indicateDamage());
     }
+
+    //private void EnemyBehavior_OnTakeDamage(object sender, System.EventArgs e)
+    //{
+    //    StartCoroutine(indicateDamage());
+    //}
     private IEnumerator indicateDamage()
     {
         Debug.Log("Changing materal");

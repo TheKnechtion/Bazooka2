@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,8 @@ public class Projectile : MonoBehaviour
 
     CapsuleCollider caster;
     SphereCollider thisProjectileCollider;
+
+    public event EventHandler OnDestroyed;
 
     private void Start()
     {
@@ -75,7 +78,8 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
             DealSplashDamage();
-            Destroy(gameObject);
+            DeleteProjectile();
+            //Destroy(gameObject);
         }
 
         
@@ -89,7 +93,8 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
         
         
-        if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
+        //if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
+        if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); DeleteProjectile(); }
 
 
         if (numberOfBounces > 0)
@@ -117,12 +122,18 @@ public class Projectile : MonoBehaviour
         for (int i = 0; i < collidersHit.Length; i++)
         {
 
-            collidersHit[i].gameObject.TryGetComponent<EntityInfo>(out EntityInfo entityInfo);
+            collidersHit[i].gameObject.TryGetComponent<EnemyBehavior>(out EnemyBehavior entityInfo);
+            collidersHit[i].gameObject.TryGetComponent<PlayerInfo>(out PlayerInfo player);
             if (entityInfo != null)
             {
                 Debug.Log("SPLASH DMG");
                 //We deal splash damage if what we hit is not null
                 entityInfo.TakeDamage(splashDamage);
+            }
+
+            if (player != null)
+            {
+                player.TakeDamage(splashDamage);
             }
             
         }
@@ -130,6 +141,11 @@ public class Projectile : MonoBehaviour
         exploding = true;
     }
 
+
+    private void DeleteProjectile()
+    {
+        OnDestroyed?.Invoke(this, EventArgs.Empty);
+    }
     private void OnDrawGizmos()
     {
         if (exploding)
