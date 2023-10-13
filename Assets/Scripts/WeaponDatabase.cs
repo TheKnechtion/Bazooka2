@@ -33,7 +33,7 @@ public class WeaponDatabase
 
         //Test weapon 1
         WeaponInfo testWeapon = new WeaponInfo();
-        testWeapon.weaponName = "Test_Weapon";
+        testWeapon.weaponName = "Bazooka";
         testWeapon.ProjectileName = "Gun";
         testWeapon.projectileType = ProjectileType.Gun;
         testWeapon.projectilePath = ProjectilePath.Straight;
@@ -46,22 +46,22 @@ public class WeaponDatabase
         testWeapon.splashDamage = 1;
         testWeapon.maxProjectilesOnScreen = 3;
         testWeapon.numberOfProjectilesPerShot = 1;
-        testWeapon.numberOfBounces = 1;
+        testWeapon.numberOfBounces = 5;
         testWeapon.currentAmmo = 12;
         testWeapon.maxAmmo = 12;
 
         testWeapon.projectileSpeed = 14.0f;
         testWeapon.radiusOfProjectile = 1.0f;
         testWeapon.splashDamageRadius = 1.0f;
-        testWeapon.timeBetweenProjectileFire = 0.8f;
-        testWeapon.timeBeforeDespawn = 5.0f;
+        testWeapon.timeBetweenProjectileFire = 0.2f;
+        testWeapon.timeBeforeDespawn = 8.0f;
         testWeapon.homingStrength = 0.0f;
         Weapon_Database.Add(testWeapon);
 
 
         //Test weapon 2
         WeaponInfo testWeapon2 = new WeaponInfo();
-        testWeapon2.weaponName = "Test_Weapon2";
+        testWeapon2.weaponName = "Floating Mine Launcher";
         testWeapon2.ProjectileName = "Gun";
         testWeapon2.projectileType = ProjectileType.Gun;
         testWeapon2.projectilePath = ProjectilePath.Straight;
@@ -72,7 +72,7 @@ public class WeaponDatabase
 
         testWeapon2.damage = 50;
         testWeapon2.splashDamage = 50;
-        testWeapon2.maxProjectilesOnScreen = 3;
+        testWeapon2.maxProjectilesOnScreen = 6;
         testWeapon2.numberOfProjectilesPerShot = 50;
         testWeapon2.numberOfBounces = 67;
         testWeapon2.currentAmmo = 12;
@@ -99,7 +99,7 @@ public class WeaponDatabase
         mageWeapon.doesBounce = false;
         mageWeapon.isHoming = false;
 
-        mageWeapon.damage = 3;
+        mageWeapon.damage = 2;
         mageWeapon.splashDamage = 1;
         mageWeapon.maxProjectilesOnScreen = 3;
         mageWeapon.numberOfProjectilesPerShot = 1;
@@ -156,7 +156,7 @@ public class WeaponDatabase
         knightWeapon.isHoming = false;
 
         knightWeapon.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP; 
-        knightWeapon.splashDamage = 1;
+        knightWeapon.splashDamage = 0;
         knightWeapon.maxProjectilesOnScreen = 3;
         knightWeapon.numberOfProjectilesPerShot = 1;
         knightWeapon.numberOfBounces = 0;
@@ -166,7 +166,7 @@ public class WeaponDatabase
         knightWeapon.projectileSpeed = 10.5f;
         knightWeapon.radiusOfProjectile = 1.0f;
         knightWeapon.splashDamageRadius = 1.0f;
-        knightWeapon.timeBetweenProjectileFire = 1.4f;
+        knightWeapon.timeBetweenProjectileFire = 1.0f;
         knightWeapon.timeBeforeDespawn = 10.0f;
         knightWeapon.homingStrength = 0.0f;
         Weapon_Database.Add(knightWeapon);

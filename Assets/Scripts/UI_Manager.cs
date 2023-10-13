@@ -12,14 +12,24 @@ public class UI_Manager : MonoBehaviour
 
     [SerializeField] private GameObject ObjSpace;
     [SerializeField] private GameObject StatusSpace;
+    [SerializeField] private GameObject HpSpace;
+    [SerializeField] private GameObject CurrentWeaponSpace;
+    [SerializeField] private GameObject ActiveProjectileSpace;
     private TextMeshProUGUI objRenderer;
     private TextMeshProUGUI statusRenderer;
+    private TextMeshProUGUI HpRenderer;
+    private TextMeshProUGUI CurrentWeaponRenderer;
+    private TextMeshProUGUI ActiveProjectileRenderer;
+
 
     private string[] statusArray, objArray;
     
     float timerTime;
     bool timerStarted;
     int minuteCount, secondCount;
+
+    int currentPlayerHp;
+    int maxPlayerHp;
 
     void Awake()
     {
@@ -30,6 +40,9 @@ public class UI_Manager : MonoBehaviour
     {
         objRenderer = ObjSpace.GetComponent<TextMeshProUGUI>();
         statusRenderer = StatusSpace.GetComponent<TextMeshProUGUI>();
+        HpRenderer = HpSpace.GetComponent<TextMeshProUGUI>();
+        CurrentWeaponRenderer = CurrentWeaponSpace.GetComponent<TextMeshProUGUI>();
+        ActiveProjectileRenderer = ActiveProjectileSpace.GetComponent<TextMeshProUGUI>();
 
         //Subscribes UI_Manager to GameManager. We use events to 
 
@@ -38,12 +51,36 @@ public class UI_Manager : MonoBehaviour
         GameManager.OnPlayerLose += GameManager_OnPlayerLose;
         GameManager.OnPlayerWin += GameManager_OnPlayerWin;
         GameManager.OnEvacStart += GameManager_OnEvacStart;
+        PlayerInfo.OnPlayerHpChange += PlayerInfo_OnPlayerHpChange;
+        PlayerManager.OnPlayerWeaponChange += PlayerManager_OnPlayerWeaponChange;
+        EnemySpawnManager.OnEnemyDeath += EnemySpawnManager_OnEnemyDeath;
+
+        PlayerManager.OnPlayerShoot += PlayerManager_OnPlayerProjectileAmountChange;
+        PlayerProjectile.OnExplosion += PlayerManager_OnPlayerProjectileAmountChange;
 
         populateTextArray();
+
+
+        maxPlayerHp = PlayerInfo.instance.maximumHP;
+        currentPlayerHp = maxPlayerHp;
+
+        CurrentWeaponRenderer.text = PlayerInfo.instance.ownedWeapons[0].weaponName;
+        HpRenderer.text = $"Hp: {currentPlayerHp}/{maxPlayerHp}";
+
     }
+
+    bool atStart = true;
 
     private void Update()
     {
+        if(atStart)
+        {
+            objRenderer.text = $"Enemies Left: {EnemySpawnManager.enemyCount}";
+            ActiveProjectileRenderer.text = $"Active Projectiles: {PlayerManager.activeProjectiles}/{PlayerManager.currentWeapon.maxProjectilesOnScreen}";
+            atStart = false;
+        }
+
+
         switch (UI_state)
         {
             case CanvasState.WIN:
@@ -63,8 +100,7 @@ public class UI_Manager : MonoBehaviour
                     
                 break;
 
-            case CanvasState.NONE:
-                objRenderer.text = statusArray[2];
+            case CanvasState.NONE:                
                 statusRenderer.text = statusArray[2];
                 break;
             default:
@@ -72,7 +108,7 @@ public class UI_Manager : MonoBehaviour
                 break;
         }
 
-        Debug.Log("UI state "+ UI_state);
+        //Debug.Log("UI state "+ UI_state);
     }
 
     private void populateTextArray()
@@ -104,4 +140,32 @@ public class UI_Manager : MonoBehaviour
     {
         UI_state = CanvasState.LOSE;
     }
+
+    private void PlayerInfo_OnPlayerHpChange(object sender, System.EventArgs e)
+    {
+        currentPlayerHp = PlayerInfo.instance.currentHP;
+        maxPlayerHp = PlayerInfo.instance.maximumHP;
+
+        HpRenderer.text = $"Hp: {currentPlayerHp}/{maxPlayerHp}";
+    }
+
+    private void PlayerManager_OnPlayerWeaponChange(object sender, System.EventArgs e)
+    {
+        CurrentWeaponRenderer.text = PlayerManager.currentWeapon.weaponName;
+    }
+
+    private void PlayerManager_OnPlayerProjectileAmountChange(object sender, System.EventArgs e)
+    {
+        ActiveProjectileRenderer.text = $"Active Projectiles: {PlayerManager.activeProjectiles}/{PlayerManager.currentWeapon.maxProjectilesOnScreen}";
+    }
+
+
+    private void EnemySpawnManager_OnEnemyDeath(object sender, System.EventArgs e)
+    {
+        objRenderer.text = $"Enemies Left: {EnemySpawnManager.enemyCount}";
+    }
+    
+
+
+
 }

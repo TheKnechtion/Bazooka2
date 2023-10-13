@@ -87,7 +87,7 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerInfo>().TakeDamage(damage);
             DealSplashDamage();
-            Destroy(gameObject);
+            DeleteProjectile();
         }
 
         if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
@@ -113,10 +113,12 @@ public class Projectile : MonoBehaviour
 
     }
 
+    Collider[] collidersHit;
+
     private void DealSplashDamage()
     {
         //checks surrounding area in a sphere
-        var collidersHit = Physics.OverlapSphere(gameObject.transform.position, splashRadius);
+        collidersHit = Physics.OverlapSphere(gameObject.transform.position, splashRadius);
         
         
         for (int i = 0; i < collidersHit.Length; i++)
@@ -146,6 +148,8 @@ public class Projectile : MonoBehaviour
     {
         OnDestroyed?.Invoke(this, EventArgs.Empty);
     }
+
+
     private void OnDrawGizmos()
     {
         if (exploding)

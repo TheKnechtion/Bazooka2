@@ -97,6 +97,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         inShootRange = false;
 
         nav = GetComponent<Navigation>();
+
         //create the red projectile material used by the enemy projectiles
         projectileMaterial = Resources.Load("Red") as Material;
 
@@ -202,6 +203,9 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
         currentEntity.GetComponent<Projectile>().direction = enemyLookDirection;
         currentEntity.GetComponent<Renderer>().material = projectileMaterial;
+        var light = currentEntity.AddComponent<Light>();
+        light.color = Color.red;
+
     }
 
     //a public method that allows damage to be passed on from the projectile

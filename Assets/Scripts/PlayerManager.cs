@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.EventSystems;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -17,9 +19,9 @@ public class PlayerManager : MonoBehaviour
 
 
 
-    Object projectilePrefab;
+    GameObject projectilePrefab;
     GameObject currentEntity;
-    WeaponInfo currentWeapon;
+    public static WeaponInfo currentWeapon;
 
     float timeBetweenShots = 0.0f;
 
@@ -28,27 +30,29 @@ public class PlayerManager : MonoBehaviour
     int ownedWeaponCount;
     int weaponIndex = 0;
 
+    public static int activeProjectiles = 0;
+
+
     List<WeaponInfo> playerOwnedWeapons;
+
+    //holds the material that makes all the player projectiles white
+    Material projectileMaterial;
+
+    public static event EventHandler OnPlayerWeaponChange;
+    public static event EventHandler OnPlayerShoot;
 
     private void Start()
     {
-        
+        //create the white projectile material used by the player projectiles
+        projectileMaterial = Resources.Load("White") as Material;
+
     }
 
     private void Update()
     {
-        CheckWeaponChange();
-
         playerPosition = this.gameObject.transform.position;
 
-        playerOwnedWeapons = this.gameObject.GetComponent<PlayerInfo>().ownedWeapons;
-
-        ownedWeaponCount = playerOwnedWeapons.Count;
-
-        weaponIndex = weaponIndex % ownedWeaponCount;
-
-        currentWeapon = this.gameObject.GetComponent<PlayerInfo>().ownedWeapons[weaponIndex];
-
+        CheckWeaponChange();
 
 
         //sets the player look direction based on the player origin and the mouse cursor location
@@ -67,27 +71,37 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-
+    float cooldownTime = 0.5f;
+    float nextInputTime = 0.0f;
     private void CheckWeaponChange()
     {
-        scrollValue = _playerController.PlayerActions.ChangeWeapon.ReadValue<float>();
+        scrollValue = 0;
+
+        ownedWeaponCount = PlayerInfo.instance.ownedWeapons.Count;
+
+        currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
+
+        if(Time.time >= nextInputTime && _playerController.PlayerActions.ChangeWeapon.triggered)
+        {
+            scrollValue = _playerController.PlayerActions.ChangeWeapon.ReadValue<float>();
+
+            nextInputTime = Time.time + cooldownTime;
+        }
+            
 
         if (scrollValue > 0)
         {
-            weaponIndex++;
+            weaponIndex = (weaponIndex+1 < ownedWeaponCount) ? ++weaponIndex:0;
+            currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
+            OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty);
         }
 
         if (scrollValue < 0)
         {
-            weaponIndex--;
+            weaponIndex = (weaponIndex - 1 >= 0) ? --weaponIndex : ownedWeaponCount-1;
+            currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
+            OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty);
         }
-
-        if (weaponIndex < 0)
-        {
-            weaponIndex = ownedWeaponCount - 1;
-        }
-
-
     }
 
 
@@ -97,7 +111,7 @@ public class PlayerManager : MonoBehaviour
     private void HandleShooting()
     {
        
-        if (timeBetweenShots <= 0.0f)
+        if (timeBetweenShots <= 0.0f && activeProjectiles < currentWeapon.maxProjectilesOnScreen)
         {
 
             timeBetweenShots = currentWeapon.timeBetweenProjectileFire;
@@ -128,18 +142,27 @@ public class PlayerManager : MonoBehaviour
         _playerController.PlayerActions.Disable();
     }
 
+    //List<GameObject> currentProjectiles = new List<GameObject> ();
 
     void Shoot()
     {
-       
-        projectilePrefab = Resources.Load(currentWeapon.ProjectileName);
+        activeProjectiles++;
 
-        currentEntity = Instantiate(projectilePrefab as GameObject, playerPosition+playerLookDirection, new Quaternion(0, 0, 0, 0));
+        OnPlayerShoot?.Invoke(this, EventArgs.Empty);
+
+        projectilePrefab = (GameObject)Resources.Load(currentWeapon.ProjectileName);
+
+        currentEntity = Instantiate(projectilePrefab, playerPosition+playerLookDirection, new Quaternion(0, 0, 0, 0));
 
         
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentWeapon;
 
         currentEntity.GetComponent<Projectile>().direction = playerLookDirection.normalized;
+        currentEntity.GetComponent<Renderer>().material = projectileMaterial;
+        currentEntity.AddComponent<PlayerProjectile>();
+
+
+        var light = currentEntity.AddComponent<Light>();
     }
 
 

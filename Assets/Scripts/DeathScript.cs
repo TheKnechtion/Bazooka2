@@ -7,7 +7,7 @@ public class DeathScript : MonoBehaviour
 {
     EnemyBehavior character;
     //ParticleSystem particleObject;
-    UnityEngine.Object deathEffect;
+    GameObject deathEffect;
 
 
     private CapsuleCollider coll;
@@ -35,7 +35,7 @@ public class DeathScript : MonoBehaviour
         DisableComponents();
         //particleObject.Play();
 
-        deathEffect = Resources.Load("DeathEffect");
+        deathEffect = (GameObject)Resources.Load("DeathEffect");
         Instantiate(deathEffect, transform.position, Quaternion.identity);
 
         //Destroy(gameObject, particleObject.duration);

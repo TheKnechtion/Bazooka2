@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public int heal = 0;
+
     string itemTag, itemName;
     WeaponInfo tempWeaponInfo;
     WeaponController tempWeaponController = new WeaponController();
@@ -36,7 +38,7 @@ public class Item : MonoBehaviour
 
         if(other.gameObject.tag == "Player" && itemTag == "Health")
         {
-            other.gameObject.GetComponent<PlayerInfo>().Heal_HP(5);
+            other.gameObject.GetComponent<PlayerInfo>().Heal_HP(heal);
             Destroy(this.gameObject);
         }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 //used by the game manager to control enemy spawn
 public class EnemySpawnManager : MonoBehaviour
@@ -23,6 +24,9 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] private GameObject spawnObject;
 
     public static int enemyCount;
+
+    public static event EventHandler OnEnemyDeath;
+
 
     public void Start()
     {
@@ -141,6 +145,7 @@ public class EnemySpawnManager : MonoBehaviour
     public void UpdateEnemyCount()
     {
         enemyCount--;
+        OnEnemyDeath?.Invoke(this, EventArgs.Empty);
         CheckIfAllEnemiesAreBeaten();
     }
 

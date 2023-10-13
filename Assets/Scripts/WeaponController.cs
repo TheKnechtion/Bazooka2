@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponController:MonoBehaviour
 {
     WeaponInfo tempWeaponInfo;
-    List<WeaponInfo> weaponDatabase = new List<WeaponInfo>();
+    List<WeaponInfo> weaponDatabase;
 
 
 

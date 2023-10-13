@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4229507388611887063}
   - component: {fileID: -9130516178419059961}
   - component: {fileID: -7167879821045284373}
+  - component: {fileID: -3356020732080737333}
   m_Layer: 7
   m_Name: DwarfProjectile
   m_TagString: Projectile
@@ -123,6 +124,7 @@ MonoBehaviour:
   projectileType: 0
   projectilePath: 0
   direction: {x: 0, y: 0, z: 0}
+  damage: 0
 --- !u!54 &-7167879821045284373
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,3 +152,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &-3356020732080737333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536956621733376663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64c7a0002b3ddb147abbe44371894136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

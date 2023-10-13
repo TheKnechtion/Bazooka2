@@ -34,7 +34,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     //player's currently equipped weapon
     public WeaponInfo currentWeapon;
 
-    public List<WeaponInfo> ownedWeapons = new List<WeaponInfo>();
+    public List<WeaponInfo> ownedWeapons;
 
     private WeaponController weaponController;
 
@@ -52,11 +52,15 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     public Vector3 playerLookDirection = new Vector3();
 
     public event EventHandler OnTakeDamage;
+    public static event EventHandler OnPlayerHpChange;
 
     private void Start()
     {
+        ownedWeapons = new List<WeaponInfo>();
         weaponController = GetComponent<WeaponController>();
         currentHP = maximumHP;
+        OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
+        AddWeapon("Bazooka");
     }
 
     private void Update()
@@ -111,17 +115,22 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     {
         OnTakeDamage?.Invoke(this, EventArgs.Empty);
         currentHP -= passedDamage;
+
+        currentHP = (currentHP >= 0) ? currentHP : 0;
+
+        OnPlayerHpChange?.Invoke(this,EventArgs.Empty);
     }
 
 
+    
     public void Heal_HP(int amount)
     {
         currentHP += amount;
+        currentHP = (maximumHP < currentHP) ? currentHP : maximumHP;
 
-        currentHP = (maximumHP < currentHP) ? maximumHP : currentHP;
-
-
+        OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
     }
+    
 
     public void AddWeapon(string passedWeapon)
     { 
@@ -130,8 +139,6 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         {
             ownedWeapons.Add(newWeapon);
         }
-
-        //currentWeapon = ownedWeapons.First();
     }
 
 }
