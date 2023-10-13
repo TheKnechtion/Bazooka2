@@ -115,7 +115,7 @@ public class Projectile : MonoBehaviour
 
     Collider[] collidersHit;
 
-    private void DealSplashDamage()
+    public void DealSplashDamage()
     {
         //checks surrounding area in a sphere
         collidersHit = Physics.OverlapSphere(gameObject.transform.position, splashRadius);
@@ -144,7 +144,7 @@ public class Projectile : MonoBehaviour
     }
 
 
-    private void DeleteProjectile()
+    public void DeleteProjectile()
     {
         OnDestroyed?.Invoke(this, EventArgs.Empty);
     }

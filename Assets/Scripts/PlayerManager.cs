@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour
 
     public static event EventHandler OnPlayerWeaponChange;
     public static event EventHandler OnPlayerShoot;
+    public static event EventHandler OnPlayerDetonate;
 
     private void Start()
     {
@@ -47,6 +48,9 @@ public class PlayerManager : MonoBehaviour
         projectileMaterial = Resources.Load("White") as Material;
 
     }
+
+
+
 
     private void Update()
     {
@@ -58,12 +62,21 @@ public class PlayerManager : MonoBehaviour
         //sets the player look direction based on the player origin and the mouse cursor location
         playerLookDirection = PlayerInfo.instance.playerLookDirection;
 
-        pressed = _playerController.PlayerActions.Shoot.IsPressed();
+        
 
-        if (pressed) 
+        if (_playerController.PlayerActions.Shoot.IsPressed()) 
         { 
             HandleShooting(); 
         }
+
+
+
+        if(_playerController.PlayerActions.Detonate.IsPressed())
+        {
+            OnPlayerDetonate?.Invoke(this, EventArgs.Empty);
+        }
+
+
 
         //tracks time between shots, stopping at 0.
         timeBetweenShots = (timeBetweenShots > 0) ? timeBetweenShots -= Time.deltaTime : 0;

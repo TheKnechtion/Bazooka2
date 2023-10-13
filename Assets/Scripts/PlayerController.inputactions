@@ -13,15 +13,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Dash",
-                    "type": "Button",
-                    "id": "5cc7faf5-5cbb-4152-addb-2d1ae8bad214",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -134,17 +125,6 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "9765c14a-e90b-46b1-85bd-6566018c550e",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -171,7 +151,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "New action",
+                    "name": "Detonate",
                     "type": "Button",
                     "id": "af76d584-65f0-4d50-a9d4-4ff68dd175a1",
                     "expectedControlType": "Button",
@@ -271,12 +251,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ca91be95-c8ff-4556-8b43-fee808289f6f",
-                    "path": "",
+                    "id": "2e574693-8a92-45da-9ad6-75aae5cea92c",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Detonate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

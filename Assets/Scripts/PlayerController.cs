@@ -35,15 +35,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Dash"",
-                    ""type"": ""Button"",
-                    ""id"": ""5cc7faf5-5cbb-4152-addb-2d1ae8bad214"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -156,17 +147,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9765c14a-e90b-46b1-85bd-6566018c550e"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -193,7 +173,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Detonate"",
                     ""type"": ""Button"",
                     ""id"": ""af76d584-65f0-4d50-a9d4-4ff68dd175a1"",
                     ""expectedControlType"": ""Button"",
@@ -293,12 +273,12 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ca91be95-c8ff-4556-8b43-fee808289f6f"",
-                    ""path"": """",
+                    ""id"": ""2e574693-8a92-45da-9ad6-75aae5cea92c"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Detonate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -310,12 +290,11 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         // PlayerMovement
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerMovement_Dash = m_PlayerMovement.FindAction("Dash", throwIfNotFound: true);
         // PlayerActions
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_Shoot = m_PlayerActions.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerActions_ChangeWeapon = m_PlayerActions.FindAction("ChangeWeapon", throwIfNotFound: true);
-        m_PlayerActions_Newaction = m_PlayerActions.FindAction("New action", throwIfNotFound: true);
+        m_PlayerActions_Detonate = m_PlayerActions.FindAction("Detonate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -378,13 +357,11 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerMovement;
     private List<IPlayerMovementActions> m_PlayerMovementActionsCallbackInterfaces = new List<IPlayerMovementActions>();
     private readonly InputAction m_PlayerMovement_Movement;
-    private readonly InputAction m_PlayerMovement_Dash;
     public struct PlayerMovementActions
     {
         private @PlayerController m_Wrapper;
         public PlayerMovementActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
-        public InputAction @Dash => m_Wrapper.m_PlayerMovement_Dash;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -397,9 +374,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @Dash.started += instance.OnDash;
-            @Dash.performed += instance.OnDash;
-            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -407,9 +381,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @Dash.started -= instance.OnDash;
-            @Dash.performed -= instance.OnDash;
-            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -433,14 +404,14 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private List<IPlayerActionsActions> m_PlayerActionsActionsCallbackInterfaces = new List<IPlayerActionsActions>();
     private readonly InputAction m_PlayerActions_Shoot;
     private readonly InputAction m_PlayerActions_ChangeWeapon;
-    private readonly InputAction m_PlayerActions_Newaction;
+    private readonly InputAction m_PlayerActions_Detonate;
     public struct PlayerActionsActions
     {
         private @PlayerController m_Wrapper;
         public PlayerActionsActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shoot => m_Wrapper.m_PlayerActions_Shoot;
         public InputAction @ChangeWeapon => m_Wrapper.m_PlayerActions_ChangeWeapon;
-        public InputAction @Newaction => m_Wrapper.m_PlayerActions_Newaction;
+        public InputAction @Detonate => m_Wrapper.m_PlayerActions_Detonate;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -456,9 +427,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @ChangeWeapon.started += instance.OnChangeWeapon;
             @ChangeWeapon.performed += instance.OnChangeWeapon;
             @ChangeWeapon.canceled += instance.OnChangeWeapon;
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Detonate.started += instance.OnDetonate;
+            @Detonate.performed += instance.OnDetonate;
+            @Detonate.canceled += instance.OnDetonate;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -469,9 +440,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @ChangeWeapon.started -= instance.OnChangeWeapon;
             @ChangeWeapon.performed -= instance.OnChangeWeapon;
             @ChangeWeapon.canceled -= instance.OnChangeWeapon;
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Detonate.started -= instance.OnDetonate;
+            @Detonate.performed -= instance.OnDetonate;
+            @Detonate.canceled -= instance.OnDetonate;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -492,12 +463,11 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
     }
     public interface IPlayerActionsActions
     {
         void OnShoot(InputAction.CallbackContext context);
         void OnChangeWeapon(InputAction.CallbackContext context);
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnDetonate(InputAction.CallbackContext context);
     }
 }

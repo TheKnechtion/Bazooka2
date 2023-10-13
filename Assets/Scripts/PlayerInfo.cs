@@ -126,7 +126,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     public void Heal_HP(int amount)
     {
         currentHP += amount;
-        currentHP = (maximumHP < currentHP) ? currentHP : maximumHP;
+        currentHP = (maximumHP < currentHP) ? maximumHP : currentHP;
 
         OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
     }

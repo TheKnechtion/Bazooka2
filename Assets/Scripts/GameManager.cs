@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
             canSpawn = false;
         }
 
-       // CheckAllRoomsCleared();
+       CheckAllRoomsCleared();
 
         if (EvacTime)
         {

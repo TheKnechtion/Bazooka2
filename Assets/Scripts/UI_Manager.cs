@@ -56,6 +56,8 @@ public class UI_Manager : MonoBehaviour
         EnemySpawnManager.OnEnemyDeath += EnemySpawnManager_OnEnemyDeath;
 
         PlayerManager.OnPlayerShoot += PlayerManager_OnPlayerProjectileAmountChange;
+        PlayerManager.OnPlayerWeaponChange += PlayerManager_OnPlayerProjectileAmountChange;
+
         PlayerProjectile.OnExplosion += PlayerManager_OnPlayerProjectileAmountChange;
 
         populateTextArray();
