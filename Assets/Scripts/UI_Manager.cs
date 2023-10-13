@@ -27,6 +27,7 @@ public class UI_Manager : MonoBehaviour
     float timerTime;
     bool timerStarted;
     int minuteCount, secondCount;
+    string seconds;
 
     int currentPlayerHp;
     int maxPlayerHp;
@@ -51,6 +52,7 @@ public class UI_Manager : MonoBehaviour
         GameManager.OnPlayerLose += GameManager_OnPlayerLose;
         GameManager.OnPlayerWin += GameManager_OnPlayerWin;
         GameManager.OnEvacStart += GameManager_OnEvacStart;
+
         PlayerInfo.OnPlayerHpChange += PlayerInfo_OnPlayerHpChange;
         PlayerManager.OnPlayerWeaponChange += PlayerManager_OnPlayerWeaponChange;
         EnemySpawnManager.OnEnemyDeath += EnemySpawnManager_OnEnemyDeath;
@@ -77,7 +79,6 @@ public class UI_Manager : MonoBehaviour
     {
         if(atStart)
         {
-            objRenderer.text = $"Enemies Left: {EnemySpawnManager.enemyCount}";
             ActiveProjectileRenderer.text = $"Active Projectiles: {PlayerManager.activeProjectiles}/{PlayerManager.currentWeapon.maxProjectilesOnScreen}";
             atStart = false;
         }
@@ -98,7 +99,10 @@ public class UI_Manager : MonoBehaviour
 
                 minuteCount = (int)(timerTime / 60);
                 secondCount = (int)(timerTime % 60);
-                objRenderer.SetText($"Evacuate the Mission Zone!\n{minuteCount}:{secondCount}");
+
+                seconds = (secondCount > 10) ? secondCount.ToString():$"0{secondCount}";
+
+                objRenderer.SetText($"Evacuate the Mission Zone!\n{minuteCount}:{seconds}");
                     
                 break;
 

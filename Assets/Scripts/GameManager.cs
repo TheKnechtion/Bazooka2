@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         exit.SetActive(false);
         EvacExit.OnPlayerExit += Exit_OnPlayerExit;
 
-        evacTimer = new Timer(25.0f);
+        evacTimer = new Timer(40.0f);
 
         //prevent the game manager game object from being destroyed between scenes
         DontDestroyOnLoad(this.gameObject);
