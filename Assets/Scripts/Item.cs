@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class Item : MonoBehaviour
     string itemTag, itemName;
     WeaponInfo tempWeaponInfo;
     WeaponController tempWeaponController = new WeaponController();
+
+    public static event EventHandler OnWeaponPickUp;
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class Item : MonoBehaviour
         if (other.gameObject.tag == "Player" && itemTag == "Weapon")
         {
             other.gameObject.GetComponent<PlayerInfo>().AddWeapon(itemName);
+            OnWeaponPickUp?.Invoke(this, EventArgs.Empty);
             Destroy(this.gameObject);
         }
 

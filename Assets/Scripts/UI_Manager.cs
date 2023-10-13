@@ -15,12 +15,14 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject HpSpace;
     [SerializeField] private GameObject CurrentWeaponSpace;
     [SerializeField] private GameObject ActiveProjectileSpace;
+    [SerializeField] private GameObject TipSpace;
+
     private TextMeshProUGUI objRenderer;
     private TextMeshProUGUI statusRenderer;
     private TextMeshProUGUI HpRenderer;
     private TextMeshProUGUI CurrentWeaponRenderer;
     private TextMeshProUGUI ActiveProjectileRenderer;
-
+    private TextMeshProUGUI TipRenderer;
 
     private string[] statusArray, objArray;
     
@@ -62,6 +64,8 @@ public class UI_Manager : MonoBehaviour
 
         PlayerProjectile.OnExplosion += PlayerManager_OnPlayerProjectileAmountChange;
 
+        Item.OnWeaponPickUp += Item_OnWeaponPickUp;
+
         populateTextArray();
 
 
@@ -81,6 +85,16 @@ public class UI_Manager : MonoBehaviour
         {
             ActiveProjectileRenderer.text = $"Active Projectiles: {PlayerManager.activeProjectiles}/{PlayerManager.currentWeapon.maxProjectilesOnScreen}";
             atStart = false;
+        }
+
+
+        if(tutorialShowTime > 0.0f)
+        {
+            tutorialShowTime -= Time.deltaTime;
+        }
+        else
+        {
+            TipSpace.SetActive(false);
         }
 
 
@@ -170,8 +184,20 @@ public class UI_Manager : MonoBehaviour
     {
         objRenderer.text = $"Enemies Left: {EnemySpawnManager.enemyCount}";
     }
-    
 
+    float tutorialShowTime = 0.0f;
+    bool hasNotShownTip = true;
+    private void Item_OnWeaponPickUp(object sender, System.EventArgs e)
+    {
+        if(hasNotShownTip)
+        {
+            TipSpace.SetActive(true);
+            Item.OnWeaponPickUp -= Item_OnWeaponPickUp;
+            hasNotShownTip= false;
+            tutorialShowTime = 5.0f;
+        }
+        
+    }
 
 
 }
