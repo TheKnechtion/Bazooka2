@@ -23,8 +23,8 @@ public class InitializeGame : MonoBehaviour
             SetGameObjectName(Instantiate(LoadPrefabFromString("Player")), "Player");
 
             //the main camera
-            SetGameObjectName(Instantiate(LoadPrefabFromString("Main Camera")), "Main Camera");
-
+            //SetGameObjectName(Instantiate(LoadPrefabFromString("Main Camera")), "Main Camera");Cinemachine Camera
+                SetGameObjectName(Instantiate(LoadPrefabFromString("Cinemachine Camera")), "Follow Camera");
             //the win/lose UI
             SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas");
 
