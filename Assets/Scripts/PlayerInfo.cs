@@ -67,23 +67,12 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     {
         _instance = this;
 
-        //get the position of the center of the screen
-        centerScreen = new Vector2(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
-
 
         playerPosition = gameObject.transform.position;
 
 
-        //current x,y vector of how far away the cursor is from the bottom left of the screen
-        mousePos = Input.mousePosition;
-
-
-        //translate the mouse coordinates to be based around the center of the screen
-        mousePos.x -= centerScreen.x;
-        mousePos.y -= centerScreen.y;
-
         //sets the player look direction based on the player origin and the mouse cursor location
-        playerLookDirection = new Vector3(playerPosition.x + mousePos.x, playerPosition.y, playerPosition.z + mousePos.y).normalized;
+        playerLookDirection = PlayerManager.playerLookDirection;
 
 
         //if the player's hp drops to 0 or less

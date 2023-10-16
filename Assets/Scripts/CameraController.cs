@@ -10,6 +10,7 @@ public class CameraControl : MonoBehaviour
     Vector3 playerPosition;
 
 
+    Vector3 lockedRotation = new Vector3(55, 0, 0);
 
 
 
@@ -27,10 +28,8 @@ public class CameraControl : MonoBehaviour
     
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        playerPosition = playerObject.transform.position;
-
-        this.gameObject.transform.position = new Vector3(playerPosition.x, 12, playerPosition.z - 4);
+        transform.rotation = Quaternion.Euler(lockedRotation);
     }
 }

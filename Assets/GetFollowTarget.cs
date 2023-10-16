@@ -16,7 +16,7 @@ public class GetFollowTarget : MonoBehaviour
     {
         DontDestroyOnLoad(this);
     }
-
+    
     private void Start()
     {
         cam = GetComponent<CinemachineVirtualCamera>();
@@ -29,6 +29,6 @@ public class GetFollowTarget : MonoBehaviour
     private void setTarget()
     {
         cam.Follow = target;
-        cam.LookAt = target;
+        //cam.LookAt = target;
     }
 }

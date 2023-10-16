@@ -117,7 +117,7 @@ public class Projectile : MonoBehaviour
 
     public void DealSplashDamage()
     {
-        Debug.Log("Splash");
+        //Debug.Log("Splash");
         //checks surrounding area in a sphere
         collidersHit = Physics.OverlapSphere(gameObject.transform.position, splashRadius);
         
@@ -129,14 +129,14 @@ public class Projectile : MonoBehaviour
             collidersHit[i].gameObject.TryGetComponent<PlayerInfo>(out PlayerInfo player);
             if (entityInfo != null)
             {
-                Debug.Log("SPLASH DMG");
+                //Debug.Log("SPLASH DMG");
                 //We deal splash damage if what we hit is not null
                 entityInfo.TakeDamage(splashDamage);
             }
 
             if (player != null)
             {
-                Debug.Log("SPLASH DMG");
+                //Debug.Log("SPLASH DMG");
                 player.TakeDamage(splashDamage);
             }
             

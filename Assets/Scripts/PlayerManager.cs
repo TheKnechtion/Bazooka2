@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerManager : MonoBehaviour
     Vector3 playerPosition;
 
     //stores the player look direction
-    Vector3 playerLookDirection;
+    public static Vector3 playerLookDirection;
 
 
 
@@ -47,20 +48,47 @@ public class PlayerManager : MonoBehaviour
         //create the white projectile material used by the player projectiles
         projectileMaterial = Resources.Load("White") as Material;
 
+        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
     }
+
+
+
+    //variable that holds value for the x,y center of the screen in pixels
+    public Vector2 centerScreen = new Vector2();
+
+    //variable that holds value of location of the mouse cursor
+    public Vector3 mousePos = new Vector3();
+
+
 
 
 
 
     private void Update()
     {
-        playerPosition = this.gameObject.transform.position;
+        //get the position of the center of the screen
+        centerScreen = new Vector2(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
 
-        CheckWeaponChange();
 
+        //current x,y vector of how far away the cursor is from the bottom left of the screen
+        mousePos = Input.mousePosition;
+
+
+        //translate the mouse coordinates to be based around the center of the screen
+        mousePos.x -= centerScreen.x;
+        mousePos.y -= centerScreen.y;
 
         //sets the player look direction based on the player origin and the mouse cursor location
-        playerLookDirection = PlayerInfo.instance.playerLookDirection;
+        playerLookDirection = (RaycastController.playerLookVector).normalized;
+
+
+        playerPosition = gameObject.transform.position;
+        playerPosition.y = 1.0f;
+
+        CheckWeaponChange();
 
         
 
@@ -84,7 +112,17 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    float cooldownTime = 0.5f;
+    private void FixedUpdate()
+    {
+        Quaternion rotation = Quaternion.LookRotation(playerLookDirection, Vector3.up);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5.0f);
+
+    }
+
+
+
+    float cooldownTime = 0.1f;
     float nextInputTime = 0.0f;
     private void CheckWeaponChange()
     {

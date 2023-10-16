@@ -45,12 +45,12 @@ public class DamageIndicate : MonoBehaviour
     //}
     private IEnumerator indicateDamage()
     {
-        Debug.Log("Changing materal");
+        //Debug.Log("Changing materal");
         render.material = materials[1];
 
         yield return new WaitForSeconds(0.04f);
 
-        Debug.Log("Default materal");
+        //Debug.Log("Default materal");
         render.material = materials[0];
     }
 }

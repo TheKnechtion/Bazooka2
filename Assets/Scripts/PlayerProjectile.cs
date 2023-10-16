@@ -15,6 +15,7 @@ public class PlayerProjectile : MonoBehaviour
     private void OnDestroy()
     {
         PlayerManager.activeProjectiles--;
+        PlayerManager.OnPlayerDetonate -= PlayerManager_OnPlayerDetonate;
         OnExplosion?.Invoke(this, EventArgs.Empty);
     }
 
