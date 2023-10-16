@@ -117,6 +117,7 @@ public class Projectile : MonoBehaviour
 
     public void DealSplashDamage()
     {
+        Debug.Log("Splash");
         //checks surrounding area in a sphere
         collidersHit = Physics.OverlapSphere(gameObject.transform.position, splashRadius);
         
@@ -135,6 +136,7 @@ public class Projectile : MonoBehaviour
 
             if (player != null)
             {
+                Debug.Log("SPLASH DMG");
                 player.TakeDamage(splashDamage);
             }
             
@@ -158,6 +160,11 @@ public class Projectile : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(gameObject.transform.position, splashRadius);
         }
+    }
+
+    private void OnDestroy()
+    {
+        DealSplashDamage();
     }
 
 
