@@ -162,10 +162,5 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        DealSplashDamage();
-    }
-
 
 }
