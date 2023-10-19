@@ -203,7 +203,7 @@ public class PlayerManager : MonoBehaviour
 
         projectilePrefab = (GameObject)Resources.Load(currentWeapon.ProjectileName);
 
-        currentEntity = Instantiate(projectilePrefab, playerPosition+playerLookDirection, new Quaternion(0, 0, 0, 0));
+        currentEntity = Instantiate(projectilePrefab, playerPosition+ 2*(playerLookDirection), new Quaternion(0, 0, 0, 0));
 
         
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentWeapon;

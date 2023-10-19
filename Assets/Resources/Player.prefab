@@ -105,7 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c736591586a653a46a84d0d48aff9a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
 --- !u!114 &5652103297323190250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3564fa941fa7294abed11cce767d6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centerScreen: {x: 0, y: 0}
+  mousePos: {x: 0, y: 0, z: 0}
 --- !u!114 &2752627768358523937
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,7 +46,7 @@ public class WeaponDatabase
         testWeapon.splashDamage = 1;
         testWeapon.maxProjectilesOnScreen = 3;
         testWeapon.numberOfProjectilesPerShot = 1;
-        testWeapon.numberOfBounces = 5;
+        testWeapon.numberOfBounces = 1;
         testWeapon.currentAmmo = 12;
         testWeapon.maxAmmo = 12;
 
@@ -135,7 +135,7 @@ public class WeaponDatabase
         dwarfWeapon.currentAmmo = 12;
         dwarfWeapon.maxAmmo = 12;
 
-        dwarfWeapon.projectileSpeed = 14.0f;
+        dwarfWeapon.projectileSpeed = 10.0f;
         dwarfWeapon.radiusOfProjectile = 1.0f;
         dwarfWeapon.splashDamageRadius = 1.0f;
         dwarfWeapon.timeBetweenProjectileFire = 0.6f;
@@ -166,7 +166,7 @@ public class WeaponDatabase
         knightWeapon.projectileSpeed = 10.5f;
         knightWeapon.radiusOfProjectile = 1.0f;
         knightWeapon.splashDamageRadius = 1.0f;
-        knightWeapon.timeBetweenProjectileFire = 1.0f;
+        knightWeapon.timeBetweenProjectileFire = 1.5f;
         knightWeapon.timeBeforeDespawn = 10.0f;
         knightWeapon.homingStrength = 0.0f;
         Weapon_Database.Add(knightWeapon);

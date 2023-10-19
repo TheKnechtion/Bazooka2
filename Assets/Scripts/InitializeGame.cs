@@ -19,12 +19,14 @@ public class InitializeGame : MonoBehaviour
             SetGameObjectName(Instantiate(LoadPrefabFromString("GameManager")), "GameManager");
 
             //the player
-           // SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model")), "Player");
-            SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model")), "Player");
+                //SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model")), "Player");
+                SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model")), "Player");
+                //SetGameObjectName(Instantiate(LoadPrefabFromString("Player")), "Player");
 
             //the main camera
             SetGameObjectName(Instantiate(LoadPrefabFromString("Main Camera")), "Main Camera");
-            SetGameObjectName(Instantiate(LoadPrefabFromString("Cinemachine Camera")), "Follow Camera");
+                SetGameObjectName(Instantiate(LoadPrefabFromString("Cinemachine Camera")), "Follow Camera");
+                //SetGameObjectName(Instantiate(LoadPrefabFromString("Top View Camera")), "Top View Camera");
 
             //the win/lose UI
             SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas");
