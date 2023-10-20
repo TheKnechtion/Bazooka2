@@ -46,7 +46,7 @@ public class WeaponDatabase
         testWeapon.splashDamage = 1;
         testWeapon.maxProjectilesOnScreen = 3;
         testWeapon.numberOfProjectilesPerShot = 1;
-        testWeapon.numberOfBounces = 1;
+        testWeapon.numberOfBounces = 5;
         testWeapon.currentAmmo = 12;
         testWeapon.maxAmmo = 12;
 
@@ -62,7 +62,7 @@ public class WeaponDatabase
         //Test weapon 2
         WeaponInfo testWeapon2 = new WeaponInfo();
         testWeapon2.weaponName = "Floating Mine Launcher";
-        testWeapon2.ProjectileName = "Gun";
+        testWeapon2.ProjectileName = "Mine";
         testWeapon2.projectileType = ProjectileType.Gun;
         testWeapon2.projectilePath = ProjectilePath.Straight;
 
@@ -119,7 +119,7 @@ public class WeaponDatabase
         //Dwarf weapon 
         WeaponInfo dwarfWeapon = new WeaponInfo();
         dwarfWeapon.weaponName = "Dwarf";
-        dwarfWeapon.ProjectileName = "DwarfProjectile";
+        dwarfWeapon.ProjectileName = "Gun";
         dwarfWeapon.projectileType = ProjectileType.Gun;
         dwarfWeapon.projectilePath = ProjectilePath.Straight;
 
@@ -153,7 +153,7 @@ public class WeaponDatabase
 
         knightWeapon.doesSplashDamageOnDespawn = true;
         knightWeapon.doesBounce = false;
-        knightWeapon.isHoming = false;
+        knightWeapon.isHoming = true;
 
         knightWeapon.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP; 
         knightWeapon.splashDamage = 0;

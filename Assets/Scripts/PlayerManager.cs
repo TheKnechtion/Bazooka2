@@ -15,10 +15,13 @@ public class PlayerManager : MonoBehaviour
     //store the current player position
     Vector3 playerPosition;
 
+    //Track movement in the mouse
+    Vector2 mouseDelta;
+
     //stores the player look direction
     public static Vector3 playerLookDirection;
 
-
+    Camera mainCamera;
 
     GameObject projectilePrefab;
     GameObject currentEntity;
@@ -36,23 +39,32 @@ public class PlayerManager : MonoBehaviour
 
     List<WeaponInfo> playerOwnedWeapons;
 
-    //holds the material that makes all the player projectiles white
-    Material projectileMaterial;
-
     public static event EventHandler OnPlayerWeaponChange;
     public static event EventHandler OnPlayerShoot;
     public static event EventHandler OnPlayerDetonate;
 
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+        _playerController = new PlayerController();
+        _playerController.PlayerActions.MousePosition.performed += mouseMove => mouseDelta = mouseMove.ReadValue<Vector2>();
+        _playerController.PlayerActions.MousePosition.canceled += mouseMove => mouseDelta = Vector2.zero;
+        mainCamera = Camera.main;
+    }
+
+
+
     private void Start()
     {
-        //create the white projectile material used by the player projectiles
-        projectileMaterial = Resources.Load("White") as Material;
 
         //Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
     }
+
 
 
 
@@ -60,30 +72,35 @@ public class PlayerManager : MonoBehaviour
     public Vector2 centerScreen = new Vector2();
 
     //variable that holds value of location of the mouse cursor
-    public Vector3 mousePos = new Vector3();
+    public Vector3 mousePosition = new Vector3();
+
+
+    Vector3 mouseToWorldPosition;
+
+    Vector3 desiredAimPosition;
 
 
 
-
-
+    Vector3 lookVector;
 
     private void Update()
     {
-        //get the position of the center of the screen
-        centerScreen = new Vector2(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
 
 
-        //current x,y vector of how far away the cursor is from the bottom left of the screen
-        mousePos = Input.mousePosition;
+        mousePosition = Input.mousePosition;
+
+        mousePosition.z = Vector3.Distance(mainCamera.transform.position, this.transform.position);
+
+        mouseToWorldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+
+        mouseToWorldPosition.y = this.transform.position.y;
 
 
-        //translate the mouse coordinates to be based around the center of the screen
-        mousePos.x -= centerScreen.x;
-        mousePos.y -= centerScreen.y;
+        playerLookDirection = (mouseToWorldPosition - this.transform.position).normalized;
 
-        //sets the player look direction based on the player origin and the mouse cursor location
-        playerLookDirection = (RaycastController.playerLookVector).normalized;
 
+
+        
 
         playerPosition = gameObject.transform.position;
         playerPosition.y = 1.0f;
@@ -112,11 +129,13 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    Quaternion rotation;
+
     private void FixedUpdate()
     {
-        Quaternion rotation = Quaternion.LookRotation(playerLookDirection, Vector3.up);
+        rotation = Quaternion.LookRotation(playerLookDirection, Vector3.up);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5.0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 15.0f);
 
     }
 
@@ -172,12 +191,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-        _playerController = new PlayerController();
 
-    }
 
 
     private void OnEnable()
@@ -203,17 +217,15 @@ public class PlayerManager : MonoBehaviour
 
         projectilePrefab = (GameObject)Resources.Load(currentWeapon.ProjectileName);
 
-        currentEntity = Instantiate(projectilePrefab, playerPosition+ 2*(playerLookDirection), new Quaternion(0, 0, 0, 0));
 
+
+        currentEntity = Instantiate(projectilePrefab, RaycastController.projectileSpawnLocation.transform.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
         
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentWeapon;
+        currentEntity.GetComponent<Projectile>().direction = gameObject.transform.forward;
 
-        currentEntity.GetComponent<Projectile>().direction = playerLookDirection.normalized;
-        currentEntity.GetComponent<Renderer>().material = projectileMaterial;
         currentEntity.AddComponent<PlayerProjectile>();
-
-
-        var light = currentEntity.AddComponent<Light>();
+        currentEntity.AddComponent<Light>();
     }
 
 

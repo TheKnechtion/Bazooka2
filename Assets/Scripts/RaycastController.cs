@@ -8,30 +8,21 @@ public class RaycastController : MonoBehaviour
     [SerializeField] LineRenderer lineRenderer;
 
     //store the current player position
-    Vector3 playerPosition;
-
-    //variable that holds value for the x,y center of the screen in pixels
-    Vector2 centerScreen;
-
-    //variable that holds value of location of the mouse cursor
-    Vector3 mousePos;
+    Vector3 positionOne;
 
 
     public LayerMask ignoreProjectileLayerObjects;
 
-    Camera mainCamera;
+    public GameObject GunBarrelLocation;
 
-    Vector3 mouseWorldPosition;
+    public static GameObject projectileSpawnLocation;
 
-
-    public static Vector3 playerLookVector;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        mainCamera = Camera.main;
+
     }
 
     
@@ -41,34 +32,29 @@ public class RaycastController : MonoBehaviour
     void Update()
     {
 
+        positionOne = GunBarrelLocation.transform.position;
+
+        projectileSpawnLocation = GunBarrelLocation;
+
+
+
+
+        //set line renderer position to current player location
+        lineRenderer.SetPosition(0, positionOne);
+        
+        //set line renderer position to current player location
+        lineRenderer.SetPosition(2, positionOne);
     }
+
+    RaycastHit hit;
 
     //Updates after update, used for physics related calculations and functions
     private void FixedUpdate()
     {
-        playerPosition = gameObject.transform.position;
-
-        playerPosition = new Vector3(playerPosition.x, 1.0f, playerPosition.z);
-
-        mousePos = Input.mousePosition;
-
-        mousePos.z = Vector3.Distance(mainCamera.transform.position, playerPosition);
-
-        mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePos);
-
-        mouseWorldPosition.y = playerPosition.y;
-
-        playerLookVector = mouseWorldPosition-playerPosition;
-
-
-        //set line renderer position to current player location
-        lineRenderer.SetPosition(0, playerPosition);
-
-        lineRenderer.SetPosition(1, mouseWorldPosition);
-
-        //set line renderer position to current player location
-        lineRenderer.SetPosition(2, playerPosition);
+        Physics.Raycast(positionOne, gameObject.transform.forward, out hit);
+        lineRenderer.SetPosition(1, hit.point);
 
     }
 
 }
+

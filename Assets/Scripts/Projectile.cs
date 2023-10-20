@@ -82,7 +82,6 @@ public class Projectile : MonoBehaviour
             //Destroy(gameObject);
         }
 
-        
         if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerInfo>().TakeDamage(damage);
@@ -99,6 +98,8 @@ public class Projectile : MonoBehaviour
 
         if (numberOfBounces > 0)
         {
+            isSpawning = false;
+
             collisionNormal = new Vector2(collision.contacts[0].normal.x, collision.contacts[0].normal.z).normalized;
 
             direction2D = (new Vector2(direction.x, direction.z));
@@ -106,12 +107,19 @@ public class Projectile : MonoBehaviour
             direction2D = (direction2D - 2 * (Vector2.Dot(direction2D, collisionNormal)) * collisionNormal);
 
             direction = new Vector3(direction2D.x, 0, direction2D.y);
+
+            transform.rotation = Quaternion.LookRotation(Vector3.up, direction);
+
             numberOfBounces--;
 
         }
 
 
     }
+
+
+
+    
 
     Collider[] collidersHit;
 
@@ -151,6 +159,10 @@ public class Projectile : MonoBehaviour
         OnDestroyed?.Invoke(this, EventArgs.Empty);
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        isSpawning = false;
+    }
 
     private void OnDrawGizmos()
     {

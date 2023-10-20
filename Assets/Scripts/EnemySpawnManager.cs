@@ -28,6 +28,8 @@ public class EnemySpawnManager : MonoBehaviour
     public static event EventHandler OnEnemyDeath;
 
 
+
+
     public void Start()
     {
         //create an enemy database that will be used by the spawn manager

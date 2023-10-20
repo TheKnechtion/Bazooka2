@@ -35,10 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        speed = PlayerInfo.instance.movementSpeed;
 
-        //stores the player's WASD input as a vector2, with AD as the x-axis and WS as the y-axis
-        moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
 
 
         //dashCooldown = (dashCooldown > 0) ? dashCooldown-=Time.deltaTime:dashCooldown;
@@ -52,6 +49,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        speed = PlayerInfo.instance.movementSpeed;
+
+        //stores the player's WASD input as a vector2, with AD as the x-axis and WS as the y-axis
+        moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
+
+
         //dash
         if (dash &&  dashCooldown<=0)
         {

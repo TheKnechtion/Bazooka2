@@ -6,9 +6,11 @@ using UnityEngine.AI;
 
 public class Navigation : MonoBehaviour
 {
-    private NavMeshAgent agent;
+    NavMeshAgent agent;
     Vector3 playerPos, thisPos;
     float distance;
+
+
 
 
     // Start is called before the first frame update
@@ -30,8 +32,10 @@ public class Navigation : MonoBehaviour
         distance = Vector3.Distance(playerPos, thisPos);
         if (n == true)
         {
+            agent.isStopped = false;
             if (stopAtDistance)
             {
+                
                 agent.stoppingDistance = 5;
                 agent.destination = playerPos;
                 
@@ -41,6 +45,10 @@ public class Navigation : MonoBehaviour
                 agent.stoppingDistance = 0;
                 agent.destination = playerPos;
             }
+        }
+        else 
+        {
+            //agent.SetDestination(transform.position);
         }
     }
 }
