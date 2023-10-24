@@ -27,39 +27,41 @@ public class CatchObjectsBlocking : MonoBehaviour, IEquatable<FadeObject>
     // Update is called once per frame
     void Update()
     {
+        wallsFaded.Clear();
+
         targetPos = PlayerInfo.instance.playerPosition;
 
         direction = targetPos - gameObject.transform.position;
         Ray ray = new Ray(gameObject.transform.position, direction * distance);
         Debug.DrawRay(gameObject.transform.position, direction * distance, Color.red);
 
-        wallsHit = Physics.RaycastAll(gameObject.transform.position, direction, distance, layerMask);
+        //wallsHit = Physics.RaycastAll(gameObject.transform.position, direction, distance, layerMask);
+        int hits = Physics.RaycastNonAlloc(ray, wallsHit, distance, layerMask);
+        Debug.Log("Hit count " + hits);
+
+        for (int i = 0; i < hits; i++)
+        {
+            FadeObject m = wallsHit[i].transform.GetComponent<FadeObject>();
+            wallsFaded.Add(m);
+        }
 
         fadeAndUnfade();
-        
+
         
     }
 
     private void fadeAndUnfade()
     {
-        for (int i = 0; i < wallsHit.Length; i++)
-        {
-            FadeObject indexHit = wallsHit[i].transform.GetComponent<FadeObject>();
-            indexHit.FadeThis();
-            wallsFaded.Add(indexHit);
-        }
-
         foreach (FadeObject item in wallsFaded)
         {
-            for (int i = 0; i < wallsHit.Length; i++)
-            {
-                FadeObject indexHit = wallsHit[i].transform.GetComponent<FadeObject>();
-                if (indexHit != item)
-                {
-                    item.UnfadeThis();
-                }
-            }
+            //if (wallsHit)
+            //{
+
+            //}
+            item.FadeThis();
         }
+
+
     }
 
     public bool Equals(FadeObject other)
