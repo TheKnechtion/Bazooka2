@@ -22,11 +22,15 @@ public class FadeObject : MonoBehaviour
 
     public void FadeThis()
     {
-        render.material.shader = transparentShader;
+        StopAllCoroutines();
+        StartCoroutine(Fade());
     }
 
-    public void UnfadeThis()
+    private IEnumerator Fade()
     {
+        render.material.shader = transparentShader;
+        yield return new WaitForSeconds(0.2f);
         render.material.shader = initialShader;
+        yield return null;
     }
 }
