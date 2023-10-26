@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Breathing
+  m_Name: InvincibiltytMaterial
   m_Shader: {fileID: -6465566751694194690, guid: bb1fe0c0aab0a9444a9581f7a70c4623, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 108c5f88699e0ac4780ea1444830ddb6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 786eb4461d0bb2a42a270245f8619c5d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -45,19 +45,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Border_Power: 5.67
-    - _Breath_Frequnecy: 5.25
-    - _Horizontal_Speed: 0.2
+    - _Border_Power: 5
+    - _Breath_Frequnecy: 1.41
+    - _Horizontal_Speed: 0.22
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Shift_Speed: 0
-    - _Transparency: 0.71
-    - _Vertical_Speed: 0.74
+    - _Transparency: 1
+    - _Vertical_Speed: 2.36
     m_Colors:
-    - _Border_Color: {r: 0.09411762, g: 0.25668308, b: 0.7921569, a: 0}
-    - _MinMax_Border_Power_Strength: {r: 1, g: 3, b: 0, a: 0}
+    - _Border_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _MinMax_Border_Power_Strength: {r: 1, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &9013546570645117522
+--- !u!114 &8101644874413233960
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
