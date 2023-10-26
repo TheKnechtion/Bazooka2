@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 6781116879570724028}
   - component: {fileID: -1410147761286916415}
   - component: {fileID: 7163520462497277412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Dwarf
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -717,6 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895612c024ae59148b8862e30dcd2897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   MP: 0
   AP: 0
   DEF: 0
@@ -775,6 +776,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fd986336af45f41970847d81ff0924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stoppingDistance: 0
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &6781116879570724028
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum EnemyState {IDLE, CHASE, ATTACK}
 public class EnemyBehavior : MonoBehaviour, IDamagable
 {
     //stores the name of the enemy
     string enemyName;
+
+    //Enemy behavoir state enum
+    [SerializeField] private EnemyState currentState;
 
 
     //these are all public so they can be viewed in the inspector in unity
@@ -52,11 +56,13 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //Used by the enemy to track how far the player is
     float enemyPlayerTracker;
 
+    private Transform targetToLookAt;
+
     float timeBetweenShots;
 
     //Used to determine how far the player has to be for the enemy to stop attacking    
     float enemyAttackRange_BecomeAggro = 15.0f;
-    float enemyAttackRange_AttackRange = 9.0f;
+    float enemyAttackRange_AttackRange = 12.0f;
     bool isAggrod, inShootRange;
 
     [SerializeField] private LayerMask playerMask;
@@ -105,8 +111,11 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         inShootRange = false;
 
         nav = GetComponent<Navigation>();
+        nav.stoppingDistance = enemyAttackRange_AttackRange;
 
+        targetToLookAt = PlayerInfo.instance.gameObject.transform;
 
+        currentState = EnemyState.IDLE;
     }
 
 
@@ -126,16 +135,50 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         enemyPlayerTracker = Vector3.Distance(playerPosition, enemyPosition);
 
         //creates an enemy look direction based on the enemy position and the player's current position
-        enemyLookDirection = (playerPosition - enemyPosition).normalized;
+            enemyLookDirection = (playerPosition - enemyPosition).normalized;
 
         //if the player gets within range, the enemy will shoot
         //if (enemyPlayerTracker < enemyAttackRange_BecomeAggro) { isAggrod = true; }
 
         //if the player is out of range, the enemy will stop shooting
         //if (enemyPlayerTracker > enemyAttackRange_ExitAggro) { isAggrod = false; }
+
+        HandleEnemyAggro();
+
+        switch (currentState)
+        {
+            case EnemyState.IDLE:
+                break;
+            case EnemyState.CHASE:
+                break;
+            case EnemyState.ATTACK:
+                break;
+            default:
+                break;
+        }
     }
 
     private void FixedUpdate()
+    {
+        
+
+
+        //tracks time between shots, stopping at 0.
+        timeBetweenShots = (timeBetweenShots > 0) ? timeBetweenShots -= Time.deltaTime : 0;
+
+
+        //kill if below 0 hp
+        if (health <= 0)
+        {
+            if (!CalledDie)
+            {
+                Die();
+                CalledDie = true;
+            }
+        }
+    }
+
+    private void HandleEnemyAggro()
     {
         //Determines aggro of the enemy
         isAggrod = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_BecomeAggro, playerMask);
@@ -143,7 +186,9 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
         if (isAggrod)
         {
-
+            transform.LookAt(targetToLookAt);
+            //If agroed, we want to chase
+            currentState = EnemyState.CHASE;
 
             Ray wallDetect = new Ray(gameObject.transform.position, enemyLookDirection);
             RaycastHit hit;
@@ -180,34 +225,19 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             //nav.MoveToPlayer(isAggrod, true);
             //movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
         }
-
-
-        //tracks time between shots, stopping at 0.
-        timeBetweenShots = (timeBetweenShots > 0) ? timeBetweenShots -= Time.deltaTime : 0;
-
-
-        //kill if below 0 hp
-        if (health <= 0)
-        {
-            if (!CalledDie)
-            {
-                Die();
-                CalledDie = true;
-            }
-        }
     }
 
 
 
-/*
-private void FixedUpdate()
-{
-    //if the enemy is aggro'd, it will shoot at the player
-    //if (isAggrod == true) { HandleShooting(); }
-}
-*/
+    /*
+    private void FixedUpdate()
+    {
+        //if the enemy is aggro'd, it will shoot at the player
+        //if (isAggrod == true) { HandleShooting(); }
+    }
+    */
 
-private void HandleShooting()
+    private void HandleShooting()
     {
         //manages how quick the player shoots based on their currently equipped weapon
         if (timeBetweenShots <= 0.0f)
