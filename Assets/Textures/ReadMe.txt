@@ -11,3 +11,5 @@ Door Texture - https://www.filterforge.com/filters/15754.html
 Metal Texture - https://www.freepik.com/free-vector/metal-texture-with-relief-forms_944096.htm#query=metal%20floor%20texture&position=4&from_view=keyword&track=ais
 
 Fence Opacity Map - https://www.texturecan.com/details/134/#google_vignette
+
+White Smoke - <a href='https://pngtree.com/freepng/flame-white-smoke_8807727.html'>png image from pngtree.com/</a>

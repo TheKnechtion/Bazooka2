@@ -61,6 +61,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         currentHP = maximumHP;
         OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
         AddWeapon("Bazooka");
+
+        
     }
 
     private void Update()
@@ -81,7 +83,6 @@ public class PlayerInfo:MonoBehaviour, IDamagable
             //the player object is destroyed and the playerloses method is called
             Die();
         }
-
     }
 
     //handles player death
