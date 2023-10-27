@@ -18,19 +18,28 @@ public class DamageIndicate : MonoBehaviour
     {
         render = GetComponent<Renderer>();
 
-        
+        //if (gameObject.TryGetComponent<PlayerInfo>(out PlayerInfo info))
+        //{            
+        //    player = info;
+        //    player.OnTakeDamage += OnDamaged;
+        //}
 
-        if (TryGetComponent<EnemyBehavior>(out EnemyBehavior en))
+        if (gameObject.tag == "Player")
         {
-            enemy = en;
-            enemy.OnTakeDamage += OnDamaged;
+            if (transform.parent.TryGetComponent<PlayerInfo>(out PlayerInfo info))
+            {
+                player = info;
+                player.OnTakeDamage += OnDamaged;
+            }
         }
-
-        if (TryGetComponent<PlayerInfo>(out PlayerInfo info))
+        else
         {
-            player = info;
-            player.OnTakeDamage += OnDamaged;
-        }
+            if (transform.parent.TryGetComponent<EnemyBehavior>(out EnemyBehavior en))
+            {
+                enemy = en;
+                enemy.OnTakeDamage += OnDamaged;
+            }
+        }    
     
     }
 
@@ -48,7 +57,7 @@ public class DamageIndicate : MonoBehaviour
         //Debug.Log("Changing materal");
         render.material = materials[1];
 
-        yield return new WaitForSeconds(0.04f);
+        yield return new WaitForSeconds(0.5f);
 
         //Debug.Log("Default materal");
         render.material = materials[0];
