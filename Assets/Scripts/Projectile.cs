@@ -37,6 +37,8 @@ public class Projectile : MonoBehaviour
 
     public event EventHandler OnDestroyed;
 
+    float time = 0;
+
     private void Start()
     {
         //caster = GetComponent<CapsuleCollider>();
@@ -56,14 +58,23 @@ public class Projectile : MonoBehaviour
 
         despawnTime = currentWeaponInfo.timeBeforeDespawn;
 
-        Destroy(gameObject, despawnTime);
-    }
+        time = 0.0f;
 
+        //Destroy(gameObject, despawnTime);
+    }
+ 
 
 
 
     private void FixedUpdate()
     {
+        time += Time.deltaTime;
+
+        if(time >= despawnTime)
+        {
+            DealSplashDamage();
+            DeleteProjectile();
+        }
 
         this.gameObject.GetComponent<Rigidbody>().velocity = direction * magnitude;
 
@@ -89,13 +100,24 @@ public class Projectile : MonoBehaviour
             DeleteProjectile();
         }
 
-        if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
-        
-        
         //if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
         if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); DeleteProjectile(); }
 
 
+
+        Bounce(collision);
+
+        if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
+        if (collision.gameObject.tag == "LimitedBounceObject") { collision.gameObject.GetComponent<LimitedBounceObject>().ProjectileCollision(); }
+        if (collision.gameObject.tag == "Button") { collision.gameObject.GetComponent<Button>().Activate();}
+        //collision.gameObject.GetComponent<Button>().Activate(); 
+        }
+
+
+    
+
+    void Bounce(Collision collision)
+    {
         if (numberOfBounces > 0)
         {
             isSpawning = false;
@@ -111,13 +133,8 @@ public class Projectile : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Vector3.up, direction);
 
             numberOfBounces--;
-
         }
-
-
     }
-
-
 
     
 
@@ -135,6 +152,7 @@ public class Projectile : MonoBehaviour
 
             collidersHit[i].gameObject.TryGetComponent<EnemyBehavior>(out EnemyBehavior entityInfo);
             collidersHit[i].gameObject.TryGetComponent<PlayerInfo>(out PlayerInfo player);
+            collidersHit[i].gameObject.TryGetComponent<DestroyableObject>(out DestroyableObject obj);
             if (entityInfo != null)
             {
                 //Debug.Log("SPLASH DMG");
@@ -146,6 +164,11 @@ public class Projectile : MonoBehaviour
             {
                 //Debug.Log("SPLASH DMG");
                 player.TakeDamage(splashDamage);
+            }
+
+            if(obj != null)
+            {
+                obj.TakeDamage(splashDamage);
             }
             
         }

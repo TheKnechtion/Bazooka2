@@ -52,7 +52,7 @@ public class WeaponDatabase
 
         testWeapon.projectileSpeed = 14.0f;
         testWeapon.radiusOfProjectile = 1.0f;
-        testWeapon.splashDamageRadius = 1.0f;
+        testWeapon.splashDamageRadius = 3.0f;
         testWeapon.timeBetweenProjectileFire = 0.2f;
         testWeapon.timeBeforeDespawn = 8.0f;
         testWeapon.homingStrength = 0.0f;

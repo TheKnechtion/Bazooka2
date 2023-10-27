@@ -111,7 +111,8 @@ public class PlayerManager : MonoBehaviour
 
         if (_playerController.PlayerActions.Shoot.IsPressed()) 
         { 
-            HandleShooting(); 
+            HandleShooting();
+            Cursor.visible = false;
         }
 
 

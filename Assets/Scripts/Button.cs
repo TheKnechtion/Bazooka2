@@ -3,8 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour
+public class Button : MonoBehaviour, IActivate
 {
+    [SerializeField] GameObject activatedObject;
+
+
+    public bool activated = false;
+
+    public void Activate()
+    {
+        if(!activated)
+        {
+            activatedObject.GetComponent<Act>().Activate();
+            activated = true;
+        }
+    }
+
+    /*
     //holds the position of an enemy spawn node
     Vector3 spawnPosition;
 
@@ -64,5 +79,5 @@ public class Button : MonoBehaviour
             enemySpawnManager.SpawnEnemy(spawnPositions[i].transform.position, n);
         }
     }
-
+    */
 }
