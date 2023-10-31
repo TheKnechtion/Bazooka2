@@ -7,23 +7,21 @@ using UnityEngine.AI;
 public class Navigation : MonoBehaviour
 {
     NavMeshAgent agent;
-    Vector3 playerPos, thisPos, targetPos;
-    float distance;
+    Vector3 playerPos, thisPos, targetPos, reverseDirection;
+    public float distance;
 
     public float stoppingDistance;
+    private const float stopCheckradius = 1.5f;
+
+    public bool Stopped;
 
     //This is used to determine how far to spread out between other enemies
     private float spaceDistance;
-    private RaycastHit[] enemiesNearby = new RaycastHit[7];
-
-    [SerializeField] private LayerMask enemyMask;
-
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        spaceDistance = 3.0f;
     }
 
     // Update is called once per frame
@@ -34,19 +32,29 @@ public class Navigation : MonoBehaviour
         playerPos = PlayerInfo.instance.playerPosition;
     }
 
-    public void MoveToPlayer(bool n, bool stopAtDistance)
+    public void MoveToPlayer(bool isAggroed, bool stopAtDistance)
     {
+        agent.isStopped = false;
+        
         distance = Vector3.Distance(playerPos, thisPos);
-        if (n == true)
+        if (isAggroed == true)
         {
             //StartCoroutine(spaceOut());
             agent.isStopped = false;
             if (stopAtDistance)
             {
-                
-                agent.stoppingDistance = stoppingDistance;
+
+                //agent.stoppingDistance = stoppingDistance;
                 agent.destination = playerPos;
-                
+                if (isInRange(distance, stoppingDistance) ||
+                    (distance  < stoppingDistance))
+                {
+                    agent.SetDestination(transform.position);
+                }
+
+                if (distance < stoppingDistance)
+                    StartCoroutine(backUP());
+
             }
             else
             { 
@@ -58,29 +66,31 @@ public class Navigation : MonoBehaviour
         {
             //agent.SetDestination(transform.position);
         }
+
+       
     }
 
-    private IEnumerator spaceOut()
+    private IEnumerator backUP()
     {
-        //Ray sphereRay = Physics.SphereCast(gameObject.transform.position, spaceDistance, gameObject.transform.position, );
-        int hit = Physics.SphereCastNonAlloc(gameObject.transform.position, spaceDistance, gameObject.transform.position, enemiesNearby);
+        reverseDirection = (thisPos - playerPos);
+        targetPos = reverseDirection.normalized * 10;
+        agent.destination = targetPos;
 
-        //detect is near other enemies,
-        if (hit > 0)
-        {
-            for (int i = 0; i < enemiesNearby.Length; i++)
-            { 
-                //Confirms that we are detecting enemies
-                GameObject hitobject = enemiesNearby[i].collider.GetComponent<GameObject>();
-                if(hitobject.TryGetComponent<EnemyInfo>(out EnemyInfo enemy))
-                {
-                    Debug.Log("Enemy detected");
-                    agent.destination = new Vector3(targetPos.x, targetPos.y, targetPos.z +5);
-                }
-            }
-        }
-            //if true, move away,
-            //else, do notthing
+        Debug.DrawRay(thisPos, reverseDirection.normalized * 10, Color.red);
+
+        yield return new WaitForSeconds(2f);
         yield return null;
+    }
+
+    private bool isInRange(float pointA, float pointB)
+    {
+        if ((pointA <= pointB + stopCheckradius) && (pointA >= pointB - stopCheckradius))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

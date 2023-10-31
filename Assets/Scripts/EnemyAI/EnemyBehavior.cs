@@ -63,7 +63,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //Used to determine how far the player has to be for the enemy to stop attacking    
     float enemyAttackRange_BecomeAggro = 15.0f;
     float enemyAttackRange_AttackRange = 12.0f;
-    bool isAggrod, inShootRange;
+    public bool isAggrod, inShootRange;
 
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask environmentMask;
@@ -220,10 +220,9 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
 
         }
-        else
+        else if (!isAggrod )
         {
-            //nav.MoveToPlayer(isAggrod, true);
-            //movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
+
         }
     }
 
