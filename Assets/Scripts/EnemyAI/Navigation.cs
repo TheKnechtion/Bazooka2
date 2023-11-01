@@ -58,7 +58,7 @@ public class Navigation : MonoBehaviour
             }
             else
             { 
-                agent.stoppingDistance = 0;
+                agent.stoppingDistance = 0; 
                 agent.destination = playerPos;
             }
         }

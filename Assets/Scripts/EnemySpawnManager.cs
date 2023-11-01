@@ -187,6 +187,7 @@ public class EnemySpawnManager : MonoBehaviour
     string currentName;
     public void SpawnEnemiesByTag()
     {
+
         for (int i = 1; i < spawnPositions.Length; i++)
         {
             enemyCount = spawnPositions.Length-1;

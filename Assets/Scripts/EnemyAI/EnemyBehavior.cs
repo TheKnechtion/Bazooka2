@@ -220,10 +220,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
 
         }
-        else if (!isAggrod )
-        {
-
-        }
     }
 
 
