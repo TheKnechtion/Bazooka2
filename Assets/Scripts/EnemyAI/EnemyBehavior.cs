@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public enum EnemyState {IDLE, CHASE, ATTACK}
 public class EnemyBehavior : MonoBehaviour, IDamagable
 {
+    #region Every Behavior class has these
     //stores the name of the enemy
     protected string enemyName;
 
@@ -86,8 +87,10 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected bool CanDestroy = false;
 
 
-   protected NavMeshAgent agent;
+    protected NavMeshAgent agent;
 
+    protected bool CalledDie = false;
+    #endregion
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -120,8 +123,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     }
 
 
-    protected bool CalledDie = false;
-    protected void Update()
+    
+    protected virtual void Update()
     {
         inShootRange = false;
         isAggrod = false;
@@ -233,7 +236,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     }
     */
 
-    protected void HandleShooting()
+    protected virtual void HandleShooting()
     {
         //manages how quick the player shoots based on their currently equipped weapon
         if (timeBetweenShots <= 0.0f)
@@ -245,7 +248,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     }
 
 
-    void Shoot()
+    protected void Shoot()
     {
         //instantiates the projectile prefab
         projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);

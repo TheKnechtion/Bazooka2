@@ -523,7 +523,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438121388225170721}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.006682887, z: -0, w: 0.9999777}
   m_LocalPosition: {x: 0, y: 1.3647999, z: 0}
   m_LocalScale: {x: 0.0001, y: 0.0001, z: 0.0001}
   m_ConstrainProportionsScale: 0
@@ -536,7 +536,7 @@ Transform:
   - {fileID: 1444525430418063920}
   - {fileID: 42460891513963236}
   m_Father: {fileID: 8477071312908972573}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.766, z: 0}
 --- !u!1 &1503452706978501939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,9 +2048,9 @@ MonoBehaviour:
   DEF: 0
   health: 2
   weaponProjectileSpawnNode: {fileID: 8737109413264873028}
-  SetToAttack: 0
+  SetToAttack: 1
   enemyAttackRange_BecomeAggro: 50
-  enemyAttackRange_AttackRange: 50
+  enemyAttackRange_AttackRange: 10
   isAggrod: 0
   inShootRange: 0
   playerMask:
@@ -2059,6 +2059,7 @@ MonoBehaviour:
   environmentMask:
     serializedVersion: 2
     m_Bits: 512
+  turret: {fileID: 1438121388225170721}
 --- !u!114 &6567083082894664384
 MonoBehaviour:
   m_ObjectHideFlags: 0

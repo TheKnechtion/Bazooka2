@@ -26,7 +26,7 @@ public class Navigation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         //Always setting destination to the players position
         thisPos = gameObject.transform.position;

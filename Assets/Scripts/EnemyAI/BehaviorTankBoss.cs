@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class BehaviorTankBoss : EnemyBehavior
 {
+    private NavigationTankBoss tankNav;
+    [SerializeField] private GameObject turret;
 
     void Start()
     {
@@ -26,13 +28,52 @@ public class BehaviorTankBoss : EnemyBehavior
         isAggrod = false;
         inShootRange = false;
 
-        nav = GetComponent<Navigation>();
-        nav.stoppingDistance = 0;
+        tankNav = GetComponent<NavigationTankBoss>();
 
         targetToLookAt = PlayerInfo.instance.gameObject.transform;
 
         currentState = EnemyState.IDLE;
         Debug.Log("My Pos: " + gameObject.transform.position);
+    }
+
+    protected override void Update()
+    {
+        inShootRange = false;
+        isAggrod = false;
+
+        //track the enemy position
+        enemyPosition = this.transform.position;
+
+        //track the player position
+        playerPosition = PlayerInfo.instance.playerPosition;
+
+        //used by the enemy aggro system to see how far the player is from the enemy
+        enemyPlayerTracker = Vector3.Distance(playerPosition, enemyPosition);
+
+        //creates an enemy look direction based on the enemy position and the player's current position
+        enemyLookDirection = (playerPosition - enemyPosition).normalized;
+
+        //if the player gets within range, the enemy will shoot
+        //if (enemyPlayerTracker < enemyAttackRange_BecomeAggro) { isAggrod = true; }
+
+        //if the player is out of range, the enemy will stop shooting
+        //if (enemyPlayerTracker > enemyAttackRange_ExitAggro) { isAggrod = false; }
+
+        HandleEnemyAggro();
+
+        switch (currentState)
+        {
+            case EnemyState.IDLE:
+                break;
+            case EnemyState.CHASE:
+                turret.transform.LookAt(targetToLookAt);
+                break;
+            case EnemyState.ATTACK:
+                turret.transform.LookAt(targetToLookAt);
+                break;
+            default:
+                break;
+        }
     }
 
     protected override void HandleEnemyAggro()
@@ -41,16 +82,16 @@ public class BehaviorTankBoss : EnemyBehavior
         isAggrod = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_BecomeAggro, playerMask);
         inShootRange = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_AttackRange, playerMask);
 
+        
         if (isAggrod)
         {
-            transform.LookAt(targetToLookAt);
             //If agroed, we want to chase
             currentState = EnemyState.CHASE;
 
             Ray wallDetect = new Ray(gameObject.transform.position, enemyLookDirection);
             RaycastHit hit;
 
-            nav.MoveToPlayer(isAggrod, false);
+            tankNav.MoveToPlayer(isAggrod, false);
 
             #region Detecting Wall Raycast
             //Debug.DrawRay(gameObject.transform.position, enemyLookDirection.normalized, Color.black);
@@ -80,5 +121,32 @@ public class BehaviorTankBoss : EnemyBehavior
         }
         else
         { currentState= EnemyState.IDLE; }
+    }
+
+    protected override void HandleShooting()
+    {
+        //manages how quick the player shoots based on their currently equipped weapon
+        if (timeBetweenShots <= 0.0f)
+        {
+            timeBetweenShots = currentEnemyWeapon.timeBetweenProjectileFire;
+
+            StartCoroutine(stopandShoot());
+        }
+    }
+
+    private IEnumerator stopandShoot()
+    {
+        //Stop the tank
+        //Look at player
+        //Shoot
+        //Resume movement
+
+        tankNav.stopMovement();
+        yield return new WaitForSeconds(0.5f);
+        Shoot();
+        yield return new WaitForSeconds(1.5f);
+        tankNav.resumeMovement();
+
+        yield return null;
     }
 }
