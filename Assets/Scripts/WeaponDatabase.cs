@@ -171,6 +171,32 @@ public class WeaponDatabase
         knightWeapon.homingStrength = 0.0f;
         Weapon_Database.Add(knightWeapon);
 
+        //Tank boss weapon
+        WeaponInfo tankWeapon = new WeaponInfo();
+        tankWeapon.weaponName = "Knight";
+        tankWeapon.ProjectileName = "KnightProjectile";
+        tankWeapon.projectileType = ProjectileType.Gun;
+        tankWeapon.projectilePath = ProjectilePath.Straight;
+
+        tankWeapon.doesSplashDamageOnDespawn = true;
+        tankWeapon.doesBounce = false;
+        tankWeapon.isHoming = true;
+
+        tankWeapon.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP;
+        tankWeapon.splashDamage = 0;
+        tankWeapon.maxProjectilesOnScreen = 3;
+        tankWeapon.numberOfProjectilesPerShot = 1;
+        tankWeapon.numberOfBounces = 0;
+        tankWeapon.currentAmmo = 12;
+        tankWeapon.maxAmmo = 12;
+
+        tankWeapon.projectileSpeed = 10.5f;
+        tankWeapon.radiusOfProjectile = 1.0f;
+        tankWeapon.splashDamageRadius = 1.0f;
+        tankWeapon.timeBetweenProjectileFire = 1.5f;
+        tankWeapon.timeBeforeDespawn = 10.0f;
+        tankWeapon.homingStrength = 0.0f;
+        Weapon_Database.Add(tankWeapon);
 
 
         //AI_TestWeapon - for enemyAI tests
@@ -197,7 +223,7 @@ public class WeaponDatabase
         AI_TestWeapon.timeBetweenProjectileFire = 0.8f;
         AI_TestWeapon.timeBeforeDespawn = 10.0f;
         AI_TestWeapon.homingStrength = 0.0f;
-        Weapon_Database.Add(testWeapon2);
+        Weapon_Database.Add(AI_TestWeapon);
     }
 
     //allows an external script to call the weapon database

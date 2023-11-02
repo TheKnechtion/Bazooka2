@@ -116,6 +116,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         targetToLookAt = PlayerInfo.instance.gameObject.transform;
 
         currentState = EnemyState.IDLE;
+        Debug.Log("My Pos: "+gameObject.transform.position);
     }
 
 
