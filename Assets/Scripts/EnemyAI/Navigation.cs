@@ -13,16 +13,13 @@ public class Navigation : MonoBehaviour
     public float stoppingDistance;
     protected const float stopCheckradius = 1.5f;
 
-    public bool Stopped;
-
     //This is used to determine how far to spread out between other enemies
     private float spaceDistance;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-       
+        agent = GetComponent<NavMeshAgent>();       
     }
 
     // Update is called once per frame

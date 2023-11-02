@@ -164,8 +164,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     protected void FixedUpdate()
     {
-        
-
 
         //tracks time between shots, stopping at 0.
         timeBetweenShots = (timeBetweenShots > 0) ? timeBetweenShots -= Time.deltaTime : 0;

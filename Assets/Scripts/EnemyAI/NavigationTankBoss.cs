@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class NavigationTankBoss : Navigation
 {
-
     public override void MoveToPlayer(bool isAggroed, bool stopAtDistance)
     {
         distance = Vector3.Distance(playerPos, thisPos);

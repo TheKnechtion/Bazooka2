@@ -8,6 +8,8 @@ public class BehaviorTankBoss : EnemyBehavior
     private NavigationTankBoss tankNav;
     [SerializeField] private GameObject turret;
 
+    private Quaternion bodyRotation;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -32,12 +34,15 @@ public class BehaviorTankBoss : EnemyBehavior
 
         targetToLookAt = PlayerInfo.instance.gameObject.transform;
 
+        
+
         currentState = EnemyState.IDLE;
-        Debug.Log("My Pos: " + gameObject.transform.position);
     }
 
     protected override void Update()
     {
+        bodyRotation = gameObject.transform.rotation;
+
         inShootRange = false;
         isAggrod = false;
 
@@ -64,6 +69,7 @@ public class BehaviorTankBoss : EnemyBehavior
         switch (currentState)
         {
             case EnemyState.IDLE:
+                turret.transform.rotation = bodyRotation;
                 break;
             case EnemyState.CHASE:
                 turret.transform.LookAt(targetToLookAt);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1329416435835072943}
   - component: {fileID: 1329416435854415759}
   - component: {fileID: 1329416435855129763}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4837,7 +4837,7 @@ GameObject:
   - component: {fileID: 1329416435854392789}
   - component: {fileID: 1329416435855072845}
   - component: {fileID: 1329416435830173801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9687,7 +9687,7 @@ GameObject:
   - component: {fileID: 1329416435834974551}
   - component: {fileID: 1329416435838389719}
   - component: {fileID: 1329416435836985307}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9772,9 +9772,9 @@ GameObject:
   - component: {fileID: 6632848426615110627}
   - component: {fileID: -495631218633941826}
   - component: {fileID: -6221268908298774470}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TankMissile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9817,9 +9817,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.15
-  m_Height: 1.5694418
+  m_Height: 1.0150208
   m_Direction: 1
-  m_Center: {x: 0, y: 0.92027926, z: 0}
+  m_Center: {x: 0, y: 1.1974897, z: 0}
 --- !u!114 &6632848426615110627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9859,7 +9859,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
