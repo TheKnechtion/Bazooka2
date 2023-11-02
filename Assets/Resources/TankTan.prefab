@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 802874275012309093}
   - component: {fileID: 3878814541159673855}
   - component: {fileID: 3126766247059316367}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8171658419502883546}
   - component: {fileID: 552017426683278393}
   - component: {fileID: 3923973322329556767}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_TrackBelt_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3268055780549674432}
   - component: {fileID: 6607153209170957472}
   - component: {fileID: 3440341890991118401}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Sus_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 1781842471509433690}
   - component: {fileID: 4014391500728242034}
   - component: {fileID: 983002602908387840}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_RoadWheel_In
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 2551640058873339312}
   - component: {fileID: 4062562767358355412}
   - component: {fileID: 5832990750935936214}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Body_Collider_Lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 7350050154341190090}
   - component: {fileID: 698512754767116785}
   - component: {fileID: 1184694705062810200}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_StaticWheels_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6388465174850071162}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TurretSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 1808174964872512442}
   - component: {fileID: 3349795136285415831}
   - component: {fileID: 3338481199823811550}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Idler_Arm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 2341080531911102483}
   - component: {fileID: 3206979822107590959}
   - component: {fileID: 6607098211967909495}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 8419766395874220663}
   - component: {fileID: 5716840689539120879}
   - component: {fileID: 7867280793402207561}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_RoadWheel_Out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 570678845263436788}
   - component: {fileID: 8080119970928177554}
   - component: {fileID: 4988954640535246707}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_TrackBelt_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 8523715490920192029}
   - component: {fileID: 6387593491783506450}
   - component: {fileID: 842915767840108988}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_StaticWheels_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,7 +964,7 @@ GameObject:
   - component: {fileID: 4608160974287316324}
   - component: {fileID: 3576995764024153343}
   - component: {fileID: 662847555578464283}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_SprocketWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1047,7 +1047,7 @@ GameObject:
   - component: {fileID: 795295525106869354}
   - component: {fileID: 5776182568530482158}
   - component: {fileID: 3740121925053750842}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Sus_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1130,7 +1130,7 @@ GameObject:
   - component: {fileID: 5100755715283296290}
   - component: {fileID: 1074089783134692272}
   - component: {fileID: 4537795516803326652}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_TrackPiece_L_Sp0300
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1202,6 +1202,72 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5958020907647114792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5650742577015295479}
+  - component: {fileID: 2570867070657707765}
+  - component: {fileID: 4461768790663495257}
+  m_Layer: 10
+  m_Name: DeathZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5650742577015295479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5958020907647114792}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8477071312908972573}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2570867070657707765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5958020907647114792}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.6631398, y: 0.9504354, z: 0.24567223}
+  m_Center: {x: 0.045939445, y: 0.8407638, z: 2.433176}
+--- !u!114 &4461768790663495257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5958020907647114792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c594d9b85cc3cf4f82dde6cc3b47662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7247590798850001601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,7 +1279,7 @@ GameObject:
   - component: {fileID: 1244915467173622779}
   - component: {fileID: 9001748441219713110}
   - component: {fileID: 829809494294141565}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_IdlerWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1296,7 +1362,7 @@ GameObject:
   - component: {fileID: 1725475120963618804}
   - component: {fileID: 8345925708195566891}
   - component: {fileID: 4169226305675868255}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Idler_Arm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1445,7 @@ GameObject:
   - component: {fileID: 1709190278795634778}
   - component: {fileID: 464172357710032910}
   - component: {fileID: 2502766938760732731}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1462,7 +1528,7 @@ GameObject:
   - component: {fileID: 1733085524551462732}
   - component: {fileID: 6912793641262604081}
   - component: {fileID: 4081149124847566557}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1544,7 +1610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6256876505970834399}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MainBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1594,7 +1660,7 @@ GameObject:
   - component: {fileID: 1444525430418063920}
   - component: {fileID: 5336541706955610367}
   - component: {fileID: 8616024926816139150}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Cannon_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1677,7 +1743,7 @@ GameObject:
   - component: {fileID: 8926567798349338816}
   - component: {fileID: 1842585555755856633}
   - component: {fileID: 2362128162003835335}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Barrel_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1758,7 +1824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 42460891513963236}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BarrelTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1791,7 +1857,7 @@ GameObject:
   - component: {fileID: 4976230659245098303}
   - component: {fileID: 5048744949958322238}
   - component: {fileID: 5913018070157067219}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_TrackPiece_R_Sp0300
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1875,13 +1941,13 @@ GameObject:
   - component: {fileID: 8010386325807663321}
   - component: {fileID: 8523053833124506498}
   - component: {fileID: 901396253549501998}
-  - component: {fileID: 5020538473641270504}
-  - component: {fileID: 1046453096550924300}
+  - component: {fileID: -6008919543035644676}
+  - component: {fileID: 6567083082894664384}
   - component: {fileID: -3441918154272621518}
   - component: {fileID: 2829048097231090397}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TankTan
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1901,6 +1967,7 @@ Transform:
   m_Children:
   - {fileID: 6388465174850071162}
   - {fileID: 6256876505970834399}
+  - {fileID: 5650742577015295479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8010386325807663321
@@ -1963,7 +2030,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.6618872, y: 1.4342122, z: 5.485264}
   m_Center: {x: -0.06388235, y: 1.0584404, z: -0.10485363}
---- !u!114 &5020538473641270504
+--- !u!114 &-6008919543035644676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1972,7 +2039,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8962397383071972805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895612c024ae59148b8862e30dcd2897, type: 3}
+  m_Script: {fileID: 11500000, guid: a4e95e025c1b2a941a8daa23f649f9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
@@ -1982,6 +2049,8 @@ MonoBehaviour:
   health: 2
   weaponProjectileSpawnNode: {fileID: 8737109413264873028}
   SetToAttack: 0
+  enemyAttackRange_BecomeAggro: 50
+  enemyAttackRange_AttackRange: 50
   isAggrod: 0
   inShootRange: 0
   playerMask:
@@ -1990,7 +2059,7 @@ MonoBehaviour:
   environmentMask:
     serializedVersion: 2
     m_Bits: 512
---- !u!114 &1046453096550924300
+--- !u!114 &6567083082894664384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1999,11 +2068,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8962397383071972805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fd986336af45f41970847d81ff0924, type: 3}
+  m_Script: {fileID: 11500000, guid: 52352c7c462994940858f86fadf42216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0
-  stoppingDistance: 3
+  stoppingDistance: 0
   Stopped: 0
 --- !u!114 &-3441918154272621518
 MonoBehaviour:
@@ -2050,7 +2119,7 @@ GameObject:
   - component: {fileID: 4143526901254598537}
   - component: {fileID: 6421488723021210826}
   - component: {fileID: 2264362533145464370}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Turret_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2133,7 +2202,7 @@ GameObject:
   - component: {fileID: 8333936029474060253}
   - component: {fileID: 2881417385230175444}
   - component: {fileID: 8934880357364360430}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SD_Tiger_I_Body_Collider_Upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}

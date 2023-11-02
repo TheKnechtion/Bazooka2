@@ -173,28 +173,28 @@ public class WeaponDatabase
 
         //Tank boss weapon
         WeaponInfo tankWeapon = new WeaponInfo();
-        tankWeapon.weaponName = "Knight";
+        tankWeapon.weaponName = "TankTan";
         tankWeapon.ProjectileName = "KnightProjectile";
         tankWeapon.projectileType = ProjectileType.Gun;
         tankWeapon.projectilePath = ProjectilePath.Straight;
 
         tankWeapon.doesSplashDamageOnDespawn = true;
         tankWeapon.doesBounce = false;
-        tankWeapon.isHoming = true;
+        tankWeapon.isHoming = false;
 
         tankWeapon.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP;
-        tankWeapon.splashDamage = 0;
-        tankWeapon.maxProjectilesOnScreen = 3;
+        tankWeapon.splashDamage = 2;
+        tankWeapon.maxProjectilesOnScreen = 1;
         tankWeapon.numberOfProjectilesPerShot = 1;
         tankWeapon.numberOfBounces = 0;
         tankWeapon.currentAmmo = 12;
         tankWeapon.maxAmmo = 12;
 
-        tankWeapon.projectileSpeed = 10.5f;
+        tankWeapon.projectileSpeed = 20.0f;
         tankWeapon.radiusOfProjectile = 1.0f;
         tankWeapon.splashDamageRadius = 1.0f;
-        tankWeapon.timeBetweenProjectileFire = 1.5f;
-        tankWeapon.timeBeforeDespawn = 10.0f;
+        tankWeapon.timeBetweenProjectileFire = 5.0f;
+        tankWeapon.timeBeforeDespawn = 4.0f;
         tankWeapon.homingStrength = 0.0f;
         Weapon_Database.Add(tankWeapon);
 

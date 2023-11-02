@@ -8,10 +8,10 @@ public enum EnemyState {IDLE, CHASE, ATTACK}
 public class EnemyBehavior : MonoBehaviour, IDamagable
 {
     //stores the name of the enemy
-    string enemyName;
+    protected string enemyName;
 
     //Enemy behavoir state enum
-    [SerializeField] private EnemyState currentState;
+    [SerializeField] protected EnemyState currentState;
 
 
     //these are all public so they can be viewed in the inspector in unity
@@ -30,63 +30,63 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //stores the passed in HP
     public int health = 2;
 
-    Animator movementAnimator;
+    protected Animator movementAnimator;
 
     //track the current player position
-    Vector3 playerPosition;
+    protected Vector3 playerPosition;
 
     //track the current enemy position
-    Vector3 enemyPosition;
+    protected Vector3 enemyPosition;
 
 
-    Vector3 enemyLookDirection;
+    protected Vector3 enemyLookDirection;
 
     //the current weapon the enemy has
-    WeaponInfo currentEnemyWeapon;
+    protected WeaponInfo currentEnemyWeapon;
 
     public GameObject weaponProjectileSpawnNode;
 
 
     //controls enemy's weapon
-    WeaponController weaponController;
+    protected WeaponController weaponController;
 
-    [SerializeField] private bool SetToAttack;
+    [SerializeField] protected bool SetToAttack;
 
 
     //Used by the enemy to track how far the player is
-    float enemyPlayerTracker;
+    protected float enemyPlayerTracker;
 
-    private Transform targetToLookAt;
+    protected Transform targetToLookAt;
 
-    float timeBetweenShots;
+    protected float timeBetweenShots;
 
     //Used to determine how far the player has to be for the enemy to stop attacking    
-    float enemyAttackRange_BecomeAggro = 15.0f;
-    float enemyAttackRange_AttackRange = 12.0f;
+    [SerializeField] protected float enemyAttackRange_BecomeAggro = 15.0f;
+    [SerializeField] protected float enemyAttackRange_AttackRange = 12.0f;
     public bool isAggrod, inShootRange;
 
-    [SerializeField] private LayerMask playerMask;
-    [SerializeField] private LayerMask environmentMask;
+    [SerializeField] protected LayerMask playerMask;
+    [SerializeField] protected LayerMask environmentMask;
 
-    private Navigation nav;
+    protected Navigation nav;
 
 
     //Used to determine how far the player has to be for the enemy to start attacking
-    float enemyAttackRange_ExitAggro = 15.0f;
+    protected float enemyAttackRange_ExitAggro = 15.0f;
 
     //holds the reference to the projectile object in the resources folder
-    UnityEngine.Object projectilePrefab;
+    protected UnityEngine.Object projectilePrefab;
 
     //holds the projectile game object reference
-    GameObject currentEntity;
+    protected GameObject currentEntity;
 
 
     public event EventHandler OnTakeDamage;
     public event EventHandler OnDeath;
-    private bool CanDestroy = false;
+    protected bool CanDestroy = false;
 
 
-    NavMeshAgent agent;
+   protected NavMeshAgent agent;
 
     private void Start()
     {
@@ -120,8 +120,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     }
 
 
-    bool CalledDie = false;
-    private void Update()
+    protected bool CalledDie = false;
+    protected void Update()
     {
         inShootRange = false;
         isAggrod = false;
@@ -159,7 +159,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         }
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         
 
@@ -179,7 +179,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         }
     }
 
-    private void HandleEnemyAggro()
+    protected virtual void HandleEnemyAggro()
     {
         //Determines aggro of the enemy
         isAggrod = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_BecomeAggro, playerMask);
@@ -198,13 +198,13 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             {
                 //Debug.Log("I hit a wall");
                 nav.MoveToPlayer(isAggrod, false);
-                //movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
+                movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
 
             }
             else
             {
                 nav.MoveToPlayer(isAggrod, true);
-                //movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
+                movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
                 //Debug.Log("Not hitting wall");
             }
 
@@ -233,7 +233,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     }
     */
 
-    private void HandleShooting()
+    protected void HandleShooting()
     {
         //manages how quick the player shoots based on their currently equipped weapon
         if (timeBetweenShots <= 0.0f)

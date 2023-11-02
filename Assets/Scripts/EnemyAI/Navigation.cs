@@ -6,12 +6,12 @@ using UnityEngine.AI;
 
 public class Navigation : MonoBehaviour
 {
-    NavMeshAgent agent;
-    Vector3 playerPos, thisPos, targetPos, reverseDirection;
+    protected NavMeshAgent agent;
+    protected Vector3 playerPos, thisPos, targetPos, reverseDirection;
     public float distance;
 
     public float stoppingDistance;
-    private const float stopCheckradius = 1.5f;
+    protected const float stopCheckradius = 1.5f;
 
     public bool Stopped;
 
@@ -22,6 +22,7 @@ public class Navigation : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+       
     }
 
     // Update is called once per frame
@@ -32,14 +33,13 @@ public class Navigation : MonoBehaviour
         playerPos = PlayerInfo.instance.playerPosition;
     }
 
-    public void MoveToPlayer(bool isAggroed, bool stopAtDistance)
+    public virtual void MoveToPlayer(bool isAggroed, bool stopAtDistance)
     {
         agent.isStopped = false;
         
         distance = Vector3.Distance(playerPos, thisPos);
         if (isAggroed == true)
         {
-            //StartCoroutine(spaceOut());
             agent.isStopped = false;
             if (stopAtDistance)
             {
@@ -70,7 +70,7 @@ public class Navigation : MonoBehaviour
        
     }
 
-    private IEnumerator backUP()
+    protected IEnumerator backUP()
     {
         reverseDirection = (thisPos - playerPos);
         targetPos = reverseDirection.normalized * 10;
@@ -82,7 +82,7 @@ public class Navigation : MonoBehaviour
         yield return null;
     }
 
-    private bool isInRange(float pointA, float pointB)
+    protected bool isInRange(float pointA, float pointB)
     {
         if ((pointA <= pointB + stopCheckradius) && (pointA >= pointB - stopCheckradius))
         {
