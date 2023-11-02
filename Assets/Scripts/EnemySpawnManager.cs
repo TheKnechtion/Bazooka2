@@ -194,7 +194,7 @@ public class EnemySpawnManager : MonoBehaviour
             currentName = spawnPositions[i].tag;
             SpawnEnemyByTag(spawnPositions[i].transform.position, currentName);
         }
-        OnEnemyDeath?.Invoke(this, EventArgs.Empty);
+        //OnEnemyDeath?.Invoke(this, EventArgs.Empty);
     }
 
     //used to quickly load an object as a game object

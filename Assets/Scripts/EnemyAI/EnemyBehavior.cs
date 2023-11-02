@@ -197,13 +197,13 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             {
                 //Debug.Log("I hit a wall");
                 nav.MoveToPlayer(isAggrod, false);
-                movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
+                //movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
 
             }
             else
             {
                 nav.MoveToPlayer(isAggrod, true);
-                movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
+                //movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
                 //Debug.Log("Not hitting wall");
             }
 

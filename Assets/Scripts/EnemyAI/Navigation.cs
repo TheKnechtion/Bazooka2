@@ -45,7 +45,7 @@ public class Navigation : MonoBehaviour
             {
 
                 //agent.stoppingDistance = stoppingDistance;
-                agent.destination = playerPos;
+                agent.SetDestination(playerPos);
                 if (isInRange(distance, stoppingDistance) ||
                     (distance  < stoppingDistance))
                 {
@@ -58,8 +58,8 @@ public class Navigation : MonoBehaviour
             }
             else
             { 
-                agent.stoppingDistance = 0; 
-                agent.destination = playerPos;
+                agent.stoppingDistance = 0;
+                agent.SetDestination(playerPos);
             }
         }
         else 
