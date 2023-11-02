@@ -10,19 +10,16 @@ public class DamageIndicate : MonoBehaviour
     private Material bodyMaterial;
     private Renderer render;
 
+    [SerializeField] private Renderer[] renderers;
+
     private EnemyBehavior enemy; //The specific enemy we are affecting;
     private PlayerInfo player;
 
     // Start is called before the first frame update
     void Start()
     {
-        render = GetComponent<Renderer>();
-
-        //if (gameObject.TryGetComponent<PlayerInfo>(out PlayerInfo info))
-        //{            
-        //    player = info;
-        //    player.OnTakeDamage += OnDamaged;
-        //}
+        if (renderers.Length == 0)
+         render = GetComponent<Renderer>();
 
         if (gameObject.tag == "Player")
         {
@@ -45,14 +42,22 @@ public class DamageIndicate : MonoBehaviour
 
     private void OnDamaged(object sender, System.EventArgs e)
     {
-        StartCoroutine(indicateDamage());
+        if (renderers.Length > 0)
+        {
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                StartCoroutine(indicateDamage(renderers[i]));
+            }
+        }
+        else { StartCoroutine(indicateDamage(render)); }
+        
     }
 
     //private void EnemyBehavior_OnTakeDamage(object sender, System.EventArgs e)
     //{
     //    StartCoroutine(indicateDamage());
     //}
-    private IEnumerator indicateDamage()
+    private IEnumerator indicateDamage(Renderer render)
     {
         //Debug.Log("Changing materal");
         render.material = materials[1];

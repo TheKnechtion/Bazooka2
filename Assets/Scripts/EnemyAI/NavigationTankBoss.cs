@@ -13,8 +13,18 @@ public class NavigationTankBoss : Navigation
         if (isAggroed == true)
         {
             //StartCoroutine(spaceOut());
-            agent.isStopped = false;
             agent.SetDestination(playerPos);
         }
+    }
+
+    public void stopMovement()
+    {
+        agent.isStopped = true;
+        Debug.Log("Stopped movement");
+    }
+    public void resumeMovement() 
+    { 
+        agent.isStopped = false;
+        Debug.Log("Resume movement");
     }
 }

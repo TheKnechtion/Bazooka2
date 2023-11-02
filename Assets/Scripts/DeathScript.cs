@@ -15,13 +15,19 @@ public class DeathScript : MonoBehaviour
     private Navigation nav;
     private Renderer rend;
 
+    //This shouldn't be the final destroy, only temporary
+    [SerializeField] bool easyDestroy;
+
     // Start is called before the first frame update
     void Start()
     {
-        coll = GetComponent<CapsuleCollider>();
-        eb= GetComponent<EnemyBehavior>();
-        nav = GetComponent<Navigation>();
-        rend = GetComponent<Renderer>();
+        if (!easyDestroy)
+        {
+            coll = GetComponent<CapsuleCollider>();
+            eb = GetComponent<EnemyBehavior>();
+            nav = GetComponent<Navigation>();
+            rend = GetComponent<Renderer>();
+        }
 
         character = GetComponent<EnemyBehavior>();
         character.OnDeath += Character_OnDeath;
@@ -32,13 +38,27 @@ public class DeathScript : MonoBehaviour
 
     private void Character_OnDeath(object sender, System.EventArgs e)
     {
-        DisableComponents();
-        //particleObject.Play();
+        if (easyDestroy)
+        { 
+            deathEffect = (GameObject)Resources.Load("DeathEffect");
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            DisableComponents();
+            //particleObject.Play();
 
-        deathEffect = (GameObject)Resources.Load("DeathEffect");
-        Instantiate(deathEffect, transform.position, Quaternion.identity);
+            deathEffect = (GameObject)Resources.Load("DeathEffect");
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+        
+        //DisableComponents();
+        ////particleObject.Play();
 
-        //Destroy(gameObject, particleObject.duration);
+        //deathEffect = (GameObject)Resources.Load("DeathEffect");
+        //Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+        ////Destroy(gameObject, particleObject.duration);
         Destroy(gameObject, 3.0f);
     }
 
