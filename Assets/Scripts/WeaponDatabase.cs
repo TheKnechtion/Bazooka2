@@ -174,7 +174,7 @@ public class WeaponDatabase
         //Tank boss weapon
         WeaponInfo tankWeapon = new WeaponInfo();
         tankWeapon.weaponName = "TankTan";
-        tankWeapon.ProjectileName = "KnightProjectile";
+        tankWeapon.ProjectileName = "TankMissile";
         tankWeapon.projectileType = ProjectileType.Gun;
         tankWeapon.projectilePath = ProjectilePath.Straight;
 
