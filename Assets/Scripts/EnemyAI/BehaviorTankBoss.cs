@@ -148,11 +148,17 @@ public class BehaviorTankBoss : EnemyBehavior
         //Resume movement
 
         tankNav.stopMovement();
+
         yield return new WaitForSeconds(0.5f);
-        Shoot();
+        Shoot(true);
         yield return new WaitForSeconds(1.5f);
         tankNav.resumeMovement();
 
         yield return null;
     }
+
+
+
+
+
 }

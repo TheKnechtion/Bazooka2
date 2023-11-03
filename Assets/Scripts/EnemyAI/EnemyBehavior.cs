@@ -253,11 +253,33 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
         currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
+
+
         currentEntity.GetComponent<Projectile>().direction = enemyLookDirection;
         var light = currentEntity.AddComponent<Light>();
         light.color = Color.red;
 
     }
+
+
+    protected void Shoot(bool isTank)
+    {
+        //instantiates the projectile prefab
+        projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
+
+
+
+        currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, enemyLookDirection));
+        currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
+
+
+        currentEntity.GetComponent<Projectile>().direction = enemyLookDirection;
+        var light = currentEntity.AddComponent<Light>();
+        light.color = Color.red;
+
+    }
+
+
 
     //a public method that allows damage to be passed on from the projectile
     public void TakeDamage(int passedDamage)
