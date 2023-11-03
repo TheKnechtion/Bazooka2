@@ -16,6 +16,8 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject CurrentWeaponSpace;
     [SerializeField] private GameObject ActiveProjectileSpace;
     [SerializeField] private GameObject TipSpace;
+    [SerializeField] private GameObject TurkeyMeter;
+
 
     private TextMeshProUGUI objRenderer;
     private TextMeshProUGUI statusRenderer;
@@ -23,6 +25,10 @@ public class UI_Manager : MonoBehaviour
     private TextMeshProUGUI CurrentWeaponRenderer;
     private TextMeshProUGUI ActiveProjectileRenderer;
     private TextMeshProUGUI TipRenderer;
+    
+    public Material TurkeyMaterial;
+
+    public Texture2D newTurkey;
 
     private string[] statusArray, objArray;
     
@@ -41,6 +47,8 @@ public class UI_Manager : MonoBehaviour
 
     private void Start()
     {
+        TurkeyMaterial.mainTexture = newTurkey;
+
         objRenderer = ObjSpace.GetComponent<TextMeshProUGUI>();
         statusRenderer = StatusSpace.GetComponent<TextMeshProUGUI>();
         HpRenderer = HpSpace.GetComponent<TextMeshProUGUI>();
@@ -73,7 +81,10 @@ public class UI_Manager : MonoBehaviour
         currentPlayerHp = maxPlayerHp;
 
         CurrentWeaponRenderer.text = PlayerInfo.instance.ownedWeapons[0].weaponName;
-        HpRenderer.text = $"Hp: {currentPlayerHp}/{maxPlayerHp}";
+        HpRenderer.text = $"HEALTH: \n{currentPlayerHp}/{maxPlayerHp}";
+
+
+
 
     }
 
@@ -81,7 +92,9 @@ public class UI_Manager : MonoBehaviour
 
     private void Update()
     {
-        if(atStart)
+        objRenderer.text = $"Enemies Left: {EnemySpawnManager.enemyCount}";
+
+        if (atStart)
         {
             ActiveProjectileRenderer.text = $"Active Projectiles: {PlayerManager.activeProjectiles}/{PlayerManager.currentWeapon.maxProjectilesOnScreen}";
             atStart = false;
@@ -166,7 +179,7 @@ public class UI_Manager : MonoBehaviour
         currentPlayerHp = PlayerInfo.instance.currentHP;
         maxPlayerHp = PlayerInfo.instance.maximumHP;
 
-        HpRenderer.text = $"Hp: {currentPlayerHp}/{maxPlayerHp}";
+        HpRenderer.text = $"HEALTH: \n{currentPlayerHp}/{maxPlayerHp}";
     }
 
     private void PlayerManager_OnPlayerWeaponChange(object sender, System.EventArgs e)
