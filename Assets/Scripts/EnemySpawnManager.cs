@@ -121,7 +121,7 @@ public class EnemySpawnManager : MonoBehaviour
         tempGameObject = LoadResource(tempEnemyInfo.name);
 
         //instantiate the prefab at the passed in position (an enemy spawn node)
-        tempGameObject = Instantiate(tempGameObject, position, new Quaternion(0, 0, 0, 0));
+        tempGameObject = Instantiate(tempGameObject, new Vector3(position.x, 0, position.z), new Quaternion(0, 0, 0, 0));
 
         //sets the name of the game object to the enemy's name in the database
         tempGameObject.name = tempEnemyInfo.name;

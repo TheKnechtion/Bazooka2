@@ -31,15 +31,19 @@ public class RoomDatabase
 
 
         //creates the node that holds data from the second room
-        DoublyNode middleNode = new DoublyNode();
-        headNode.nextNode = middleNode;
-        middleNode.previousNode = headNode;
+        DoublyNode roomTwo = new DoublyNode();
+        headNode.nextNode = roomTwo;
+        roomTwo.previousNode = headNode;
 
         //creates the node that holds data from the final room
-        DoublyNode tailNode = new DoublyNode();
-        middleNode.nextNode = tailNode;
-        tailNode.previousNode = middleNode;
-        tailNode.nextNode = null;
+        DoublyNode roomThree = new DoublyNode();
+        roomTwo.nextNode = roomThree;
+        roomThree.previousNode = roomTwo;
+
+        DoublyNode roomFour = new DoublyNode();
+        roomThree.nextNode = roomFour;
+        roomFour.previousNode = roomThree;
+        roomFour.nextNode = null;
 
 
         /*
