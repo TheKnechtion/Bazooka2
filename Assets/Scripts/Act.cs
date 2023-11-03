@@ -7,12 +7,13 @@ public class Act : MonoBehaviour, IActivate
     public float timeToCompleteActivation = 10.0f;
     public float speed = 1.0f;
 
-    
+    public float targetHeight;
     public void Activate()
     {
-        if (gameObject.name == "DoorOne")
-        {
-            Vector3 targetPosition = new Vector3(transform.position.x, -2f, transform.position.z);
+        if (gameObject.name.Contains("Door") || gameObject.name.Contains("Door"))
+        {   
+            Vector3 targetPosition = new Vector3(transform.position.x, targetHeight, transform.position.z);
+            
             StartCoroutine(MoveObjectForDuration(timeToCompleteActivation, speed, transform.position, targetPosition));
         }
 
@@ -24,7 +25,7 @@ public class Act : MonoBehaviour, IActivate
         
         while(elapsedTime < duration)
         {
-            transform.position = Vector3.MoveTowards(initialPosition,targetPosition, speed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
             elapsedTime += Time.deltaTime;
             yield return null;
