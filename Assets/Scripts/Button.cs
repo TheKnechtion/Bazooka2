@@ -10,10 +10,23 @@ public class Button : MonoBehaviour, IActivate
 
     public bool activated = false;
 
+    Material activatedMat;
+
+    MeshRenderer buttonRenderer;
+
+    private void Awake()
+    {
+        activatedMat = (Material)Resources.Load("Activated");
+        buttonRenderer = gameObject.GetComponent<MeshRenderer>();
+    }
+
+
     public void Activate()
     {
         if(!activated)
         {
+
+            buttonRenderer.material = activatedMat;
             activatedObject.GetComponent<Act>().Activate();
             activated = true;
         }
