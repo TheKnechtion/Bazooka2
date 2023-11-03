@@ -1754,6 +1754,7 @@ GameObject:
   - component: {fileID: 339740355}
   - component: {fileID: 339740354}
   - component: {fileID: 339740353}
+  - component: {fileID: 339740357}
   m_Layer: 9
   m_Name: pCube3
   m_TagString: BounceSurface
@@ -1859,6 +1860,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339740351}
+  m_Mesh: {fileID: 3369316746193770658, guid: 5b9da7497218670459cc99f247310f05, type: 3}
+--- !u!64 &339740357
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339740351}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 3369316746193770658, guid: 5b9da7497218670459cc99f247310f05, type: 3}
 --- !u!43 &360214745
 Mesh:
@@ -5016,6 +5039,7 @@ GameObject:
   - component: {fileID: 666585214}
   - component: {fileID: 666585213}
   - component: {fileID: 666585212}
+  - component: {fileID: 666585216}
   m_Layer: 9
   m_Name: pCube5 (1)
   m_TagString: BounceSurface
@@ -5121,6 +5145,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666585210}
+  m_Mesh: {fileID: -3758573805739257388, guid: 5b9da7497218670459cc99f247310f05, type: 3}
+--- !u!64 &666585216
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666585210}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -3758573805739257388, guid: 5b9da7497218670459cc99f247310f05, type: 3}
 --- !u!43 &667398166
 Mesh:
