@@ -268,7 +268,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
 
 
-
         currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, enemyLookDirection));
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
 
