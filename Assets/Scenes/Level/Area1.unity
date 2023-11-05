@@ -4623,7 +4623,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh346524
+  m_Name: pb_Mesh62624
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -67197,14 +67197,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476498660}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -32.078, y: 1.116, z: -21.29}
   m_LocalScale: {x: 1, y: 1, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1368305351}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!108 &1476498667
 Light:
   m_ObjectHideFlags: 0
@@ -68688,6 +68688,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activatedObject: {fileID: 0}
   activated: 0
+  connectedCamera: {fileID: 0}
+  usesCamera: 0
 --- !u!65 &1577532658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71506,7 +71508,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh346650
+  m_Name: pb_Mesh62750
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
