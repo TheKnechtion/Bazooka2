@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public enum PlayerState {INVULNERABLE, VULNERABLE}
 public class PlayerInfo:MonoBehaviour, IDamagable
 {
 
@@ -51,6 +52,9 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     //stores the player look direction
     public Vector3 playerLookDirection = new Vector3();
 
+    [SerializeField] private PlayerState state;
+    private bool isInvulnerable = false;
+
     public event EventHandler OnTakeDamage;
     public static event EventHandler OnPlayerHpChange;
 
@@ -62,7 +66,25 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
         AddWeapon("Bazooka");
 
-        
+        CameraSwitcher.OnCameraEnable += cameraSwitched;
+        CameraSwitcher.OnCameraDisable += cameraReturned;
+
+        state = PlayerState.VULNERABLE;
+    }
+
+    /*
+     * When the camera changes to look at an objective, we disable
+     * the players controls and make them invulnerbale so that
+     * they don't take damage,
+     */
+    private void cameraReturned(object sender, EventArgs e)
+    {        
+        state = PlayerState.VULNERABLE;
+    }
+
+    private void cameraSwitched(object sender, EventArgs e)
+    {
+        state = PlayerState.INVULNERABLE;
     }
 
     private void Update()
@@ -76,6 +98,17 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         //sets the player look direction based on the player origin and the mouse cursor location
         playerLookDirection = PlayerManager.playerLookDirection;
 
+        switch (state)
+        {
+            case PlayerState.INVULNERABLE:
+                isInvulnerable= true;
+                break;
+            case PlayerState.VULNERABLE:
+                isInvulnerable= false;
+                break;
+            default:
+                break;
+        }
 
         //if the player's hp drops to 0 or less
         if(currentHP <= 0) 
@@ -103,12 +136,15 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     //the method used to pass damage from projectiles
     public void TakeDamage(int passedDamage)
     {
-        OnTakeDamage?.Invoke(this, EventArgs.Empty);
-        currentHP -= passedDamage;
+        if (!isInvulnerable)
+        {
+            OnTakeDamage?.Invoke(this, EventArgs.Empty);
+            currentHP -= passedDamage;
 
-        currentHP = (currentHP >= 0) ? currentHP : 0;
+            currentHP = (currentHP >= 0) ? currentHP : 0;
 
-        OnPlayerHpChange?.Invoke(this,EventArgs.Empty);
+            OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
+        }        
     }
 
 

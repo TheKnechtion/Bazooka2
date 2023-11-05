@@ -44,6 +44,7 @@ public class PlayerManager : MonoBehaviour
     public static event EventHandler OnPlayerDetonate;
 
 
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -63,6 +64,19 @@ public class PlayerManager : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        CameraSwitcher.OnCameraEnable += cameraSwitched;
+        CameraSwitcher.OnCameraDisable += cameraReturned;
+
+    }
+
+    private void cameraReturned(object sender, EventArgs e)
+    {
+        _playerController.PlayerActions.Enable();
+    }
+
+    private void cameraSwitched(object sender, EventArgs e)
+    {
+        _playerController.PlayerActions.Disable();
     }
 
 
@@ -107,7 +121,7 @@ public class PlayerManager : MonoBehaviour
 
         CheckWeaponChange();
 
-        
+
 
         if (_playerController.PlayerActions.Shoot.IsPressed()) 
         { 

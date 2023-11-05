@@ -9,6 +9,7 @@ public class Button : MonoBehaviour, IActivate
     [SerializeField] GameObject activatedObject;
 
     public bool activated = false;
+    
 
     Material activatedMat;
 
@@ -19,7 +20,7 @@ public class Button : MonoBehaviour, IActivate
     //New addition (for camera)
     [SerializeField] private CinemachineVirtualCamera connectedCamera;
     private CameraSwitcher camManager;
-
+    [SerializeField] private bool usesCamera;
 
 
     private void Awake()
@@ -27,8 +28,15 @@ public class Button : MonoBehaviour, IActivate
         activatedMat = (Material)Resources.Load("Activated");
         buttonRenderer = gameObject.GetComponent<MeshRenderer>();
 
+        
         //New addition (for camera)
-        camManager = GameObject.Find("CameraManager").GetComponent<CameraSwitcher>();
+            //Can be still be used without a camera         
+        if (connectedCamera)
+        {
+            camManager = GameObject.Find("CameraManager").GetComponent<CameraSwitcher>();
+            usesCamera = true;
+        }
+        else { usesCamera= false; }
     }
 
 
@@ -40,7 +48,8 @@ public class Button : MonoBehaviour, IActivate
             activatedObject.GetComponent<Act>().Activate();
             activated = true;
 
-            camManager.SwitchToCamera(connectedCamera);
+            if (usesCamera)
+             camManager.SwitchToCamera(connectedCamera);
         }
     }
 
