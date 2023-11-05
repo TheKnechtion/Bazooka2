@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class Button : MonoBehaviour, IActivate
 {
     [SerializeField] GameObject activatedObject;
-
 
     public bool activated = false;
 
@@ -14,10 +14,21 @@ public class Button : MonoBehaviour, IActivate
 
     MeshRenderer buttonRenderer;
 
+
+
+    //New addition (for camera)
+    [SerializeField] private CinemachineVirtualCamera connectedCamera;
+    private CameraSwitcher camManager;
+
+
+
     private void Awake()
     {
         activatedMat = (Material)Resources.Load("Activated");
         buttonRenderer = gameObject.GetComponent<MeshRenderer>();
+
+        //New addition (for camera)
+        camManager = GameObject.Find("CameraManager").GetComponent<CameraSwitcher>();
     }
 
 
@@ -25,13 +36,16 @@ public class Button : MonoBehaviour, IActivate
     {
         if(!activated)
         {
-
             buttonRenderer.material = activatedMat;
             activatedObject.GetComponent<Act>().Activate();
             activated = true;
+
+            camManager.SwitchToCamera(connectedCamera);
         }
     }
 
+
+    #region Older spawn code
     /*
     //holds the position of an enemy spawn node
     Vector3 spawnPosition;
@@ -93,4 +107,5 @@ public class Button : MonoBehaviour, IActivate
         }
     }
     */
+    #endregion
 }
