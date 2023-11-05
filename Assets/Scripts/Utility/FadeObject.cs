@@ -10,9 +10,10 @@ public class FadeObject : MonoBehaviour
 {
     private Renderer render;
 
-    [SerializeField] private Shader transparentShader;
+    //[SerializeField] private Shader transparentShader;
     private Shader initialShader;
 
+    [SerializeField] private bool UseDefaultFields;
     [SerializeField] private float Fade_To_Opacity;
 
     private float opacity;
@@ -20,9 +21,14 @@ public class FadeObject : MonoBehaviour
     public float fadeSpeed;
 
 
+
     void Start()
     {
-        fadeSpeed = 3.0f;
+        if (UseDefaultFields)
+        {
+            Fade_To_Opacity = 0.1f;
+            fadeSpeed = 3.0f;
+        }
         render= GetComponent<Renderer>();
         initialShader = render.material.shader;
     }
@@ -41,7 +47,7 @@ public class FadeObject : MonoBehaviour
     private IEnumerator fadeOverTime(float fromAlpha, float toAlpha)
     {
         //t = 0;
-        render.material.shader = transparentShader;
+        //render.material.shader = transparentShader;
 
         while (opacity != toAlpha)
         {
@@ -67,12 +73,13 @@ public class FadeObject : MonoBehaviour
             yield return null;
         }
 
-        render.material.shader = initialShader;
+        //render.material.shader = initialShader;
         t = 0;
 
         yield return null;
     }
 
+    #region Old Fade Coroutine
     //private IEnumerator Fade()
     //{
     //    //opacity = 1.0f;
@@ -105,4 +112,5 @@ public class FadeObject : MonoBehaviour
 
     //    yield return null;
     //}
+    #endregion
 }
