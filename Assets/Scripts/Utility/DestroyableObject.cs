@@ -17,7 +17,7 @@ public class DestroyableObject : MonoBehaviour, IDamagable
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Destroy(this.gameObject);
     }    

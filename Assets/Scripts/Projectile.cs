@@ -83,22 +83,29 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
-
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damageable))
         {
-            collision.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
-            DealSplashDamage();
-            DeleteProjectile();
-            //Destroy(gameObject);
-        }
-
-        if(collision.gameObject.tag == "Player")
-        {
-            collision.gameObject.GetComponent<PlayerInfo>().TakeDamage(damage);
+            damageable.TakeDamage(damage);
             DealSplashDamage();
             DeleteProjectile();
         }
+
+        #region Old Damage Detection
+        //if (collision.gameObject.tag == "Enemy")
+        //{
+        //    collision.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
+        //    DealSplashDamage();
+        //    DeleteProjectile();
+        //    //Destroy(gameObject);
+        //}
+
+        //if(collision.gameObject.tag == "Player")
+        //{
+        //    collision.gameObject.GetComponent<PlayerInfo>().TakeDamage(damage);
+        //    DealSplashDamage();
+        //    DeleteProjectile();
+        //}
+        #endregion
 
         //if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
         if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); DeleteProjectile(); }
@@ -107,11 +114,11 @@ public class Projectile : MonoBehaviour
 
         Bounce(collision);
 
-        if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
+        //if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
         if (collision.gameObject.tag == "LimitedBounceObject") { collision.gameObject.GetComponent<LimitedBounceObject>().ProjectileCollision(); }
         if (collision.gameObject.tag == "Button") { collision.gameObject.GetComponent<Button>().Activate();}
         //collision.gameObject.GetComponent<Button>().Activate(); 
-        }
+    }
 
 
     
