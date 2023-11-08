@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8725583350617946580}
+  - component: {fileID: 1181088096042595386}
+  - component: {fileID: 4538967351816389198}
+  - component: {fileID: 4691193135284230771}
   m_Layer: 0
   m_Name: ExplosiveBarrel
   m_TagString: Untagged
@@ -32,6 +35,60 @@ Transform:
   - {fileID: 5487026772276952590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1181088096042595386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415729521473299172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb40d59e5f7a8ee4a8bf889d0b508679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExplosionRadius: 0
+  Damage: 0
+  myCollider: {fileID: 0}
+--- !u!114 &4538967351816389198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415729521473299172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb43c46abfde4e64d9591d046d443416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 4
+  explosive: {fileID: 0}
+  meshObject: {fileID: 7313226198808451634}
+  fuseMaterial: {fileID: 2100000, guid: ef34d6effa9132d499fcac4187d9020c, type: 2}
+--- !u!136 &4691193135284230771
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415729521473299172}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.68565273
+  m_Height: 2.4547763
+  m_Direction: 1
+  m_Center: {x: -0.0067168474, y: 1.0342436, z: 0}
 --- !u!1 &7313226198808451634
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,11 +100,8 @@ GameObject:
   - component: {fileID: 5487026772276952590}
   - component: {fileID: 2969332537028161643}
   - component: {fileID: 3745812309659407436}
-  - component: {fileID: 1170085913324749172}
-  - component: {fileID: 4115383919822523909}
-  - component: {fileID: 1764498884547183289}
   m_Layer: 0
-  m_Name: Barrel
+  m_Name: MeshObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,54 +172,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1170085913324749172
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7313226198808451634}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 30.874163
-  m_Height: 100.352905
-  m_Direction: 1
-  m_Center: {x: -0.00075944426, y: 50.17576, z: 0}
---- !u!114 &4115383919822523909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7313226198808451634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb40d59e5f7a8ee4a8bf889d0b508679, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExplosionRadius: 5
-  Damage: 12
---- !u!114 &1764498884547183289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7313226198808451634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb43c46abfde4e64d9591d046d443416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 4
-  explosive: {fileID: 0}

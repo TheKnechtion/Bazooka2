@@ -85,9 +85,12 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damageable))
         {
-            damageable.TakeDamage(damage);
-            DealSplashDamage();
-            DeleteProjectile();
+            if (!damageable.ArmoredTarget)
+            {
+                damageable.TakeDamage(damage);
+                DealSplashDamage();
+                DeleteProjectile();
+            }            
         }
 
         #region Old Damage Detection
@@ -156,28 +159,37 @@ public class Projectile : MonoBehaviour
         
         for (int i = 0; i < collidersHit.Length; i++)
         {
-
-            collidersHit[i].gameObject.TryGetComponent<EnemyBehavior>(out EnemyBehavior entityInfo);
-            collidersHit[i].gameObject.TryGetComponent<PlayerInfo>(out PlayerInfo player);
-            collidersHit[i].gameObject.TryGetComponent<DestroyableObject>(out DestroyableObject obj);
-            if (entityInfo != null)
+            if (collidersHit[i].gameObject.TryGetComponent<IDamagable>(out IDamagable obj))
             {
-                //Debug.Log("SPLASH DMG");
-                //We deal splash damage if what we hit is not null
-                entityInfo.TakeDamage(splashDamage);
+                if (!obj.ArmoredTarget)
+                {
+                    obj.TakeDamage(splashDamage);
+                }
             }
 
-            if (player != null)
-            {
-                //Debug.Log("SPLASH DMG");
-                player.TakeDamage(splashDamage);
-            }
+            #region Old splash Damage dealing
+            //collidersHit[i].gameObject.TryGetComponent<EnemyBehavior>(out EnemyBehavior entityInfo);
+            //collidersHit[i].gameObject.TryGetComponent<PlayerInfo>(out PlayerInfo player);
+            //collidersHit[i].gameObject.TryGetComponent<DestroyableObject>(out DestroyableObject obj);
+            //if (entityInfo != null)
+            //{
+            //    //Debug.Log("SPLASH DMG");
+            //    //We deal splash damage if what we hit is not null
+            //    entityInfo.TakeDamage(splashDamage);
+            //}
 
-            if(obj != null)
-            {
-                obj.TakeDamage(splashDamage);
-            }
-            
+            //if (player != null)
+            //{
+            //    //Debug.Log("SPLASH DMG");
+            //    player.TakeDamage(splashDamage);
+            //}
+
+            //if(obj != null)
+            //{
+            //    obj.TakeDamage(splashDamage);
+            //}
+            #endregion
+
         }
 
         exploding = true;

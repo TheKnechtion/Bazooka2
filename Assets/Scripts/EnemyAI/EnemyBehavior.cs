@@ -90,7 +90,11 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected NavMeshAgent agent;
 
     protected bool CalledDie = false;
+
+    [SerializeField] public bool ArmoredTarget { get; set; }
     #endregion
+
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -112,6 +116,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         //sets the initial state of an enemy to docile
         isAggrod = false;
         inShootRange = false;
+
+        ArmoredTarget= false;
 
         nav = GetComponent<Navigation>();
         nav.stoppingDistance = enemyAttackRange_AttackRange;

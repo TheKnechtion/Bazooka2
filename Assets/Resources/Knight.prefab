@@ -723,6 +723,10 @@ MonoBehaviour:
   health: 2
   weaponProjectileSpawnNode: {fileID: 7302380661073466149}
   SetToAttack: 1
+  enemyAttackRange_BecomeAggro: 15
+  enemyAttackRange_AttackRange: 12
+  isAggrod: 0
+  inShootRange: 0
   playerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -763,10 +767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fd986336af45f41970847d81ff0924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0
   stoppingDistance: 0
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &6781116879570724028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -779,6 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2fce36f38992e4a8e28c9927587a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  easyDestroy: 0
 --- !u!114 &-1410147761286916415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,6 +797,7 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 054a61cc3523d5f48a7ea9c45f030705, type: 2}
   - {fileID: 2100000, guid: 93bf5c6f38110334e886f1c5e2b2fa89, type: 2}
+  renderers: []
 --- !u!23 &7163520462497277412
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -957,6 +961,7 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 054a61cc3523d5f48a7ea9c45f030705, type: 2}
   - {fileID: 2100000, guid: 93bf5c6f38110334e886f1c5e2b2fa89, type: 2}
+  renderers: []
 --- !u!1 &6066813880884775639
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class BehaviorTankBoss : EnemyBehavior
 
         targetToLookAt = PlayerInfo.instance.gameObject.transform;
 
+        ArmoredTarget = true;
         
 
         currentState = EnemyState.IDLE;

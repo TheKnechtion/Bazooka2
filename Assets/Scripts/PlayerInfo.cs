@@ -55,6 +55,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     [SerializeField] private PlayerState state;
     private bool isInvulnerable = false;
 
+    public bool ArmoredTarget { get; set; }
+
     public event EventHandler OnTakeDamage;
     public static event EventHandler OnPlayerHpChange;
 
@@ -65,6 +67,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         currentHP = maximumHP;
         OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
         AddWeapon("Bazooka");
+
+        ArmoredTarget = false;
 
         CameraSwitcher.OnCameraEnable += cameraSwitched;
         CameraSwitcher.OnCameraDisable += cameraReturned;

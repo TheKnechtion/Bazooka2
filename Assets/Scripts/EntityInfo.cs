@@ -4,8 +4,14 @@ using UnityEngine;
 public class EntityInfo : MonoBehaviour, IDamagable
 {
     public string Name { get; set; }
+    public bool ArmoredTarget { get; set; }
 
     public int health = 2;
+
+    private void Start()
+    {
+        ArmoredTarget= false;
+    }
 
     private void Update()
     {

@@ -7,6 +7,13 @@ public class DestroyableObject : MonoBehaviour, IDamagable
 {
     public int health = 4;
 
+    public bool ArmoredTarget { get;  set; }
+
+    private void Start()
+    {
+        ArmoredTarget = false;
+    }
+
     public void TakeDamage(int passedDamage)
     {
         health -= passedDamage;
