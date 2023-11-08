@@ -1302,13 +1302,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1811528826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &505436418 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 1170085913324749172, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+  m_PrefabInstance: {fileID: 7246850741110261088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &533295554
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31122
+  m_Name: pb_Mesh39732
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1580,7 +1585,7 @@ Transform:
   m_GameObject: {fileID: 989121473}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.9909458, y: 34.37995, z: -104.94162}
+  m_LocalPosition: {x: -0.42, y: 34.37995, z: -104.94162}
   m_LocalScale: {x: 6.7724905, y: 1.9752641, z: 0.7589476}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1681,7 +1686,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3993508884368508808, guid: 66e602d81574eba468d42e08271e50cf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.09986019
+      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: 3993508884368508808, guid: 66e602d81574eba468d42e08271e50cf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1730,6 +1735,10 @@ PrefabInstance:
     - target: {fileID: 6607660964868512625, guid: 66e602d81574eba468d42e08271e50cf, type: 3}
       propertyPath: m_Name
       value: DoorWithButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323276687793127414, guid: 66e602d81574eba468d42e08271e50cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.91
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1805,7 +1814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8266421269725388677, guid: 1961927c408ba7f4f8fd064bdda6cc97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.02
+      value: 0.29061413
       objectReference: {fileID: 0}
     - target: {fileID: 8266421269725388677, guid: 1961927c408ba7f4f8fd064bdda6cc97, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4058,7 +4067,7 @@ Transform:
   m_GameObject: {fileID: 1811528825}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.25, y: 7.0068088, z: -18.010614}
+  m_LocalPosition: {x: 16.25, y: 7.0068088, z: -6.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4212,7 +4221,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35322
+  m_Name: pb_Mesh39658
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4873,9 +4882,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExplosiveBarrel
       objectReference: {fileID: 0}
+    - target: {fileID: 4115383919822523909, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: myCollider
+      value: 
+      objectReference: {fileID: 505436418}
+    - target: {fileID: 4115383919822523909, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 7.73
+      objectReference: {fileID: 0}
     - target: {fileID: 8725583350617946580, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.94
+      value: 10.83
       objectReference: {fileID: 0}
     - target: {fileID: 8725583350617946580, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4883,7 +4900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8725583350617946580, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.26
+      value: -3.11
       objectReference: {fileID: 0}
     - target: {fileID: 8725583350617946580, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
       propertyPath: m_LocalRotation.w

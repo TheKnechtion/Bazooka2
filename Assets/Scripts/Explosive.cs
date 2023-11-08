@@ -6,13 +6,17 @@ public class Explosive : MonoBehaviour
 {
     [SerializeField] private float ExplosionRadius;
     [SerializeField] private int Damage;
-
-    private Collider[] collidersHit;
+    [SerializeField] private Collider myCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        //We set this so the barrel doesn't damage itself
+        if (!myCollider)
+        {
+            myCollider = GetComponent<Collider>();
+        }
     }
 
     // Update is called once per frame
@@ -24,16 +28,20 @@ public class Explosive : MonoBehaviour
     public void Explode()
     {
 
-        collidersHit = Physics.OverlapSphere(gameObject.transform.position, ExplosionRadius);
+       Collider[] collidersHit = Physics.OverlapSphere(gameObject.transform.position, ExplosionRadius);
 
         if (collidersHit.Length > 0)
         {
             for (int i = 0; i < collidersHit.Length; i++)
             {
-                if (collidersHit[i].gameObject.TryGetComponent<IDamagable>(out IDamagable damageable))
+                if (collidersHit[i] != myCollider)
                 {
-                    damageable.TakeDamage(Damage);
+                    if (collidersHit[i].gameObject.TryGetComponent<IDamagable>(out IDamagable damageable))
+                    {
+                        damageable.TakeDamage(Damage);
+                    }
                 }
+                
             }
         }
 
