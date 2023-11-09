@@ -1111,6 +1111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activatedObject: {fileID: 337329334}
   activated: 0
+  connectedCamera: {fileID: 0}
+  usesCamera: 0
 --- !u!43 &318406282
 Mesh:
   m_ObjectHideFlags: 0
@@ -4245,6 +4247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c3a6e66ef6f5b42b29f67bf07cfad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpawnLookDirection: {x: 0, y: 0, z: 0, w: 0}
+  playerSpawnLocation: {x: 20, y: 0, z: 0}
 --- !u!4 &1848122682
 Transform:
   m_ObjectHideFlags: 0
