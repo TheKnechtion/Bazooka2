@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class InitializeGame : MonoBehaviour
 {
+    public Quaternion playerSpawnLookDirection;
+    public Vector3 playerSpawnLocation;
+
+
     //if the game manager is in the game, instantiates:
         //the game manager
         //the player
@@ -20,7 +24,7 @@ public class InitializeGame : MonoBehaviour
 
             //the player
                 //SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model")), "Player");
-                SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model")), "Player");
+                SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model"), playerSpawnLocation, playerSpawnLookDirection), "Player");
                 //SetGameObjectName(Instantiate(LoadPrefabFromString("Player")), "Player");
 
             //the main camera
@@ -39,10 +43,17 @@ public class InitializeGame : MonoBehaviour
         return (Resources.Load(prefabName) as GameObject);
     }
 
-    void SetGameObjectName(GameObject gameObject, string nameToChangeTo)
+    void SetGameObjectName(GameObject gameObject, string replacementName)
     {
-        gameObject.name = nameToChangeTo;
+        gameObject.name = replacementName;
     }
+
+    void SetPlayerPosition()
+    {
+
+    }
+
+
 
 
 }
