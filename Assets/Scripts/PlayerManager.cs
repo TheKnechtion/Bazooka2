@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
     public static event EventHandler OnPlayerWeaponChange;
     public static event EventHandler OnPlayerShoot;
     public static event EventHandler OnPlayerDetonate;
+    public static event EventHandler OnPlayerActivatePress;
 
 
 
@@ -49,8 +50,14 @@ public class PlayerManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         _playerController = new PlayerController();
+
+
         _playerController.PlayerActions.MousePosition.performed += mouseMove => mouseDelta = mouseMove.ReadValue<Vector2>();
         _playerController.PlayerActions.MousePosition.canceled += mouseMove => mouseDelta = Vector2.zero;
+
+
+        
+
         mainCamera = Camera.main;
     }
 
@@ -137,9 +144,17 @@ public class PlayerManager : MonoBehaviour
         }
 
 
+        if(_playerController.PlayerActions.Activate.IsPressed())
+        {
+            OnPlayerActivatePress?.Invoke(this, EventArgs.Empty);
+        }
+
 
         //tracks time between shots, stopping at 0.
         timeBetweenShots = (timeBetweenShots > 0) ? timeBetweenShots -= Time.deltaTime : 0;
+
+
+
 
 
     }
@@ -150,9 +165,13 @@ public class PlayerManager : MonoBehaviour
     {
         rotation = Quaternion.LookRotation(playerLookDirection, Vector3.up);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 15.0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 65.0f);
 
     }
+
+
+
+
 
 
 
@@ -213,6 +232,7 @@ public class PlayerManager : MonoBehaviour
     {
         //begins player movement functions
         _playerController.PlayerActions.Enable();
+
     }
 
 

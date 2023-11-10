@@ -9,31 +9,38 @@ public class InitializeGame : MonoBehaviour
     public Vector3 playerSpawnLocation;
 
 
+    public List<GameObject> dontDestroyOnLoadGameObjects;
+
     //if the game manager is in the game, instantiates:
         //the game manager
         //the player
         //the main camera
         //the win/lose UI
+
+    GameObject reference;
+
     private void Awake()
     {
         
         if(GameObject.Find("GameManager") == null) 
         {
             //the game manager
-            SetGameObjectName(Instantiate(LoadPrefabFromString("GameManager")), "GameManager");
+            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("GameManager")), "GameManager"));
+
+
 
             //the player
-                //SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model")), "Player");
-                SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model"), playerSpawnLocation, playerSpawnLookDirection), "Player");
-                //SetGameObjectName(Instantiate(LoadPrefabFromString("Player")), "Player");
+            //SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model")), "Player");
+            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model"), playerSpawnLocation, playerSpawnLookDirection), "Player"));
+            //SetGameObjectName(Instantiate(LoadPrefabFromString("Player")), "Player");
 
             //the main camera
-                //SetGameObjectName(Instantiate(LoadPrefabFromString("Main Camera")), "Main Camera");
-             SetGameObjectName(Instantiate(LoadPrefabFromString("Cinemachine Camera")), "Follow Camera");
-                //SetGameObjectName(Instantiate(LoadPrefabFromString("Top View Camera")), "Top View Camera");
+            //SetGameObjectName(Instantiate(LoadPrefabFromString("Main Camera")), "Main Camera");
+            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Cinemachine Camera")), "Follow Camera"));
+            //SetGameObjectName(Instantiate(LoadPrefabFromString("Top View Camera")), "Top View Camera");
 
             //the win/lose UI
-            SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas");
+            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
 
         }
     }
@@ -43,9 +50,10 @@ public class InitializeGame : MonoBehaviour
         return (Resources.Load(prefabName) as GameObject);
     }
 
-    void SetGameObjectName(GameObject gameObject, string replacementName)
+    GameObject SetGameObjectName(GameObject gameObject, string replacementName)
     {
         gameObject.name = replacementName;
+        return gameObject;
     }
 
     void SetPlayerPosition()

@@ -167,6 +167,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Activate",
+                    "type": "Button",
+                    "id": "5486b104-19d3-4d82-8b0b-b48f955a2a31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -277,6 +286,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a810b117-301b-44e1-8c65-7fa31a2585a5",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

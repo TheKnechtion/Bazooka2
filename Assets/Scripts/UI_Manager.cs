@@ -18,6 +18,8 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject TipSpace;
     [SerializeField] private GameObject TurkeyMeter;
 
+    [SerializeField] private GameObject Activate;
+
 
     private TextMeshProUGUI objRenderer;
     private TextMeshProUGUI statusRenderer;
@@ -39,6 +41,18 @@ public class UI_Manager : MonoBehaviour
 
     int currentPlayerHp;
     int maxPlayerHp;
+
+
+    private static UI_Manager _instance;
+
+    public static UI_Manager instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+
 
     void Awake()
     {
@@ -72,6 +86,10 @@ public class UI_Manager : MonoBehaviour
 
         PlayerProjectile.OnExplosion += PlayerManager_OnPlayerProjectileAmountChange;
 
+        
+
+
+
         Item.OnWeaponPickUp += Item_OnWeaponPickUp;
 
         populateTextArray();
@@ -88,10 +106,18 @@ public class UI_Manager : MonoBehaviour
 
     }
 
+
+
+
+
     bool atStart = true;
 
     private void Update()
     {
+        Button_Push.OnPlayerInRange += Activate_InteractUI;
+        Button_Push.OnPlayerOutOfRange += Deactivate_InteractUI;
+
+
         objRenderer.text = $"Enemies Left: {EnemySpawnManager.enemyCount}";
 
         if (atStart)
@@ -142,6 +168,10 @@ public class UI_Manager : MonoBehaviour
         }
 
         //Debug.Log("UI state "+ UI_state);
+
+
+
+        _instance = this;
     }
 
     private void populateTextArray()
@@ -158,6 +188,21 @@ public class UI_Manager : MonoBehaviour
         objArray[1] = $"Evacuate the Mission Zone!\n{minuteCount}:{secondCount}";
         objArray[2] = "";
     }
+
+
+    
+
+    private void Activate_InteractUI(object sender, System.EventArgs e)
+    {
+        Activate.SetActive(true);
+    }
+
+
+    private void Deactivate_InteractUI(object sender, System.EventArgs e)
+    {
+        Activate.SetActive(false);
+    }
+
 
     private void GameManager_OnEvacStart(object sender, System.EventArgs e)
     {
