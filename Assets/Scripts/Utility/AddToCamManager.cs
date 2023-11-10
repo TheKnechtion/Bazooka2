@@ -6,8 +6,13 @@ using UnityEngine;
 public class AddToManager : MonoBehaviour
 {
     //This script is for adding cameras on scene change into the cameraManger script
-    void Start()
+
+    private void Awake()
     {
         CameraSwitcher.AddCamera(GetComponent<CinemachineVirtualCamera>());
+    }
+    void Start()
+    {
+      //  CameraSwitcher.AddCamera(GetComponent<CinemachineVirtualCamera>());
     }
 }

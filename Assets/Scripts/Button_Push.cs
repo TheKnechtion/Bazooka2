@@ -42,7 +42,7 @@ public class Button_Push : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distanceFromPlayer = (transform.position - PlayerInfo.instance.playerPosition).magnitude;
+        distanceFromPlayer = (gameObject.transform.position - PlayerInfo.instance.playerPosition).magnitude;
 
         if (distanceFromPlayer <= 3.0f)
         {
@@ -52,6 +52,7 @@ public class Button_Push : MonoBehaviour
         else
         {
             canActivate = false;
+            Debug.Log(distanceFromPlayer);
             OnPlayerOutOfRange?.Invoke(this, EventArgs.Empty);
         }
 

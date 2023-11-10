@@ -60,7 +60,7 @@ public class CameraSwitcher : MonoBehaviour
 
     private void changedScene(Scene arg0, Scene arg1)
     {
-        sceneCameras.Clear();
+        //sceneCameras.Clear();
     }
 
     public void SwitchToCamera(CinemachineVirtualCamera incomingCamera)

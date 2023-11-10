@@ -102,7 +102,8 @@ public class UI_Manager : MonoBehaviour
         HpRenderer.text = $"HEALTH: \n{currentPlayerHp}/{maxPlayerHp}";
 
 
-
+        Button_Push.OnPlayerInRange += Activate_InteractUI;
+        Button_Push.OnPlayerOutOfRange += Deactivate_InteractUI;
 
     }
 
@@ -114,8 +115,7 @@ public class UI_Manager : MonoBehaviour
 
     private void Update()
     {
-        Button_Push.OnPlayerInRange += Activate_InteractUI;
-        Button_Push.OnPlayerOutOfRange += Deactivate_InteractUI;
+
 
 
         objRenderer.text = $"Enemies Left: {EnemySpawnManager.enemyCount}";
@@ -169,8 +169,7 @@ public class UI_Manager : MonoBehaviour
 
         //Debug.Log("UI state "+ UI_state);
 
-
-
+        
         _instance = this;
     }
 
