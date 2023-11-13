@@ -151,7 +151,7 @@ public class BehaviorTankBoss : EnemyBehavior
         tankNav.stopMovement();
 
         yield return new WaitForSeconds(0.5f);
-        Shoot(true);
+        Shoot();
         yield return new WaitForSeconds(1.5f);
         tankNav.resumeMovement();
 
@@ -159,7 +159,21 @@ public class BehaviorTankBoss : EnemyBehavior
     }
 
 
+    protected override void Shoot()
+    {
+        //instantiates the projectile prefab
+        projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
 
+
+        currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, enemyLookDirection));
+        currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
+
+
+        currentEntity.GetComponent<Projectile>().direction = enemyLookDirection;
+        var light = currentEntity.AddComponent<Light>();
+        light.color = Color.red;
+
+    }
 
 
 }

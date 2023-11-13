@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI;
 using UnityEngine.AI;
+using System;
 
 public class Navigation : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Navigation : MonoBehaviour
 
     public float stoppingDistance;
     protected const float stopCheckradius = 1.5f;
+
+    public event EventHandler OnStoppedMoving;
 
     //This is used to determine how far to spread out between other enemies
     private float spaceDistance;
@@ -28,6 +31,11 @@ public class Navigation : MonoBehaviour
         //Always setting destination to the players position
         thisPos = gameObject.transform.position;
         playerPos = PlayerInfo.instance.playerPosition;
+
+        if (checkIfMoving())
+        {
+            OnStoppedMoving?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public virtual void MoveToPlayer(bool isAggroed, bool stopAtDistance)
@@ -62,9 +70,16 @@ public class Navigation : MonoBehaviour
         else 
         {
             //agent.SetDestination(transform.position);
-        }
+        }       
+    }
 
-       
+    protected bool checkIfMoving()
+    {
+        if (agent.velocity == Vector3.zero)
+        {
+            return true;
+        }
+        return false;
     }
 
     protected IEnumerator backUP()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -58,6 +59,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected float enemyPlayerTracker;
 
     protected Transform targetToLookAt;
+    private Vector3 wallDetectPosition;
 
     protected float timeBetweenShots;
 
@@ -70,6 +72,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     [SerializeField] protected LayerMask environmentMask;
 
     protected Navigation nav;
+    private float distanceToPlayer;
 
 
     //Used to determine how far the player has to be for the enemy to start attacking
@@ -120,20 +123,26 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         ArmoredTarget= false;
 
         nav = GetComponent<Navigation>();
-        nav.stoppingDistance = enemyAttackRange_AttackRange;
+        nav.OnStoppedMoving += StoppedMoving;
+        //nav.stoppingDistance = enemyAttackRange_AttackRange;
 
         targetToLookAt = PlayerInfo.instance.gameObject.transform;
 
         currentState = EnemyState.IDLE;
-        Debug.Log("My Pos: "+gameObject.transform.position);
+
+        wallDetectPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z);
+        //Debug.Log("My Pos: "+gameObject.transform.position);
     }
 
-
     
+
     protected virtual void Update()
     {
         inShootRange = false;
         isAggrod = false;
+        
+        wallDetectPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z);
+        distanceToPlayer = Vector3.Distance(playerPosition, enemyPosition);
 
         //track the enemy position
         enemyPosition = this.transform.position;
@@ -158,10 +167,13 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         switch (currentState)
         {
             case EnemyState.IDLE:
+                movementAnimator.SetFloat("MovementSpeed", 0);
                 break;
             case EnemyState.CHASE:
                 break;
             case EnemyState.ATTACK:
+                transform.LookAt(targetToLookAt);
+                HandleShooting();
                 break;
             default:
                 break;
@@ -194,43 +206,40 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
         if (isAggrod)
         {
-            transform.LookAt(targetToLookAt);
+           // transform.LookAt(targetToLookAt);
             //If agroed, we want to chase
             currentState = EnemyState.CHASE;
 
-            Ray wallDetect = new Ray(gameObject.transform.position, enemyLookDirection);
+            Ray wallDetect = new Ray(wallDetectPosition, enemyLookDirection);
             RaycastHit hit;
-            Debug.DrawRay(gameObject.transform.position, enemyLookDirection.normalized, Color.black);
-            if (Physics.Raycast(wallDetect, out hit, 10, environmentMask))
+            Debug.DrawRay(wallDetectPosition, enemyLookDirection.normalized * distanceToPlayer, Color.green);
+            if (Physics.Raycast(wallDetect, out hit, distanceToPlayer, environmentMask))
             {
-                //Debug.Log("I hit a wall");
+                Debug.Log("I hit a wall");
                 nav.MoveToPlayer(isAggrod, false);
                 movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
 
             }
             else
             {
-                nav.MoveToPlayer(isAggrod, true);
+                Debug.Log("Not hitting wall");
+                //transform.LookAt(targetToLookAt);
+                nav.MoveToPlayer(isAggrod, true);   
                 movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
-                //Debug.Log("Not hitting wall");
-            }
 
-            if (SetToAttack)
-            {
-                Physics.Raycast(weaponProjectileSpawnNode.transform.position, transform.forward, out hit);
-
-                if (inShootRange && hit.collider.gameObject.tag == "Player")
+                if (inShootRange && SetToAttack)
                 {
-
-                    HandleShooting();
+                    currentState= EnemyState.ATTACK;
+                    //HandleShooting();
                 }
             }
-
-
         }
     }
 
-
+    private void StoppedMoving(object sender, EventArgs e)
+    {
+        currentState = EnemyState.IDLE;
+    }
 
     /*
     private void FixedUpdate()
@@ -252,7 +261,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     }
 
 
-    protected void Shoot()
+    protected virtual void Shoot()
     {
         //instantiates the projectile prefab
         projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
@@ -266,24 +275,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         light.color = Color.red;
 
     }
-
-
-    protected void Shoot(bool isTank)
-    {
-        //instantiates the projectile prefab
-        projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
-
-
-        currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, enemyLookDirection));
-        currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
-
-
-        currentEntity.GetComponent<Projectile>().direction = enemyLookDirection;
-        var light = currentEntity.AddComponent<Light>();
-        light.color = Color.red;
-
-    }
-
 
 
     //a public method that allows damage to be passed on from the projectile

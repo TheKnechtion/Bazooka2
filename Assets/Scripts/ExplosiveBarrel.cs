@@ -9,6 +9,8 @@ public class ExplosiveBarrel : DestroyableObject
 
     [SerializeField] private GameObject meshObject;
     [SerializeField] private Material fuseMaterial;
+    [SerializeField] private float FuseTime;
+
     private Renderer render;
 
     // Start is called before the first frame update
@@ -47,7 +49,7 @@ public class ExplosiveBarrel : DestroyableObject
 
         //explosive.Explode();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(FuseTime);
         explosive.Explode();
         //yield return new WaitForSeconds(0.3f);
         Destroy(gameObject);
