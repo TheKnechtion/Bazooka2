@@ -87,6 +87,12 @@ public class Navigation : MonoBehaviour
         agent.isStopped = true;
     }
 
+    public void ResumeMovement()
+    {
+        agent.isStopped = false; 
+    }
+
+
     protected IEnumerator backUP()
     {
         reverseDirection = (thisPos - playerPos);

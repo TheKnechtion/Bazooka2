@@ -170,8 +170,10 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
                 movementAnimator.SetFloat("MovementSpeed", 0);
                 break;
             case EnemyState.CHASE:
+                nav.ResumeMovement();
                 break;
             case EnemyState.ATTACK:
+                nav.StopMovement();
                 transform.LookAt(targetToLookAt);
                 HandleShooting();
                 break;
