@@ -8,8 +8,16 @@ public class Explosive : MonoBehaviour
     [SerializeField] private int Damage;
     [SerializeField] private Collider myCollider;
 
-    [SerializeField] private GameObject ExplosionFX;
+    [SerializeField] private GameObject ExplosionFXPrefab;
     private ParticleSystem explosionParticles;
+    
+    /// <summary>
+    /// This is a script attached to particle system.
+    /// When I play the particle system I want to remove it 
+    /// from the scene when done.
+    /// </summary>
+    private PlayAndDestroy particleSystem;
+
     //private ParticleSystem VFXRadius;
 
     // Start is called before the first frame update
@@ -22,9 +30,12 @@ public class Explosive : MonoBehaviour
             myCollider = GetComponent<Collider>();
         }
 
-        explosionParticles= ExplosionFX.GetComponent<ParticleSystem>();
+        GameObject temp = Instantiate(ExplosionFXPrefab, gameObject.transform.position, Quaternion.identity);
+        explosionParticles = temp.GetComponent<ParticleSystem>();
         var VFXRadius = explosionParticles.shape;
         VFXRadius.radius = ExplosionRadius;
+
+        particleSystem = temp.GetComponent<PlayAndDestroy>();
     }
 
     // Update is called once per frame
@@ -35,8 +46,10 @@ public class Explosive : MonoBehaviour
 
     public void Explode()
     {
+        //explosionParticles.Play();
+        particleSystem.PlayParticles();
 
-       Collider[] collidersHit = Physics.OverlapSphere(gameObject.transform.position, ExplosionRadius);
+        Collider[] collidersHit = Physics.OverlapSphere(gameObject.transform.position, ExplosionRadius);
 
         if (collidersHit.Length > 0)
         {
@@ -52,9 +65,6 @@ public class Explosive : MonoBehaviour
                 
             }
         }
-
-        Instantiate(ExplosionFX, transform.parent);
-
     }
 
     private void OnDrawGizmosSelected()

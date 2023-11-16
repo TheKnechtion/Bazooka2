@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ExplosiveBarrel : DestroyableObject
 {
+    [SerializeField] private float FuseTime;
+
     [SerializeField] private Explosive explosive;
     private bool isDestroyed;
 
     [SerializeField] private GameObject meshObject;
     [SerializeField] private Material fuseMaterial;
-    [SerializeField] private float FuseTime;
-
+    
+    
     private Renderer render;
 
     // Start is called before the first frame update
@@ -51,6 +53,8 @@ public class ExplosiveBarrel : DestroyableObject
         //explosive.Explode();
 
         yield return new WaitForSeconds(FuseTime);
+
+        //render.enabled = false;
         explosive.Explode();
         //yield return new WaitForSeconds(0.3f);
         

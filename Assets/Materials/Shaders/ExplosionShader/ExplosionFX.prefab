@@ -122,7 +122,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4915,7 +4915,7 @@ GameObject:
   - component: {fileID: 4371090809714063034}
   - component: {fileID: 2172712955600753915}
   - component: {fileID: 1764272999002623906}
-  - component: {fileID: 8620023785142111993}
+  - component: {fileID: 2198762567142790251}
   m_Layer: 0
   m_Name: ExplosionFX
   m_TagString: Untagged
@@ -5028,7 +5028,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5729,7 +5729,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 3
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -9810,7 +9810,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &8620023785142111993
+--- !u!114 &2198762567142790251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9819,6 +9819,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8870557704796583337}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c16aad26ddfe90d49ab45712018a0bd0, type: 3}
+  m_Script: {fileID: 11500000, guid: 71adf0ede73178f41b599611e5e86b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
