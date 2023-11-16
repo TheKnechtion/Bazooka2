@@ -50,6 +50,7 @@ MonoBehaviour:
   ExplosionRadius: 0
   Damage: 0
   myCollider: {fileID: 0}
+  ExplosionFX: {fileID: 8870557704796583337, guid: 733be0938895ab04b9a3158c43de02db, type: 3}
 --- !u!114 &4538967351816389198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +67,7 @@ MonoBehaviour:
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634}
   fuseMaterial: {fileID: 2100000, guid: ef34d6effa9132d499fcac4187d9020c, type: 2}
+  FuseTime: 0
 --- !u!136 &4691193135284230771
 CapsuleCollider:
   m_ObjectHideFlags: 0

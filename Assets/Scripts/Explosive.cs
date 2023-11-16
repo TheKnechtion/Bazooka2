@@ -8,6 +8,10 @@ public class Explosive : MonoBehaviour
     [SerializeField] private int Damage;
     [SerializeField] private Collider myCollider;
 
+    [SerializeField] private GameObject ExplosionFX;
+    private ParticleSystem explosionParticles;
+    //private ParticleSystem VFXRadius;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +21,10 @@ public class Explosive : MonoBehaviour
         {
             myCollider = GetComponent<Collider>();
         }
+
+        explosionParticles= ExplosionFX.GetComponent<ParticleSystem>();
+        var VFXRadius = explosionParticles.shape;
+        VFXRadius.radius = ExplosionRadius;
     }
 
     // Update is called once per frame
@@ -44,6 +52,8 @@ public class Explosive : MonoBehaviour
                 
             }
         }
+
+        Instantiate(ExplosionFX, transform.parent);
 
     }
 

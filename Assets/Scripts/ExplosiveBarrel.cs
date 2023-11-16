@@ -16,11 +16,12 @@ public class ExplosiveBarrel : DestroyableObject
     // Start is called before the first frame update
     void Start()
     {
-
         if (!render)
         {
             render = meshObject.GetComponent<Renderer>();
         }
+
+        
 
         isDestroyed = false;
         explosive = GetComponent<Explosive>();
@@ -52,6 +53,7 @@ public class ExplosiveBarrel : DestroyableObject
         yield return new WaitForSeconds(FuseTime);
         explosive.Explode();
         //yield return new WaitForSeconds(0.3f);
+        
         Destroy(gameObject);
 
         yield return null;
