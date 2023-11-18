@@ -48,6 +48,10 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        gameObject.transform.position = GameObject.Find("PlayerSpawnNode").transform.position;
+        Destroy(GameObject.Find("PlayerSpawnNode"));
+
+
         DontDestroyOnLoad(this.gameObject);
         _playerController = new PlayerController();
 
