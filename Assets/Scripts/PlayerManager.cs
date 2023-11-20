@@ -48,8 +48,16 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.transform.position = GameObject.Find("PlayerSpawnNode").transform.position;
-        Destroy(GameObject.Find("PlayerSpawnNode"));
+        try
+        {
+            gameObject.transform.position = GameObject.Find("PlayerSpawnNode").transform.position;
+            Destroy(GameObject.Find("PlayerSpawnNode"));
+        }
+        catch 
+        { 
+        
+        }
+        
 
 
         DontDestroyOnLoad(this.gameObject);
@@ -134,9 +142,10 @@ public class PlayerManager : MonoBehaviour
 
 
 
-        if (_playerController.PlayerActions.Shoot.IsPressed()) 
-        { 
+        if (_playerController.PlayerActions.Shoot.IsPressed())
+        {
             HandleShooting();
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
         }
 
