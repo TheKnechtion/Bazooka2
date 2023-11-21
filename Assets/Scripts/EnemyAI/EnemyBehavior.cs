@@ -59,7 +59,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected float enemyPlayerTracker;
 
     protected Transform targetToLookAt;
-    private Vector3 wallDetectPosition;
+    protected Vector3 wallDetectPosition;
 
     protected float timeBetweenShots;
 
@@ -72,7 +72,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     [SerializeField] protected LayerMask environmentMask;
 
     protected Navigation nav;
-    private float distanceToPlayer;
+    protected float distanceToPlayer;
 
 
     //Used to determine how far the player has to be for the enemy to start attacking
@@ -141,7 +141,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         inShootRange = false;
         isAggrod = false;
         
-        wallDetectPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z);
+        wallDetectPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2, gameObject.transform.position.z);
         distanceToPlayer = Vector3.Distance(playerPosition, enemyPosition);
 
         //track the enemy position
@@ -154,7 +154,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         enemyPlayerTracker = Vector3.Distance(playerPosition, enemyPosition);
 
         //creates an enemy look direction based on the enemy position and the player's current position
-            enemyLookDirection = (playerPosition - enemyPosition).normalized;
+        enemyLookDirection = (playerPosition - enemyPosition).normalized;
 
         //if the player gets within range, the enemy will shoot
         //if (enemyPlayerTracker < enemyAttackRange_BecomeAggro) { isAggrod = true; }
