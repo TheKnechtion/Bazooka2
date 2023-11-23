@@ -7,33 +7,61 @@ public enum TurretState {SEARCHING, ENGAGED, LOSTSIGHT }
 public class BehaviorTurret : EnemyBehavior
 {
     [SerializeField] private TurretState turretState;
-    [SerializeField] private float DotProduct;
+    private float DotProduct;
+    [SerializeField] private float AimingTime;
+
+    [SerializeField] private float TurningAngle;
+    private Vector3 leftTurn;
+    private Vector3 rightTurn;
+    private Vector3 currentRotation;
 
     //Used for going BACK to searching when player leaves vision
     [SerializeField] private float timeBeforeDeAggro;
     private float timeToDeagro;
 
-    private bool playerWasSpotted;
     private bool inRange;
-    bool wasInRange;
+    private bool isTurning;
+    private bool swapDirection;
 
     private Quaternion initRotation;
+
+    private float t;
+    private float timeToTurn;
+
     // Start is called before the first frame update
     void Start()
     {
+        t = 0;
+        timeToTurn = 1.5f; 
+        isTurning = false;
+        swapDirection = false;
+
         //A reference, so we can reset later
         timeToDeagro = timeBeforeDeAggro;
-        wasInRange = false;
+
         initRotation = transform.rotation;
+        leftTurn = new Vector3(0, initRotation.y-TurningAngle,0);
+        rightTurn = new Vector3(0, initRotation.y+TurningAngle,0);
+        //rightTurn = Quaternion.Euler(0, initRotation.y + TurningAngle, 0);
+
+        //Pass the weapon script that attacthed to the object
+        weaponController = gameObject.GetComponent<WeaponController>();
+
+        //set the enemy name to that of the game object
+        enemyName = this.gameObject.name;
+
+        //create's the correct weapon for an enemy based on the spawned enemy's name
+        currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
 
         turretState = TurretState.SEARCHING;
     }
 
     protected override void Update()
     {
-        playerWasSpotted = false;
         inShootRange = false;
         isAggrod = false;
+
+        currentRotation = transform.localEulerAngles;
 
         wallDetectPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2, gameObject.transform.position.z);
         distanceToPlayer = Vector3.Distance(playerPosition, enemyPosition);
@@ -58,6 +86,18 @@ public class BehaviorTurret : EnemyBehavior
         {
             case TurretState.SEARCHING:
                 Debug.Log("Looking for you...");
+                if (!isTurning)
+                {
+                    if (!swapDirection)
+                    {
+                        StartCoroutine(swivelView(currentRotation, leftTurn));
+                    }
+                    else
+                    {
+                        StartCoroutine(swivelView(currentRotation, rightTurn));
+                    }
+
+                }                
                 break;
             case TurretState.ENGAGED:
                 Debug.Log("I SEE YOU");
@@ -83,6 +123,7 @@ public class BehaviorTurret : EnemyBehavior
         //Debug.Log("Spotted: "+ playerWasSpotted);
         //Debug.Log("Aggro Time: " + timeToDeagro);
         //Debug.Log(playerWasSpotted);
+        
         #endregion
     }
 
@@ -112,6 +153,24 @@ public class BehaviorTurret : EnemyBehavior
         }
     }
 
+    private IEnumerator swivelView(Vector3 current, Vector3 TargetRotate)
+    {
+        Debug.Log("Swivelinggg");
+        isTurning = true;
+        while (t < timeToTurn)
+        {
+            transform.localEulerAngles = Vector3.Lerp(current, TargetRotate, t);
+            t +=  0.5f * Time.deltaTime;
+        }
+
+
+        yield return new WaitForSeconds(AimingTime);
+        t = 0;
+        swapDirection = !swapDirection;
+        isTurning = false;
+
+        yield return null;
+    }
     protected override void HandleEnemyAggro()
     {
         //Determines aggro of the enemy
@@ -124,7 +183,6 @@ public class BehaviorTurret : EnemyBehavior
             Ray wallDetect = new Ray(wallDetectPosition, enemyLookDirection);
             RaycastHit hit;
             DotProduct = Vector3.Dot(transform.forward, enemyLookDirection);
-            wasInRange = true;
 
             //If the player isn't blocked by a wall
             if (!Physics.Raycast(wallDetect, out hit, distanceToPlayer, environmentMask))

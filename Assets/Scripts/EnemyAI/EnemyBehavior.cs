@@ -98,7 +98,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     #endregion
 
 
-    private void Start()
+    protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 

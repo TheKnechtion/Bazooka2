@@ -101,6 +101,11 @@ PrefabInstance:
       insertIndex: 5
       addedObject: {fileID: -1435264508060272265}
   m_SourcePrefab: {fileID: 100100000, guid: 59df09d42dfb9164d9b5eab273182de6, type: 3}
+--- !u!1 &6659917833829828095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7302380661073466149, guid: 59df09d42dfb9164d9b5eab273182de6, type: 3}
+  m_PrefabInstance: {fileID: 4124034462776301274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7557323303580268335 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5898170695769055733, guid: 59df09d42dfb9164d9b5eab273182de6, type: 3}
@@ -123,7 +128,7 @@ MonoBehaviour:
   AP: 0
   DEF: 0
   health: 2
-  weaponProjectileSpawnNode: {fileID: 0}
+  weaponProjectileSpawnNode: {fileID: 6659917833829828095}
   SetToAttack: 0
   enemyAttackRange_BecomeAggro: 15
   enemyAttackRange_AttackRange: 12
@@ -136,5 +141,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   turretState: 0
-  DotProduct: 0
-  timeBeforeDeAggro: 5
+  AimingTime: 1.5
+  TurningAngle: 45
+  timeBeforeDeAggro: 4
