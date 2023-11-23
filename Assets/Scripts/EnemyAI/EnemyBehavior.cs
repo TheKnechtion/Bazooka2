@@ -182,7 +182,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         }
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
 
         //tracks time between shots, stopping at 0.
