@@ -94,6 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -1410147761286916415, guid: 59df09d42dfb9164d9b5eab273182de6, type: 3}
+    - {fileID: 4339550904911781473, guid: 59df09d42dfb9164d9b5eab273182de6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -141,6 +142,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   turretState: 0
+  VisionRange: 0.7
   AimingTime: 1.5
-  TurningAngle: 45
-  timeBeforeDeAggro: 4
+  TurningAngle: 0
+  DeAggroTime: 2

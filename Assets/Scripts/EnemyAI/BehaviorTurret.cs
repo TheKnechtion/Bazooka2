@@ -7,7 +7,11 @@ public enum TurretState {SEARCHING, ENGAGED, LOSTSIGHT }
 public class BehaviorTurret : EnemyBehavior
 {
     [SerializeField] private TurretState turretState;
+
+    [SerializeField] private float VisionRange;
     private float DotProduct;
+
+
     [SerializeField] private float AimingTime;
 
     [SerializeField] private float TurningAngle;
@@ -15,8 +19,12 @@ public class BehaviorTurret : EnemyBehavior
     private Vector3 rightTurn;
     private Vector3 currentRotation;
 
+    private Quaternion leftTurnQuat;
+    private Quaternion rightTurnQuat;
+    private Quaternion currentRotationQuat;
+
     //Used for going BACK to searching when player leaves vision
-    [SerializeField] private float timeBeforeDeAggro;
+    [SerializeField] private float DeAggroTime;
     private float timeToDeagro;
 
     private bool inRange;
@@ -24,6 +32,7 @@ public class BehaviorTurret : EnemyBehavior
     private bool swapDirection;
 
     private Quaternion initRotation;
+    private Vector3 initRotationEuler;
 
     private float t;
     private float timeToTurn;
@@ -37,12 +46,14 @@ public class BehaviorTurret : EnemyBehavior
         swapDirection = false;
 
         //A reference, so we can reset later
-        timeToDeagro = timeBeforeDeAggro;
-
         initRotation = transform.rotation;
-        leftTurn = new Vector3(0, initRotation.y-TurningAngle,0);
-        rightTurn = new Vector3(0, initRotation.y+TurningAngle,0);
-        //rightTurn = Quaternion.Euler(0, initRotation.y + TurningAngle, 0);
+        initRotationEuler = transform.eulerAngles;
+
+        leftTurn = new Vector3(0, initRotationEuler.y-TurningAngle,0);
+        rightTurn = new Vector3(0, initRotationEuler.y + TurningAngle,0);
+
+        leftTurnQuat = Quaternion.Euler(leftTurn);
+        rightTurnQuat = Quaternion.Euler(rightTurn);    
 
         //Pass the weapon script that attacthed to the object
         weaponController = gameObject.GetComponent<WeaponController>();
@@ -61,6 +72,7 @@ public class BehaviorTurret : EnemyBehavior
         inShootRange = false;
         isAggrod = false;
 
+        currentRotationQuat = transform.rotation;
         currentRotation = transform.localEulerAngles;
 
         wallDetectPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2, gameObject.transform.position.z);
@@ -85,22 +97,27 @@ public class BehaviorTurret : EnemyBehavior
         switch (turretState)
         {
             case TurretState.SEARCHING:
-                Debug.Log("Looking for you...");
+                //Debug.Log("Looking for you...");
+
+                timeToDeagro = DeAggroTime;
                 if (!isTurning)
                 {
                     if (!swapDirection)
                     {
-                        StartCoroutine(swivelView(currentRotation, leftTurn));
+                        //StartCoroutine(swivelView(currentRotation, leftTurn));
+                        StartCoroutine(swivelView(currentRotationQuat, leftTurnQuat));
                     }
                     else
                     {
-                        StartCoroutine(swivelView(currentRotation, rightTurn));
+                        //StartCoroutine(swivelView(currentRotation, rightTurn));
+                        StartCoroutine(swivelView(currentRotationQuat, rightTurnQuat));
                     }
 
                 }                
                 break;
             case TurretState.ENGAGED:
-                Debug.Log("I SEE YOU");
+                //Debug.Log("I SEE YOU");
+                StopAllCoroutines();
                 if (!isAggrod)
                 {
                     turretState = TurretState.LOSTSIGHT;
@@ -111,7 +128,7 @@ public class BehaviorTurret : EnemyBehavior
                 }
                 break;
             case TurretState.LOSTSIGHT:
-                Debug.Log("Whered you go...");
+                //Debug.Log("Whered you go...");
                 break;
             default:
                 break;
@@ -123,7 +140,9 @@ public class BehaviorTurret : EnemyBehavior
         //Debug.Log("Spotted: "+ playerWasSpotted);
         //Debug.Log("Aggro Time: " + timeToDeagro);
         //Debug.Log(playerWasSpotted);
-        
+        //Debug.Log("To Deagro: "+timeToDeagro);
+        //Debug.Log("Ref Deagro: "+DeAggroTime);
+
         #endregion
     }
 
@@ -139,28 +158,19 @@ public class BehaviorTurret : EnemyBehavior
             }
             else
             {
-                turretState = TurretState.SEARCHING;
-                timeToDeagro = timeBeforeDeAggro;
                 transform.rotation = initRotation;
+                turretState = TurretState.SEARCHING;
             }
-
-            //if (timeBeforeDeAggro <= 0)
-            //{
-            //    turretState = TurretState.SEARCHING;
-            //    timeToDeagro = timeBeforeDeAggro;
-            //    transform.rotation = initRotation;
-            //}
         }
     }
 
-    private IEnumerator swivelView(Vector3 current, Vector3 TargetRotate)
+    private IEnumerator swivelView(Quaternion current, Quaternion TargetRotate)
     {
-        Debug.Log("Swivelinggg");
         isTurning = true;
         while (t < timeToTurn)
         {
-            transform.localEulerAngles = Vector3.Lerp(current, TargetRotate, t);
-            t +=  0.5f * Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(current, TargetRotate, t);
+            t += 0.1f * Time.deltaTime;
         }
 
 
@@ -171,6 +181,24 @@ public class BehaviorTurret : EnemyBehavior
 
         yield return null;
     }
+
+    //private IEnumerator swivelView(Vector3 current, Vector3 TargetRotate)
+    //{
+    //    isTurning = true;
+    //    while (t < timeToTurn)
+    //    {
+    //        transform.eulerAngles = Vector3.Lerp(current, TargetRotate, t);
+    //        t +=  0.5f * Time.deltaTime;
+    //    }
+
+
+    //    yield return new WaitForSeconds(AimingTime);
+    //    t = 0;
+    //    swapDirection = !swapDirection;
+    //    isTurning = false;
+
+    //    yield return null;
+    //}
     protected override void HandleEnemyAggro()
     {
         //Determines aggro of the enemy
@@ -191,7 +219,6 @@ public class BehaviorTurret : EnemyBehavior
                 {
                     turretState = TurretState.ENGAGED;
                     transform.LookAt(playerPosition);
-                    timeBeforeDeAggro = 0.0f;
                     isAggrod = true;                   
                 }
 
@@ -208,7 +235,7 @@ public class BehaviorTurret : EnemyBehavior
     {
         DotProduct = Vector3.Dot(transform.forward, enemyLookDirection);
 
-        if (DotProduct > 0.7f)
+        if (DotProduct > VisionRange)
         {
             return true;
         }
