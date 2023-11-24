@@ -20,6 +20,10 @@ public class Projectile : MonoBehaviour
 
     public Vector3 direction;
 
+    [SerializeField] private LayerMask environMentMask;
+    private Vector3 directionToObjectHit;
+    private float distanceToObjectHit;
+
     public int damage;
     float despawnTime;
     float magnitude;
@@ -156,16 +160,26 @@ public class Projectile : MonoBehaviour
         //checks surrounding area in a sphere
         collidersHit = Physics.OverlapSphere(gameObject.transform.position, splashRadius);
         
-        
         for (int i = 0; i < collidersHit.Length; i++)
         {
-            if (collidersHit[i].gameObject.TryGetComponent<IDamagable>(out IDamagable obj))
+            directionToObjectHit = collidersHit[i].transform.position - this.transform.position;
+            distanceToObjectHit = Vector3.Distance(collidersHit[i].transform.position, transform.position);
+            Ray wallDetect = new Ray(this.transform.position, directionToObjectHit);
+            RaycastHit hit;
+
+            //Detects if hit objects are behind a wall or not.
+            if (!Physics.Raycast(wallDetect, out hit, distanceToObjectHit, environMentMask))
             {
-                if (!obj.ArmoredTarget)
+                if (collidersHit[i].gameObject.TryGetComponent<IDamagable>(out IDamagable obj))
                 {
-                    obj.TakeDamage(splashDamage);
+                    if (!obj.ArmoredTarget)
+                    {
+                        obj.TakeDamage(splashDamage);
+                    }
                 }
             }
+
+            
 
             #region Old splash Damage dealing
             //collidersHit[i].gameObject.TryGetComponent<EnemyBehavior>(out EnemyBehavior entityInfo);
