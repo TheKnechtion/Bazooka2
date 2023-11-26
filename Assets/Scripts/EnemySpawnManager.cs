@@ -157,6 +157,8 @@ public class EnemySpawnManager : MonoBehaviour
         tempGameObject = Instantiate(tempGameObject, new Vector3(spawnNode.position.x, 0, spawnNode.position.z), spawnNode.rotation);
 
 
+        #region We sets stats using Scriptable Objects, designers can change easily if needed
+        /*
         //sets the name of the game object to the enemy's name in the database
         tempGameObject.name = tempEnemyInfo.name;
 
@@ -172,6 +174,8 @@ public class EnemySpawnManager : MonoBehaviour
         //sets the def of the enemy from the database
         //(This is currently only used for the knight. It sets a value in the weapon database for the knight's weapon.)
         tempGameObject.GetComponent<EnemyBehavior>().AP = tempEnemyInfo.AP;
+        */
+        #endregion
     }
 
 

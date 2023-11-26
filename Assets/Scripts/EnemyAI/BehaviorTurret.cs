@@ -62,10 +62,11 @@ public class BehaviorTurret : EnemyBehavior
         weaponController = gameObject.GetComponent<WeaponController>();
 
         //set the enemy name to that of the game object
-        enemyName = this.gameObject.name;
+        //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
-        currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        currentEnemyWeapon = weaponController.MakeWeapon(weaponName);
 
         turretState = TurretState.SEARCHING;
     }

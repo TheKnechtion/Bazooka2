@@ -11,7 +11,7 @@ public class BehaviorTankBoss : EnemyBehavior
     private Quaternion bodyRotation;
 
     void Start()
-    {
+    {        
         setStats();
         agent = GetComponent<NavMeshAgent>();
 
@@ -25,7 +25,8 @@ public class BehaviorTankBoss : EnemyBehavior
         //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
-        currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        currentEnemyWeapon = weaponController.MakeWeapon(weaponName);
 
         //sets the initial state of an enemy to docile
         isAggrod = false;

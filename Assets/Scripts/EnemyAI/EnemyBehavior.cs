@@ -16,6 +16,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     //stores the name of the enemy
     protected string enemyName;
+    protected string weaponName;
 
     //Enemy behavoir state enum
     [SerializeField] protected EnemyState currentState;
@@ -105,6 +106,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     protected virtual void Start()
     {
+        setStats();
 
         agent = GetComponent<NavMeshAgent>();
 
@@ -117,10 +119,11 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         weaponController = gameObject.GetComponent<WeaponController>();
 
         //set the enemy name to that of the game object
-        enemyName = this.gameObject.name;
+        //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
-        currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        currentEnemyWeapon = weaponController.MakeWeapon(weaponName);
 
         //sets the initial state of an enemy to docile
         isAggrod = false;
@@ -320,6 +323,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         try
         {
             enemyName = stats.Name;
+            weaponName= stats.WeaponName;
             
             ArmoredTarget = stats.ArmoredTarget;
 
