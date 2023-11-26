@@ -31,11 +31,18 @@ public class WeaponController:MonoBehaviour
     {
         weaponDatabase = WeaponDatabase.Instance().Weapon_Database;
 
-        WeaponInfo item = weaponDatabase.FirstOrDefault(weapon => weapon.weaponName.Contains(weaponName));
-        if (item != null) 
+        //WeaponInfo item = weaponDatabase.FirstOrDefault(weapon => weapon.weaponName.Contains(weaponName));
+        foreach (WeaponInfo weapon in weaponDatabase)
         {
-            tempWeaponInfo = item;
+            if (weapon.weaponName == weaponName)
+            {
+                tempWeaponInfo = weapon;
+            }
         }
+        //if (item != null) 
+        //{
+        //    tempWeaponInfo = item;
+        //}
 
         return tempWeaponInfo;
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,10 @@ public enum EnemyState {IDLE, CHASE, ATTACK}
 public class EnemyBehavior : MonoBehaviour, IDamagable
 {
     #region Every Behavior class has these
+
+    //Scriptable Object stats
+    [SerializeField] private EnemySO stats;
+
     //stores the name of the enemy
     protected string enemyName;
 
@@ -100,6 +105,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     protected virtual void Start()
     {
+
         agent = GetComponent<NavMeshAgent>();
 
         movementAnimator = GetComponent<Animator>();
@@ -308,12 +314,39 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         CanDestroy = true;
     }
 
-    private void OnDrawGizmosSelected()
+    protected virtual void setStats()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(gameObject.transform.position, enemyAttackRange_BecomeAggro);
+        //Check if we stats isn't NULL
+        try
+        {
+            enemyName = stats.Name;
+            
+            ArmoredTarget = stats.ArmoredTarget;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(gameObject.transform.position, enemyAttackRange_AttackRange);
+            MP = stats.MP;
+            AP= stats.AP;
+            DEF= stats.DEF;
+            health = stats.Health;
+
+            enemyAttackRange_BecomeAggro = stats.AggroRange;
+            enemyAttackRange_AttackRange = stats.AtackRange;
+
+            playerMask = stats.playerMask;
+            environmentMask = stats.environmentMask;
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.LogWarning("This enemy has no 'Stats' assigned. Add in prefab.");
+        }
+
+    }
+
+    protected virtual void OnDrawGizmosSelected()
+    {
+        Handles.color = Color.yellow;
+        Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, enemyAttackRange_BecomeAggro);
+
+        Handles.color = Color.red;
+        Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, enemyAttackRange_AttackRange);
     }
 }

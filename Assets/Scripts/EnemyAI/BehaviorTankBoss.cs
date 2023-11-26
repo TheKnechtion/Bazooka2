@@ -12,6 +12,7 @@ public class BehaviorTankBoss : EnemyBehavior
 
     void Start()
     {
+        setStats();
         agent = GetComponent<NavMeshAgent>();
 
         //ensures that if the room  is beaten, this won't spawn again
@@ -21,7 +22,7 @@ public class BehaviorTankBoss : EnemyBehavior
         weaponController = gameObject.GetComponent<WeaponController>();
 
         //set the enemy name to that of the game object
-        enemyName = this.gameObject.name;
+        //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
         currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
@@ -34,9 +35,7 @@ public class BehaviorTankBoss : EnemyBehavior
 
         targetToLookAt = PlayerInfo.instance.gameObject.transform;
 
-        ArmoredTarget = true;
-        
-
+        //ArmoredTarget = true;
         currentState = EnemyState.IDLE;
     }
 

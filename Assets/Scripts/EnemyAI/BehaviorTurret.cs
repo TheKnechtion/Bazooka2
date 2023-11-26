@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
@@ -40,6 +41,8 @@ public class BehaviorTurret : EnemyBehavior
     // Start is called before the first frame update
     void Start()
     {
+        setStats();
+
         t = 0;
         timeToTurn = 1.5f; 
         isTurning = false;
@@ -244,4 +247,24 @@ public class BehaviorTurret : EnemyBehavior
             return false;
         }
     }
+
+
+    //private Vector3 ViewDirection(float EulerRotation, float DegreeView)
+    //{
+    //    DegreeView += EulerRotation;
+    //    return new Vector3(Mathf.Sin(DegreeView * Mathf.Deg2Rad), 0 , Mathf.Cos(DegreeView * Mathf.Deg2Rad));
+    //}
+    //protected override void OnDrawGizmosSelected()
+    //{
+    //    base.OnDrawGizmosSelected();
+
+    //    Handles.color = Color.green;
+    //    Vector3 leftViewSight  = ViewDirection(currentRotation.y, TurningAngle);
+    //    Vector3 rightViewSight = ViewDirection(currentRotation.y, -TurningAngle);
+
+    //    Handles.DrawLine(transform.position, leftViewSight.normalized * enemyAttackRange_AttackRange);
+    //    Handles.DrawLine(transform.position, rightViewSight.normalized * enemyAttackRange_AttackRange);
+    //}
+
+    
 }

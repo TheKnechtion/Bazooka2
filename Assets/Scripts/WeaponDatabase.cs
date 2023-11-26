@@ -199,29 +199,29 @@ public class WeaponDatabase
         Weapon_Database.Add(tankWeapon);
 
         WeaponInfo Turret = new WeaponInfo();
-        tankWeapon.weaponName = "Turret";
-        tankWeapon.ProjectileName = "Gun";
-        tankWeapon.projectileType = ProjectileType.Gun;
-        tankWeapon.projectilePath = ProjectilePath.Straight;
+        Turret.weaponName = "Turret";
+        Turret.ProjectileName = "Gun";
+        Turret.projectileType = ProjectileType.Gun;
+        Turret.projectilePath = ProjectilePath.Straight;
 
-        tankWeapon.doesSplashDamageOnDespawn = true;
-        tankWeapon.doesBounce = true;
-        tankWeapon.isHoming = false;
+        Turret.doesSplashDamageOnDespawn = true;
+        Turret.doesBounce = true;
+        Turret.isHoming = false;
 
-        tankWeapon.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP;
-        tankWeapon.splashDamage = 2;
-        tankWeapon.maxProjectilesOnScreen = 1;
-        tankWeapon.numberOfProjectilesPerShot = 1;
-        tankWeapon.numberOfBounces = 0;
-        tankWeapon.currentAmmo = 12;
-        tankWeapon.maxAmmo = 12;
+        Turret.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP;
+        Turret.splashDamage = 2;
+        Turret.maxProjectilesOnScreen = 1;
+        Turret.numberOfProjectilesPerShot = 1;
+        Turret.numberOfBounces = 0;
+        Turret.currentAmmo = 12;
+        Turret.maxAmmo = 12;
 
-        tankWeapon.projectileSpeed = 40.0f;
-        tankWeapon.radiusOfProjectile = 1.0f;
-        tankWeapon.splashDamageRadius = 1.0f;
-        tankWeapon.timeBetweenProjectileFire = 3.0f;
-        tankWeapon.timeBeforeDespawn = 4.0f;
-        tankWeapon.homingStrength = 0.0f;
+        Turret.projectileSpeed = 40.0f;
+        Turret.radiusOfProjectile = 1.0f;
+        Turret.splashDamageRadius = 1.0f;
+        Turret.timeBetweenProjectileFire = 3.0f;
+        Turret.timeBeforeDespawn = 4.0f;
+        Turret.homingStrength = 0.0f;
         Weapon_Database.Add(Turret);
 
         //AI_TestWeapon - for enemyAI tests
