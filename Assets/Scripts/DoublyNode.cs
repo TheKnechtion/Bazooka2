@@ -25,6 +25,7 @@ public class DoublyNode
         beatEvacRoom = false;
         spawnedEnemies= false;
         spawnedEnemiesEvac= false;
+        isRoomBeaten = false;
     }
 }
 
