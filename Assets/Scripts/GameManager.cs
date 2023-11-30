@@ -155,11 +155,11 @@ public class GameManager : MonoBehaviour
         currentNode = currentNode.nextNode;
 
         currentRoom++;
-
+        canSpawn = true;
         SceneManager.LoadScene(currentRoom, LoadSceneMode.Single);
         currentScene = SceneManager.GetSceneAt(currentRoom);
         SceneManager.SetActiveScene(currentScene);
-        canSpawn = true;
+       
     }
 
 
