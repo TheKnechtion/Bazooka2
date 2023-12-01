@@ -68,11 +68,9 @@ public class AimCursor : MonoBehaviour
     private void FixedUpdate()
     {
 
-        
+
         gameObject.GetComponent<RectTransform>().localPosition += new Vector3(mouseDelta.x, mouseDelta.y, 0) * cursorSensitivity;
 
-        screenCen.x = Screen.width / 2;
-        screenCen.y = Screen.height / 2;
 
         screenCenter = centerObj.transform.position;
 
@@ -84,13 +82,20 @@ public class AimCursor : MonoBehaviour
         //Debug.Log(mouseDelta);
 
         cursorVector = cursorLocation - screenCenter;
+
+        lineRenderer.SetPosition(0, screenCenter);
+        lineRenderer.SetPosition(1, cursorLocation);
+
     }
+
+
+
+
 
     private void LateUpdate()
     {
 
-        lineRenderer.SetPosition(0, screenCenter);
-        lineRenderer.SetPosition(1, cursorLocation);
+
 
 
     }
