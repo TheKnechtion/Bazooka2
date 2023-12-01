@@ -30,8 +30,7 @@ public class InitializeGame : MonoBehaviour
 
 
             //the player
-            //SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model")), "Player");
-            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("ToonSoldier_WW2_demo_model"), playerSpawnLocation, playerSpawnLookDirection), "Player"));
+            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Player"), playerSpawnLocation, playerSpawnLookDirection), "Player"));
             //SetGameObjectName(Instantiate(LoadPrefabFromString("Player")), "Player");
 
             //the main camera

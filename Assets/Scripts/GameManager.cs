@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     public static event EventHandler OnPlayerLose;
     public static event EventHandler OnEvacStart;
 
+    public static event EventHandler OnSceneChange;
+
     private EnemySpawnManager enemySpawner;
     bool spawnedEnemies, evacSpawnedEnemies;
 
@@ -53,6 +55,8 @@ public class GameManager : MonoBehaviour
     private GameState state;
 
 
+    public Scene[] Scenes;
+
     private void Awake()
     {
         //state = GameState.Playing;
@@ -60,9 +64,6 @@ public class GameManager : MonoBehaviour
         txtExporter = new Exporter();
 
         enemySpawner = gameObject.GetComponent<EnemySpawnManager>();
-
-        //SceneManager.activeSceneChanged += SceneManager_changedRoom;
-
 
         //creates an exporter usable to the game manager
         //txtExporter = new Exporter();
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(exit);
 
-
+        SceneManager.activeSceneChanged += SceneManager_changedRoom;
     }
 
 
@@ -96,11 +97,7 @@ public class GameManager : MonoBehaviour
     
     private void SceneManager_changedRoom(Scene arg0, Scene arg1)   
     {
-        //currentNode.spawnedEnemies = false;
-        
-        //We set this to true so that we can safely spawn enemies into the scene they're supposed to be in,
-        //Once we do so we switch it false
-            canSpawn= true;
+        OnSceneChange?.Invoke(this, EventArgs.Empty);
     }
     
 
@@ -148,6 +145,12 @@ public class GameManager : MonoBehaviour
 
     Scene currentScene;
 
+
+    string[] TransitionRooms;
+
+    
+
+
     //used by the Door script to travel to next rooms
     public void TravelToNextRoom()
     {
@@ -159,7 +162,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentRoom, LoadSceneMode.Single);
         currentScene = SceneManager.GetSceneAt(currentRoom);
         SceneManager.SetActiveScene(currentScene);
-        canSpawn = true;
     }
 
 

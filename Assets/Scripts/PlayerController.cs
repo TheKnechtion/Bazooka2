@@ -92,61 +92,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""f61c2ef7-381b-4357-af71-9fb78997cd1c"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""2fa30e56-853e-443b-b840-da086917e165"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""652d63e0-7f6a-4302-ac2c-a5e84ab7d63e"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""dc3ea2a1-0713-4c5c-861c-30b86987b646"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""65271670-e170-4227-9341-282c09d2cdbb"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -198,6 +143,15 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootTwo"",
+                    ""type"": ""Value"",
+                    ""id"": ""e57abe9b-f121-4d51-81d9-770a5c22fd5c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -321,6 +275,61 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""action"": ""Activate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""66603827-e5ef-4388-9061-7b7fe6cb19b1"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootTwo"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""361d7a33-2042-46f2-b09d-da4ee8ad7586"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d6c74e82-a5fa-4936-ad58-3836f6cddf58"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ffed100b-baf4-41a1-9372-569af7a6e45c"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""4c2f4181-adbe-4b16-a955-ec04fbe5ee88"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -337,6 +346,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_PlayerActions_Detonate = m_PlayerActions.FindAction("Detonate", throwIfNotFound: true);
         m_PlayerActions_MousePosition = m_PlayerActions.FindAction("MousePosition", throwIfNotFound: true);
         m_PlayerActions_Activate = m_PlayerActions.FindAction("Activate", throwIfNotFound: true);
+        m_PlayerActions_ShootTwo = m_PlayerActions.FindAction("ShootTwo", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -449,6 +459,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Detonate;
     private readonly InputAction m_PlayerActions_MousePosition;
     private readonly InputAction m_PlayerActions_Activate;
+    private readonly InputAction m_PlayerActions_ShootTwo;
     public struct PlayerActionsActions
     {
         private @PlayerController m_Wrapper;
@@ -458,6 +469,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         public InputAction @Detonate => m_Wrapper.m_PlayerActions_Detonate;
         public InputAction @MousePosition => m_Wrapper.m_PlayerActions_MousePosition;
         public InputAction @Activate => m_Wrapper.m_PlayerActions_Activate;
+        public InputAction @ShootTwo => m_Wrapper.m_PlayerActions_ShootTwo;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -482,6 +494,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Activate.started += instance.OnActivate;
             @Activate.performed += instance.OnActivate;
             @Activate.canceled += instance.OnActivate;
+            @ShootTwo.started += instance.OnShootTwo;
+            @ShootTwo.performed += instance.OnShootTwo;
+            @ShootTwo.canceled += instance.OnShootTwo;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -501,6 +516,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Activate.started -= instance.OnActivate;
             @Activate.performed -= instance.OnActivate;
             @Activate.canceled -= instance.OnActivate;
+            @ShootTwo.started -= instance.OnShootTwo;
+            @ShootTwo.performed -= instance.OnShootTwo;
+            @ShootTwo.canceled -= instance.OnShootTwo;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -529,5 +547,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         void OnDetonate(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnActivate(InputAction.CallbackContext context);
+        void OnShootTwo(InputAction.CallbackContext context);
     }
 }

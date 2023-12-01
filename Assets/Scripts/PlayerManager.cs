@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     int weaponIndex = 0;
 
     public static int activeProjectiles = 0;
-
+    public int checkProj;
 
     List<WeaponInfo> playerOwnedWeapons;
 
@@ -43,9 +44,10 @@ public class PlayerManager : MonoBehaviour
     public static event EventHandler OnPlayerShoot;
     public static event EventHandler OnPlayerDetonate;
     public static event EventHandler OnPlayerActivatePress;
+    public static event EventHandler OnPlayerSpawn;
 
 
-
+    Vector3 projectionVector;
     private void Awake()
     {
         try
@@ -64,28 +66,34 @@ public class PlayerManager : MonoBehaviour
         _playerController = new PlayerController();
 
 
-        _playerController.PlayerActions.MousePosition.performed += mouseMove => mouseDelta = mouseMove.ReadValue<Vector2>();
-        _playerController.PlayerActions.MousePosition.canceled += mouseMove => mouseDelta = Vector2.zero;
 
 
         
-
         mainCamera = Camera.main;
     }
 
 
-
     private void Start()
     {
-
+    
         //Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
         //Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
         CameraSwitcher.OnCameraEnable += cameraSwitched;
         CameraSwitcher.OnCameraDisable += cameraReturned;
 
+        _playerController.PlayerActions.Shoot.performed += HandleShooting;
+        _playerController.PlayerActions.Shoot.canceled -= HandleShooting;
+
+        _playerController.PlayerActions.Detonate.performed += DetonateProjectiles;
+        _playerController.PlayerActions.Detonate.canceled -= DetonateProjectiles;
+
+
+        //projectionVector = this.transform.position - AimCursor.cursorLocation;
+
+        //CheckWeaponChange();
     }
 
     private void cameraReturned(object sender, EventArgs e)
@@ -105,35 +113,49 @@ public class PlayerManager : MonoBehaviour
     public Vector2 centerScreen = new Vector2();
 
     //variable that holds value of location of the mouse cursor
-    public Vector3 mousePosition = new Vector3();
+    public Vector3 mousePosition;
 
 
     Vector3 mouseToWorldPosition;
 
     Vector3 desiredAimPosition;
 
-
+    bool playerSpawn = true;
 
     Vector3 lookVector;
 
+    Vector3 cursorLocation;
+
     private void Update()
     {
+        //mousePosition = AimCursor.cursorLocation;
+
+        //mousePosition = mousePosition - projectionVector;
+
+        //Debug.Log(projectionVector);
+
+        //mousePosition.z = Vector3.Distance(mainCamera.transform.position, this.transform.position);
+
+        //mouseToWorldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+
+        //mouseToWorldPosition.y = this.transform.position.y;
+
+        cursorLocation = AimCursor.cursorVector;
+
+        playerLookDirection = (Vector3.Dot(cursorLocation, this.transform.forward) * transform.forward + Vector3.Dot(cursorLocation, this.transform.right) * transform.right).normalized;
+
+        //playerLookDirection = new Vector3(playerLookDirection.x, 0, playerLookDirection.z).normalized;
+
+        checkProj = activeProjectiles;
+
+        if (playerSpawn)
+        {
+            currentWeapon = PlayerInfo.instance.ownedWeapons[0];
+            OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
+            playerSpawn = false;
+        }
 
 
-        mousePosition = Input.mousePosition;
-
-        mousePosition.z = Vector3.Distance(mainCamera.transform.position, this.transform.position);
-
-        mouseToWorldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-
-        mouseToWorldPosition.y = this.transform.position.y;
-
-
-        playerLookDirection = (mouseToWorldPosition - this.transform.position).normalized;
-
-
-
-        
 
         playerPosition = gameObject.transform.position;
         playerPosition.y = 1.0f;
@@ -142,19 +164,7 @@ public class PlayerManager : MonoBehaviour
 
 
 
-        if (_playerController.PlayerActions.Shoot.IsPressed())
-        {
-            HandleShooting();
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = false;
-        }
 
-
-
-        if(_playerController.PlayerActions.Detonate.IsPressed())
-        {
-            OnPlayerDetonate?.Invoke(this, EventArgs.Empty);
-        }
 
 
         if(_playerController.PlayerActions.Activate.IsPressed())
@@ -176,6 +186,8 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+
         rotation = Quaternion.LookRotation(playerLookDirection, Vector3.up);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 65.0f);
@@ -219,15 +231,25 @@ public class PlayerManager : MonoBehaviour
             currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
             OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty);
         }
+
+
+        PlayerInfo.currentWeapon = currentWeapon;
+
+    }
+
+    void DetonateProjectiles(InputAction.CallbackContext e)
+    {
+        OnPlayerDetonate?.Invoke(this, EventArgs.Empty);
     }
 
 
 
-
-
-    private void HandleShooting()
+    private void HandleShooting(InputAction.CallbackContext e)
     {
-       
+
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+
         if (timeBetweenShots <= 0.0f && activeProjectiles < currentWeapon.maxProjectilesOnScreen)
         {
 
@@ -260,6 +282,8 @@ public class PlayerManager : MonoBehaviour
     void Shoot()
     {
         activeProjectiles++;
+
+        currentWeapon = PlayerInfo.currentWeapon;
 
         OnPlayerShoot?.Invoke(this, EventArgs.Empty);
 

@@ -23,8 +23,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     }
 
 
-    public int currentHP = 15;
-    public int maximumHP = 15;
+    public int currentHP = 5;
+    public int maximumHP = 5;
 
     public int shield;
 
@@ -33,7 +33,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     public float movementSpeed = 1.0f;
 
     //player's currently equipped weapon
-    public WeaponInfo currentWeapon;
+    public static WeaponInfo currentWeapon;
 
     public List<WeaponInfo> ownedWeapons;
 
@@ -59,13 +59,21 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
     public event EventHandler OnTakeDamage;
     public static event EventHandler OnPlayerHpChange;
+    public static event EventHandler OnPlayerSpawn;
+    public static event EventHandler OnPlayerWeaponChange;
+
+    void Awake()
+    {
+        _instance = this;
+    }
+
 
     private void Start()
     {
         ownedWeapons = new List<WeaponInfo>();
         weaponController = GetComponent<WeaponController>();
-        currentHP = maximumHP;
-        OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
+
+        
         AddWeapon("Bazooka");
 
         ArmoredTarget = false;
@@ -74,6 +82,10 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         CameraSwitcher.OnCameraDisable += cameraReturned;
 
         state = PlayerState.VULNERABLE;
+
+        OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
+
+        _instance = this;
     }
 
     /*
@@ -132,11 +144,6 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         Destroy(this.gameObject);
     }
 
-    private void Awake()
-    {
-        _instance = this;
-    }
-
     //the method used to pass damage from projectiles
     public void TakeDamage(int passedDamage)
     {
@@ -150,8 +157,6 @@ public class PlayerInfo:MonoBehaviour, IDamagable
             OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
         }        
     }
-
-
     
     public void Heal_HP(int amount)
     {
@@ -161,6 +166,40 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
     }
     
+
+    public void Take_HP(int amount)
+    {
+        maximumHP -= amount;
+
+        if(currentHP > maximumHP)
+        {
+            currentHP = maximumHP;
+        }
+
+        OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Give_HP(int amount)
+    {
+        maximumHP += amount;
+
+        if(maximumHP > 15)
+        {
+            maximumHP = 15;
+        }
+
+
+        OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
+    }
+
+
+
+    public void Decrease_Max_Proj(int amount)
+    {
+
+        OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty);
+    }
+
 
     public void AddWeapon(string passedWeapon)
     { 

@@ -21,13 +21,16 @@ public class EnemySpawnManager : MonoBehaviour
 
 
     private Transform[] spawnPositions;
-    [SerializeField] private GameObject spawnObject;
+    public GameObject spawnObject;
 
     public static int enemyCount;
 
     public static event EventHandler OnEnemyDeath;
 
-
+    private void Awake()
+    {
+        GameManager.OnSceneChange += SpawnEnemiesOnSceneChange;
+    }
 
 
     public void Start()
@@ -184,13 +187,20 @@ public class EnemySpawnManager : MonoBehaviour
         }
     }
 
+    void SpawnEnemiesOnSceneChange(object sender, EventArgs e)
+    {
+        GetSpawnPoints();
+        SpawnEnemiesByTag();
+    }
+
+
+
     string currentName;
     public void SpawnEnemiesByTag()
     {
-
+        enemyCount = spawnPositions.Length - 1;
         for (int i = 1; i < spawnPositions.Length; i++)
         {
-            enemyCount = spawnPositions.Length-1;
             currentName = spawnPositions[i].tag;
             SpawnEnemyByTag(spawnPositions[i].transform.position, currentName);
         }

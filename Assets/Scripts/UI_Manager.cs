@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -16,16 +17,17 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject CurrentWeaponSpace;
     [SerializeField] private GameObject ActiveProjectileSpace;
     [SerializeField] private GameObject TipSpace;
-    [SerializeField] private GameObject TurkeyMeter;
+    //[SerializeField] private GameObject HeartList;
+
 
     [SerializeField] private GameObject Activate;
 
 
     private TextMeshProUGUI objRenderer;
     private TextMeshProUGUI statusRenderer;
-    private TextMeshProUGUI HpRenderer;
-    private TextMeshProUGUI CurrentWeaponRenderer;
-    private TextMeshProUGUI ActiveProjectileRenderer;
+    //private TextMeshProUGUI HpRenderer;
+    //private TextMeshProUGUI CurrentWeaponRenderer;
+    //private TextMeshProUGUI ActiveProjectileRenderer;
     private TextMeshProUGUI TipRenderer;
     
     public Material TurkeyMaterial;
@@ -43,6 +45,8 @@ public class UI_Manager : MonoBehaviour
     int maxPlayerHp;
 
 
+    PlayerController _playerController;
+
     private static UI_Manager _instance;
 
     public static UI_Manager instance
@@ -54,9 +58,29 @@ public class UI_Manager : MonoBehaviour
     }
 
 
+
+    public static event EventHandler OnPlayerClick;
+
+
+    private void OnEnable()
+    {
+        _playerController.PlayerActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _playerController.PlayerActions.Disable();
+    }
+
+
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);        
+        DontDestroyOnLoad(this.gameObject);
+        
+        _playerController = new PlayerController();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Start()
@@ -65,9 +89,9 @@ public class UI_Manager : MonoBehaviour
 
         objRenderer = ObjSpace.GetComponent<TextMeshProUGUI>();
         statusRenderer = StatusSpace.GetComponent<TextMeshProUGUI>();
-        HpRenderer = HpSpace.GetComponent<TextMeshProUGUI>();
-        CurrentWeaponRenderer = CurrentWeaponSpace.GetComponent<TextMeshProUGUI>();
-        ActiveProjectileRenderer = ActiveProjectileSpace.GetComponent<TextMeshProUGUI>();
+        //HpRenderer = HpSpace.GetComponent<TextMeshProUGUI>();
+        //CurrentWeaponRenderer = CurrentWeaponSpace.GetComponent<TextMeshProUGUI>();
+        //ActiveProjectileRenderer = ActiveProjectileSpace.GetComponent<TextMeshProUGUI>();
 
         //Subscribes UI_Manager to GameManager. We use events to 
 
@@ -98,12 +122,15 @@ public class UI_Manager : MonoBehaviour
         maxPlayerHp = PlayerInfo.instance.maximumHP;
         currentPlayerHp = maxPlayerHp;
 
-        CurrentWeaponRenderer.text = PlayerInfo.instance.ownedWeapons[0].weaponName;
-        HpRenderer.text = $"HEALTH: \n{currentPlayerHp}/{maxPlayerHp}";
+        //CurrentWeaponRenderer.text = PlayerInfo.instance.ownedWeapons[0].weaponName;
+        //HpRenderer.text = $"HEALTH: \n{currentPlayerHp}/{maxPlayerHp}";
 
 
         Button_Push.OnPlayerInRange += Activate_InteractUI;
         Button_Push.OnPlayerOutOfRange += Deactivate_InteractUI;
+
+        gameObject.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        gameObject.GetComponent<Canvas>().planeDistance = 0.5f;
 
     }
 
@@ -122,7 +149,7 @@ public class UI_Manager : MonoBehaviour
 
         if (atStart)
         {
-            ActiveProjectileRenderer.text = $"Active Projectiles: {PlayerManager.activeProjectiles}/{PlayerManager.currentWeapon.maxProjectilesOnScreen}";
+            //ActiveProjectileRenderer.text = $"Active Projectiles: {PlayerManager.activeProjectiles}/{PlayerManager.currentWeapon.maxProjectilesOnScreen}";
             atStart = false;
         }
 
@@ -223,17 +250,19 @@ public class UI_Manager : MonoBehaviour
         currentPlayerHp = PlayerInfo.instance.currentHP;
         maxPlayerHp = PlayerInfo.instance.maximumHP;
 
-        HpRenderer.text = $"HEALTH: \n{currentPlayerHp}/{maxPlayerHp}";
+        //HpRenderer.text = $"HEALTH";
+
+        // \n{currentPlayerHp}/{maxPlayerHp}
     }
 
     private void PlayerManager_OnPlayerWeaponChange(object sender, System.EventArgs e)
     {
-        CurrentWeaponRenderer.text = PlayerManager.currentWeapon.weaponName;
+        //CurrentWeaponRenderer.text = PlayerManager.currentWeapon.weaponName;
     }
 
     private void PlayerManager_OnPlayerProjectileAmountChange(object sender, System.EventArgs e)
     {
-        ActiveProjectileRenderer.text = $"Active Projectiles: {PlayerManager.activeProjectiles}/{PlayerManager.currentWeapon.maxProjectilesOnScreen}";
+        //ActiveProjectileRenderer.text = $"Active Projectiles: {PlayerManager.activeProjectiles}/{PlayerManager.currentWeapon.maxProjectilesOnScreen}";
     }
 
 

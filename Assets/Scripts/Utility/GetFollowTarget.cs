@@ -24,6 +24,8 @@ public class GetFollowTarget : MonoBehaviour
 
         target = playerObj.transform;
         setTarget();
+
+        SetCameraBodyDamping();
     }
 
     private void setTarget()
@@ -31,4 +33,13 @@ public class GetFollowTarget : MonoBehaviour
         cam.Follow = target;
         cam.LookAt = target;
     }
+
+
+    private void SetCameraBodyDamping()
+    {
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
+    }
+
 }

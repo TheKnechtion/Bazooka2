@@ -946,6 +946,8 @@ MonoBehaviour:
   health: 2
   weaponProjectileSpawnNode: {fileID: 448595872216867707}
   SetToAttack: 0
+  enemyAttackRange_BecomeAggro: 15
+  enemyAttackRange_AttackRange: 12
   isAggrod: 0
   inShootRange: 0
   playerMask:
@@ -968,7 +970,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 0
   stoppingDistance: 3
-  Stopped: 0
 --- !u!114 &8863419073243247413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,6 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2fce36f38992e4a8e28c9927587a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  easyDestroy: 0
 --- !u!195 &-6511754521173923377
 NavMeshAgent:
   m_ObjectHideFlags: 0

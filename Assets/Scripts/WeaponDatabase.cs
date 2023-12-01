@@ -42,7 +42,7 @@ public class WeaponDatabase
         testWeapon.doesBounce = true;
         testWeapon.isHoming = false;
 
-        testWeapon.damage = 2;
+        testWeapon.damage = 1;
         testWeapon.splashDamage = 1;
         testWeapon.maxProjectilesOnScreen = 3;
         testWeapon.numberOfProjectilesPerShot = 1;

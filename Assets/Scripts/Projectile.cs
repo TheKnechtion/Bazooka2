@@ -37,6 +37,8 @@ public class Projectile : MonoBehaviour
 
     public event EventHandler OnDestroyed;
 
+    public static event EventHandler OnAnyProjectileDestroyed;
+
     float time = 0;
 
     private void Start()
@@ -199,6 +201,7 @@ public class Projectile : MonoBehaviour
     public void DeleteProjectile()
     {
         OnDestroyed?.Invoke(this, EventArgs.Empty);
+        OnAnyProjectileDestroyed?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnCollisionExit(Collision collision)
