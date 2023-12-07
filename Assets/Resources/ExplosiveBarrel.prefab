@@ -64,10 +64,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
+  FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634}
   fuseMaterial: {fileID: 2100000, guid: ef34d6effa9132d499fcac4187d9020c, type: 2}
-  FuseTime: 0
 --- !u!136 &4691193135284230771
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b442247875cc3964b91286b323ba1f80, type: 2}
+  - {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
