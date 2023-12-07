@@ -18,6 +18,9 @@ public class BouncingProjectile : ProjectileBase
     private float distanceToObjectHit;
 
     private bool exploding;
+
+    public event EventHandler OnDestroyed;
+
     void Start()
     {
         setStats();
@@ -80,7 +83,7 @@ public class BouncingProjectile : ProjectileBase
 
     public void DeleteProjectile()
     {
-
+        OnDestroyed?.Invoke(this, EventArgs.Empty);
     }
     private void OnCollisionEnter(Collision collision)
     {
