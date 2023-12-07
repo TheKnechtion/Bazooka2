@@ -7,8 +7,8 @@ public class RangedWeapon : WeaponBase, IShoot
     public Transform shootPoint;
     public int maxActiveProjectiles;
     private float time;
-    
 
+    private bool canShoot;
 
     void Start()
     {
@@ -18,24 +18,41 @@ public class RangedWeapon : WeaponBase, IShoot
             Debug.LogWarning("No projectile prefab found");
         }
     }
+    private void Update()
+    {
+        if (time != fireRate)
+        {
+            canShoot = false;
+        }
+        else if (time == fireRate)
+        { canShoot = true; }
+    }
     private void FixedUpdate()
     {
         //reset fire rate WHEN shot
-        if (time > 0.0f)
+        if (time < fireRate)
         {
-            time -= Time.deltaTime;
-            
+            time += Time.deltaTime;
         }
-        if (time <= 0.0f) { time = 0.0f; }
+        else
+        { time = fireRate; }
     }
     public void Shoot()
     {
-        //Set fireRate timer
-        time = fireRate;
-
-        //Instantiate projectile prefab
+        //Instantiate projectile prefab that we have
         GameObject newProjectile = projectilePrefab;
         Instantiate(newProjectile, shootPoint.position, shootPoint.rotation);
+    }
+
+    public void HandleShooting()
+    {
+        if (canShoot)
+        {
+            //Set fireRate timer = 0, so it can count back up.
+            //This would set 'canShoot = false'
+            time = 0.0f;
+            Shoot();
+        }
     }
 
     protected override void setStats()
