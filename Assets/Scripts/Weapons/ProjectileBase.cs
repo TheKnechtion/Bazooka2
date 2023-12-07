@@ -16,7 +16,6 @@ public abstract class ProjectileBase : MonoBehaviour
     protected float lifeTime;
     protected float splashRadius;
 
-    public event EventHandler OnDestroyed;
     protected abstract void setStats();
 
 }

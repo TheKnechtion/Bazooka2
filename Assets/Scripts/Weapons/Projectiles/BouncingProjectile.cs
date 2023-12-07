@@ -17,6 +17,7 @@ public class BouncingProjectile : ProjectileBase
     private Vector3 directionToObjectHit;
     private float distanceToObjectHit;
 
+    private bool doSplashDamage;
     private bool exploding;
 
     public event EventHandler OnDestroyed;
@@ -25,7 +26,6 @@ public class BouncingProjectile : ProjectileBase
     {
         setStats();
     }
-
 
     void Update()
     {
@@ -92,7 +92,9 @@ public class BouncingProjectile : ProjectileBase
             if (!damageable.ArmoredTarget)
             {
                 damageable.TakeDamage(damage);
-                DealSplashDamage();
+                if (doSplashDamage)
+                    DealSplashDamage();
+               
                 DeleteProjectile();
             }
         }
@@ -137,6 +139,7 @@ public class BouncingProjectile : ProjectileBase
             environmentMask = stats.EnvironmentMask;
 
             damage = stats.Damage;
+            doSplashDamage = stats.DoSplashDamage;
             splashDamage = stats.SplashDamage;
             splashRadius = stats.SplashRadius;
             bounceCount = stats.BounceCount;
