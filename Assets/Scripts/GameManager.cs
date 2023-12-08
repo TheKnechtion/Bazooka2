@@ -86,6 +86,10 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(exit);
 
+
+
+
+
         SceneManager.activeSceneChanged += SceneManager_changedRoom;
     }
 
@@ -97,6 +101,10 @@ public class GameManager : MonoBehaviour
     
     private void SceneManager_changedRoom(Scene arg0, Scene arg1)   
     {
+        currentScene = SceneManager.GetSceneAt(currentRoom);
+        SceneManager.SetActiveScene(currentScene);
+
+
         OnSceneChange?.Invoke(this, EventArgs.Empty);
     }
     
@@ -117,19 +125,10 @@ public class GameManager : MonoBehaviour
         winnerText = GameObject.Find("Winner");
         loserText = GameObject.Find("Loser");
 
-
-        //hides the winner and loser UI elements 
-        //winnerText.SetActive(false);
-        //loserText.SetActive(false);
-        //timerText.SetActive(false);
-
-        
         exitSpawned = false;
 
 
-        currentScene = SceneManager.GetSceneAt(currentRoom);
 
-        SceneManager.SetActiveScene(currentScene);
 
     }
 
@@ -160,8 +159,6 @@ public class GameManager : MonoBehaviour
         currentRoom++;
 
         SceneManager.LoadScene(currentRoom, LoadSceneMode.Single);
-        currentScene = SceneManager.GetSceneAt(currentRoom);
-        SceneManager.SetActiveScene(currentScene);
     }
 
 
@@ -206,13 +203,13 @@ public class GameManager : MonoBehaviour
         //        didOnce= true;
         //    }           
         //}
-
+        /*
         if (canSpawn)
         {
             SpawnEnemies();
             canSpawn = false;
         }
-
+        */
        CheckAllRoomsCleared();
 
         if (EvacTime)

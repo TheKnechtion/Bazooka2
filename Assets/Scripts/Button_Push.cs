@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class Button_Push : MonoBehaviour
 {
@@ -24,7 +25,11 @@ public class Button_Push : MonoBehaviour
     public static event EventHandler OnPlayerInRange;
     public static event EventHandler OnPlayerOutOfRange;
 
-    UI_Manager uiManager;
+
+    public UnityEvent OnActivated;
+
+    public GameObject targetObject;
+
 
 
     private void Awake()                                    
@@ -34,34 +39,16 @@ public class Button_Push : MonoBehaviour
         activatedMat = (Material)Resources.Load("Activated");
         buttonRenderer = gameObject.GetComponent<MeshRenderer>();
 
-        OnPlayerOutOfRange?.Invoke(this, EventArgs.Empty);
+
 
         //uiManager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
 
-    }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        distanceFromPlayer = (gameObject.transform.position - PlayerInfo.instance.playerPosition).magnitude;
-
-        /*
-        if (distanceFromPlayer <= 3.0f)
-        {
-            canActivate = true;
-            OnPlayerInRange?.Invoke(this, EventArgs.Empty);
-        }
-        else
-        {
-            canActivate = false;
-            OnPlayerInRange?.Invoke(this, EventArgs.Empty);
-        }
-        */
-
+        
 
     }
 
+    //activate the "press space" UI
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
@@ -71,6 +58,8 @@ public class Button_Push : MonoBehaviour
         }
     }
 
+
+    //de-activate the "press space" UI
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -87,7 +76,7 @@ public class Button_Push : MonoBehaviour
         {
             buttonRenderer.material = activatedMat;
 
-            activatedObject.GetComponent<Act>().Activate();
+            OnActivated.Invoke();
 
             CheckForVirtualCamera();
             DeleteOnActivate();

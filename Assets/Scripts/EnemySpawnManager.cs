@@ -30,13 +30,16 @@ public class EnemySpawnManager : MonoBehaviour
     private void Awake()
     {
         GameManager.OnSceneChange += SpawnEnemiesOnSceneChange;
+
+
+        //create an enemy database that will be used by the spawn manager
+        enemyDatabase = new EnemyDatabase().enemyDatabase;
     }
 
 
     public void Start()
     {
-        //create an enemy database that will be used by the spawn manager
-        enemyDatabase = new EnemyDatabase().enemyDatabase;
+        
 
         //create the list of enemies the player hasn't seen yet
         listOfUnseenEnemiesInCurrentPlaythough = new List<string>();
@@ -198,7 +201,7 @@ public class EnemySpawnManager : MonoBehaviour
     string currentName;
     public void SpawnEnemiesByTag()
     {
-        enemyCount = spawnPositions.Length - 1;
+        enemyCount = spawnPositions.Length-1;
         for (int i = 1; i < spawnPositions.Length; i++)
         {
             currentName = spawnPositions[i].tag;

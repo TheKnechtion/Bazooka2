@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.Windows.Speech;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,10 +27,20 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody player_rb;
 
+
+
+
     private void Awake()
     {
         _playerController = new PlayerController();
         player_rb = gameObject.GetComponent<Rigidbody>();
+
+
+        //_playerController.PlayerMovement.Movement.performed += UpdateWhenMoved;
+        //_playerController.PlayerMovement.Movement.canceled += UpdateWhenMoved;
+
+        PlayerManager.OnPlayerAim += AimMovement;
+        PlayerManager.OnPlayerStopAim += ResumeMoving;
     }
 
 
@@ -38,44 +49,35 @@ public class PlayerMovement : MonoBehaviour
     {
         dashCooldown = 0;
         movementAnimator = GetComponent<Animator>();
-        _playerController.PlayerMovement.Movement.performed += UpdateWhenMoved;
-        _playerController.PlayerMovement.Movement.canceled += UpdateWhenMoved;
+
     }
 
+    bool isStopped = false;
 
-
-    private void Update()
+    public void UpdateWhenMoved(InputAction.CallbackContext e)
     {
 
-
-        //dashCooldown = (dashCooldown > 0) ? dashCooldown-=Time.deltaTime:dashCooldown;
-
-        //dash = _playerController.PlayerMovement.Dash.IsPressed();
-
-
-
     }
 
-
-
+    public static float slowSpeed = 0.1f;
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
 
-
-        //dash
-        if (dash &&  dashCooldown<=0)
+        if (!isStopped)
         {
-            //moves the game object this script is attached to based on WASD input
-            transform.Translate(new Vector3(moveInput.x, 0, moveInput.y) * 5.0f);
+            //stores the player's WASD input as a vector2, with AD as the x-axis and WS as the y-axis
+            speed = PlayerInfo.instance.movementSpeed;
+        }
+        else
+        {
+            speed = PlayerInfo.instance.movementSpeed * slowSpeed;
 
-            //player_rb.AddForce(new Vector3(moveInput.x, 0, moveInput.y) * 5.0f);
-            
-
-            dashCooldown = PlayerInfo.instance.dashCooldown;
         }
 
+        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
 
         //basic player movement
         //moves the game object this script is attached to based on WASD input 
@@ -88,41 +90,21 @@ public class PlayerMovement : MonoBehaviour
         currentPosition = transform.position;
     }
 
+    float tempSpeed;
 
-    public void UpdateWhenMoved(InputAction.CallbackContext e)
+    void AimMovement(object sender, EventArgs e)
     {
-
-
-        //stores the player's WASD input as a vector2, with AD as the x-axis and WS as the y-axis
-
-
-        moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
-
-        speed = PlayerInfo.instance.movementSpeed;
-
-        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
-
-
-        //player_rb.AddForce(playerMovement);
-
+        isStopped = true;
+        playerMovement = Vector3.zero;
+        moveInput = Vector3.zero;
+        slowSpeed = 0.1f;
+    }
+    void ResumeMoving(object sender, EventArgs e)
+    {
+        isStopped = false;
     }
 
-    public void UpdateWhenStopMoved(InputAction.CallbackContext e)
-    {
 
-        /*
-        //stores the player's WASD input as a vector2, with AD as the x-axis and WS as the y-axis
-
-
-        moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
-
-        speed = PlayerInfo.instance.movementSpeed;
-
-        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
-
-        //player_rb.AddForce(playerMovement);
-        */
-    }
 
     private void OnEnable()
     {

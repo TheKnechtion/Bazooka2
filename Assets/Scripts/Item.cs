@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
         itemName = gameObject.name;
 
         //if the current room is beaten, this destroys itself on spawn
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); }
+        //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); }
     }
 
 

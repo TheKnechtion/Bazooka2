@@ -5,25 +5,41 @@ using UnityEngine;
 using System;
 using UnityEngine.PlayerLoop;
 using UnityEngine.InputSystem;
+using static Cinemachine.CinemachineTargetGroup;
+using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class AimCursor : MonoBehaviour
 {
     Vector2 mouseDelta;
-    PlayerController _playerController;
 
     public float cursorSensitivity;
 
-    public Vector3 cursorLocation;
+    public static Vector3 cursorLocation;
+    public static Vector3 cursorForward;
 
-    static Vector3 screenCenter;
+    public Vector3 cursorLocationView;
+    public Vector3 cursorForwardView;
+
 
     public Vector3 location;
 
-    GameObject playerObj;
     public GameObject centerObj;
 
+    public static Image cursorImage;
 
-    LineRenderer lineRenderer;
+    public static Vector3 cursorVector;
+
+    Camera cam;
+
+
+    Color darkGreen = new Color(.03f, 0.69f, 0.0f);
+    Color lightGreen = new Color(.00f, 1.00f, 0.0f);
+
+    Color darkRed = new Color(0.77f, 0.00f, 0.00f);
+    Color lightRed = new Color(1.00f, 0.42f, 0.42f);
+
+    bool isAiming;
 
     // Start is called before the first frame update
     void Awake()
@@ -31,95 +47,70 @@ public class AimCursor : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        _playerController = new PlayerController();
 
-        PlayerManager.OnPlayerSpawn += InitializeCursorControls;
+        PlayerManager.OnPlayerAim += StartAiming;
+        PlayerManager.OnPlayerStopAim += StopAiming;
 
-        lineRenderer = this.GetComponent<LineRenderer>();
-        
+        cursorImage = gameObject.GetComponent<Image>();
+        tempColor = Color.white;
+        tempColor.a = 0;
+        cursorImage.color = tempColor;
     }
-
-    Camera cam;
 
     private void Start()
     {
-
-        playerObj = GameObject.Find("Player");
-
         cam = Camera.main;
     }
 
+    Vector3 mouseMovementVector;
+    Vector3 mousePosition;
+    Vector3 mouseMovementInWorldSpaceVector;
 
-    void InitializeCursorControls(object sender, EventArgs e)
+    private void Update()
     {
-        _playerController.PlayerActions.MousePosition.performed += mouseMove => mouseDelta = mouseMove.ReadValue<Vector2>();     
-        _playerController.PlayerActions.MousePosition.canceled += mouseMove => mouseDelta = Vector2.zero;
 
+        mouseDelta = PlayerManager.mouseDelta;
+
+        mouseMovementVector = new Vector3(mouseDelta.x, mouseDelta.y, 0) * cursorSensitivity;
+
+        mousePosition = gameObject.GetComponent<RectTransform>().localPosition;
+
+        mousePosition = mousePosition + mouseMovementVector;
+
+        mousePosition.x = Mathf.Clamp(mousePosition.x, -960, 960);
+
+        mousePosition.y = Mathf.Clamp(mousePosition.y, -540, 540);
+
+        gameObject.GetComponent<RectTransform>().localPosition = mousePosition;
+
+
+
+        cursorLocation = gameObject.transform.position;
+
+        cursorVector = cursorLocation - cam.transform.position;
     }
-
-    Event currentEvent;
-
-    public static Vector3 cursorVector;
-
-    Vector2 mousePos;
-    Vector2 screenCen;
 
 
     private void FixedUpdate()
     {
 
-
-        gameObject.GetComponent<RectTransform>().localPosition += new Vector3(mouseDelta.x, mouseDelta.y, 0) * cursorSensitivity;
-
-
-        screenCenter = centerObj.transform.position;
-
-        cursorLocation = gameObject.GetComponent<RectTransform>().position;
-
-
-
-
-        //Debug.Log(mouseDelta);
-
-        cursorVector = cursorLocation - screenCenter;
-
-        lineRenderer.SetPosition(0, screenCenter);
-        lineRenderer.SetPosition(1, cursorLocation);
-
     }
 
+    Color tempColor;
 
-
-
-
-    private void LateUpdate()
+    void StartAiming(object sender, EventArgs e)
     {
-
-
-
-
+        isAiming = true;
     }
-
-
-
-
-    Vector3 mousePosition;
-
-
-
-
-
-    private void OnEnable()
+    void StopAiming(object sender, EventArgs e)
     {
-        _playerController.PlayerActions.Enable();
-        _playerController.PlayerMovement.Enable();
+        tempColor = Color.white;
+        tempColor.a = 0;
+        cursorImage.color = tempColor;
+        isAiming = false;
     }
 
-    private void OnDisable()
-    {
-        _playerController.PlayerActions.Disable();
-        _playerController.PlayerMovement.Disable();
-    }
+
 
 
 }

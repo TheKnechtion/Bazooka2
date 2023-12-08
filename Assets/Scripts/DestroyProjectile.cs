@@ -34,7 +34,7 @@ public class DestroyProjectile : MonoBehaviour
         DisableComponents();
         //particleObject.Play();
 
-        
+        AudioManager.PlayClipAtPosition("explosion_sound",transform.position);
         
        Object Effect = Instantiate(destroyedEffect, transform.position, Quaternion.identity);
         Destroy(Effect, 3f);

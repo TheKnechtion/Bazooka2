@@ -152,6 +152,24 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""13bcc874-2291-47d2-b290-f9b89adea930"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""b83023ee-454d-40e8-99a0-7a9059759b36"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -330,6 +348,39 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""action"": ""ShootTwo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d32466b-c100-4421-a101-4c04accba1f7"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3519cca-649c-403d-9cb0-99f696777103"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2319e527-d6a3-4504-a93d-693a6f4592c1"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -347,6 +398,8 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_PlayerActions_MousePosition = m_PlayerActions.FindAction("MousePosition", throwIfNotFound: true);
         m_PlayerActions_Activate = m_PlayerActions.FindAction("Activate", throwIfNotFound: true);
         m_PlayerActions_ShootTwo = m_PlayerActions.FindAction("ShootTwo", throwIfNotFound: true);
+        m_PlayerActions_Pause = m_PlayerActions.FindAction("Pause", throwIfNotFound: true);
+        m_PlayerActions_Aim = m_PlayerActions.FindAction("Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -460,6 +513,8 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_MousePosition;
     private readonly InputAction m_PlayerActions_Activate;
     private readonly InputAction m_PlayerActions_ShootTwo;
+    private readonly InputAction m_PlayerActions_Pause;
+    private readonly InputAction m_PlayerActions_Aim;
     public struct PlayerActionsActions
     {
         private @PlayerController m_Wrapper;
@@ -470,6 +525,8 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_PlayerActions_MousePosition;
         public InputAction @Activate => m_Wrapper.m_PlayerActions_Activate;
         public InputAction @ShootTwo => m_Wrapper.m_PlayerActions_ShootTwo;
+        public InputAction @Pause => m_Wrapper.m_PlayerActions_Pause;
+        public InputAction @Aim => m_Wrapper.m_PlayerActions_Aim;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -497,6 +554,12 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @ShootTwo.started += instance.OnShootTwo;
             @ShootTwo.performed += instance.OnShootTwo;
             @ShootTwo.canceled += instance.OnShootTwo;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -519,6 +582,12 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @ShootTwo.started -= instance.OnShootTwo;
             @ShootTwo.performed -= instance.OnShootTwo;
             @ShootTwo.canceled -= instance.OnShootTwo;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -548,5 +617,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnActivate(InputAction.CallbackContext context);
         void OnShootTwo(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }

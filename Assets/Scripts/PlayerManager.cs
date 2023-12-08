@@ -16,8 +16,6 @@ public class PlayerManager : MonoBehaviour
     //store the current player position
     Vector3 playerPosition;
 
-    //Track movement in the mouse
-    Vector2 mouseDelta;
 
     //stores the player look direction
     public static Vector3 playerLookDirection;
@@ -63,23 +61,22 @@ public class PlayerManager : MonoBehaviour
 
 
         DontDestroyOnLoad(this.gameObject);
+
+
         _playerController = new PlayerController();
 
 
-
-
-        
         mainCamera = Camera.main;
     }
+
+    public static Vector2 mouseDelta;
+
+    public static event EventHandler OnPlayerAim;
+    public static event EventHandler OnPlayerStopAim;
 
 
     private void Start()
     {
-    
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Confined;
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
 
         CameraSwitcher.OnCameraEnable += cameraSwitched;
         CameraSwitcher.OnCameraDisable += cameraReturned;
@@ -90,6 +87,19 @@ public class PlayerManager : MonoBehaviour
         _playerController.PlayerActions.Detonate.performed += DetonateProjectiles;
         _playerController.PlayerActions.Detonate.canceled -= DetonateProjectiles;
 
+        _playerController.PlayerActions.MousePosition.performed += mouseMove => mouseDelta = mouseMove.ReadValue<Vector2>();
+        _playerController.PlayerActions.MousePosition.canceled += mouseMove => mouseDelta = Vector2.zero;
+
+        _playerController.PlayerActions.Aim.performed += PlayerAim;
+        _playerController.PlayerActions.Aim.canceled += PlayerStopAim;
+
+
+        PauseManager.OnPause += PauseShooting;
+
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
         //projectionVector = this.transform.position - AimCursor.cursorLocation;
 
@@ -107,6 +117,15 @@ public class PlayerManager : MonoBehaviour
     }
 
 
+    private void PlayerAim(InputAction.CallbackContext e)
+    {
+        OnPlayerAim?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void PlayerStopAim(InputAction.CallbackContext e)
+    {
+        OnPlayerStopAim?.Invoke(this, EventArgs.Empty);
+    }
 
 
     //variable that holds value for the x,y center of the screen in pixels
@@ -128,23 +147,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        //mousePosition = AimCursor.cursorLocation;
-
-        //mousePosition = mousePosition - projectionVector;
-
-        //Debug.Log(projectionVector);
-
-        //mousePosition.z = Vector3.Distance(mainCamera.transform.position, this.transform.position);
-
-        //mouseToWorldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-
-        //mouseToWorldPosition.y = this.transform.position.y;
-
-        cursorLocation = AimCursor.cursorVector;
-
-        playerLookDirection = (Vector3.Dot(cursorLocation, this.transform.forward) * transform.forward + Vector3.Dot(cursorLocation, this.transform.right) * transform.right).normalized;
-
-        //playerLookDirection = new Vector3(playerLookDirection.x, 0, playerLookDirection.z).normalized;
 
         checkProj = activeProjectiles;
 
@@ -155,16 +157,10 @@ public class PlayerManager : MonoBehaviour
             playerSpawn = false;
         }
 
-
-
         playerPosition = gameObject.transform.position;
         playerPosition.y = 1.0f;
 
         CheckWeaponChange();
-
-
-
-
 
 
         if(_playerController.PlayerActions.Activate.IsPressed())
@@ -175,23 +171,19 @@ public class PlayerManager : MonoBehaviour
 
         //tracks time between shots, stopping at 0.
         timeBetweenShots = (timeBetweenShots > 0) ? timeBetweenShots -= Time.deltaTime : 0;
-
-
-
-
-
     }
 
     Quaternion rotation;
 
     private void FixedUpdate()
     {
+        playerLookDirection = RaycastController.playerLookDirection;
 
+        playerLookDirection = new Vector3(playerLookDirection.x,0.0f, playerLookDirection.z);
 
         rotation = Quaternion.LookRotation(playerLookDirection, Vector3.up);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 65.0f);
-
     }
 
 
@@ -209,7 +201,7 @@ public class PlayerManager : MonoBehaviour
         ownedWeaponCount = PlayerInfo.instance.ownedWeapons.Count;
 
         currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
-
+        /*
         if(Time.time >= nextInputTime && _playerController.PlayerActions.ChangeWeapon.triggered)
         {
             scrollValue = _playerController.PlayerActions.ChangeWeapon.ReadValue<float>();
@@ -231,7 +223,7 @@ public class PlayerManager : MonoBehaviour
             currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
             OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty);
         }
-
+        */
 
         PlayerInfo.currentWeapon = currentWeapon;
 
@@ -242,6 +234,19 @@ public class PlayerManager : MonoBehaviour
         OnPlayerDetonate?.Invoke(this, EventArgs.Empty);
     }
 
+    bool isGamePaused = false;
+
+    void PauseShooting(object sender, System.EventArgs e)
+    {
+        if(!isGamePaused)
+        {
+            isGamePaused = true;
+        }
+        else
+        {
+            isGamePaused = false;
+        }
+    }
 
 
     private void HandleShooting(InputAction.CallbackContext e)
@@ -279,6 +284,8 @@ public class PlayerManager : MonoBehaviour
 
     //List<GameObject> currentProjectiles = new List<GameObject> ();
 
+    Vector3 projectileSpawnLocation;
+
     void Shoot()
     {
         activeProjectiles++;
@@ -289,12 +296,15 @@ public class PlayerManager : MonoBehaviour
 
         projectilePrefab = (GameObject)Resources.Load(currentWeapon.ProjectileName);
 
+        projectileSpawnLocation = RaycastController.projectileSpawnLocation.transform.position;
 
 
-        currentEntity = Instantiate(projectilePrefab, RaycastController.projectileSpawnLocation.transform.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
+        AudioManager.PlayClipAtPosition("bazooka_fire",projectileSpawnLocation);
+
+        currentEntity = Instantiate(projectilePrefab, projectileSpawnLocation, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
         
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentWeapon;
-        currentEntity.GetComponent<Projectile>().direction = gameObject.transform.forward;
+        currentEntity.GetComponent<Projectile>().direction = RaycastController.shootVector;
 
         currentEntity.AddComponent<PlayerProjectile>();
         currentEntity.AddComponent<Light>();

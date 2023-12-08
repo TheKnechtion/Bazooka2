@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class RaycastController : MonoBehaviour
 
     //store the current player position
     Vector3 positionOne;
-
+    Vector3 positionTwo;
 
     public LayerMask ignoreProjectileLayerObjects;
 
@@ -17,17 +18,19 @@ public class RaycastController : MonoBehaviour
 
     public static GameObject projectileSpawnLocation;
 
+    public static Vector3 playerLookDirection;
+
+    float cursorVariable;
 
 
     Vector3 projectionVector;
-
-
-    Vector3 mousePosition;
+    public static Vector3 shootVector;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        PlayerManager.OnPlayerAim += StartAiming;
+        PlayerManager.OnPlayerStopAim += StopAiming;
         //projectionVector = GunBarrelLocation.transform.position - AimCursor.cursorLocation;
     }
 
@@ -37,22 +40,33 @@ public class RaycastController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         positionOne = GunBarrelLocation.transform.position;
 
         projectileSpawnLocation = GunBarrelLocation;
 
-
-
-
-        //set line renderer position to current player location
+        //set line renderer position to current player location+
         lineRenderer.SetPosition(0, positionOne);
-        
+
         //set line renderer position to current player location
         //lineRenderer.SetPosition(2, positionOne);
+
+        projectionVector = AimCursor.cursorVector.normalized;
+        
+        cursorVariable = (GunBarrelLocation.transform.position.y - AimCursor.cursorLocation.y) / (projectionVector.y);
+
+        positionTwo = AimCursor.cursorLocation + (cursorVariable * projectionVector);
+        //.cursorLocation
+
+        playerLookDirection = (positionTwo - this.transform.position).normalized;
+    }
+
+    private void LateUpdate()
+    {
+        
     }
 
     RaycastHit hit;
+    RaycastHit hitTwo;
 
     Color darkGreen = new Color(.03f, 0.69f, 0.0f);
     Color lightGreen = new Color(.00f, 1.00f, 0.0f);
@@ -62,41 +76,109 @@ public class RaycastController : MonoBehaviour
 
 
 
+    bool isAiming = false;
+
+    static Vector3 boundlessLookVector;
+
     //Updates after update, used for physics related calculations and functions
     private void FixedUpdate()
-    {
-       
-
-        if (Physics.Raycast(positionOne, gameObject.transform.forward, out hit))
+    {        
+        //if the player isn't aiming
+        if (Physics.Raycast(positionOne, gameObject.transform.forward, out hit) && !isAiming)
         {
-            //lineRenderer.SetPosition(1, hit.point);
             lineRenderer.SetPosition(1, hit.point);
-
+            UpdateShootVector(hit.point);
+            lineHitTest(hit);
         }
         else
         {
-            lineRenderer.SetPosition(1, (positionOne - transform.position).normalized + transform.position);
+            boundlessLookVector = gameObject.transform.forward;
+            boundlessLookVector = new Vector3(boundlessLookVector.x, 0, boundlessLookVector.z);
+            boundlessLookVector = positionOne + (25.0f * boundlessLookVector);
+            lineRenderer.SetPosition(1, boundlessLookVector);
 
+            UpdateShootVector(boundlessLookVector);
         }
 
 
 
-
-        if (hit.transform.gameObject.CompareTag("ActivatableObject") || hit.transform.gameObject.CompareTag("LimitedBounceObject") || hit.transform.gameObject.TryGetComponent<IDamagable>(out IDamagable component))
+        if (isAiming)
         {
-            gameObject.GetComponent<LineRenderer>().material.SetColor("_LineColor", lightRed);
-            gameObject.GetComponent<LineRenderer>().material.SetColor("_OutlineColor", darkRed);
-            lineRenderer.SetPosition(2, hit.point);
+            lineRenderer.SetPosition(1, positionTwo);
+
+
+            UpdateShootVector(positionTwo);
+
+            //check for object from player to cursor when aiming
+            if (Physics.Raycast(positionOne, (positionTwo - positionOne).normalized, out hitTwo, 1.05f * (positionTwo - positionOne).magnitude))
+            {
+                lineRenderer.SetPosition(1, hitTwo.point);
+                lineHitTest(hitTwo);
+            }
+            else
+            {
+                SetLineColor(lightGreen, darkGreen);
+            }
+
+
+            //check for object from cursor to game object
+            if (Physics.Raycast(AimCursor.cursorLocation, AimCursor.cursorVector, out hit))
+            {
+                if (hit.transform.gameObject.CompareTag("ActivatableObject") || hit.transform.gameObject.CompareTag("LimitedBounceObject") || hit.transform.gameObject.TryGetComponent<IDamagable>(out IDamagable componentTwo))
+                {
+                    AimCursor.cursorImage.color = lightRed;
+                }
+                else
+                {
+                    AimCursor.cursorImage.color = lightGreen;
+                }
+            }
+        }
+    }
+
+
+    void lineHitTest(RaycastHit hitThis)
+    {
+        if (hitThis.transform.gameObject.CompareTag("ActivatableObject") || hitThis.transform.gameObject.CompareTag("LimitedBounceObject") || hitThis.transform.gameObject.TryGetComponent<IDamagable>(out IDamagable component))
+        {
+            SetLineColor(lightRed, darkRed);
         }
         else
         {
-            gameObject.GetComponent<LineRenderer>().material.SetColor("_LineColor", lightGreen);
-            gameObject.GetComponent<LineRenderer>().material.SetColor("_OutlineColor", darkGreen);
-            lineRenderer.SetPosition(2, hit.point);
-            //Bounce(hit);
+            SetLineColor(lightGreen, darkGreen);
         }
+    }
+
+
+    void SetLineColor(Color innerColor, Color outerColor)
+    {
+        gameObject.GetComponent<LineRenderer>().material.SetColor("_LineColor", innerColor);
+        gameObject.GetComponent<LineRenderer>().material.SetColor("_OutlineColor", outerColor);
+    }
+
+    void UpdateShootVector(Vector3 updateVector)
+    {
+        shootVector = (updateVector - positionOne).normalized;
+        shootVector = new Vector3(shootVector.x, 0, shootVector.z).normalized;
+    }
+
+
+    void StartAiming(object sender, EventArgs e)
+    {
+        isAiming = true;
+    }
+    void StopAiming(object sender, EventArgs e)
+    {
+        isAiming = false;
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(AimCursor.cursorLocation, positionTwo);
 
     }
+
 
     Vector2 collisionNormal;
     Vector2 direction2D;
