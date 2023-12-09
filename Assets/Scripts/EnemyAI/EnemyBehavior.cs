@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,8 +10,13 @@ public enum EnemyState {IDLE, CHASE, ATTACK}
 public class EnemyBehavior : MonoBehaviour, IDamagable
 {
     #region Every Behavior class has these
+
+    //Scriptable Object stats
+    [SerializeField] private EnemySO stats;
+
     //stores the name of the enemy
     protected string enemyName;
+    protected string weaponName;
 
     //Enemy behavoir state enum
     [SerializeField] protected EnemyState currentState;
@@ -59,7 +65,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected float enemyPlayerTracker;
 
     protected Transform targetToLookAt;
-    private Vector3 wallDetectPosition;
+    protected Vector3 wallDetectPosition;
 
     protected float timeBetweenShots;
 
@@ -72,7 +78,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     [SerializeField] protected LayerMask environmentMask;
 
     protected Navigation nav;
-    private float distanceToPlayer;
+    protected float distanceToPlayer;
 
 
     //Used to determine how far the player has to be for the enemy to start attacking
@@ -98,8 +104,10 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     #endregion
 
 
-    private void Start()
+    protected virtual void Start()
     {
+        setStats();
+
         agent = GetComponent<NavMeshAgent>();
 
         movementAnimator = GetComponent<Animator>();
@@ -111,10 +119,11 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         weaponController = gameObject.GetComponent<WeaponController>();
 
         //set the enemy name to that of the game object
-        enemyName = this.gameObject.name;
+        //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
-        currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        currentEnemyWeapon = weaponController.MakeWeapon(weaponName);
 
         //sets the initial state of an enemy to docile
         isAggrod = false;
@@ -141,7 +150,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         inShootRange = false;
         isAggrod = false;
         
-        wallDetectPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z);
+        wallDetectPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2, gameObject.transform.position.z);
         distanceToPlayer = Vector3.Distance(playerPosition, enemyPosition);
 
         //track the enemy position
@@ -154,7 +163,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         enemyPlayerTracker = Vector3.Distance(playerPosition, enemyPosition);
 
         //creates an enemy look direction based on the enemy position and the player's current position
-            enemyLookDirection = (playerPosition - enemyPosition).normalized;
+        enemyLookDirection = (playerPosition - enemyPosition).normalized;
 
         //if the player gets within range, the enemy will shoot
         //if (enemyPlayerTracker < enemyAttackRange_BecomeAggro) { isAggrod = true; }
@@ -182,7 +191,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         }
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
 
         //tracks time between shots, stopping at 0.
@@ -308,12 +317,40 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         CanDestroy = true;
     }
 
-    private void OnDrawGizmosSelected()
+    protected virtual void setStats()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(gameObject.transform.position, enemyAttackRange_BecomeAggro);
+        //Check if we stats isn't NULL
+        try
+        {
+            enemyName = stats.Name;
+            weaponName= stats.WeaponName;
+            
+            ArmoredTarget = stats.ArmoredTarget;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(gameObject.transform.position, enemyAttackRange_AttackRange);
+            MP = stats.MP;
+            AP= stats.AP;
+            DEF= stats.DEF;
+            health = stats.Health;
+
+            enemyAttackRange_BecomeAggro = stats.AggroRange;
+            enemyAttackRange_AttackRange = stats.AtackRange;
+
+            playerMask = stats.playerMask;
+            environmentMask = stats.environmentMask;
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.LogWarning("This enemy has no 'Stats' assigned. Add in prefab.");
+        }
+
+    }
+
+    protected virtual void OnDrawGizmosSelected()
+    {
+        Handles.color = Color.yellow;
+        Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, enemyAttackRange_BecomeAggro);
+
+        Handles.color = Color.red;
+        Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, enemyAttackRange_AttackRange);
     }
 }

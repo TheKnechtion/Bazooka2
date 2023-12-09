@@ -11,7 +11,8 @@ public class BehaviorTankBoss : EnemyBehavior
     private Quaternion bodyRotation;
 
     void Start()
-    {
+    {        
+        setStats();
         agent = GetComponent<NavMeshAgent>();
 
         //ensures that if the room  is beaten, this won't spawn again
@@ -21,10 +22,11 @@ public class BehaviorTankBoss : EnemyBehavior
         weaponController = gameObject.GetComponent<WeaponController>();
 
         //set the enemy name to that of the game object
-        enemyName = this.gameObject.name;
+        //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
-        currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
+        currentEnemyWeapon = weaponController.MakeWeapon(weaponName);
 
         //sets the initial state of an enemy to docile
         isAggrod = false;
@@ -34,9 +36,7 @@ public class BehaviorTankBoss : EnemyBehavior
 
         targetToLookAt = PlayerInfo.instance.gameObject.transform;
 
-        ArmoredTarget = true;
-        
-
+        //ArmoredTarget = true;
         currentState = EnemyState.IDLE;
     }
 

@@ -198,6 +198,31 @@ public class WeaponDatabase
         tankWeapon.homingStrength = 0.0f;
         Weapon_Database.Add(tankWeapon);
 
+        WeaponInfo Turret = new WeaponInfo();
+        Turret.weaponName = "Turret";
+        Turret.ProjectileName = "Gun";
+        Turret.projectileType = ProjectileType.Gun;
+        Turret.projectilePath = ProjectilePath.Straight;
+
+        Turret.doesSplashDamageOnDespawn = true;
+        Turret.doesBounce = true;
+        Turret.isHoming = false;
+
+        Turret.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP;
+        Turret.splashDamage = 2;
+        Turret.maxProjectilesOnScreen = 1;
+        Turret.numberOfProjectilesPerShot = 1;
+        Turret.numberOfBounces = 0;
+        Turret.currentAmmo = 12;
+        Turret.maxAmmo = 12;
+
+        Turret.projectileSpeed = 40.0f;
+        Turret.radiusOfProjectile = 1.0f;
+        Turret.splashDamageRadius = 1.0f;
+        Turret.timeBetweenProjectileFire = 3.0f;
+        Turret.timeBeforeDespawn = 4.0f;
+        Turret.homingStrength = 0.0f;
+        Weapon_Database.Add(Turret);
 
         //AI_TestWeapon - for enemyAI tests
         WeaponInfo AI_TestWeapon = new WeaponInfo();

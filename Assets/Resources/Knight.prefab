@@ -716,6 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895612c024ae59148b8862e30dcd2897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: c2953f9e2978987449a97d68c6924723, type: 2}
   currentState: 0
   MP: 0
   AP: 0
@@ -726,7 +727,7 @@ MonoBehaviour:
   enemyAttackRange_BecomeAggro: 15
   enemyAttackRange_AttackRange: 12
   isAggrod: 0
-  inShootRange: 0
+  inShootRange: 1
   playerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -893,7 +894,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 054a61cc3523d5f48a7ea9c45f030705, type: 2}
+  - {fileID: 2100000, guid: 7e74baf2f3413d84888231853290903d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
