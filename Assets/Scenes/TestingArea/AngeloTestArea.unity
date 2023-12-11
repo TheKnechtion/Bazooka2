@@ -890,7 +890,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31274
+  m_Name: pb_Mesh31842
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1055,7 +1055,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31008
+  m_Name: pb_Mesh31558
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2591,7 +2591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1250958187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2605,8 +2605,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 0c2f0bb8704a2694181282d8ee3e6ea7, type: 2}
+  weaponName: 
+  fireRate: 0
   walkMultiplier: 0
   shootPoint: {fileID: 237541801}
+  maxActiveProjectiles: 0
 --- !u!23 &1250958188
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2884,7 +2887,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31104
+  m_Name: pb_Mesh31658
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -3144,7 +3147,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31122
+  m_Name: pb_Mesh31676
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4471,7 +4474,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31190
+  m_Name: pb_Mesh31754
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

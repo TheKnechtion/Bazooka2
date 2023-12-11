@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7957656202745169659}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.69, y: 7.25, z: -6.21}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -98,8 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 0c2f0bb8704a2694181282d8ee3e6ea7, type: 2}
+  weaponName: 
+  fireRate: 0
   walkMultiplier: 0
   shootPoint: {fileID: 6839061803516120476}
+  maxActiveProjectiles: 0
 --- !u!1 &8036953705275525379
 GameObject:
   m_ObjectHideFlags: 0

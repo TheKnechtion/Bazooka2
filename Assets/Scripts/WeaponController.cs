@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class WeaponController:MonoBehaviour
 {
+    /// <summary>
+    /// This class will handle all aspects of the held weapon
+    /// [Shooting, firerate, etc.]
+    /// The PlayerManager will use this class to use Shoot()
+    /// </summary>
+
     WeaponInfo tempWeaponInfo;
     List<WeaponInfo> weaponDatabase;
 
@@ -18,12 +24,37 @@ public class WeaponController:MonoBehaviour
 
     WeaponInfo weapon;
 
+    //NEW WEAPON HANDLING STUFF
+    [SerializeField] private GameObject[] prefabRefernceList;
+    [SerializeField] private GameObject[] WeaponList;
+    [SerializeField] private Transform weaponLocation;
 
+    GameObject currentWeaponPrefab;
+    RangedWeapon currentWeapon;
+
+
+    [SerializeField] private bool Player; //Dirty Hack, FIX later
     private void Awake()
     {
 
     }
 
+    private void Start()
+    {
+        if (Player)
+        {
+            WeaponList = new GameObject[prefabRefernceList.Length];
+            for (int i = 0; i < prefabRefernceList.Length; i++)
+            {
+                GameObject temp = Instantiate(prefabRefernceList[i], weaponLocation);
+                WeaponList[i] = temp;
+                WeaponList[i].SetActive(false);
+            }
+
+            WeaponList[0].SetActive(true);
+        }
+        
+    }
 
 
     //Utility for finding appropriate weapon data based on passed in string

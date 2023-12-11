@@ -654,6 +654,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43582dd49d3c564c89243f4ecbae9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabRefernceList: []
+  WeaponList: []
+  weaponLocation: {fileID: 0}
+  Player: 0
 --- !u!54 &828807778165723706
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -730,10 +734,10 @@ MonoBehaviour:
   inShootRange: 1
   playerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   environmentMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!195 &467548962059290219
 NavMeshAgent:
   m_ObjectHideFlags: 0
