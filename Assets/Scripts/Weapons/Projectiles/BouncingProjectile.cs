@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BouncingProjectile : ProjectileBase
 {
-    private int numberOfBounces;
+    //private int numberOfBounces;
     private bool isSpawning;
 
     Vector2 collisionNormal;
@@ -22,32 +22,40 @@ public class BouncingProjectile : ProjectileBase
 
     public event EventHandler OnDestroyed;
 
+
     void Start()
     {
         setStats();
+        direction = RaycastController.shootVector;
     }
 
     void Update()
     {
         
     }
+
+    private void FixedUpdate()
+    {
+        this.gameObject.GetComponent<Rigidbody>().velocity = direction * speed;
+    }
     void Bounce(Collision collision)
     {
-        if (numberOfBounces > 0)
+        if (bounceCount > 0)
         {
             isSpawning = false;
 
             collisionNormal = new Vector2(collision.contacts[0].normal.x, collision.contacts[0].normal.z).normalized;
 
-            direction2D = (new Vector2(direction.x, direction.z));
+            direction2D = new Vector2(direction.x, direction.z);
 
             direction2D = (direction2D - 2 * (Vector2.Dot(direction2D, collisionNormal)) * collisionNormal);
 
             direction = new Vector3(direction2D.x, 0, direction2D.y);
 
-            transform.rotation = Quaternion.LookRotation(Vector3.up, direction);
+           // transform.rotation = Quaternion.LookRotation(Vector3.up, direction);
+            transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
 
-            numberOfBounces--;
+            bounceCount--;
         }
     }
 
@@ -117,7 +125,7 @@ public class BouncingProjectile : ProjectileBase
         #endregion
 
         //if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
-        if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); DeleteProjectile(); }
+        if (bounceCount <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); DeleteProjectile(); }
 
 
 

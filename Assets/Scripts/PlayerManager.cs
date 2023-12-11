@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
 {
 
     PlayerController _playerController;
+    WeaponController weaponController;
 
     bool pressed;
 
@@ -93,6 +94,7 @@ public class PlayerManager : MonoBehaviour
         _playerController.PlayerActions.Aim.performed += PlayerAim;
         _playerController.PlayerActions.Aim.canceled += PlayerStopAim;
 
+        weaponController = GetComponent<WeaponController>();
 
         PauseManager.OnPause += PauseShooting;
 
@@ -259,8 +261,8 @@ public class PlayerManager : MonoBehaviour
         {
 
             timeBetweenShots = currentWeapon.timeBetweenProjectileFire;
-          
-            Shoot();
+            weaponController.ShootWeapon();
+            //Shoot();
 
         }
     }

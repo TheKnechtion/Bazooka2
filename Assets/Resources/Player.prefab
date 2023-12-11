@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3658964779768066329}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: HeldWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1522,6 +1522,7 @@ MonoBehaviour:
   - {fileID: 1413264035518659173, guid: d529cfb637a92cc44ac176e5d46e0262, type: 3}
   WeaponList: []
   weaponLocation: {fileID: 3658964779768066329}
+  currentWeaponPrefab: {fileID: 0}
   Player: 1
 --- !u!114 &-2026575318513869659
 MonoBehaviour:

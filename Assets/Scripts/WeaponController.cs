@@ -29,7 +29,7 @@ public class WeaponController:MonoBehaviour
     [SerializeField] private GameObject[] WeaponList;
     [SerializeField] private Transform weaponLocation;
 
-    GameObject currentWeaponPrefab;
+    public GameObject currentWeaponPrefab;
     RangedWeapon currentWeapon;
 
 
@@ -52,10 +52,15 @@ public class WeaponController:MonoBehaviour
             }
 
             WeaponList[0].SetActive(true);
+            currentWeapon = WeaponList[0].GetComponent<RangedWeapon>();
         }
         
     }
 
+    public void ShootWeapon()
+    {
+        currentWeapon.Shoot();
+    }
 
     //Utility for finding appropriate weapon data based on passed in string
     public WeaponInfo MakeWeapon(string weaponName)

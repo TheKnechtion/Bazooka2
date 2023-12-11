@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: BaseRocket
   m_EditorClassIdentifier: 
   projectileType: 0
-  EnvironMentMask:
+  EnvironmentMask:
     serializedVersion: 2
-    m_Bits: 0
-  Damage: 0
+    m_Bits: 512
+  Damage: 1
+  DoSplashDamage: 0
   SplashDamage: 0
-  BounceCount: 0
-  Speed: 0
-  LifeTime: 0
+  BounceCount: 1
+  Speed: 15
+  LifeTime: 3
   SplashRadius: 0
