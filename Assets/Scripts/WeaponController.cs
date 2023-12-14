@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ public class WeaponController:MonoBehaviour
 
     Vector3 position;
 
-    Object projectilePrefab;
+    //Object projectilePrefab;
 
     GameObject currentEntity;
 
@@ -38,11 +39,9 @@ public class WeaponController:MonoBehaviour
     bool canSwitch;
 
     [SerializeField] private bool Player; //Dirty Hack, TODO: FIX later
-    private void Awake()
-    {
 
-    }
-    private void Start()
+    public event EventHandler FinishedWeaponChange;
+    private void Awake()
     {
         if (Player)
         {
@@ -58,7 +57,9 @@ public class WeaponController:MonoBehaviour
             WeaponList[weaponIndex].SetActive(true);
             currentWeapon = WeaponList[weaponIndex].GetComponent<RangedWeapon>();
         }
-
+    }
+    private void Start()
+    {       
         PlayerManager.OnWeaponChange += ChangedWeapon;
 
         weaponSwitchTime = 0.5f;     
@@ -79,6 +80,8 @@ public class WeaponController:MonoBehaviour
             {
                 ListIncrement();
             }
+
+            FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
             //Debug.Log("E pressed" + e.Epressed);
             //Debug.Log("Q pressed" + e.Qpressed);
         }
@@ -138,6 +141,8 @@ public class WeaponController:MonoBehaviour
             weaponIndex = 0;
             activateWeapon(weaponIndex);
         }
+        currentWeapon = WeaponList[weaponIndex].GetComponent<RangedWeapon>();
+
     }
 
     private void ListDecrement()

@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     PlayerController _playerController;
     float speed;
-    float modifiedSpeed; //For wepaon holding Speeds
+    public float modifiedSpeed; //For wepaon holding Speeds
 
     bool dash = false;
 
@@ -43,7 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerManager.OnPlayerAim += AimMovement;
         PlayerManager.OnPlayerStopAim += ResumeMoving;
-        PlayerManager.OnWeaponChange += ChangedWeapon;
+        //PlayerManager.OnWeaponChange += ChangedWeapon;
+        weaponController.FinishedWeaponChange += ChangedWeapon;
     }
 
     private void ChangedWeapon(object sender, EventArgs e)
@@ -57,7 +58,8 @@ public class PlayerMovement : MonoBehaviour
     {
         dashCooldown = 0;
         movementAnimator = GetComponent<Animator>();
-
+        speed = PlayerInfo.instance.movementSpeed;
+        modifiedSpeed = speed*weaponController.currentWeapon.walkMultiplier;
     }
 
     bool isStopped = false;
@@ -85,7 +87,8 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
+        //playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
+        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * modifiedSpeed;
 
         //basic player movement
         //moves the game object this script is attached to based on WASD input 
