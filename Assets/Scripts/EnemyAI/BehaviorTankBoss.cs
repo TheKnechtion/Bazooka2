@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class BehaviorTankBoss : EnemyBehavior
 {
@@ -10,6 +11,7 @@ public class BehaviorTankBoss : EnemyBehavior
 
     private Quaternion bodyRotation;
 
+    [SerializeField] private HealthBar healthBar;
     void Start()
     {        
         setStats();
@@ -35,6 +37,8 @@ public class BehaviorTankBoss : EnemyBehavior
         tankNav = GetComponent<NavigationTankBoss>();
 
         targetToLookAt = PlayerInfo.instance.gameObject.transform;
+        
+        healthBar.ChangeStatus(health, maxHealth);
 
         //ArmoredTarget = true;
         currentState = EnemyState.IDLE;
@@ -175,5 +179,12 @@ public class BehaviorTankBoss : EnemyBehavior
 
     }
 
+    public override void TakeDamage(int passedDamage)
+    {
+        base.TakeDamage(passedDamage);
+        healthBar.ChangeStatus(health, maxHealth);
+        //float deltDamage = health/maxHealth;
+        //healthForeground.fillAmount = deltDamage;
+    }
 
 }

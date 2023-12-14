@@ -36,6 +36,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     public int DEF;
 
     //stores the passed in HP
+    public int maxHealth = 2;
     public int health = 2;
 
     protected Animator movementAnimator;
@@ -289,7 +290,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
 
     //a public method that allows damage to be passed on from the projectile
-    public void TakeDamage(int passedDamage)
+    public virtual void TakeDamage(int passedDamage)
     {
         health -= passedDamage;
         OnTakeDamage?.Invoke(this, EventArgs.Empty);
@@ -330,7 +331,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             MP = stats.MP;
             AP= stats.AP;
             DEF= stats.DEF;
-            health = stats.Health;
+            maxHealth = stats.Health;
+            health = maxHealth;
 
             enemyAttackRange_BecomeAggro = stats.AggroRange;
             enemyAttackRange_AttackRange = stats.AtackRange;
