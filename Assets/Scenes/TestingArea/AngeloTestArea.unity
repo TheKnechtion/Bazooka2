@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 199401836}
   m_Layer: 0
   m_Name: ButtonObject
-  m_TagString: Button
+  m_TagString: ActivatableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -659,7 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activatedObject: {fileID: 500457326}
   activated: 0
-  connectedCamera: {fileID: 0}
+  connectedCamera: {fileID: 996681231}
   usesCamera: 0
 --- !u!65 &199401837
 BoxCollider:

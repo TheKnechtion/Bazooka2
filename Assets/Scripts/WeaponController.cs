@@ -52,14 +52,15 @@ public class WeaponController:MonoBehaviour
                 WeaponList[i] = temp;
                 WeaponList[i].SetActive(false);
             }
-
-            weaponIndex = 0;
-            WeaponList[weaponIndex].SetActive(true);
-            currentWeapon = WeaponList[weaponIndex].GetComponent<RangedWeapon>();
         }
     }
     private void Start()
-    {       
+    {
+
+        weaponIndex = 0;
+        activateWeapon(weaponIndex);
+        currentWeapon = WeaponList[weaponIndex].GetComponent<RangedWeapon>();
+
         PlayerManager.OnWeaponChange += ChangedWeapon;
 
         weaponSwitchTime = 0.5f;     
@@ -142,7 +143,6 @@ public class WeaponController:MonoBehaviour
             activateWeapon(weaponIndex);
         }
         currentWeapon = WeaponList[weaponIndex].GetComponent<RangedWeapon>();
-
     }
 
     private void ListDecrement()
@@ -155,7 +155,7 @@ public class WeaponController:MonoBehaviour
         }
         else
         {
-            //When at 0 and Decrement, go to end of list
+            //When at 0 and Decrement, go to tail-end of list
             weaponIndex = WeaponList.Length-1;
             activateWeapon(weaponIndex);
         }
