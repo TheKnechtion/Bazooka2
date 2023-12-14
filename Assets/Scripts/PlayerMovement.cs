@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     PlayerController _playerController;
     float speed;
+    float modifiedSpeed; //For wepaon holding Speeds
 
     bool dash = false;
 
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody player_rb;
 
-
+    WeaponController weaponController;
 
 
     private void Awake()
@@ -35,15 +36,22 @@ public class PlayerMovement : MonoBehaviour
         _playerController = new PlayerController();
         player_rb = gameObject.GetComponent<Rigidbody>();
 
+        weaponController = gameObject.GetComponent<WeaponController>();
 
         //_playerController.PlayerMovement.Movement.performed += UpdateWhenMoved;
         //_playerController.PlayerMovement.Movement.canceled += UpdateWhenMoved;
 
         PlayerManager.OnPlayerAim += AimMovement;
         PlayerManager.OnPlayerStopAim += ResumeMoving;
+        PlayerManager.OnWeaponChange += ChangedWeapon;
     }
 
-
+    private void ChangedWeapon(object sender, EventArgs e)
+    {
+        //On weapon switch, reset to base speed, THEN apply slow speed
+        modifiedSpeed = speed;
+        modifiedSpeed *= weaponController.currentWeapon.walkMultiplier;
+    }
 
     private void Start()
     {

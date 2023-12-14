@@ -40,10 +40,18 @@ public class PlayerManager : MonoBehaviour
     List<WeaponInfo> playerOwnedWeapons;
 
     public static event EventHandler OnPlayerWeaponChange;
+    public static event EventHandler<OnWeaponSwitchEventArgs> OnWeaponChange;
     public static event EventHandler OnPlayerShoot;
     public static event EventHandler OnPlayerDetonate;
     public static event EventHandler OnPlayerActivatePress;
     public static event EventHandler OnPlayerSpawn;
+
+    public class OnWeaponSwitchEventArgs : EventArgs
+    {
+        public KeyCode keyPressed;
+        public bool Qpressed;
+        public bool Epressed;
+    }
 
 
     Vector3 projectionVector;
@@ -94,6 +102,8 @@ public class PlayerManager : MonoBehaviour
         _playerController.PlayerActions.Aim.performed += PlayerAim;
         _playerController.PlayerActions.Aim.canceled += PlayerStopAim;
 
+        _playerController.PlayerActions.ChangeWeapon.performed += ChangedWeapon;
+
         weaponController = GetComponent<WeaponController>();
 
         PauseManager.OnPause += PauseShooting;
@@ -106,6 +116,16 @@ public class PlayerManager : MonoBehaviour
         //projectionVector = this.transform.position - AimCursor.cursorLocation;
 
         //CheckWeaponChange();
+    }
+
+    private void ChangedWeapon(InputAction.CallbackContext obj)
+    {
+        
+        OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty); //Used for detecting weapon switch
+        OnWeaponChange?.Invoke(this, new OnWeaponSwitchEventArgs {
+            Qpressed = Keyboard.current.qKey.wasPressedThisFrame,
+            Epressed = Keyboard.current.eKey.wasPressedThisFrame
+        }); //Used for detecting weapon switch
     }
 
     private void cameraReturned(object sender, EventArgs e)
@@ -189,11 +209,6 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-
-
-
-
-
     float cooldownTime = 0.1f;
     float nextInputTime = 0.0f;
     private void CheckWeaponChange()
@@ -203,6 +218,8 @@ public class PlayerManager : MonoBehaviour
         ownedWeaponCount = PlayerInfo.instance.ownedWeapons.Count;
 
         currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
+
+        #region Old Weapon Scroll
         /*
         if(Time.time >= nextInputTime && _playerController.PlayerActions.ChangeWeapon.triggered)
         {
@@ -226,6 +243,7 @@ public class PlayerManager : MonoBehaviour
             OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty);
         }
         */
+        #endregion
 
         PlayerInfo.currentWeapon = currentWeapon;
 
