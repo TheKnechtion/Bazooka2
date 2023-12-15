@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,14 +33,19 @@ public class AudioManager : MonoBehaviour
         engineSoundRef = engineSound;
     }
 
+    float loopClipTime;
     private void Update()
     {
         weaponsVolumeRef = weaponsVolume;
+
+
     }
     public void PlayTheme()
     {
-        audioSource.PlayOneShot(themeClip, themeVolume);
-        audioSource.PlayScheduled(AudioSettings.dspTime + themeClip.length);
+        audioSource.clip = themeClip;
+        audioSource.loop = true;
+        audioSource.volume = themeVolume;
+        audioSource.Play();
     }
 
     static AudioClip clipToPlay;

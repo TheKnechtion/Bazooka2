@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
         currentNode = currentNode.previousNode;
     }
 
-    int currentRoom = 0;
+    int currentRoom = 1;
 
     Scene currentScene;
 

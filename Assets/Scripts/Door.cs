@@ -27,7 +27,7 @@ public class Door : MonoBehaviour
             }
 
             //transitions to the unity scene that has a name matching the name of the door game object
-            SceneManager.LoadSceneAsync(this.gameObject.name);
+            //SceneManager.LoadSceneAsync(this.gameObject.name);
 
             //OnNextRoom?.Invoke(this, EventArgs.Empty);
         }

@@ -17,6 +17,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject CurrentWeaponSpace;
     [SerializeField] private GameObject ActiveProjectileSpace;
     [SerializeField] private GameObject TipSpace;
+    [SerializeField] private GameObject QuitButton;
     //[SerializeField] private GameObject HeartList;
 
 
@@ -168,9 +169,15 @@ public class UI_Manager : MonoBehaviour
         {
             case CanvasState.WIN:
                 statusRenderer.text = statusArray[1];
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                //QuitButton.SetActive(true);
                 break;
             case CanvasState.LOSE:
                 statusRenderer.text = statusArray[0];
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                //QuitButton.SetActive(true);
                 break;
             case CanvasState.EVAC:
 

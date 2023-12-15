@@ -149,7 +149,7 @@ public class WeaponDatabase
         //Knight weaponn
         WeaponInfo knightWeapon = new WeaponInfo();
         knightWeapon.weaponName = "Knight";
-        knightWeapon.ProjectileName = "KnightProjectile";
+        knightWeapon.ProjectileName = "Gun";
         knightWeapon.projectileType = ProjectileType.Gun;
         knightWeapon.projectilePath = ProjectilePath.Straight;
 
