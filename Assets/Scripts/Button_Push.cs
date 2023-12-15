@@ -77,6 +77,7 @@ public class Button_Push : MonoBehaviour
             buttonRenderer.material = activatedMat;
 
             OnActivated.Invoke();
+            targetObject.GetComponent<IActivate>().Activate();
 
             CheckForVirtualCamera();
             DeleteOnActivate();
