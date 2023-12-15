@@ -90,7 +90,8 @@ public class GameManager : MonoBehaviour
 
 
 
-        SceneManager.activeSceneChanged += SceneManager_changedRoom;
+        //SceneManager.activeSceneChanged += SceneManager_changedRoom;
+        //SceneManager.sceneLoaded += SceneManager_roomLoaded;
     }
 
 
@@ -98,16 +99,20 @@ public class GameManager : MonoBehaviour
     //This UNITY method detects when the scene changes, which helps out with spawning enemies.
     //There was an issue where I could detect when rooms changed but enemies would spawn within the frame
     //and in the 'beaten' room before I switch to the next room.
-    
+    /*
     private void SceneManager_changedRoom(Scene arg0, Scene arg1)   
+    {
+
+    }
+
+
+    void SceneManager_roomLoaded(Scene scene, LoadSceneMode mode)
     {
         currentScene = SceneManager.GetSceneAt(currentRoom);
         SceneManager.SetActiveScene(currentScene);
-
-
         OnSceneChange?.Invoke(this, EventArgs.Empty);
     }
-    
+    */
 
     //Event for when player enters the Exit
     private void Exit_OnPlayerExit(object sender, EventArgs e)

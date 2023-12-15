@@ -155,7 +155,7 @@ public class WeaponDatabase
         knightWeapon.doesBounce = false;
         knightWeapon.isHoming = true;
 
-        knightWeapon.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP; 
+        knightWeapon.damage = 1; 
         knightWeapon.splashDamage = 0;
         knightWeapon.maxProjectilesOnScreen = 3;
         knightWeapon.numberOfProjectilesPerShot = 1;
@@ -182,7 +182,7 @@ public class WeaponDatabase
         tankWeapon.doesBounce = false;
         tankWeapon.isHoming = false;
 
-        tankWeapon.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP;
+        tankWeapon.damage = 1;
         tankWeapon.splashDamage = 2;
         tankWeapon.maxProjectilesOnScreen = 1;
         tankWeapon.numberOfProjectilesPerShot = 1;
@@ -208,7 +208,7 @@ public class WeaponDatabase
         Turret.doesBounce = true;
         Turret.isHoming = false;
 
-        Turret.damage = GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().enemyDatabase.First(enemy => enemy.name == "Knight").AP;
+        Turret.damage = 1;
         Turret.splashDamage = 2;
         Turret.maxProjectilesOnScreen = 1;
         Turret.numberOfProjectilesPerShot = 1;

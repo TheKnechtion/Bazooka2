@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public static float slowSpeed = 0.1f;
+    public static float slowSpeed = 1.0f;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
-        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * modifiedSpeed;
+        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * modifiedSpeed * slowSpeed;
 
         //basic player movement
         //moves the game object this script is attached to based on WASD input 
@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
     void ResumeMoving(object sender, EventArgs e)
     {
         isStopped = false;
+        slowSpeed = 1.0f;
     }
 
 

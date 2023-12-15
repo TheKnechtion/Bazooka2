@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
 
 //used by the game manager to control enemy spawn
 public class EnemySpawnManager : MonoBehaviour
@@ -231,7 +232,11 @@ public class EnemySpawnManager : MonoBehaviour
         SpawnEnemiesByTag();
     }
 
-
+    public void SpawnEnemies()
+    {
+        GetSpawnPoints();
+        SpawnEnemiesByTag();
+    }
 
     string currentName;
     public void SpawnEnemiesByTag()
