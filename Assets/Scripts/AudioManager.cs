@@ -8,8 +8,13 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioClip explosionSound;
     [SerializeField] AudioClip bazookaSound;
+    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip engineSound;
+
     static AudioClip bazookaSoundRef;
     static AudioClip explosionSoundRef;
+    static AudioClip hitSoundRef;
+    static AudioClip engineSoundRef;
 
     AudioSource audioSource;
     public float weaponsVolume = 0.5f;
@@ -23,6 +28,8 @@ public class AudioManager : MonoBehaviour
         PlayTheme();
         bazookaSoundRef = bazookaSound;
         explosionSoundRef = explosionSound;
+        hitSoundRef = hitSound;
+        engineSoundRef = engineSound;
     }
 
     private void Update()
@@ -47,6 +54,14 @@ public class AudioManager : MonoBehaviour
 
             case "explosion_sound":
                 clipToPlay = explosionSoundRef;
+                break;
+
+            case "hit_sound":
+                clipToPlay = hitSoundRef;
+                break;
+
+            case "engine_sound":
+                clipToPlay = engineSoundRef;
                 break;
 
             default:

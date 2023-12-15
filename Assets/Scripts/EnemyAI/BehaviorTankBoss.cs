@@ -168,6 +168,7 @@ public class BehaviorTankBoss : EnemyBehavior
         //instantiates the projectile prefab
         projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
 
+        AudioManager.PlayClipAtPosition(currentEnemyWeapon.weaponSound, weaponProjectileSpawnNode.transform.position);
 
         currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, enemyLookDirection));
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;

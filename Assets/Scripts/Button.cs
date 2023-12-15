@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Button : MonoBehaviour, IActivate
 {
@@ -22,6 +23,7 @@ public class Button : MonoBehaviour, IActivate
     private CameraSwitcher camManager;
     [SerializeField] private bool usesCamera;
 
+    public UnityEvent doThis;
 
     private void Awake()
     {
@@ -47,6 +49,9 @@ public class Button : MonoBehaviour, IActivate
             buttonRenderer.material = activatedMat;
             activatedObject.GetComponent<Act>().Activate();
             activated = true;
+
+            doThis.Invoke();
+
 
             if (usesCamera)
              camManager.SwitchToCamera(connectedCamera);

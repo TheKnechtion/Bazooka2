@@ -11,4 +11,5 @@ public class WeaponSO : ScriptableObject
     public float walkMultiplier;
 
     public GameObject projectilePrefab;
+    public string fireWeaponSound;
 }

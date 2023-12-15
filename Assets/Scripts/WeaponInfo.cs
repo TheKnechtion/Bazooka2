@@ -69,6 +69,6 @@ public class WeaponInfo
     //how strong the homing effect is
     public float homingStrength;
 
-
+    public string weaponSound;
 
 }

@@ -41,6 +41,7 @@ public class RangedWeapon : WeaponBase, IShoot
     {
         //Instantiate projectile prefab that we have
         GameObject newProjectile = projectilePrefab;
+        AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
         Instantiate(newProjectile, shootPoint.position, shootPoint.rotation);
         //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
 

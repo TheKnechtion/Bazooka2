@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         isStopped = true;
         playerMovement = Vector3.zero;
         moveInput = Vector3.zero;
-        slowSpeed = 0.1f;
+        slowSpeed = 0.3f;
     }
     void ResumeMoving(object sender, EventArgs e)
     {

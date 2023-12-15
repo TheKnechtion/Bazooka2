@@ -56,6 +56,7 @@ public class WeaponDatabase
         testWeapon.timeBetweenProjectileFire = 0.2f;
         testWeapon.timeBeforeDespawn = 8.0f;
         testWeapon.homingStrength = 0.0f;
+        testWeapon.weaponSound = "bazooka_fire";
         Weapon_Database.Add(testWeapon);
 
 
@@ -99,7 +100,7 @@ public class WeaponDatabase
         mageWeapon.doesBounce = false;
         mageWeapon.isHoming = false;
 
-        mageWeapon.damage = 2;
+        mageWeapon.damage = 0;
         mageWeapon.splashDamage = 1;
         mageWeapon.maxProjectilesOnScreen = 3;
         mageWeapon.numberOfProjectilesPerShot = 1;
@@ -113,6 +114,7 @@ public class WeaponDatabase
         mageWeapon.timeBetweenProjectileFire = 0.8f;
         mageWeapon.timeBeforeDespawn = 30.0f;
         mageWeapon.homingStrength = 0.0f;
+        mageWeapon.weaponSound = "hit_sound";
         Weapon_Database.Add(mageWeapon);
 
 
@@ -169,6 +171,7 @@ public class WeaponDatabase
         knightWeapon.timeBetweenProjectileFire = 1.5f;
         knightWeapon.timeBeforeDespawn = 10.0f;
         knightWeapon.homingStrength = 0.0f;
+        knightWeapon.weaponSound = "bazooka_fire";
         Weapon_Database.Add(knightWeapon);
 
         //Tank boss weapon
@@ -196,6 +199,7 @@ public class WeaponDatabase
         tankWeapon.timeBetweenProjectileFire = 5.0f;
         tankWeapon.timeBeforeDespawn = 4.0f;
         tankWeapon.homingStrength = 0.0f;
+        tankWeapon.weaponSound = "bazooka_fire";
         Weapon_Database.Add(tankWeapon);
 
         WeaponInfo Turret = new WeaponInfo();
@@ -209,7 +213,7 @@ public class WeaponDatabase
         Turret.isHoming = false;
 
         Turret.damage = 1;
-        Turret.splashDamage = 2;
+        Turret.splashDamage = 0;
         Turret.maxProjectilesOnScreen = 1;
         Turret.numberOfProjectilesPerShot = 1;
         Turret.numberOfBounces = 0;
@@ -222,6 +226,7 @@ public class WeaponDatabase
         Turret.timeBetweenProjectileFire = 3.0f;
         Turret.timeBeforeDespawn = 4.0f;
         Turret.homingStrength = 0.0f;
+        Turret.weaponSound = "hit_sound";
         Weapon_Database.Add(Turret);
 
         //AI_TestWeapon - for enemyAI tests
