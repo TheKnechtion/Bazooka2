@@ -347,12 +347,12 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     }
 
-    protected virtual void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.yellow;
-        Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, enemyAttackRange_BecomeAggro);
+    //protected virtual void OnDrawGizmosSelected()
+    //{
+    //    Handles.color = Color.yellow;
+    //    Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, enemyAttackRange_BecomeAggro);
 
-        Handles.color = Color.red;
-        Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, enemyAttackRange_AttackRange);
-    }
+    //    Handles.color = Color.red;
+    //    Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, enemyAttackRange_AttackRange);
+    //}
 }

@@ -153,11 +153,11 @@ public class EnemySpawnManager : MonoBehaviour
     {
         //stores info for an enemy the player hasn't seen yet
 
-        tempEnemyInfo = enemyDatabase.First(enemy => enemy.name == name);
+        //tempEnemyInfo = enemyDatabase.First(enemy => enemy.name == name);
         //tempEnemyInfo = enemyDatabase.First(enemy => listOfUnseenEnemiesInCurrentPlaythough.Contains(enemy.name));
 
         //load the appropriate enemy prefab based on the enemy name
-        tempGameObject = LoadResource(tempEnemyInfo.name);
+        tempGameObject = LoadResource(name);
 
         //instantiate the prefab at the passed in position (an enemy spawn node)
         tempGameObject = Instantiate(tempGameObject, new Vector3(spawnNode.position.x, 0, spawnNode.position.z), spawnNode.rotation);

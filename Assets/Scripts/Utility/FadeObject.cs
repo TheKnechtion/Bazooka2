@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TreeEditor;
-using UnityEditor.Callbacks;
+//using TreeEditor;
+//using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class FadeObject : MonoBehaviour
