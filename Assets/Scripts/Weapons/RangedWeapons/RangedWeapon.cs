@@ -17,16 +17,21 @@ public class RangedWeapon : WeaponBase, IShoot
     private bool canShoot;
 
 
-    void Start()
+    private void Awake()
     {
         setStats();
         if (!projectilePrefab)
         {
             Debug.LogWarning("No projectile prefab found");
         }
-
-
-
+    }
+    void Start()
+    {
+        //setStats();
+        //if (!projectilePrefab)
+        //{
+        //    Debug.LogWarning("No projectile prefab found");
+        //}
     }
     private void Update()
     {
@@ -63,7 +68,7 @@ public class RangedWeapon : WeaponBase, IShoot
 
         OnPlayerShoot?.Invoke(this, EventArgs.Empty);
 
-        Debug.Log("Spacer");
+       // Debug.Log("Spacer");
     }
 
     public void HandleShooting()

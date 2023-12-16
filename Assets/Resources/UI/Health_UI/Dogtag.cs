@@ -68,7 +68,7 @@ public class Dogtag : MonoBehaviour
         }
 
 
-        Debug.Log(divide);
+        //Debug.Log(divide);
 
         if(divide == 0.0f || maximumHP == 0)
         {

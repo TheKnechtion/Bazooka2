@@ -80,12 +80,18 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
         CameraSwitcher.OnCameraEnable += cameraSwitched;
         CameraSwitcher.OnCameraDisable += cameraReturned;
+        GameManager.OnPlayerWin += OnWin;
 
         state = PlayerState.VULNERABLE;
 
         OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
 
         _instance = this;
+    }
+
+    private void OnWin(object sender, EventArgs e)
+    {
+        state = PlayerState.INVULNERABLE;
     }
 
     /*

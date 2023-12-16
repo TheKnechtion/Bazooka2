@@ -2339,6 +2339,7 @@ GameObject:
   - component: {fileID: 6567083082894664384}
   - component: {fileID: -3441918154272621518}
   - component: {fileID: 2829048097231090397}
+  - component: {fileID: 4396173519546475042}
   m_Layer: 10
   m_Name: TankTan
   m_TagString: Enemy
@@ -2495,6 +2496,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4396173519546475042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8962397383071972805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9dc79fc952450468911cf7d8adab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9159901737404007847
 GameObject:
   m_ObjectHideFlags: 0

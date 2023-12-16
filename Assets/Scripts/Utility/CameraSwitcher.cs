@@ -55,7 +55,7 @@ public class CameraSwitcher : MonoBehaviour
         //    sceneCameras[i].Priority = disablePriority;
         //}   
 
-        Debug.Log("My camera count " + sceneCameras.Count);
+        //Debug.Log("My camera count " + sceneCameras.Count);
     }
 
     private void changedScene(Scene arg0, Scene arg1)

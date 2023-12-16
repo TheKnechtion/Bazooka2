@@ -123,16 +123,16 @@ public class WeaponController:MonoBehaviour
             canSwitch = true;
         }
 
-        if (!initializedWeapons)
-        {
-            ListIncrement();
+        //if (!initializedWeapons)
+        //{
+        //    ListIncrement();
 
-            maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
-            UpdateUI?.Invoke(this, EventArgs.Empty);
+        //    maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
+        //    UpdateUI?.Invoke(this, EventArgs.Empty);
 
-            FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
+        //    FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
 
-        }
+        //}
 
         //Debug.Log(switchTime);
     }
@@ -140,19 +140,19 @@ public class WeaponController:MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!initializedWeapons)
-        {
-            initializedWeapons = true;
+        //if (!initializedWeapons)
+        //{
+        //    initializedWeapons = true;
 
-            ListIncrement();
+        //    ListIncrement();
 
-            maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
-            UpdateUI?.Invoke(this, EventArgs.Empty);
+        //    maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
+        //    UpdateUI?.Invoke(this, EventArgs.Empty);
 
-            FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
+        //    FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
 
            
-        }
+        //}
     }
 
     //private void Update()

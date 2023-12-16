@@ -58,6 +58,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     //controls enemy's weapon
     protected WeaponController weaponController;
+    protected DataBaseWeaponGrabber weaponGrabber;
 
     [SerializeField] protected bool SetToAttack;
 
@@ -117,14 +118,15 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
 
         //Pass the weapon script that attacthed to the object
-        weaponController = gameObject.GetComponent<WeaponController>();
+            //weaponController = gameObject.GetComponent<WeaponController>();
+        weaponGrabber = gameObject.GetComponent<DataBaseWeaponGrabber>();
 
         //set the enemy name to that of the game object
         //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
         //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
-        currentEnemyWeapon = weaponController.MakeWeapon(weaponName);
+        currentEnemyWeapon = weaponGrabber.MakeWeapon(weaponName);
 
         //sets the initial state of an enemy to docile
         isAggrod = false;
@@ -306,7 +308,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     }
 
     //called when enemuy hp is at or below 0
-    public void Die()
+    public virtual void Die()
     {
         OnDeath?.Invoke(this, EventArgs.Empty); //This is for the enemy death particles to activate
 

@@ -59,14 +59,16 @@ public class BehaviorTurret : EnemyBehavior
         rightTurnQuat = Quaternion.Euler(rightTurn);    
 
         //Pass the weapon script that attacthed to the object
-        weaponController = gameObject.GetComponent<WeaponController>();
+            //weaponController = gameObject.GetComponent<WeaponController>();
+        weaponGrabber = gameObject.GetComponent<DataBaseWeaponGrabber>();
+
 
         //set the enemy name to that of the game object
         //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
         //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
-        currentEnemyWeapon = weaponController.MakeWeapon(weaponName);
+        currentEnemyWeapon = weaponGrabber.MakeWeapon(weaponName);
 
         turretState = TurretState.SEARCHING;
     }

@@ -132,9 +132,14 @@ public class GameManager : MonoBehaviour
 
         exitSpawned = false;
 
+        BehaviorTankBoss.OnTankKilled += BossKilled;
 
 
+    }
 
+    private void BossKilled(object sender, EventArgs e)
+    {
+        PlayerWins();
     }
 
 

@@ -101,6 +101,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5898170695769055733, guid: 59df09d42dfb9164d9b5eab273182de6, type: 3}
       insertIndex: 5
       addedObject: {fileID: -1435264508060272265}
+    - targetCorrespondingSourceObject: {fileID: 5898170695769055733, guid: 59df09d42dfb9164d9b5eab273182de6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6880538366871466404}
   m_SourcePrefab: {fileID: 100100000, guid: 59df09d42dfb9164d9b5eab273182de6, type: 3}
 --- !u!1 &6659917833829828095 stripped
 GameObject:
@@ -129,6 +132,7 @@ MonoBehaviour:
   MP: 0
   AP: 0
   DEF: 0
+  maxHealth: 2
   health: 2
   weaponProjectileSpawnNode: {fileID: 6659917833829828095}
   SetToAttack: 0
@@ -147,3 +151,15 @@ MonoBehaviour:
   AimingTime: 1.5
   TurningAngle: 0
   DeAggroTime: 2
+--- !u!114 &-6880538366871466404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557323303580268335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9dc79fc952450468911cf7d8adab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

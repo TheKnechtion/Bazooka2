@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class BehaviorTankBoss : EnemyBehavior
 
     private Quaternion bodyRotation;
 
+    public static event EventHandler OnTankKilled;
+
     [SerializeField] private HealthBar healthBar;
     void Start()
     {        
@@ -21,14 +24,15 @@ public class BehaviorTankBoss : EnemyBehavior
         //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
 
         //Pass the weapon script that attacthed to the object
-        weaponController = gameObject.GetComponent<WeaponController>();
+        weaponGrabber = gameObject.GetComponent<DataBaseWeaponGrabber>();
+            //weaponController = gameObject.GetComponent<WeaponController>();
 
         //set the enemy name to that of the game object
         //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
         //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
-        currentEnemyWeapon = weaponController.MakeWeapon(weaponName);
+        currentEnemyWeapon = weaponGrabber.MakeWeapon(weaponName);
 
         //sets the initial state of an enemy to docile
         isAggrod = false;
@@ -186,6 +190,12 @@ public class BehaviorTankBoss : EnemyBehavior
         healthBar.ChangeStatus(health, maxHealth);
         //float deltDamage = health/maxHealth;
         //healthForeground.fillAmount = deltDamage;
+    }
+
+    public override void Die()
+    {
+        OnTankKilled.Invoke(this, EventArgs.Empty);
+        base.Die();
     }
 
 }
