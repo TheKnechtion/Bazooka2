@@ -30,6 +30,7 @@ public class WeaponController:MonoBehaviour
     [SerializeField] private GameObject[] WeaponList;
     [SerializeField] private Transform weaponLocation;
 
+
     public GameObject currentWeaponPrefab;
     public RangedWeapon currentWeapon;
     int weaponIndex;
@@ -77,10 +78,12 @@ public class WeaponController:MonoBehaviour
 
 
 
-    public static int maxActiveProjectiles_ref;
+    public int maxActiveProjectiles_ref;
 
     private void ChangedWeapon(object sender, PlayerManager.OnWeaponSwitchEventArgs e)
     {
+        maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
+
         if (canSwitch)
         {
             canSwitch = false;
@@ -104,11 +107,6 @@ public class WeaponController:MonoBehaviour
         
     }
 
-    private void Update()
-    {
-
-    }
-
 
     private void FixedUpdate()
     {
@@ -118,7 +116,8 @@ public class WeaponController:MonoBehaviour
         {
             switchTime += Time.deltaTime;
         }
-        else {
+        else 
+        {
             switchTime = weaponSwitchTime; 
             canSwitch = true;
         }
@@ -217,12 +216,8 @@ public class WeaponController:MonoBehaviour
 
     public void ShootWeapon()
     {
-        if(PlayerManager.activeProjectiles < currentWeapon.maxActiveProjectiles)
-        {
-            UpdateUI?.Invoke(this, EventArgs.Empty);
-            maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
-            currentWeapon.HandleShooting();
-        }
+            currentWeapon.Shoot();
+        
     }
 
     //Utility for finding appropriate weapon data based on passed in string

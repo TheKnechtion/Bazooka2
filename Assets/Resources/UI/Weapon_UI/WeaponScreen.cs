@@ -38,6 +38,7 @@ public class WeaponScreen : MonoBehaviour
         RangedWeapon.OnPlayerShoot += Update_ProjectileUI_CurrentProjectiles;
         PlayerProjectile.OnExplosion += Update_ProjectileUI_CurrentProjectiles;
         WeaponController.UpdateUI += Update_ProjectileUI_CurrentProjectiles;
+        //WeaponController.UpdateUI += 
         //PlayerManager.OnPlayerDetonate += Update_ProjectileUI_CurrentProjectiles;
     }
 
@@ -78,20 +79,18 @@ public class WeaponScreen : MonoBehaviour
 
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    void Update_WeaponUI_WeaponIcon(object sender, System.EventArgs e)
     {
-        //playerinfo currentweapon is the weapon we're looking at
-        //current weapon is bazooka
-        //check current weapon maxammoonscreen is the number of projectiles to activate
-        //playermanager.activeprojectiles is the number to fade out
-        //playermaanager.activeprojectiles
+
+
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update_WeaponUI_ProjectileIcon(object sender, System.EventArgs e)
     {
-        
     }
-}
+
+
+
+
+    }

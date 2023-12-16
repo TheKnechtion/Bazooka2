@@ -57,7 +57,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
 
     //controls enemy's weapon
-    protected WeaponController weaponController;
+    protected DataBaseWeaponGrabber weaponController;
 
     [SerializeField] protected bool SetToAttack;
 
@@ -117,7 +117,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
 
         //Pass the weapon script that attacthed to the object
-        weaponController = gameObject.GetComponent<WeaponController>();
+        weaponController = gameObject.GetComponent<DataBaseWeaponGrabber>();
 
         //set the enemy name to that of the game object
         //enemyName = this.gameObject.name;
@@ -279,6 +279,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
 
         AudioManager.PlayClipAtPosition(currentEnemyWeapon.weaponSound, weaponProjectileSpawnNode.transform.position);
+
 
         currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;

@@ -56,6 +56,9 @@ public class RangedWeapon : WeaponBase, IShoot
 
 
         Instantiate(newProjectile, shootPoint.position, shootPoint.rotation).AddComponent<PlayerProjectile>();
+
+
+
         //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
 
 

@@ -5,6 +5,7 @@ using System;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -246,13 +247,16 @@ public class PlayerManager : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
 
-        weaponController.ShootWeapon();
 
-        if (timeBetweenShots <= 0.0f && activeProjectiles < currentWeapon.maxProjectilesOnScreen)
+
+        if (timeBetweenShots <= 0.0f && activeProjectiles < weaponController.maxActiveProjectiles_ref)
         {
 
-            timeBetweenShots = currentWeapon.timeBetweenProjectileFire;
+            timeBetweenShots = weaponController.currentWeapon.fireRate;
             
+            weaponController.ShootWeapon();
+
+            OnPlayerShoot?.Invoke(this, EventArgs.Empty);
             //Shoot();
 
         }
