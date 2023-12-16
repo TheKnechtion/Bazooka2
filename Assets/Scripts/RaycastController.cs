@@ -112,8 +112,8 @@ public class RaycastController : MonoBehaviour
             //check for object from player to cursor when aiming
             if (Physics.Raycast(positionOne, (positionTwo - positionOne).normalized, out hitTwo, 1.05f * (positionTwo - positionOne).magnitude))
             {
-                lineRenderer.SetPosition(1, hitTwo.point);
                 lineHitTest(hitTwo);
+                lineRenderer.SetPosition(1, hitTwo.point);
             }
             else
             {

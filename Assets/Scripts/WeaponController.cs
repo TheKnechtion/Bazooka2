@@ -41,6 +41,7 @@ public class WeaponController:MonoBehaviour
     [SerializeField] private bool Player; //Dirty Hack, TODO: FIX later
 
     public event EventHandler FinishedWeaponChange;
+    public static event EventHandler UpdateUI;
     private void Awake()
     {
         if (Player)
@@ -54,6 +55,10 @@ public class WeaponController:MonoBehaviour
             }
         }
     }
+
+
+    bool initializedWeapons = false;
+
     private void Start()
     {
 
@@ -63,9 +68,16 @@ public class WeaponController:MonoBehaviour
 
         PlayerManager.OnWeaponChange += ChangedWeapon;
 
+        
+        maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
+
         weaponSwitchTime = 0.5f;     
         canSwitch = false;
     }
+
+
+
+    public static int maxActiveProjectiles_ref;
 
     private void ChangedWeapon(object sender, PlayerManager.OnWeaponSwitchEventArgs e)
     {
@@ -82,6 +94,9 @@ public class WeaponController:MonoBehaviour
                 ListIncrement();
             }
 
+            maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
+            UpdateUI?.Invoke(this, EventArgs.Empty);
+
             FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
             //Debug.Log("E pressed" + e.Epressed);
             //Debug.Log("Q pressed" + e.Qpressed);
@@ -89,8 +104,16 @@ public class WeaponController:MonoBehaviour
         
     }
 
+    private void Update()
+    {
+
+    }
+
+
     private void FixedUpdate()
     {
+        Debug.Log(maxActiveProjectiles_ref);
+
         if (switchTime < weaponSwitchTime)
         {
             switchTime += Time.deltaTime;
@@ -100,7 +123,36 @@ public class WeaponController:MonoBehaviour
             canSwitch = true;
         }
 
+        if (!initializedWeapons)
+        {
+            ListIncrement();
+
+            maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
+            UpdateUI?.Invoke(this, EventArgs.Empty);
+
+            FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
+
+        }
+
         //Debug.Log(switchTime);
+    }
+
+
+    private void LateUpdate()
+    {
+        if (!initializedWeapons)
+        {
+            initializedWeapons = true;
+
+            ListIncrement();
+
+            maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
+            UpdateUI?.Invoke(this, EventArgs.Empty);
+
+            FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
+
+           
+        }
     }
 
     //private void Update()
@@ -165,7 +217,12 @@ public class WeaponController:MonoBehaviour
 
     public void ShootWeapon()
     {
-        currentWeapon.Shoot();
+        if(PlayerManager.activeProjectiles < currentWeapon.maxActiveProjectiles)
+        {
+            UpdateUI?.Invoke(this, EventArgs.Empty);
+            maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
+            currentWeapon.HandleShooting();
+        }
     }
 
     //Utility for finding appropriate weapon data based on passed in string

@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class WeaponScreen : MonoBehaviour
 {
+ 
+
     public Material WeaponScreenMaterial;
 
     Texture2D WeaponAmmo;
-    Texture2D WeaponBody;
+    //[SerializeField] Texture2D WeaponBody;
 
     WeaponInfo currentPlayerWeapon;
     int activeProjectiles;
@@ -26,14 +28,17 @@ public class WeaponScreen : MonoBehaviour
     string[] ammoOpacity = {"_Ammo_One_Opacity", "_Ammo_Two_Opacity", "_Ammo_Three_Opacity", "_Ammo_Four_Opacity", "_Ammo_Five_Opacity", "_Ammo_Six_Opacity", "_Ammo_Seven_Opacity", "_Ammo_Eight_Opacity", "_Ammo_Nine_Opacity", "_Ammo_Ten_Opacity"};
     string[] ammoUnlocked = {"_Ammo_One_Unlocked", "_Ammo_Two_Unlocked", "_Ammo_Three_Unlocked", "_Ammo_Four_Unlocked", "_Ammo_Five_Unlocked", "_Ammo_Six_Unlocked", "_Ammo_Seven_Unlocked", "_Ammo_Eight_Unlocked", "_Ammo_Nine_Unlocked", "_Ammo_Ten_Unlocked"};
 
+    WeaponController weaponController;
+
     private void Awake()
     {
-        PlayerManager.OnPlayerSpawn += Update_ProjectileUI_CurrentProjectiles;
-        PlayerManager.OnPlayerShoot += Update_ProjectileUI_CurrentProjectiles;
-        PlayerProjectile.OnExplosion += Update_ProjectileUI_CurrentProjectiles;
-        //PlayerManager.OnPlayerDetonate += Update_ProjectileUI_CurrentProjectiles;
-        Projectile.OnAnyProjectileDestroyed += Update_ProjectileUI_CurrentProjectiles;
+        weaponController = gameObject.GetComponent<WeaponController>();
 
+        PlayerManager.OnPlayerSpawn += Update_ProjectileUI_CurrentProjectiles;
+        RangedWeapon.OnPlayerShoot += Update_ProjectileUI_CurrentProjectiles;
+        PlayerProjectile.OnExplosion += Update_ProjectileUI_CurrentProjectiles;
+        WeaponController.UpdateUI += Update_ProjectileUI_CurrentProjectiles;
+        //PlayerManager.OnPlayerDetonate += Update_ProjectileUI_CurrentProjectiles;
     }
 
 
@@ -41,9 +46,8 @@ public class WeaponScreen : MonoBehaviour
 
     void Update_ProjectileUI_CurrentProjectiles(object sender, System.EventArgs e)
     {
-        currentPlayerWeapon = PlayerManager.currentWeapon;
-
-        maxProjOnScreen = currentPlayerWeapon.maxProjectilesOnScreen;
+        
+        maxProjOnScreen = WeaponController.maxActiveProjectiles_ref;
         activeProjectiles = PlayerManager.activeProjectiles;
 
         //set current amount of ammo allowed on screen at one time
@@ -51,7 +55,7 @@ public class WeaponScreen : MonoBehaviour
         {
             WeaponScreenMaterial.SetInt(ammoUnlocked[i], unlocked);
         }
-        for (int i = ammoUnlocked.Length - 1; i > currentPlayerWeapon.maxProjectilesOnScreen-1; i--)
+        for (int i = ammoUnlocked.Length - 1; i > maxProjOnScreen - 1; i--)
         {
             WeaponScreenMaterial.SetInt(ammoUnlocked[i], locked);
         }

@@ -170,19 +170,15 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
 
+
         checkProj = activeProjectiles;
 
-        if (playerSpawn)
-        {
-            currentWeapon = PlayerInfo.instance.ownedWeapons[0];
-            OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
-            playerSpawn = false;
-        }
+
 
         playerPosition = gameObject.transform.position;
         playerPosition.y = 1.0f;
 
-        CheckWeaponChange();
+        //CheckWeaponChange();
 
 
         if(_playerController.PlayerActions.Activate.IsPressed())
@@ -193,12 +189,14 @@ public class PlayerManager : MonoBehaviour
 
         //tracks time between shots, stopping at 0.
         timeBetweenShots = (timeBetweenShots > 0) ? timeBetweenShots -= Time.deltaTime : 0;
+
     }
 
     Quaternion rotation;
 
     private void FixedUpdate()
     {
+
         playerLookDirection = RaycastController.playerLookDirection;
 
         playerLookDirection = new Vector3(playerLookDirection.x,0.0f, playerLookDirection.z);
@@ -208,46 +206,19 @@ public class PlayerManager : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 65.0f);
     }
 
+    private void LateUpdate()
+    {
+        if (playerSpawn)
+        {
+            OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
+            playerSpawn = false;
+        }
+
+    }
 
     float cooldownTime = 0.1f;
     float nextInputTime = 0.0f;
-    private void CheckWeaponChange()
-    {
-        scrollValue = 0;
 
-        ownedWeaponCount = PlayerInfo.instance.ownedWeapons.Count;
-
-        currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
-
-        #region Old Weapon Scroll
-        /*
-        if(Time.time >= nextInputTime && _playerController.PlayerActions.ChangeWeapon.triggered)
-        {
-            scrollValue = _playerController.PlayerActions.ChangeWeapon.ReadValue<float>();
-
-            nextInputTime = Time.time + cooldownTime;
-        }
-            
-
-        if (scrollValue > 0)
-        {
-            weaponIndex = (weaponIndex+1 < ownedWeaponCount) ? ++weaponIndex:0;
-            currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
-            OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty);
-        }
-
-        if (scrollValue < 0)
-        {
-            weaponIndex = (weaponIndex - 1 >= 0) ? --weaponIndex : ownedWeaponCount-1;
-            currentWeapon = PlayerInfo.instance.ownedWeapons[weaponIndex];
-            OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty);
-        }
-        */
-        #endregion
-
-        PlayerInfo.currentWeapon = currentWeapon;
-
-    }
 
     void DetonateProjectiles(InputAction.CallbackContext e)
     {
@@ -275,11 +246,13 @@ public class PlayerManager : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
 
+        weaponController.ShootWeapon();
+
         if (timeBetweenShots <= 0.0f && activeProjectiles < currentWeapon.maxProjectilesOnScreen)
         {
 
             timeBetweenShots = currentWeapon.timeBetweenProjectileFire;
-            weaponController.ShootWeapon();
+            
             //Shoot();
 
         }

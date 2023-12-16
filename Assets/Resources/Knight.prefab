@@ -587,7 +587,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4520794970991423114}
   - component: {fileID: 7572878113189126426}
-  - component: {fileID: 5878921240677832679}
   - component: {fileID: 828807778165723706}
   - component: {fileID: -5777043409567043189}
   - component: {fileID: 4339550904911781473}
@@ -642,23 +641,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5878921240677832679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5898170695769055733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43582dd49d3c564c89243f4ecbae9d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabRefernceList: []
-  WeaponList: []
-  weaponLocation: {fileID: 0}
-  currentWeaponPrefab: {fileID: 0}
-  Player: 0
 --- !u!54 &828807778165723706
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -726,6 +708,7 @@ MonoBehaviour:
   MP: 0
   AP: 0
   DEF: 0
+  maxHealth: 2
   health: 2
   weaponProjectileSpawnNode: {fileID: 7302380661073466149}
   SetToAttack: 1

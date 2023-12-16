@@ -2333,7 +2333,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8477071312908972573}
-  - component: {fileID: 8010386325807663321}
   - component: {fileID: 8523053833124506498}
   - component: {fileID: 901396253549501998}
   - component: {fileID: -6008919543035644676}
@@ -2366,24 +2365,6 @@ Transform:
   - {fileID: 8934021707867334326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8010386325807663321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8962397383071972805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43582dd49d3c564c89243f4ecbae9d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabRefernceList: []
-  WeaponList: []
-  weaponLocation: {fileID: 0}
-  currentWeaponPrefab: {fileID: 0}
-  currentWeapon: {fileID: 0}
-  Player: 0
 --- !u!54 &8523053833124506498
 Rigidbody:
   m_ObjectHideFlags: 0
