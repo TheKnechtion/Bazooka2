@@ -14,7 +14,7 @@ public class RaycastController : MonoBehaviour
 
     public LayerMask ignoreProjectileLayerObjects;
 
-    public GameObject GunBarrelLocation;
+    [SerializeField] GameObject GunBarrelLocation;
 
     public static GameObject projectileSpawnLocation;
 
@@ -60,11 +60,6 @@ public class RaycastController : MonoBehaviour
         playerLookDirection = (positionTwo - this.transform.position).normalized;
     }
 
-    private void LateUpdate()
-    {
-        
-    }
-
     RaycastHit hit;
     RaycastHit hitTwo;
 
@@ -82,24 +77,7 @@ public class RaycastController : MonoBehaviour
 
     //Updates after update, used for physics related calculations and functions
     private void FixedUpdate()
-    {        
-        //if the player isn't aiming
-        if (Physics.Raycast(positionOne, gameObject.transform.forward, out hit) && !isAiming)
-        {
-            lineRenderer.SetPosition(1, hit.point);
-            UpdateShootVector(hit.point);
-            lineHitTest(hit);
-        }
-        else
-        {
-            boundlessLookVector = gameObject.transform.forward;
-            boundlessLookVector = new Vector3(boundlessLookVector.x, 0, boundlessLookVector.z);
-            boundlessLookVector = positionOne + (25.0f * boundlessLookVector);
-            lineRenderer.SetPosition(1, boundlessLookVector);
-
-            UpdateShootVector(boundlessLookVector);
-        }
-
+    {
 
 
         if (isAiming)
@@ -134,7 +112,27 @@ public class RaycastController : MonoBehaviour
                 }
             }
         }
+        else if (Physics.Raycast(positionOne, gameObject.transform.forward, out hit))
+        {
+            lineRenderer.SetPosition(1, hit.point);
+            UpdateShootVector(hit.point);
+            lineHitTest(hit);
+        }
+        /*
+        else
+        {
+            boundlessLookVector = gameObject.transform.forward;
+            boundlessLookVector = new Vector3(boundlessLookVector.x, 0, boundlessLookVector.z);
+            boundlessLookVector = positionOne + (25.0f * boundlessLookVector);
+            lineRenderer.SetPosition(1, boundlessLookVector);
+
+            UpdateShootVector(boundlessLookVector);
+        }
+        */
     }
+
+
+
 
 
     void lineHitTest(RaycastHit hitThis)

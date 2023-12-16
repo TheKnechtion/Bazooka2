@@ -39,7 +39,7 @@ public class InitializeGame : MonoBehaviour
             //SetGameObjectName(Instantiate(LoadPrefabFromString("Top View Camera")), "Top View Camera");
 
             //the win/lose UI
-                //dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
+            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
 
         }
     }

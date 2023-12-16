@@ -1408,9 +1408,9 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7917691548880127729}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
@@ -1497,12 +1497,12 @@ LineRenderer:
     alignment: 0
     textureMode: 4
     textureScale: {x: 1, y: 1}
-    shadowBias: 0.5
+    shadowBias: 0
     generateLightingData: 0
   m_MaskInteraction: 0
   m_UseWorldSpace: 1
   m_Loop: 0
-  m_ApplyActiveColorSpace: 1
+  m_ApplyActiveColorSpace: 0
 --- !u!136 &-8347861566123058167
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1598,7 +1598,7 @@ MonoBehaviour:
   lineRenderer: {fileID: -2609167793474012782}
   ignoreProjectileLayerObjects:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   GunBarrelLocation: {fileID: 1115085120059043790}
 --- !u!54 &664677363585575053
 Rigidbody:

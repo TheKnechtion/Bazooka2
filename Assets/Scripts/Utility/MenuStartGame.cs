@@ -27,6 +27,9 @@ public class MenuStartGame : MonoBehaviour
         Destroy(v);
         GameObject w = GameObject.Find("Follow Camera");
         Destroy(w);
+        GameObject x = GameObject.Find("Canvas");
+        Destroy(x);
+
 
 
         Scene curerentScene = SceneManager.GetActiveScene();

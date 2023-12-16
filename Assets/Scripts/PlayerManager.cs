@@ -203,7 +203,7 @@ public class PlayerManager : MonoBehaviour
 
         rotation = Quaternion.LookRotation(playerLookDirection, Vector3.up);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 65.0f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 65.0f);
     }
 
     private void LateUpdate()

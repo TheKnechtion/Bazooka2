@@ -64,10 +64,6 @@ public class PlayerMovement : MonoBehaviour
 
     bool isStopped = false;
 
-    public void UpdateWhenMoved(InputAction.CallbackContext e)
-    {
-
-    }
 
     public static float slowSpeed = 1.0f;
 
@@ -108,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         isStopped = true;
         playerMovement = Vector3.zero;
         moveInput = Vector3.zero;
-        slowSpeed = 0.3f;
+        slowSpeed = 0.4f;
     }
     void ResumeMoving(object sender, EventArgs e)
     {
