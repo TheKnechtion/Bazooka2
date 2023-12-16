@@ -912,9 +912,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7917691548880034559}
   - component: {fileID: 7917691548891630475}
+  - component: {fileID: 1540853200643895019}
   m_Layer: 8
   m_Name: US_body_infantry
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1007,6 +1008,25 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.1387015, y: 0.08834009, z: 0.0000009536743}
     m_Extent: {x: 1.1088595, y: 0.34632623, z: 1.4174923}
   m_DirtyAABB: 0
+--- !u!114 &1540853200643895019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917691548880127711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d815ba2c0b5b6d459d8e717e0fa73ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 001d280d53aa4c54fb10aa6ae3c0b1cc, type: 2}
+  - {fileID: 2100000, guid: 42f5bfd3ccd8ccb48b85933550f833e9, type: 2}
+  renderers:
+  - {fileID: 7917691548891630489}
+  - {fileID: 7917691548891630475}
+  - {fileID: 7917691548891630495}
 --- !u!1 &7917691548880127713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,6 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c736591586a653a46a84d0d48aff9a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifiedSpeed: 0
 --- !u!114 &3654569959057878488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1523,6 +1544,7 @@ MonoBehaviour:
   WeaponList: []
   weaponLocation: {fileID: 3658964779768066329}
   currentWeaponPrefab: {fileID: 0}
+  currentWeapon: {fileID: 0}
   Player: 1
 --- !u!114 &-2026575318513869659
 MonoBehaviour:
@@ -1555,7 +1577,7 @@ MonoBehaviour:
   maximumHP: 5
   shield: 0
   dashCooldown: 3
-  movementSpeed: 12
+  movementSpeed: 10
   playerPosition: {x: 0, y: 0, z: 0}
   centerScreen: {x: 0, y: 0}
   mousePos: {x: 0, y: 0, z: 0}

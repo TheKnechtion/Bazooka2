@@ -19,11 +19,11 @@ public class NavigationTankBoss : Navigation
     public void stopMovement()
     {
         agent.isStopped = true;
-        Debug.Log("Stopped movement");
+        //Debug.Log("Stopped movement");
     }
     public void resumeMovement() 
     { 
         agent.isStopped = false;
-        Debug.Log("Resume movement");
+        //Debug.Log("Resume movement");
     }
 }

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.EventSystems;
 
 public class UI_Manager : MonoBehaviour
 {
     enum CanvasState { WIN,LOSE,EVAC,NONE}
 
+    Camera mainCam;
+    Canvas canvas;
 
     CanvasState UI_state;
 
@@ -18,6 +21,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject ActiveProjectileSpace;
     [SerializeField] private GameObject TipSpace;
     [SerializeField] private GameObject QuitButton;
+    [SerializeField] private GameObject ReplayButton;
     //[SerializeField] private GameObject HeartList;
 
 
@@ -86,6 +90,10 @@ public class UI_Manager : MonoBehaviour
 
     private void Start()
     {
+        mainCam = Camera.main;
+        canvas = GetComponent<Canvas>();
+        canvas.worldCamera = mainCam;
+
         TurkeyMaterial.mainTexture = newTurkey;
 
         objRenderer = ObjSpace.GetComponent<TextMeshProUGUI>();
@@ -171,13 +179,17 @@ public class UI_Manager : MonoBehaviour
                 statusRenderer.text = statusArray[1];
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.Confined;
-                //QuitButton.SetActive(true);
+                QuitButton.SetActive(true);
+                ReplayButton.SetActive(true);
+
                 break;
             case CanvasState.LOSE:
                 statusRenderer.text = statusArray[0];
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.Confined;
-                //QuitButton.SetActive(true);
+                QuitButton.SetActive(true);
+                ReplayButton.SetActive(true);
+
                 break;
             case CanvasState.EVAC:
 
@@ -195,6 +207,8 @@ public class UI_Manager : MonoBehaviour
 
             case CanvasState.NONE:                
                 statusRenderer.text = statusArray[2];
+                QuitButton.SetActive(false);
+                ReplayButton.SetActive(false);
                 break;
             default:
                UI_state = CanvasState.NONE;

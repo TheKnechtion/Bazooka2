@@ -34,16 +34,19 @@ public class InitializeGame : MonoBehaviour
             //SetGameObjectName(Instantiate(LoadPrefabFromString("Player")), "Player");
 
             //the main camera
-            //SetGameObjectName(Instantiate(LoadPrefabFromString("Main Camera")), "Main Camera");
+            SetGameObjectName(Instantiate(LoadPrefabFromString("Main Camera")), "Main Camera");
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Cinemachine Camera")), "Follow Camera"));
             //SetGameObjectName(Instantiate(LoadPrefabFromString("Top View Camera")), "Top View Camera");
 
             //the win/lose UI
-            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
+                //dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
 
         }
     }
 
+    
+
+    
     GameObject LoadPrefabFromString(string prefabName)
     {        
         return (Resources.Load(prefabName) as GameObject);

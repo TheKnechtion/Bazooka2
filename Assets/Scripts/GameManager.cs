@@ -75,16 +75,16 @@ public class GameManager : MonoBehaviour
         currentNode = roomDatabase.headNode;
 
         //Everything related to the Exit
-        exit = Resources.Load("Evac_Exit") as GameObject;
-        exit = SpawnExit(exit);
-        exit.SetActive(false);
+            //exit = Resources.Load("Evac_Exit") as GameObject;
+            //exit = SpawnExit(exit);
+            //exit.SetActive(false);
         EvacExit.OnPlayerExit += Exit_OnPlayerExit;
 
         evacTimer = new Timer(40.0f);
 
         //prevent the game manager game object from being destroyed between scenes
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(exit);
+            //DontDestroyOnLoad(exit);
 
 
 
