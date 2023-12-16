@@ -12,4 +12,9 @@ public class WeaponSO : ScriptableObject
 
     public GameObject projectilePrefab;
     public string fireWeaponSound;
+
+    public Texture2D weaponIcon;
+    public Texture2D projectileIcon;
+    public Texture2D ammoCountIcon;
+
 }

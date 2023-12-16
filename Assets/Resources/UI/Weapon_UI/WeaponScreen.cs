@@ -34,20 +34,57 @@ public class WeaponScreen : MonoBehaviour
     {
         weaponController = gameObject.GetComponent<WeaponController>();
 
-        PlayerManager.OnPlayerSpawn += Update_ProjectileUI_CurrentProjectiles;
-        RangedWeapon.OnPlayerShoot += Update_ProjectileUI_CurrentProjectiles;
-        PlayerProjectile.OnExplosion += Update_ProjectileUI_CurrentProjectiles;
-        WeaponController.UpdateUI += Update_ProjectileUI_CurrentProjectiles;
+        PlayerManager.OnPlayerSpawn += Update_WeaponUI_CurrentProjectiles;
+        RangedWeapon.OnPlayerShoot += Update_WeaponUI_CurrentProjectiles;
+        PlayerProjectile.OnExplosion += Update_WeaponUI_CurrentProjectiles;
+        PlayerManager.OnPlayerWeaponChange += Update_WeaponUI_CurrentProjectiles;
+        PlayerManager.OnPlayerWeaponChange += UpdateWeaponUI;
+        
         //PlayerManager.OnPlayerDetonate += Update_ProjectileUI_CurrentProjectiles;
     }
 
+    RangedWeapon tempWeaponInfo;
 
     int maxProjOnScreen;
 
-    void Update_ProjectileUI_CurrentProjectiles(object sender, System.EventArgs e)
+
+    void UpdateWeaponUI(object sender, System.EventArgs e)
+    {
+        tempWeaponInfo = PlayerManager.currentWeapon_ref;
+        Update_WeaponUI_WeaponIcon();
+        Update_WeaponUI_ProjectileIcon();
+        Update_WeaponUI_AmmoIcon();
+    }
+
+    void UpdateWeaponUI()
+    {
+        tempWeaponInfo = PlayerManager.currentWeapon_ref;
+        Update_WeaponUI_WeaponIcon();
+        Update_WeaponUI_ProjectileIcon();
+        Update_WeaponUI_AmmoIcon();
+    }
+
+
+    void Update_WeaponUI_WeaponIcon()
+    {
+        WeaponScreenMaterial.SetTexture("_WeaponBody_Texture", tempWeaponInfo.weaponIcon);
+    }
+
+    void Update_WeaponUI_ProjectileIcon()
+    {
+        WeaponScreenMaterial.SetTexture("_WeaponAmmo_Texture", tempWeaponInfo.projectileIcon);
+    }
+
+    void Update_WeaponUI_AmmoIcon()
+    {
+        WeaponScreenMaterial.SetTexture("_Ammo_Texture", tempWeaponInfo.ammoCountIcon);
+    }
+
+
+    void Update_WeaponUI_CurrentProjectiles(object sender, System.EventArgs e)
     {
         
-        maxProjOnScreen = WeaponController.maxActiveProjectiles_ref;
+        maxProjOnScreen = PlayerManager.currentWeapon_ref.maxActiveProjectiles;
         activeProjectiles = PlayerManager.activeProjectiles;
 
         //set current amount of ammo allowed on screen at one time
@@ -73,25 +110,11 @@ public class WeaponScreen : MonoBehaviour
             if(activeProjectiles > 0)
             {
                 WeaponScreenMaterial.SetFloat(ammoOpacity[i], fired);
+                UpdateWeaponUI();
             }
         }
 
+
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //playerinfo currentweapon is the weapon we're looking at
-        //current weapon is bazooka
-        //check current weapon maxammoonscreen is the number of projectiles to activate
-        //playermanager.activeprojectiles is the number to fade out
-        //playermaanager.activeprojectiles
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

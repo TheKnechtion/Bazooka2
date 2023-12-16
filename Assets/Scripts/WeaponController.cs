@@ -42,6 +42,11 @@ public class WeaponController:MonoBehaviour
 
     public event EventHandler FinishedWeaponChange;
     public static event EventHandler UpdateUI;
+
+    //public static int maxActiveProjectiles_ref;
+
+
+
     private void Awake()
     {
         if (Player)
@@ -68,16 +73,19 @@ public class WeaponController:MonoBehaviour
 
         PlayerManager.OnWeaponChange += ChangedWeapon;
 
-        
-        maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
+
+        //maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
 
         weaponSwitchTime = 0.5f;     
         canSwitch = false;
     }
 
+    public void InitializeWeaponUI()
+    {
+        FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
+    }
 
 
-    public static int maxActiveProjectiles_ref;
 
     private void ChangedWeapon(object sender, PlayerManager.OnWeaponSwitchEventArgs e)
     {
@@ -94,8 +102,7 @@ public class WeaponController:MonoBehaviour
                 ListIncrement();
             }
 
-            maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
-            UpdateUI?.Invoke(this, EventArgs.Empty);
+            //maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
 
             FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
             //Debug.Log("E pressed" + e.Epressed);
@@ -112,8 +119,6 @@ public class WeaponController:MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(maxActiveProjectiles_ref);
-
         if (switchTime < weaponSwitchTime)
         {
             switchTime += Time.deltaTime;
@@ -217,13 +222,16 @@ public class WeaponController:MonoBehaviour
 
     public void ShootWeapon()
     {
-        if(PlayerManager.activeProjectiles < currentWeapon.maxActiveProjectiles)
-        {
-            UpdateUI?.Invoke(this, EventArgs.Empty);
-            maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
-            currentWeapon.HandleShooting();
-        }
+        //UpdateUI?.Invoke(this, EventArgs.Empty);
+        currentWeapon.Shoot();
     }
+
+    public void PlayerShootWeapon()
+    {
+        //UpdateUI?.Invoke(this, EventArgs.Empty);
+        currentWeapon.PlayerShoot();
+    }
+
 
     //Utility for finding appropriate weapon data based on passed in string
     public WeaponInfo MakeWeapon(string weaponName)

@@ -8,10 +8,14 @@ public class RangedWeapon : WeaponBase, IShoot
     public static event EventHandler OnPlayerShoot;
     public static event EventHandler OnPlayerWeaponChange;
 
+    public Texture2D weaponIcon;
+    public Texture2D projectileIcon;
+    public Texture2D ammoCountIcon;
+
 
     public Transform shootPoint;
     public int maxActiveProjectiles;
-    public static int maxActiveProjectiles_ref;
+
     private float time;
 
     private bool canShoot;
@@ -60,16 +64,24 @@ public class RangedWeapon : WeaponBase, IShoot
         AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
 
 
+        Instantiate(newProjectile, shootPoint.position, shootPoint.rotation);
+        //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
+        
+    }
+
+    public void PlayerShoot()
+    {
+        //Instantiate projectile prefab that we have
+        GameObject newProjectile = projectilePrefab;
+        AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
+
         Instantiate(newProjectile, shootPoint.position, shootPoint.rotation).AddComponent<PlayerProjectile>();
         //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
 
-
-        
-
         OnPlayerShoot?.Invoke(this, EventArgs.Empty);
 
-       // Debug.Log("Spacer");
     }
+
 
     public void HandleShooting()
     {
@@ -96,8 +108,11 @@ public class RangedWeapon : WeaponBase, IShoot
             projectilePrefab = stats.projectilePrefab;
             maxActiveProjectiles = stats.maxActiveAmount;
 
+            weaponIcon = stats.weaponIcon;
+            projectileIcon = stats.projectileIcon;
+            ammoCountIcon = stats.ammoCountIcon;
 
-        }
+}
     }
 
 

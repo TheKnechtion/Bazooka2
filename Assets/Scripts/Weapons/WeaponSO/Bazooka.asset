@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Bazooka
   m_EditorClassIdentifier: 
   weaponName: Bazooka
-  fireRate: 1.5
+  fireRate: 0.15
   maxActiveAmount: 3
   walkMultiplier: 0.9
   projectilePrefab: {fileID: 3762192566447115919, guid: fd5c8f09c567eea4f9481e20bd712490, type: 3}
   fireWeaponSound: bazooka_fire
+  weaponIcon: {fileID: 2800000, guid: e7c2037f70a083a4989d1e8a8a167c62, type: 3}
+  projectileIcon: {fileID: 2800000, guid: 2c9265ee9822aa449b72d4ca8dbc26c4, type: 3}
+  ammoCountIcon: {fileID: 2800000, guid: f79c3ef19c3d07340820ccf4bb4a80e5, type: 3}

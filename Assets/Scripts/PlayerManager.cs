@@ -25,7 +25,6 @@ public class PlayerManager : MonoBehaviour
 
     GameObject projectilePrefab;
     GameObject currentEntity;
-    public static WeaponInfo currentWeapon;
 
     float timeBetweenShots = 0.0f;
 
@@ -76,6 +75,10 @@ public class PlayerManager : MonoBehaviour
 
 
         mainCamera = Camera.main;
+
+        weaponController = GetComponent<WeaponController>();
+
+        weaponController.FinishedWeaponChange += UpdateCurrentWeaponInfo;
     }
 
     public static Vector2 mouseDelta;
@@ -104,7 +107,7 @@ public class PlayerManager : MonoBehaviour
 
         _playerController.PlayerActions.ChangeWeapon.performed += ChangedWeapon;
 
-        weaponController = GetComponent<WeaponController>();
+
 
         PauseManager.OnPause += PauseShooting;
 
@@ -116,12 +119,21 @@ public class PlayerManager : MonoBehaviour
         //projectionVector = this.transform.position - AimCursor.cursorLocation;
 
         //CheckWeaponChange();
+
+        weaponController.InitializeWeaponUI();
     }
+
+    public static RangedWeapon currentWeapon_ref;
+
+    private void UpdateCurrentWeaponInfo(object sender, EventArgs e)
+    {
+        currentWeapon_ref = weaponController.currentWeapon;
+        OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty); //Used for detecting weapon switch
+    }
+
 
     private void ChangedWeapon(InputAction.CallbackContext obj)
     {
-        
-        OnPlayerWeaponChange?.Invoke(this, EventArgs.Empty); //Used for detecting weapon switch
         OnWeaponChange?.Invoke(this, new OnWeaponSwitchEventArgs {
             Qpressed = Keyboard.current.qKey.wasPressedThisFrame,
             Epressed = Keyboard.current.eKey.wasPressedThisFrame
@@ -188,7 +200,7 @@ public class PlayerManager : MonoBehaviour
 
 
         //tracks time between shots, stopping at 0.
-        timeBetweenShots = (timeBetweenShots > 0) ? timeBetweenShots -= Time.deltaTime : 0;
+        timeBetweenShots -= Time.deltaTime;
 
     }
 
@@ -246,15 +258,11 @@ public class PlayerManager : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
 
-        weaponController.ShootWeapon();
-
-        if (timeBetweenShots <= 0.0f && activeProjectiles < currentWeapon.maxProjectilesOnScreen)
+        if (activeProjectiles < weaponController.currentWeapon.maxActiveProjectiles && timeBetweenShots <= 0)
         {
-
-            timeBetweenShots = currentWeapon.timeBetweenProjectileFire;
-            
+            timeBetweenShots = weaponController.currentWeapon.fireRate;
+            weaponController.PlayerShootWeapon();
             //Shoot();
-
         }
     }
 
@@ -279,6 +287,7 @@ public class PlayerManager : MonoBehaviour
 
     Vector3 projectileSpawnLocation;
 
+    /*
     void Shoot()
     {
         activeProjectiles++;
@@ -302,6 +311,7 @@ public class PlayerManager : MonoBehaviour
         currentEntity.AddComponent<PlayerProjectile>();
         currentEntity.AddComponent<Light>();
     }
+    */
 
 
 }
