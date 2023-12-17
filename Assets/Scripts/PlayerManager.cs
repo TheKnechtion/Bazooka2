@@ -265,7 +265,7 @@ public class PlayerManager : MonoBehaviour
 
     public void IncreaseMaxProjOnScreen(int amountToGain)
     {
-        weaponController.currentWeapon.maxActiveProjectiles++;
+        weaponController.currentWeapon.maxActiveProjectiles += amountToGain;
     }
 
     private void HandleShooting(InputAction.CallbackContext e)
