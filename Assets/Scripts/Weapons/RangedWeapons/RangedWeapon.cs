@@ -15,6 +15,9 @@ public class RangedWeapon : WeaponBase, IShoot
 
     public Transform shootPoint;
     public int maxActiveProjectiles;
+    public int maxAmmo;
+    public int currentAmmo;
+
 
     private float time;
 
@@ -78,8 +81,15 @@ public class RangedWeapon : WeaponBase, IShoot
         Instantiate(newProjectile, shootPoint.position, shootPoint.rotation).AddComponent<PlayerProjectile>();
         //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
 
+        currentAmmo--;
+
         OnPlayerShoot?.Invoke(this, EventArgs.Empty);
 
+    }
+
+    public void GainAmmo(int amountToGain)
+    {
+        currentAmmo = (currentAmmo + amountToGain <= maxAmmo) ? currentAmmo + amountToGain : maxAmmo;
     }
 
 
@@ -111,8 +121,9 @@ public class RangedWeapon : WeaponBase, IShoot
             weaponIcon = stats.weaponIcon;
             projectileIcon = stats.projectileIcon;
             ammoCountIcon = stats.ammoCountIcon;
-
-}
+            maxAmmo = stats.maxAmmo;
+            currentAmmo = maxAmmo;
+        }
     }
 
 

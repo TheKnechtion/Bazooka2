@@ -10,6 +10,8 @@ public class ItemHover : MonoBehaviour
     public float incrementerRotate = 0;
     private float maxIncrement = 3;
 
+    [SerializeField] float yOffset;
+
     private Quaternion rotation;
 
     // Start is called before the first frame update
@@ -50,7 +52,7 @@ public class ItemHover : MonoBehaviour
         gameObject.transform.position =
             new Vector3(
                 gameObject.transform.position.x,
-                yValue,
+                yValue + yOffset,
                 gameObject.transform.position.z);
 
         incrementerVertical += 0.05f;

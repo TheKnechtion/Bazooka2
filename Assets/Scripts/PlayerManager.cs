@@ -79,6 +79,9 @@ public class PlayerManager : MonoBehaviour
         weaponController = GetComponent<WeaponController>();
 
         weaponController.FinishedWeaponChange += UpdateCurrentWeaponInfo;
+        Ammo_PickUp_Item.pickedUpAmmo += UpdateCurrentWeaponInfo;
+        MaxProjOnScreen_Increase_PickUp.pickedUpAmmo += UpdateCurrentWeaponInfo;
+
     }
 
     public static Vector2 mouseDelta;
@@ -216,15 +219,18 @@ public class PlayerManager : MonoBehaviour
         rotation = Quaternion.LookRotation(playerLookDirection, Vector3.up);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 65.0f);
-    }
 
-    private void LateUpdate()
-    {
         if (playerSpawn)
         {
             OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
             playerSpawn = false;
         }
+
+    }
+
+    private void LateUpdate()
+    {
+
 
     }
 
@@ -251,6 +257,16 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+
+    public void GainAmmo(int amountToGain)
+    {
+        weaponController.currentWeapon.currentAmmo = (weaponController.currentWeapon.currentAmmo + amountToGain <= weaponController.currentWeapon.maxAmmo) ? weaponController.currentWeapon.currentAmmo + amountToGain : weaponController.currentWeapon.maxAmmo;   
+    }
+
+    public void IncreaseMaxProjOnScreen(int amountToGain)
+    {
+        weaponController.currentWeapon.maxActiveProjectiles++;
+    }
 
     private void HandleShooting(InputAction.CallbackContext e)
     {

@@ -76,7 +76,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OnesNumber:
-        m_Texture: {fileID: 2800000, guid: 4264a27f1f9f8ed419474b87e4712853, type: 3}
+        m_Texture: {fileID: 2800000, guid: 071767ae6cb88ab43889873ccf665279, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -152,7 +152,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TensNumber:
-        m_Texture: {fileID: 2800000, guid: 0450e690a55f10845b0bdaaf77c0a404, type: 3}
+        m_Texture: {fileID: 2800000, guid: 662ee60e4a817514a82e9300a2d397a7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
@@ -191,10 +191,10 @@ Material:
     - _AmmoTwoOpacity: 1
     - _Ammo_Eight_Opacity: 1
     - _Ammo_Eight_Unlocked: 0
-    - _Ammo_Five_Opacity: 1
+    - _Ammo_Five_Opacity: 0.35
     - _Ammo_Five_Unlocked: 0
-    - _Ammo_Four_Opacity: 0.35
-    - _Ammo_Four_Unlocked: 0
+    - _Ammo_Four_Opacity: 1
+    - _Ammo_Four_Unlocked: 1
     - _Ammo_Nine_Opacity: 1
     - _Ammo_Nine_Unlocked: 0
     - _Ammo_One_Opacity: 1
@@ -239,13 +239,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _AmmoCountColor: {r: 0, g: 0.68235296, b: 0, a: 0}
+    - _AmmoCountColor: {r: 0, g: 0.7, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BorderColor: {r: 0, g: 0.684, b: 0, a: 1}
     - _Color: {r: 0, g: 0.2078431, b: 0.007843138, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _IconColor: {r: 0, g: 0.684, b: 0, a: 0}
-    - _ScreenColor: {r: 0, g: 0.20754716, b: 0.00918352, a: 0}
+    - _IconColor: {r: 0, g: 0.7, b: 0, a: 0}
+    - _ScreenColor: {r: 0.3, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2234213890505505703

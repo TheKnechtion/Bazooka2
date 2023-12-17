@@ -12,7 +12,8 @@ public class ExplosiveBarrel : DestroyableObject
     [SerializeField] private GameObject meshObject;
     [SerializeField] private Material fuseMaterial;
     
-    
+
+
     private Renderer render;
 
     // Start is called before the first frame update
@@ -33,6 +34,8 @@ public class ExplosiveBarrel : DestroyableObject
         health= 0;
         if (!isDestroyed) 
         {
+            AudioManager.PlayClipAtPosition("explosion_sound", this.transform.position);
+
             isDestroyed= true;
             StartCoroutine(fuse());
             //explosive.Explode();

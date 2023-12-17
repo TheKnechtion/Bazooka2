@@ -664,7 +664,7 @@ RectTransform:
   m_GameObject: {fileID: 2136175341671245036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8409, y: 0.8409, z: 0.8409}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8023370495323095756}
@@ -713,8 +713,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 2147483903
+  m_fontColor: {r: 1, g: 0, b: 0, a: 0.5019608}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -800,7 +800,7 @@ RectTransform:
   m_GameObject: {fileID: 2290659589952125177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.80555, y: 0.80555, z: 0.80555}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8704208165621033575}
@@ -849,8 +849,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 1426652928
+  m_fontColor: {r: 0, g: 1, b: 0.029761791, a: 0.33333334}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1242,7 +1242,7 @@ RectTransform:
   m_GameObject: {fileID: 5081794774591239959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.76, y: 1.76, z: 1.76}
+  m_LocalScale: {x: 4.4991903, y: 4.4991903, z: 4.4991903}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2741598929783211154}
@@ -1250,7 +1250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12, y: 121}
+  m_AnchoredPosition: {x: 12, y: 101}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4998986919654090093
@@ -1273,8 +1273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.7490196, g: 0.972549, b: 0.7490196, a: 1}
+  m_Material: {fileID: 2100000, guid: 097eaac1bbd87144097bc913080b17c7, type: 2}
+  m_Color: {r: 0.04750526, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1554,7 +1554,7 @@ RectTransform:
   m_GameObject: {fileID: 5802557287376689590}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.76, y: 1.76, z: 1.76}
+  m_LocalScale: {x: 4.5093164, y: 4.5093164, z: 4.5093164}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5893105741427701753}
@@ -1562,7 +1562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12, y: 1}
+  m_AnchoredPosition: {x: 12, y: -89}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6191738661207795235
@@ -1585,7 +1585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 7840d30fb47869248864ad6474cd18bd, type: 2}
   m_Color: {r: 1, g: 0.6794058, b: 0.572327, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2167,6 +2167,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponScreenMaterial: {fileID: 2100000, guid: 8b5bd7e9d52c342429712c3d637e6a38, type: 2}
+  numbers:
+  - {fileID: 2800000, guid: 4264a27f1f9f8ed419474b87e4712853, type: 3}
+  - {fileID: 2800000, guid: 662ee60e4a817514a82e9300a2d397a7, type: 3}
+  - {fileID: 2800000, guid: 0450e690a55f10845b0bdaaf77c0a404, type: 3}
+  - {fileID: 2800000, guid: 0db8e7aef3e107642a78b90dac22500a, type: 3}
+  - {fileID: 2800000, guid: 7e0f07ed5ad937e44aff52624f4b4768, type: 3}
+  - {fileID: 2800000, guid: 071767ae6cb88ab43889873ccf665279, type: 3}
+  - {fileID: 2800000, guid: 7079720e4029ca543b1bb9351d9535ee, type: 3}
+  - {fileID: 2800000, guid: 28e85a37c8b7b164bbd43726815542aa, type: 3}
+  - {fileID: 2800000, guid: 7fd5c9fbb5163c947982488a19309f15, type: 3}
+  - {fileID: 2800000, guid: 73b261ef2b6a1d34d9c57b217176e936, type: 3}
 --- !u!1 &7298740311884908398
 GameObject:
   m_ObjectHideFlags: 0
