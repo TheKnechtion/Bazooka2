@@ -67,6 +67,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 93b687d0c377737438b86c3f6420146a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _OptionTwoOBJ:
+        m_Texture: {fileID: 2800000, guid: 7a1eb635c661f5b43841a91d5917f5ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -211,7 +215,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _IsProceedSelected: 0
-    - _IsScreenActive: 0
+    - _IsScreenActive: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OptionOneSelected: 0
@@ -231,11 +235,11 @@ Material:
     m_Colors:
     - _BarColor: {r: 0, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BorderColor: {r: 0, g: 0.68235296, b: 0, a: 0}
-    - _Color: {r: 0, g: 0.20784314, b: 0.007843138, a: 1}
+    - _BorderColor: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0.7924528, g: 0.4663355, b: 0.2728729, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OptionOneColor: {r: 0, g: 0.54901963, b: 0, a: 0}
-    - _OptionTwoColor: {r: 0, g: 0.5471698, b: 0, a: 0}
+    - _OptionOneColor: {r: 0.03, g: 0.69, b: 0, a: 1}
+    - _OptionTwoColor: {r: 0.03, g: 0.69, b: 0, a: 1}
     - _ScreenColor: {r: 0, g: 0.20784307, b: 0.007843138, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

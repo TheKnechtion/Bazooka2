@@ -19,7 +19,8 @@ public class PauseManager : MonoBehaviour
     {
         _playerController = new PlayerController();
 
-        _playerController.PlayerActions.Pause.performed += PauseGame;
+        _playerController.PlayerMenuActions.Pause.performed += PauseGame;
+        _playerController.PlayerMenuActions.Pause.canceled -= PauseGame;
     }
 
 
@@ -30,11 +31,13 @@ public class PauseManager : MonoBehaviour
         {
             Time.timeScale = 0.0f;
             GamePaused = true;
+            PlayerManager._playerController.PlayerActions.Disable();
         }
         else
         {
             Time.timeScale = 1.0f;
             GamePaused = false;
+            PlayerManager._playerController.PlayerActions.Enable();
         }
         OnPause?.Invoke(this, EventArgs.Empty);
     }
@@ -43,14 +46,14 @@ public class PauseManager : MonoBehaviour
     private void OnEnable()
     {
         //begins player movement functions
-        _playerController.PlayerActions.Enable();
+        _playerController.PlayerMenuActions.Enable();
     }
 
 
     private void OnDisable()
     {
         //ends player movement functions
-        _playerController.PlayerActions.Disable();
+        _playerController.PlayerMenuActions.Disable();
     }
 
 

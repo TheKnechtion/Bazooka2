@@ -51,6 +51,9 @@ public class AimCursor : MonoBehaviour
         PlayerManager.OnPlayerAim += StartAiming;
         PlayerManager.OnPlayerStopAim += StopAiming;
 
+        PauseManager.OnPause += MakeCursorVisisble;
+
+
         cursorImage = gameObject.GetComponent<Image>();
         tempColor = Color.white;
         tempColor.a = 0;
@@ -68,7 +71,6 @@ public class AimCursor : MonoBehaviour
 
     private void Update()
     {
-
         mouseDelta = PlayerManager.mouseDelta;
 
         mouseMovementVector = new Vector3(mouseDelta.x, mouseDelta.y, 0) * cursorSensitivity;
@@ -88,6 +90,8 @@ public class AimCursor : MonoBehaviour
         cursorLocation = gameObject.transform.position;
 
         cursorVector = cursorLocation - cam.transform.position;
+
+        cursorImage.color = lightGreen;
     }
 
 
@@ -110,6 +114,27 @@ public class AimCursor : MonoBehaviour
         isAiming = false;
     }
 
+
+    bool isPaused = false;
+    public void MakeCursorVisisble(object sender, EventArgs e)
+    {
+        if(!isPaused)
+        {
+            tempColor = lightGreen;
+            tempColor.a = 1;
+
+            isPaused = true;
+        }
+        else
+        {
+            tempColor = Color.white;
+            tempColor.a = 0;
+            cursorImage.color = tempColor;
+            isPaused = false;
+        }
+
+
+    }
 
 
 

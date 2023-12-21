@@ -132,15 +132,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "13bcc874-2291-47d2-b290-f9b89adea930",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Aim",
                     "type": "Button",
                     "id": "b83023ee-454d-40e8-99a0-7a9059759b36",
@@ -329,17 +320,6 @@
                 },
                 {
                     "name": "",
-                    "id": "6d32466b-c100-4421-a101-4c04accba1f7",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c3519cca-649c-403d-9cb0-99f696777103",
                     "path": "<Keyboard>/ctrl",
                     "interactions": "",
@@ -357,6 +337,90 @@
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerInteract",
+            "id": "d3e8ad95-9444-4aef-b563-74f0305631eb",
+            "actions": [
+                {
+                    "name": "Activate",
+                    "type": "Button",
+                    "id": "2c715fce-9892-4422-a514-cbe79f959815",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e903d440-f1bc-4f30-8e6f-604fbccf2806",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerMenuActions",
+            "id": "15f14cab-116d-4f39-9569-6f605dd469af",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "f58df91e-7c61-4db9-8baf-2fb093127d04",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "00d7d139-080c-4652-afbe-d74c4c6c23c9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerAim",
+            "id": "049ccdc5-c179-4fd7-9bd4-84eb5ab548e3",
+            "actions": [
+                {
+                    "name": "MousePosition",
+                    "type": "PassThrough",
+                    "id": "fd3cf3eb-8dbf-4bb7-aad1-6ea18c6315e7",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "702bbf27-cdbe-403e-9a57-e6858910fafd",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

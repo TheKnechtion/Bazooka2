@@ -154,15 +154,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""13bcc874-2291-47d2-b290-f9b89adea930"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Aim"",
                     ""type"": ""Button"",
                     ""id"": ""b83023ee-454d-40e8-99a0-7a9059759b36"",
@@ -351,17 +342,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6d32466b-c100-4421-a101-4c04accba1f7"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c3519cca-649c-403d-9cb0-99f696777103"",
                     ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
@@ -383,6 +363,90 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerInteract"",
+            ""id"": ""d3e8ad95-9444-4aef-b563-74f0305631eb"",
+            ""actions"": [
+                {
+                    ""name"": ""Activate"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c715fce-9892-4422-a514-cbe79f959815"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e903d440-f1bc-4f30-8e6f-604fbccf2806"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Activate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerMenuActions"",
+            ""id"": ""15f14cab-116d-4f39-9569-6f605dd469af"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f58df91e-7c61-4db9-8baf-2fb093127d04"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""00d7d139-080c-4652-afbe-d74c4c6c23c9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerAim"",
+            ""id"": ""049ccdc5-c179-4fd7-9bd4-84eb5ab548e3"",
+            ""actions"": [
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fd3cf3eb-8dbf-4bb7-aad1-6ea18c6315e7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""702bbf27-cdbe-403e-9a57-e6858910fafd"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -398,8 +462,16 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_PlayerActions_MousePosition = m_PlayerActions.FindAction("MousePosition", throwIfNotFound: true);
         m_PlayerActions_Activate = m_PlayerActions.FindAction("Activate", throwIfNotFound: true);
         m_PlayerActions_ShootTwo = m_PlayerActions.FindAction("ShootTwo", throwIfNotFound: true);
-        m_PlayerActions_Pause = m_PlayerActions.FindAction("Pause", throwIfNotFound: true);
         m_PlayerActions_Aim = m_PlayerActions.FindAction("Aim", throwIfNotFound: true);
+        // PlayerInteract
+        m_PlayerInteract = asset.FindActionMap("PlayerInteract", throwIfNotFound: true);
+        m_PlayerInteract_Activate = m_PlayerInteract.FindAction("Activate", throwIfNotFound: true);
+        // PlayerMenuActions
+        m_PlayerMenuActions = asset.FindActionMap("PlayerMenuActions", throwIfNotFound: true);
+        m_PlayerMenuActions_Pause = m_PlayerMenuActions.FindAction("Pause", throwIfNotFound: true);
+        // PlayerAim
+        m_PlayerAim = asset.FindActionMap("PlayerAim", throwIfNotFound: true);
+        m_PlayerAim_MousePosition = m_PlayerAim.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -513,7 +585,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_MousePosition;
     private readonly InputAction m_PlayerActions_Activate;
     private readonly InputAction m_PlayerActions_ShootTwo;
-    private readonly InputAction m_PlayerActions_Pause;
     private readonly InputAction m_PlayerActions_Aim;
     public struct PlayerActionsActions
     {
@@ -525,7 +596,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_PlayerActions_MousePosition;
         public InputAction @Activate => m_Wrapper.m_PlayerActions_Activate;
         public InputAction @ShootTwo => m_Wrapper.m_PlayerActions_ShootTwo;
-        public InputAction @Pause => m_Wrapper.m_PlayerActions_Pause;
         public InputAction @Aim => m_Wrapper.m_PlayerActions_Aim;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
@@ -554,9 +624,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @ShootTwo.started += instance.OnShootTwo;
             @ShootTwo.performed += instance.OnShootTwo;
             @ShootTwo.canceled += instance.OnShootTwo;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
@@ -582,9 +649,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @ShootTwo.started -= instance.OnShootTwo;
             @ShootTwo.performed -= instance.OnShootTwo;
             @ShootTwo.canceled -= instance.OnShootTwo;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
@@ -605,6 +669,144 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
+
+    // PlayerInteract
+    private readonly InputActionMap m_PlayerInteract;
+    private List<IPlayerInteractActions> m_PlayerInteractActionsCallbackInterfaces = new List<IPlayerInteractActions>();
+    private readonly InputAction m_PlayerInteract_Activate;
+    public struct PlayerInteractActions
+    {
+        private @PlayerController m_Wrapper;
+        public PlayerInteractActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Activate => m_Wrapper.m_PlayerInteract_Activate;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerInteract; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerInteractActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerInteractActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerInteractActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerInteractActionsCallbackInterfaces.Add(instance);
+            @Activate.started += instance.OnActivate;
+            @Activate.performed += instance.OnActivate;
+            @Activate.canceled += instance.OnActivate;
+        }
+
+        private void UnregisterCallbacks(IPlayerInteractActions instance)
+        {
+            @Activate.started -= instance.OnActivate;
+            @Activate.performed -= instance.OnActivate;
+            @Activate.canceled -= instance.OnActivate;
+        }
+
+        public void RemoveCallbacks(IPlayerInteractActions instance)
+        {
+            if (m_Wrapper.m_PlayerInteractActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerInteractActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerInteractActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerInteractActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerInteractActions @PlayerInteract => new PlayerInteractActions(this);
+
+    // PlayerMenuActions
+    private readonly InputActionMap m_PlayerMenuActions;
+    private List<IPlayerMenuActionsActions> m_PlayerMenuActionsActionsCallbackInterfaces = new List<IPlayerMenuActionsActions>();
+    private readonly InputAction m_PlayerMenuActions_Pause;
+    public struct PlayerMenuActionsActions
+    {
+        private @PlayerController m_Wrapper;
+        public PlayerMenuActionsActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_PlayerMenuActions_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerMenuActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerMenuActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerMenuActionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerMenuActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerMenuActionsActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(IPlayerMenuActionsActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(IPlayerMenuActionsActions instance)
+        {
+            if (m_Wrapper.m_PlayerMenuActionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerMenuActionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerMenuActionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerMenuActionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerMenuActionsActions @PlayerMenuActions => new PlayerMenuActionsActions(this);
+
+    // PlayerAim
+    private readonly InputActionMap m_PlayerAim;
+    private List<IPlayerAimActions> m_PlayerAimActionsCallbackInterfaces = new List<IPlayerAimActions>();
+    private readonly InputAction m_PlayerAim_MousePosition;
+    public struct PlayerAimActions
+    {
+        private @PlayerController m_Wrapper;
+        public PlayerAimActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MousePosition => m_Wrapper.m_PlayerAim_MousePosition;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerAim; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerAimActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerAimActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerAimActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerAimActionsCallbackInterfaces.Add(instance);
+            @MousePosition.started += instance.OnMousePosition;
+            @MousePosition.performed += instance.OnMousePosition;
+            @MousePosition.canceled += instance.OnMousePosition;
+        }
+
+        private void UnregisterCallbacks(IPlayerAimActions instance)
+        {
+            @MousePosition.started -= instance.OnMousePosition;
+            @MousePosition.performed -= instance.OnMousePosition;
+            @MousePosition.canceled -= instance.OnMousePosition;
+        }
+
+        public void RemoveCallbacks(IPlayerAimActions instance)
+        {
+            if (m_Wrapper.m_PlayerAimActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerAimActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerAimActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerAimActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerAimActions @PlayerAim => new PlayerAimActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -617,7 +819,18 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnActivate(InputAction.CallbackContext context);
         void OnShootTwo(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+    }
+    public interface IPlayerInteractActions
+    {
+        void OnActivate(InputAction.CallbackContext context);
+    }
+    public interface IPlayerMenuActionsActions
+    {
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IPlayerAimActions
+    {
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

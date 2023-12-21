@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
 
-    PlayerController _playerController;
+    public static PlayerController _playerController;
     WeaponController weaponController;
 
     bool pressed;
@@ -112,7 +112,7 @@ public class PlayerManager : MonoBehaviour
 
 
 
-        PauseManager.OnPause += PauseShooting;
+
 
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Confined;
@@ -243,20 +243,6 @@ public class PlayerManager : MonoBehaviour
         OnPlayerDetonate?.Invoke(this, EventArgs.Empty);
     }
 
-    bool isGamePaused = false;
-
-    void PauseShooting(object sender, System.EventArgs e)
-    {
-        if(!isGamePaused)
-        {
-            isGamePaused = true;
-        }
-        else
-        {
-            isGamePaused = false;
-        }
-    }
-
 
     public void GainAmmo(int amountToGain)
     {
@@ -289,6 +275,7 @@ public class PlayerManager : MonoBehaviour
     {
         //begins player movement functions
         _playerController.PlayerActions.Enable();
+        _playerController.PlayerInteract.Enable();
 
     }
 
@@ -297,6 +284,7 @@ public class PlayerManager : MonoBehaviour
     {
         //ends player movement functions
         _playerController.PlayerActions.Disable();
+        _playerController.PlayerInteract.Disable();
     }
 
     //List<GameObject> currentProjectiles = new List<GameObject> ();

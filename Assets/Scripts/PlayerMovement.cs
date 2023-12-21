@@ -11,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 moveInput;
     PlayerController _playerController;
-    float speed;
+    
     public float modifiedSpeed; //For wepaon holding Speeds
 
     bool dash = false;
+
+    float speed;
 
     float dashCooldown;
 
@@ -45,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
         PlayerManager.OnPlayerStopAim += ResumeMoving;
         //PlayerManager.OnWeaponChange += ChangedWeapon;
         weaponController.FinishedWeaponChange += ChangedWeapon;
+
+
     }
 
     private void ChangedWeapon(object sender, EventArgs e)
@@ -70,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public static float slowSpeed = 1.0f;
+    public static float environmentalEffectSpeed = 1.0f;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -88,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
-        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * modifiedSpeed * slowSpeed;
+        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * modifiedSpeed * slowSpeed * environmentalEffectSpeed;
 
         //basic player movement
         //moves the game object this script is attached to based on WASD input 
@@ -97,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
         this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement;
 
+        //this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*100f);
 
         currentPosition = transform.position;
     }

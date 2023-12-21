@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     //the current room/scene the player is loaded into
     public DoublyNode currentNode;
 
-    
-    
+
+    [SerializeField] float gravityMagnitude;
 
     //text displayed if the player wins or loses
     GameObject winnerText;
@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        //Physics.gravity = Physics.gravity * gravityMagnitude;
+
         //state = GameState.Playing;
 
         txtExporter = new Exporter();
