@@ -432,6 +432,15 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""01982ad9-47e8-43a4-93b1-47f6d98124d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -443,6 +452,17 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89d9a7f1-4b6c-496b-9bc7-94d82e7f042c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -472,6 +492,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         // PlayerAim
         m_PlayerAim = asset.FindActionMap("PlayerAim", throwIfNotFound: true);
         m_PlayerAim_MousePosition = m_PlayerAim.FindAction("MousePosition", throwIfNotFound: true);
+        m_PlayerAim_Select = m_PlayerAim.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -766,11 +787,13 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerAim;
     private List<IPlayerAimActions> m_PlayerAimActionsCallbackInterfaces = new List<IPlayerAimActions>();
     private readonly InputAction m_PlayerAim_MousePosition;
+    private readonly InputAction m_PlayerAim_Select;
     public struct PlayerAimActions
     {
         private @PlayerController m_Wrapper;
         public PlayerAimActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @MousePosition => m_Wrapper.m_PlayerAim_MousePosition;
+        public InputAction @Select => m_Wrapper.m_PlayerAim_Select;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAim; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -783,6 +806,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @MousePosition.started += instance.OnMousePosition;
             @MousePosition.performed += instance.OnMousePosition;
             @MousePosition.canceled += instance.OnMousePosition;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         private void UnregisterCallbacks(IPlayerAimActions instance)
@@ -790,6 +816,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @MousePosition.started -= instance.OnMousePosition;
             @MousePosition.performed -= instance.OnMousePosition;
             @MousePosition.canceled -= instance.OnMousePosition;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         public void RemoveCallbacks(IPlayerAimActions instance)
@@ -832,5 +861,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     public interface IPlayerAimActions
     {
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }
