@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CRT_Ground
-  m_Shader: {fileID: -6465566751694194690, guid: ff58ec5b64afc0c4fbc1e1412dcbf540, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: bd8642ca0a00b664091fdcd4c6a147bb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -74,6 +74,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_dcb0c13421084b2ebc18b99d62aa29ce_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 23441d1b1e06e15428cd085734149ddf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -136,5 +140,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offeset: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tiling: {r: 0, g: 15, b: 0, a: 0}
+    - _Tiling: {r: 20, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

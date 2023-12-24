@@ -7,10 +7,7 @@ using UnityEngine.Events;
 
 public class Button_Push : MonoBehaviour
 {
-    [SerializeField] GameObject activatedObject;
-
-
-    public float distanceFromPlayer;
+  
     bool canActivate = false;
 
     Material activatedMat;
@@ -77,7 +74,6 @@ public class Button_Push : MonoBehaviour
             buttonRenderer.material = activatedMat;
 
             OnActivated.Invoke();
-            targetObject.GetComponent<IActivate>().Activate();
 
             CheckForVirtualCamera();
             DeleteOnActivate();

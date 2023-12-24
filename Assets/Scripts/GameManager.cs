@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        //Physics.gravity = Physics.gravity * gravityMagnitude;
+        Physics.gravity = Physics.gravity * gravityMagnitude;
 
         //state = GameState.Playing;
 

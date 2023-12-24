@@ -6,45 +6,85 @@ using UnityEngine.InputSystem;
 
 public class DragObject : MonoBehaviour
 {
+
+    [SerializeField] PhysicMaterial frictionless;
+    [SerializeField] BoxCollider physicsCollider;
+    [SerializeField] float dragObjectSpeed;
+
+
     float distance;
     PlayerController _playerController;
     PlayerController _playerManagerController;
+
+    BoxCollider object_rb;
+
+
 
 
     bool isDragging = false;
     private void Awake()
     {
         _playerController = new PlayerController();
-        //_playerController.PlayerInteract.Activate.performed += ;
+        _playerController.PlayerInteract.Activate.performed += HandleDrag;
+        _playerController.PlayerInteract.Activate.canceled -= HandleDrag;
     }
 
+    bool canDrag = false;
+
+    Collider playerCollider;
 
     private void OnTriggerStay(Collider other)
     {
-        if(_playerController.PlayerInteract.Activate.IsPressed() && other.transform.tag == "Player")
+        if(other.transform.tag == "Player")
         {
-
-            if(isDragging)
-            {
-                transform.SetParent(null);
-                isDragging = false;
-                PlayerManager._playerController.PlayerActions.Enable();
-            }
-            else
-            {
-                transform.SetParent(other.transform, true);
-                isDragging = true;
-                PlayerManager._playerController.PlayerActions.Disable();
-            }
+            canDrag = true;
+            playerCollider = other;
         }
     }
 
+
+    void HandleDrag(InputAction.CallbackContext e)
+    {
+        if (canDrag && isDragging)
+        {
+            StopDragging();
+        }
+        else if (canDrag)
+        {
+            StartDragging(playerCollider);
+        }
+    }
+
+
+
+
     private void OnTriggerExit(Collider other)
+    {
+        if(other.transform.tag == "Player")
+        {
+            canDrag = false;
+            isDragging = false;
+            StopDragging();
+        }
+    }
+
+    void StartDragging(Collider dragObject)
+    {
+        transform.SetParent(dragObject.transform, true);
+        isDragging = true;
+        PlayerManager._playerController.PlayerActions.Disable();
+        PlayerMovement.dragObjectSpeed = dragObjectSpeed;
+    }
+
+    void StopDragging()
     {
         transform.SetParent(null);
         isDragging = false;
+        PlayerMovement.dragObjectSpeed = 1.0f;
         PlayerManager._playerController.PlayerActions.Enable();
     }
+
+
 
     private void OnEnable()
     {

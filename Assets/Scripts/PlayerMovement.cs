@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     public static float slowSpeed = 1.0f;
     public static float environmentalEffectSpeed = 1.0f;
+    public static float dragObjectSpeed = 1.0f;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -93,16 +94,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
-        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * modifiedSpeed * slowSpeed * environmentalEffectSpeed;
+        playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * modifiedSpeed * slowSpeed * environmentalEffectSpeed * dragObjectSpeed;
 
         //basic player movement
         //moves the game object this script is attached to based on WASD input 
 
         movementAnimator.SetFloat("MovementSpeed", playerMovement.magnitude);
 
-        this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement;
+        //this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement;
 
-        //this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*100f);
+        this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*100f);
 
         currentPosition = transform.position;
     }

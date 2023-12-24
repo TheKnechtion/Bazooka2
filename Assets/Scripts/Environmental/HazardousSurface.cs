@@ -7,19 +7,34 @@ public class HazardousSurface : MonoBehaviour
     bool canTakeDamage = true;
     [SerializeField] float damageInterval;
     [SerializeField] int damage;
+    [SerializeField] float environmentalEffectSpeed;
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player" && canTakeDamage)
+        {
+            DamageEntity(collision);
+        }
 
+        PlayerMovement.environmentalEffectSpeed = environmentalEffectSpeed;
+    }
 
 
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Player" && canTakeDamage)
         {
-            PlayerMovement.environmentalEffectSpeed = 0.7f;
-            collision.gameObject.GetComponent<IDamagable>().TakeDamage(damage);
-            canTakeDamage = false;
-            StartCoroutine(DamageInterval());
+            DamageEntity(collision);
         }
+
+        PlayerMovement.environmentalEffectSpeed = environmentalEffectSpeed;
+    }
+
+    void DamageEntity(Collision entity)
+    {
+        entity.gameObject.GetComponent<IDamagable>().TakeDamage(damage);
+        canTakeDamage = false;
+        StartCoroutine(DamageInterval());
     }
 
 
