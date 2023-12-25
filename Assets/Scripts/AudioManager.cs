@@ -11,11 +11,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip bazookaSound;
     [SerializeField] AudioClip hitSound;
     [SerializeField] AudioClip engineSound;
+    [SerializeField] AudioClip clickSound;
 
     static AudioClip bazookaSoundRef;
     static AudioClip explosionSoundRef;
     static AudioClip hitSoundRef;
     static AudioClip engineSoundRef;
+    static AudioClip clickSoundRef;
 
     AudioSource audioSource;
     public float weaponsVolume = 0.5f;
@@ -30,6 +32,7 @@ public class AudioManager : MonoBehaviour
         bazookaSoundRef = bazookaSound;
         explosionSoundRef = explosionSound;
         hitSoundRef = hitSound;
+        clickSoundRef=clickSound;
         engineSoundRef = engineSound;
     }
 
@@ -68,6 +71,10 @@ public class AudioManager : MonoBehaviour
 
             case "engine_sound":
                 clipToPlay = engineSoundRef;
+                break;
+
+            case "click":
+                clipToPlay = clickSoundRef;
                 break;
 
             default:

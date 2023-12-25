@@ -82,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
 
+        /*
         if (!isStopped)
         {
             //stores the player's WASD input as a vector2, with AD as the x-axis and WS as the y-axis
@@ -92,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
             speed = PlayerInfo.instance.movementSpeed * slowSpeed;
 
         }
+        */
 
         //playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
         playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * modifiedSpeed * slowSpeed * environmentalEffectSpeed * dragObjectSpeed;
@@ -103,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
         //this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement;
 
-        this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*100f);
+        this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*25f);
 
         currentPosition = transform.position;
     }

@@ -166,8 +166,8 @@ public class GameManager : MonoBehaviour
     public void TravelToNextRoom()
     {
         //move to the next linked node
- 
 
+        OnSceneChange?.Invoke(this, EventArgs.Empty);
         currentRoom++;
         SceneManager.LoadScene(currentRoom, LoadSceneMode.Single);
     }

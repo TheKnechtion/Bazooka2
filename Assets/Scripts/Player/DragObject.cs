@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class DragObject : MonoBehaviour
 {
 
-    [SerializeField] PhysicMaterial frictionless;
-    [SerializeField] BoxCollider physicsCollider;
+    //[SerializeField] PhysicMaterial frictionless;
+    //[SerializeField] Collider physicsCollider;
     [SerializeField] float dragObjectSpeed;
 
 
@@ -27,6 +27,9 @@ public class DragObject : MonoBehaviour
         _playerController = new PlayerController();
         _playerController.PlayerInteract.Activate.performed += HandleDrag;
         _playerController.PlayerInteract.Activate.canceled -= HandleDrag;
+
+        GameManager.OnSceneChange += CleanUpDragObjects;
+
     }
 
     bool canDrag = false;
@@ -40,6 +43,11 @@ public class DragObject : MonoBehaviour
             canDrag = true;
             playerCollider = other;
         }
+    }
+
+    void CleanUpDragObjects(object sender, System.EventArgs e)
+    {
+        Destroy(gameObject);
     }
 
 
