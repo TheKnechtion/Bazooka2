@@ -38,6 +38,14 @@ public class PlayerManager : MonoBehaviour
 
     List<WeaponInfo> playerOwnedWeapons;
 
+
+
+    public bool isCarryingObjectOnBack = false;
+    public bool CanCarryObjectOnBack = true;
+    public bool isDraggingObject = false;
+
+    public GameObject carriedObject; 
+
     public static event EventHandler OnPlayerWeaponChange;
     public static event EventHandler<OnWeaponSwitchEventArgs> OnWeaponChange;
     public static event EventHandler OnPlayerShoot;

@@ -17,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     bool dash = false;
 
     float speed;
+    public static float slowSpeed = 1.0f;
+    public static float environmentalEffectSpeed = 1.0f;
+    public static float dragObjectSpeed = 1.0f;
+    public static float heldObjectSpeed = 1.0f;
 
     float dashCooldown;
 
@@ -73,9 +77,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public static float slowSpeed = 1.0f;
-    public static float environmentalEffectSpeed = 1.0f;
-    public static float dragObjectSpeed = 1.0f;
 
     // Update is called once per frame
     void FixedUpdate()

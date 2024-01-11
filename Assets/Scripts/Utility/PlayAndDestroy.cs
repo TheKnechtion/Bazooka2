@@ -9,7 +9,7 @@ public class PlayAndDestroy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sysetem= GetComponent<ParticleSystem>();
+        sysetem= this.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame

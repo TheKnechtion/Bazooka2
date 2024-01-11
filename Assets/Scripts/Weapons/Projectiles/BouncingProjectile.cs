@@ -107,6 +107,15 @@ public class BouncingProjectile : ProjectileBase
             }
         }
 
+        if (collision.gameObject.TryGetComponent<PlayerManager>(out PlayerManager pm))
+        {
+            if (pm.carriedObject.TryGetComponent<IDamagable>(out IDamagable damagable))
+            {
+                damagable.TakeDamage(damage);
+            }
+        }
+
+
         #region Old Damage Detection
         //if (collision.gameObject.tag == "Enemy")
         //{

@@ -17,7 +17,7 @@ public class Button_Push : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera connectedCamera;
     private CameraSwitcher camManager;
     [SerializeField] private bool usesCamera;
-
+    [SerializeField] private string objName;
 
     public static event EventHandler OnPlayerInRange;
     public static event EventHandler OnPlayerOutOfRange;
@@ -51,7 +51,8 @@ public class Button_Push : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             canActivate = true;
-            OnPlayerInRange?.Invoke(this, EventArgs.Empty);
+            //OnPlayerInRange?.Invoke(this, EventArgs.Empty);
+            UI_Manager.Show_InteractUI($"Activate {objName}");
         }
     }
 
@@ -62,7 +63,8 @@ public class Button_Push : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             canActivate = false;
-            OnPlayerOutOfRange?.Invoke(this, EventArgs.Empty);
+            //OnPlayerOutOfRange?.Invoke(this, EventArgs.Empty);
+            UI_Manager.StopShow_InteractUI();
         }
     }
 

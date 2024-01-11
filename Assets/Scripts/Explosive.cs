@@ -30,22 +30,34 @@ public class Explosive : MonoBehaviour
             myCollider = GetComponent<Collider>();
         }
 
-        GameObject temp = Instantiate(ExplosionFXPrefab, gameObject.transform.position, Quaternion.identity);
+    }
+
+    GameObject temp;
+
+    // Update is called once per frame
+    void Awake()
+    {
+
+        temp = Instantiate(ExplosionFXPrefab, gameObject.transform.position, Quaternion.identity);
+
+        temp.transform.SetParent(this.gameObject.transform);
+
         explosionParticles = temp.GetComponent<ParticleSystem>();
         var VFXRadius = explosionParticles.shape;
         VFXRadius.radius = ExplosionRadius;
 
         particleSystem = temp.GetComponent<PlayAndDestroy>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Explode()
     {
+        temp.transform.SetParent(null);
+
+        AudioManager.PlayClipAtPosition("explosion_sound", this.transform.position);
+
+        
+
         //explosionParticles.Play();
         particleSystem.PlayParticles();
 

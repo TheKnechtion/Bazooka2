@@ -26,15 +26,16 @@ public class ExplosiveBarrel : DestroyableObject
         }
 
         isDestroyed = false;
-        explosive = GetComponent<Explosive>();
+        explosive = this.GetComponent<Explosive>();
     }
 
     public override void Die()
     {
+
         health= 0;
         if (!isDestroyed) 
         {
-            AudioManager.PlayClipAtPosition("explosion_sound", this.transform.position);
+
 
             isDestroyed= true;
             StartCoroutine(fuse());

@@ -25,8 +25,11 @@ public class UI_Manager : MonoBehaviour
     //[SerializeField] private GameObject HeartList;
 
 
-    [SerializeField] private GameObject Activate;
+    [SerializeField] private GameObject ActivateObj;
+    [SerializeField] private GameObject ActivateObjText;
 
+    static GameObject Activate;
+    static GameObject ActivateText;
 
     private TextMeshProUGUI objRenderer;
     private TextMeshProUGUI statusRenderer;
@@ -86,6 +89,8 @@ public class UI_Manager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Activate = ActivateObj;
+        ActivateText = ActivateObjText;
     }
 
     private void Start()
@@ -245,10 +250,22 @@ public class UI_Manager : MonoBehaviour
     }
 
 
+
     private void Deactivate_InteractUI(object sender, System.EventArgs e)
     {
         Activate.SetActive(false);
     }
+
+    public static void Show_InteractUI(string activateText)
+    {
+        ActivateText.GetComponent<TextMeshProUGUI>().text = activateText;
+        Activate.SetActive(true);
+    }
+    public static void StopShow_InteractUI()
+    {
+        Activate.SetActive(false);
+    }
+
 
 
     private void GameManager_OnEvacStart(object sender, System.EventArgs e)

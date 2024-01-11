@@ -229,14 +229,14 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             Debug.DrawRay(wallDetectPosition, enemyLookDirection.normalized * distanceToPlayer, Color.green);
             if (Physics.Raycast(wallDetect, out hit, distanceToPlayer, environmentMask))
             {
-                Debug.Log("I hit a wall");
+                //Debug.Log("I hit a wall");
                 nav.MoveToPlayer(isAggrod, false);
                 movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
 
             }
             else
             {
-                Debug.Log("Not hitting wall");
+                //Debug.Log("Not hitting wall");
                 //transform.LookAt(targetToLookAt);
                 nav.MoveToPlayer(isAggrod, true);   
                 movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);

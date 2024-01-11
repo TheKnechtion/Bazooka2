@@ -89,15 +89,27 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
+
         if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damageable))
         {
             if (!damageable.ArmoredTarget)
             {
+
                 damageable.TakeDamage(damage);
                 DealSplashDamage();
                 DeleteProjectile();
-            }            
+            }
         }
+
+        if (collision.gameObject.TryGetComponent<PlayerManager>(out PlayerManager pm))
+        {
+            if (pm.carriedObject.TryGetComponent<IDamagable>(out IDamagable damagable))
+            {
+                damagable.TakeDamage(damage);
+            }
+        }
+
 
         #region Old Damage Detection
         //if (collision.gameObject.tag == "Enemy")
@@ -118,7 +130,6 @@ public class Projectile : MonoBehaviour
 
         //if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
         if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); DeleteProjectile(); }
-
 
 
         Bounce(collision);

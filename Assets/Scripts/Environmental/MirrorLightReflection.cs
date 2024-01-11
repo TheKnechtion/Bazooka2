@@ -46,7 +46,7 @@ public class MirrorLightReflection : MonoBehaviour
 
     void BounceLightBeam()
     {
-
+        // 
         if (Physics.Raycast(mirrorPoint.point, reflectVector, out RaycastHit point) && mirrorPoint.collider.gameObject.tag == "Mirror" && lightBeams.positionCount < 5)
         {
             lightBeams.positionCount++;

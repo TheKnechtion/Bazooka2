@@ -10,14 +10,17 @@ public class Magnet : MonoBehaviour
     [SerializeField] float speed;
     float initialPositionY;
 
-
+    IEnumerator activeCoroutine;
 
     public void Move()
     {
         initialPositionY = this.transform.position.y;
         magneticObject = null;
 
-        StartCoroutine(GoDown());   
+        activeCoroutine = GoDown();
+
+        StartCoroutine(activeCoroutine);   
+
     }
 
     private IEnumerator GoDown()
@@ -47,7 +50,7 @@ public class Magnet : MonoBehaviour
             magneticObject = collision.gameObject;
             collision.transform.SetParent(this.transform);
 
-            StopAllCoroutines();
+            StopCoroutine(activeCoroutine);
 
             StartCoroutine(GoUp());            
         }

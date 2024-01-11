@@ -14,6 +14,26 @@ public class BatteryHolder : MonoBehaviour
     {
         if(hasntActivated && other.transform.tag == "Battery")
         {
+            other.transform.SetParent(this.transform);
+
+            other.transform.localPosition = new Vector3(0f,1.45f,-2.6f);
+            other.transform.localRotation = Quaternion.Euler(0f,0f,0f);
+
+
+            other.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+
+            foreach (BoxCollider bc in other.transform.GetComponents<BoxCollider>())
+            {
+                bc.isTrigger = true;
+            }
+
+            if (other.transform.TryGetComponent<DragObject>(out DragObject dragObj))
+            {
+                dragObj.UseObject();
+            }
+
+
+
             OnBatteryPutInHolder.Invoke();
             hasntActivated = false;
 

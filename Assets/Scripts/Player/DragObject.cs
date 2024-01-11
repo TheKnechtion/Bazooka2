@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.InputSystem;
 
 public class DragObject : MonoBehaviour
@@ -10,14 +11,13 @@ public class DragObject : MonoBehaviour
     //[SerializeField] PhysicMaterial frictionless;
     //[SerializeField] Collider physicsCollider;
     [SerializeField] float dragObjectSpeed;
-
+    [SerializeField] private string objName;
 
     float distance;
     PlayerController _playerController;
     PlayerController _playerManagerController;
 
     BoxCollider object_rb;
-
 
 
 
@@ -33,16 +33,29 @@ public class DragObject : MonoBehaviour
     }
 
     bool canDrag = false;
+    bool isBeingUsed = false;
 
     Collider playerCollider;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            UI_Manager.Show_InteractUI($"Drag {objName}");
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        if(other.transform.tag == "Player")
+        if(other.transform.tag == "Player" && !isDragging && !isBeingUsed && other.transform.gameObject.GetComponent<PlayerManager>().CanCarryObjectOnBack)
         {
             canDrag = true;
             playerCollider = other;
+            UI_Manager.Show_InteractUI($"Drag {objName}");
         }
+
+
+
     }
 
     void CleanUpDragObjects(object sender, System.EventArgs e)
@@ -73,11 +86,13 @@ public class DragObject : MonoBehaviour
             canDrag = false;
             isDragging = false;
             StopDragging();
+            UI_Manager.StopShow_InteractUI();
         }
     }
 
     void StartDragging(Collider dragObject)
     {
+        UI_Manager.StopShow_InteractUI();
         transform.SetParent(dragObject.transform, true);
         isDragging = true;
         PlayerManager._playerController.PlayerActions.Disable();
@@ -91,6 +106,15 @@ public class DragObject : MonoBehaviour
         PlayerMovement.dragObjectSpeed = 1.0f;
         PlayerManager._playerController.PlayerActions.Enable();
     }
+
+    public void UseObject()
+    {
+        StopDragging();
+        isBeingUsed = true;
+        UI_Manager.StopShow_InteractUI();
+        Destroy(this);
+    }
+
 
 
 
