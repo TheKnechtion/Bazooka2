@@ -8,6 +8,8 @@ public class MirrorLightReflection : MonoBehaviour
 {
     [SerializeField] LineRenderer lightBeams;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class MirrorLightReflection : MonoBehaviour
 
         BounceLightBeam();
 
-
+        CheckForEnd();
     }
 
     void StartLightBeam()
@@ -54,9 +56,18 @@ public class MirrorLightReflection : MonoBehaviour
             mirrorPoint = point;
             reflectVector = Vector3.Reflect(reflectVector, mirrorPoint.normal);
             BounceLightBeam();
+
+        }
+
+        if (mirrorPoint.collider.gameObject.tag == "SolarPanel")
+        {
+
         }
     }
 
+    void CheckForEnd()
+    {
 
+    }
 
-}
+    }
