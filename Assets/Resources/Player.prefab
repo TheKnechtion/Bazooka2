@@ -1593,7 +1593,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkProj: 0
   isCarryingObjectOnBack: 0
+  CanCarryObjectOnBack: 1
   isDraggingObject: 0
+  carriedObject: {fileID: 0}
   centerScreen: {x: 0, y: 0}
   mousePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &3057465918778892163
@@ -1660,7 +1662,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 1
 --- !u!75 &-7245115735927994429
 ConstantForce:

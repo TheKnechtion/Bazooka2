@@ -32,4 +32,9 @@ public class Door : MonoBehaviour
             //OnNextRoom?.Invoke(this, EventArgs.Empty);
         }
     }
+
+    
+
+
+
 }

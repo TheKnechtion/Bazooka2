@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class MirrorLightReflection : MonoBehaviour
 {
     [SerializeField] LineRenderer lightBeams;
 
-
+    public UnityEvent OnActivated;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,8 @@ public class MirrorLightReflection : MonoBehaviour
 
     int bounceCount = 0;
 
+    bool hasActivated = false;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -30,7 +33,6 @@ public class MirrorLightReflection : MonoBehaviour
 
         BounceLightBeam();
 
-        CheckForEnd();
     }
 
     void StartLightBeam()
@@ -45,7 +47,7 @@ public class MirrorLightReflection : MonoBehaviour
         }
     }
 
-
+    RaycastHit tempPoint;
     void BounceLightBeam()
     {
         // 
@@ -58,16 +60,17 @@ public class MirrorLightReflection : MonoBehaviour
             BounceLightBeam();
 
         }
-
-        if (mirrorPoint.collider.gameObject.tag == "SolarPanel")
+        else
         {
+            tempPoint = point;
+        }
 
+        if (tempPoint.collider.gameObject.tag == "SolarPanel" && !hasActivated)
+        {
+            hasActivated = true;
+            OnActivated?.Invoke();
         }
     }
 
-    void CheckForEnd()
-    {
-
-    }
 
     }

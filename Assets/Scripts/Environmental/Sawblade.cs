@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Sawblade : MonoBehaviour
@@ -9,7 +10,12 @@ public class Sawblade : MonoBehaviour
         if(collision.transform.TryGetComponent<IDamagable>(out IDamagable component))
         {
             component.TakeDamage(1);
-            collision.transform.GetComponent<Rigidbody>().AddForce((collision.transform.position-this.transform.position).normalized * 100f,ForceMode.Impulse);
+
+            Vector3 pushDirection = collision.transform.position - this.transform.position;
+
+            pushDirection = new Vector3(pushDirection.x, 0f, pushDirection.z).normalized;
+
+            collision.transform.GetComponent<Rigidbody>().AddForce(pushDirection * 200f,ForceMode.Impulse);
         }
     }
 }

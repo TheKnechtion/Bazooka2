@@ -13,16 +13,27 @@ public class Elevator : MonoBehaviour
     bool canActivate = true;
     bool isGoingDown = false;
     float incrementVectorY = 0f;
-
-
     private void OnTriggerEnter(Collider other)
     {
-        if(canActivate && other.transform.tag == "Player")
+        if (canActivate && other.transform.tag == "Player")
         {
+            other.transform.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
+
             isElevating = true;
             canActivate = false;
         }
     }
+
+    /*
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.transform.tag == "Player")
+        {
+            other.transform.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
+        }
+    }
+    */
+
 
     private void Start()
     {

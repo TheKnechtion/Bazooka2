@@ -47,7 +47,7 @@ public class DragObject : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.transform.tag == "Player" && !isDragging && !isBeingUsed && other.transform.gameObject.GetComponent<PlayerManager>().CanCarryObjectOnBack)
+        if(other.transform.tag == "Player" && !isDragging && !isBeingUsed)
         {
             canDrag = true;
             playerCollider = other;

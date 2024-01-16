@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
 
         BehaviorTankBoss.OnTankKilled += BossKilled;
 
-
+        //OnSceneChange?.Invoke(this, EventArgs.Empty);
     }
 
     private void BossKilled(object sender, EventArgs e)
