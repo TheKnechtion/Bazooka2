@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rb_test : MonoBehaviour
+public class freezePlayerY : MonoBehaviour
 {
 
     private void OnTriggerEnter(Collider other)

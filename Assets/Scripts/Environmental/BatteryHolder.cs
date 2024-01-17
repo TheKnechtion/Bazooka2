@@ -20,7 +20,7 @@ public class BatteryHolder : MonoBehaviour
             other.transform.localRotation = Quaternion.Euler(0f,0f,0f);
 
 
-            other.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            Destroy(other.transform.GetComponent<Rigidbody>());
 
             foreach (BoxCollider bc in other.transform.GetComponents<BoxCollider>())
             {
