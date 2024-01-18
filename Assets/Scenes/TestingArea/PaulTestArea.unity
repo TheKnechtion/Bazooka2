@@ -11491,6 +11491,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6358452531581285104, guid: c0a35943eb3a2ae4db9630ff21e2e5ff, type: 3}
+      propertyPath: objName
+      value: Lightcube
+      objectReference: {fileID: 0}
     - target: {fileID: 7962454600536122230, guid: c0a35943eb3a2ae4db9630ff21e2e5ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.163172
@@ -22853,7 +22857,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 369154572}
-  m_VersionIndex: 5294
+  m_VersionIndex: 5297
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -26564,7 +26568,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 100, y: 85.039505, z: 100}
+  m_Size: {x: 150, y: 85.039505, z: 150}
   m_Center: {x: -0.0007581711, y: 42.51905, z: 2.2595259e-11}
 --- !u!65 &2084756195
 BoxCollider:
@@ -26605,6 +26609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objSize: 1.75
+  objName: Exp. Barrel
 --- !u!1001 &2088569911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27827,6 +27832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objSize: 1.75
+  objName: Death Brl
 --- !u!54 &2132722460
 Rigidbody:
   m_ObjectHideFlags: 0

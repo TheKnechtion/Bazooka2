@@ -77,12 +77,31 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    float acceleration = 0;
 
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        
+
         moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
 
+        /*
+        if(moveInput.magnitude > 0 && acceleration < 1f)
+        {
+            acceleration += 0.1f;
+        }
+        else if(moveInput.magnitude > 0 && acceleration == 1f)
+        {
+            acceleration = 1f;
+        }
+        else
+        {
+            acceleration -= 0.1f;
+        }
+        */
+        
         /*
         if (!isStopped)
         {
@@ -104,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
         movementAnimator.SetFloat("MovementSpeed", playerMovement.magnitude);
 
-        //this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement;
+        //this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement * acceleration;
 
         this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*25f);
 

@@ -13,6 +13,7 @@ public class PickUpObject : MonoBehaviour
     bool isHoldingThisObject = false;
     float dragObjectSpeed = 1.0f;
     [SerializeField] float objSize;
+    [SerializeField] private string objName;
 
     GameObject playerAttachPoint;
     GameObject objAttachPoint;
@@ -42,6 +43,16 @@ public class PickUpObject : MonoBehaviour
         mass = objectRbCopy.mass;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            UI_Manager.Show_InteractUI($"Pick Up {objName}");
+        }
+    }
+
+
+
     // Update is called once per frame
     private void OnTriggerStay(Collider other)
     {
@@ -60,7 +71,8 @@ public class PickUpObject : MonoBehaviour
             other.transform.gameObject.GetComponent<PlayerManager>().CanCarryObjectOnBack = true;
             canPickUp = false;
             isHoldingThisObject = false;
-            StopHolding();
+            //StopHolding();
+            UI_Manager.StopShow_InteractUI();
         }
     }
 
@@ -71,10 +83,12 @@ public class PickUpObject : MonoBehaviour
         {
             StopHolding();
             transform.position = playerAttachPoint.transform.position - playerAttachPoint.transform.forward*objSize;
+            UI_Manager.Show_InteractUI($"Pick Up {objName}");
         }
         else if (canPickUp)
         {
             StartHolding();
+            UI_Manager.StopShow_InteractUI();
         }
     }
 
@@ -109,6 +123,7 @@ public class PickUpObject : MonoBehaviour
         //transform.localPosition = ;
         isHoldingThisObject = true;
         PlayerMovement.dragObjectSpeed = dragObjectSpeed;
+
     }
 
     public void StopHolding()
@@ -131,6 +146,7 @@ public class PickUpObject : MonoBehaviour
 
         isHoldingThisObject = false;
         PlayerMovement.dragObjectSpeed = 1.0f;
+
     }
 
     private void OnEnable()
