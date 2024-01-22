@@ -11,8 +11,8 @@ public class ExplosiveBarrel : DestroyableObject
 
     [SerializeField] private GameObject meshObject;
     [SerializeField] private Material fuseMaterial;
-    
 
+    Material[] explosiveMats;
 
     private Renderer render;
 
@@ -20,9 +20,10 @@ public class ExplosiveBarrel : DestroyableObject
     void Start()
     {
 
-        if (!render)
+        if (render == null)
         {
             render = meshObject.GetComponent<Renderer>();
+            explosiveMats = new Material[2];
         }
 
         isDestroyed = false;
@@ -39,29 +40,31 @@ public class ExplosiveBarrel : DestroyableObject
 
             isDestroyed= true;
             StartCoroutine(fuse());
-            //explosive.Explode();
-            //Destroy(gameObject);
+            //PickupAbleOBJ_Destroy();
         }
        
         //Custom explosion delete
     }
 
+
+
     private IEnumerator fuse()
     {
         if (fuseMaterial)
         {
-            render.material = fuseMaterial;
+            explosiveMats[0] = render.material;
+            explosiveMats[1] = fuseMaterial;
+            render.materials = explosiveMats;
         }
-
-        //explosive.Explode();
 
         yield return new WaitForSeconds(FuseTime);
 
-        //render.enabled = false;
         explosive.Explode();
-        //yield return new WaitForSeconds(0.3f);
-        Destroy(gameObject);
 
+        PickupAbleOBJ_Destroy();
         yield return null;
     }
+
+
+
 }

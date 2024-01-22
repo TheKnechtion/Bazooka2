@@ -2,9 +2,9 @@ Shader "Unlit/HealthBar"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        [NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
         _uvVector ("UV Vector", Vector) = (0,0,0,1)
-        _currentHealth ("Current Health", float) = .8
+        _currentHealth ("Current Health", Range(0,1)) = .8
         
         _startColor ("Start Color", float) = 0
         _endColor ("End Color", float) = 1
@@ -95,9 +95,6 @@ Shader "Unlit/HealthBar"
 
             }
 
-
-
-
             
 
             fixed4 frag (v2f i) : SV_Target
@@ -111,11 +108,43 @@ Shader "Unlit/HealthBar"
 
                 float4 currentHP = createRect(i.uv);
 
-                float colorGradient = InverseLerp(_startColor,_endColor,_currentHealth);
-                //lerp(a,b,t) = a + (b-a)t
-                float4 outColor = lerp(_ColorA,_ColorB, colorGradient);
 
-                fixed4 col = tex2D(_MainTex, float2(_currentHealth,i.uv.y));
+
+
+                //float colorGradient = InverseLerp(_startColor,_endColor,_currentHealth);
+                //lerp(a,b,t) = a + (b-a)t
+                //float4 outColor = lerp(_ColorA,_ColorB, colorGradient);
+
+
+
+                //float shiftedHPValue = InverseLerp(_currentHealth, 0.8, 0.2);
+
+
+
+                //float shiftedHPValue = (_currentHealth-0.20) / (0.8-0.2);
+
+                //shiftedHPValue = saturate(shiftedHPValue);
+                
+
+                float shiftedHPValue;
+                if(_currentHealth >= 0.8)
+                {
+                    shiftedHPValue = 1;
+                }
+                else if(_currentHealth <= 0.2)
+                {
+                    shiftedHPValue = 0.01;
+                }
+                else
+                {
+                    shiftedHPValue = (1.67*_currentHealth)-(0.333);
+                }
+                
+
+
+
+
+                fixed4 col = tex2D(_MainTex, fixed2(shiftedHPValue,i.uv.y));
                 
                 //float4 hpBarShape = createRect(i.uv);
 

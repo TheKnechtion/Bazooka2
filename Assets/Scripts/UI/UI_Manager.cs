@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.EventSystems;
+using UnityEditor.Search;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -22,14 +23,22 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject TipSpace;
     [SerializeField] private GameObject QuitButton;
     [SerializeField] private GameObject ReplayButton;
+    [SerializeField] private GameObject RoomSelectScreen;
     //[SerializeField] private GameObject HeartList;
 
 
-    [SerializeField] private GameObject ActivateObj;
-    [SerializeField] private GameObject ActivateObjText;
+    [SerializeField] private GameObject Activate;
+    [SerializeField] private GameObject ActivateText;
 
-    static GameObject Activate;
-    static GameObject ActivateText;
+    [SerializeField] private GameObject Objective;
+    [SerializeField] private GameObject ObjectiveText;
+
+    static GameObject Activate_Sample;
+    static GameObject ActivateText_Sample;
+    static GameObject Objective_Sample;
+    static GameObject ObjectiveText_Sample;
+
+    static GameObject RoomSelectScreenRef;
 
     private TextMeshProUGUI objRenderer;
     private TextMeshProUGUI statusRenderer;
@@ -89,8 +98,13 @@ public class UI_Manager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Activate = ActivateObj;
-        ActivateText = ActivateObjText;
+
+        Objective_Sample = Objective;
+        ObjectiveText_Sample = ObjectiveText;
+        Activate_Sample = Activate;
+        ActivateText_Sample = ActivateText;
+
+        RoomSelectScreenRef = RoomSelectScreen;
     }
 
     private void Start()
@@ -140,8 +154,8 @@ public class UI_Manager : MonoBehaviour
         //HpRenderer.text = $"HEALTH: \n{currentPlayerHp}/{maxPlayerHp}";
 
 
-        Button_Push.OnPlayerInRange += Activate_InteractUI;
-        Button_Push.OnPlayerOutOfRange += Deactivate_InteractUI;
+        //Button_Push.OnPlayerInRange += Activate_Sample_InteractUI;
+        //Button_Push.OnPlayerOutOfRange += DeActivate_Sample_InteractUI;
 
         gameObject.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         gameObject.GetComponent<Canvas>().planeDistance = 0.5f;
@@ -244,28 +258,47 @@ public class UI_Manager : MonoBehaviour
 
     
 
-    private void Activate_InteractUI(object sender, System.EventArgs e)
+    private void Activate_Sample_InteractUI(object sender, System.EventArgs e)
     {
-        Activate.SetActive(true);
+        Activate_Sample.SetActive(true);
     }
 
 
 
-    private void Deactivate_InteractUI(object sender, System.EventArgs e)
+    private void DeActivate_Sample_InteractUI(object sender, System.EventArgs e)
     {
-        Activate.SetActive(false);
+        Activate_Sample.SetActive(false);
     }
 
-    public static void Show_InteractUI(string activateText)
+    public static void Show_InteractUI(string txt)
     {
-        ActivateText.GetComponent<TextMeshProUGUI>().text = activateText;
-        Activate.SetActive(true);
+        ActivateText_Sample.GetComponent<TextMeshProUGUI>().text = txt;
+        Activate_Sample.SetActive(true);
     }
     public static void StopShow_InteractUI()
     {
-        Activate.SetActive(false);
+        Activate_Sample.SetActive(false);
     }
 
+    public static void Show_ObjectiveUI(string txt)
+    {
+        ObjectiveText_Sample.GetComponent<TextMeshProUGUI>().text = txt;
+        Objective_Sample.SetActive(true);
+    }
+    public static void StopShow_ObjectiveUI()
+    {
+        Objective_Sample.SetActive(false);
+    }
+
+
+    public static void Show_RoomSelect()
+    {
+        RoomSelectScreenRef.SetActive(true);
+    }
+    public static void StopShow_RoomSelect()
+    {
+        RoomSelectScreenRef.SetActive(false);
+    }
 
 
     private void GameManager_OnEvacStart(object sender, System.EventArgs e)

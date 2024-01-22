@@ -27,6 +27,42 @@ public class DestroyableObject : MonoBehaviour, IDamagable
     public virtual void Die()
     {
         Destroy(this.gameObject);
-    }    
+    }
+
+
+    Transform? parentObj;
+    PlayerManager tempManager;
+
+    public void PickupAbleOBJ_Destroy()
+    {
+        //Destroy(gameObject);
+
+        parentObj = this.gameObject.transform.parent;
+
+        if (parentObj == null) 
+        {
+            Destroy(gameObject);
+        }
+
+
+        
+        if (parentObj.name == "AttachPoint")
+        {
+            tempManager = parentObj.parent.parent.parent.parent.GetComponent<PlayerManager>();
+            tempManager.CanCarryObjectOnBack = true;
+            tempManager.isCarryingObjectOnBack = false;
+
+
+            Destroy(gameObject.transform.parent.gameObject);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+
+
 
 }

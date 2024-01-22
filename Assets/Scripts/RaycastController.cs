@@ -84,7 +84,7 @@ public class RaycastController : MonoBehaviour
     private void FixedUpdate()
     {        
         //if the player isn't aiming
-        if (Physics.Raycast(positionOne, gameObject.transform.forward, out hit) && !isAiming)
+        if (Physics.Raycast(positionOne, gameObject.transform.forward, out hit, 15f) && !isAiming)
         {
             lineRenderer.SetPosition(1, hit.point);
             UpdateShootVector(hit.point);
@@ -94,7 +94,7 @@ public class RaycastController : MonoBehaviour
         {
             boundlessLookVector = gameObject.transform.forward;
             boundlessLookVector = new Vector3(boundlessLookVector.x, 0, boundlessLookVector.z);
-            boundlessLookVector = positionOne + (25.0f * boundlessLookVector);
+            boundlessLookVector = positionOne + (15.0f * boundlessLookVector);
             lineRenderer.SetPosition(1, boundlessLookVector);
 
             UpdateShootVector(boundlessLookVector);

@@ -14,7 +14,7 @@ public class DragObject : MonoBehaviour
     [SerializeField] private string objName;
 
     float distance;
-    PlayerController _playerController;
+    PlayerController _playerControllerRef;
     PlayerController _playerManagerController;
 
     BoxCollider object_rb;
@@ -24,9 +24,9 @@ public class DragObject : MonoBehaviour
     bool isDragging = false;
     private void Awake()
     {
-        _playerController = new PlayerController();
-        _playerController.PlayerInteract.Activate.performed += HandleDrag;
-        _playerController.PlayerInteract.Activate.canceled -= HandleDrag;
+        _playerControllerRef = new PlayerController();
+        _playerControllerRef.PlayerInteract.Activate.performed += HandleDrag;
+        _playerControllerRef.PlayerInteract.Activate.canceled -= HandleDrag;
 
         GameManager.OnSceneChange += CleanUpDragObjects;
 
@@ -49,9 +49,13 @@ public class DragObject : MonoBehaviour
     {
         if(other.transform.tag == "Player" && !isDragging && !isBeingUsed)
         {
-            canDrag = true;
-            playerCollider = other;
-            UI_Manager.Show_InteractUI($"Drag {objName}");
+            if(!other.transform.GetComponent<PlayerManager>().CheckPlayerBack())
+            {
+                canDrag = true;
+                playerCollider = other;
+                UI_Manager.Show_InteractUI($"Drag {objName}");
+            }
+
         }
 
 
@@ -120,11 +124,11 @@ public class DragObject : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerController.PlayerInteract.Enable();
+        _playerControllerRef.PlayerInteract.Enable();
     }
     private void OnDisable()
     {
-        _playerController.PlayerInteract.Disable();
+        _playerControllerRef.PlayerInteract.Disable();
     }
 
 

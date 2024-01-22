@@ -26,6 +26,7 @@ Shader "Unlit/SnowShader"{
 
         _MainTex ("Texture", 2D) = "white" {}
         _FogTex ("Fog Texture", 2D) = "white" {}
+        _HeightMap ("Height Map", 2D) = "white" {}
 
         _textureScale ("Texture Scale", float) = 1
     }
@@ -84,6 +85,8 @@ Shader "Unlit/SnowShader"{
             //this is optional, but it allows for offset and tiling
             float4 _MainTex_ST;
             
+            sampler2D _HeightMap;
+
             sampler2D _FogTex;
 
 
@@ -174,7 +177,13 @@ Shader "Unlit/SnowShader"{
                 float t = cos((_RepeatPattern*(v.uv0.y + yOffset) + _Value) * TAU) * 0.5 + 0.5;
                 float b = cos((_RepeatPattern*(v.uv0.x + yOffset) + _Value) * TAU) * 0.5 + 0.5;
 
-                v.vertex.y = t*b*_Amplitude;
+                float heightMap = tex2Dlod(_HeightMap, float4(v.uv0.xy, 0,0));
+
+                v.vertex.y = heightMap * _Amplitude;
+
+                //v.vertex.y = yOffset * _Amplitude;
+
+                //v.vertex.y = t*b*_Amplitude;
 
 
 
@@ -194,7 +203,7 @@ Shader "Unlit/SnowShader"{
 
 
                 //this moves the uv over time
-                o.uv.x += _Time.y * 0.01;
+                //o.uv.x += _Time.y * 0.01;
  
                 return o;
             }
@@ -217,8 +226,10 @@ Shader "Unlit/SnowShader"{
                 float t = cos((_RepeatPattern*(i.uv.y + yOffset) + _Value) * TAU) * 0.5 + 0.5;
                 
 
+                
 
-
+                //return heightMap;
+                
                 return (1-i.uv.yyyy) * col * fogCol;
                 
                 //float4 outColor = lerp(_ColorA,_ColorB, t);

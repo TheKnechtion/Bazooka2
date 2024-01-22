@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
 using System;
 using UnityEngine.Events;
@@ -13,19 +12,12 @@ public class Button_Push : MonoBehaviour
     Material activatedMat;
     MeshRenderer buttonRenderer;
 
+    [SerializeField] private string displayObjectName;
 
-    [SerializeField] private CinemachineVirtualCamera connectedCamera;
-    private CameraSwitcher camManager;
-    [SerializeField] private bool usesCamera;
-    [SerializeField] private string objName;
 
-    public static event EventHandler OnPlayerInRange;
-    public static event EventHandler OnPlayerOutOfRange;
 
 
     public UnityEvent OnActivated;
-
-    public GameObject targetObject;
 
 
 
@@ -36,13 +28,6 @@ public class Button_Push : MonoBehaviour
         activatedMat = (Material)Resources.Load("Activated");
         buttonRenderer = gameObject.GetComponent<MeshRenderer>();
 
-
-
-        //uiManager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
-
-
-        
-
     }
 
     //activate the "press space" UI
@@ -51,8 +36,7 @@ public class Button_Push : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             canActivate = true;
-            //OnPlayerInRange?.Invoke(this, EventArgs.Empty);
-            UI_Manager.Show_InteractUI($"Activate {objName}");
+            UI_Manager.Show_InteractUI($"Activate {displayObjectName}");
         }
     }
 
@@ -63,7 +47,6 @@ public class Button_Push : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             canActivate = false;
-            //OnPlayerOutOfRange?.Invoke(this, EventArgs.Empty);
             UI_Manager.StopShow_InteractUI();
         }
     }
@@ -77,27 +60,13 @@ public class Button_Push : MonoBehaviour
 
             OnActivated.Invoke();
 
-            CheckForVirtualCamera();
             DeleteOnActivate();
         }
     }
 
-    void CheckForVirtualCamera()
-    {
-        /*
-        if (connectedCamera)
-        {
-            camManager = GameObject.Find("CameraManager").GetComponent<CameraSwitcher>();
-            usesCamera = true;
-            //camManager.SwitchToCamera(connectedCamera);
-        }
-        else { usesCamera = false; }
-        */
-    }
-
     void DeleteOnActivate()
     {
-        OnPlayerOutOfRange?.Invoke(this, EventArgs.Empty);
+        UI_Manager.StopShow_InteractUI();
         PlayerManager.OnPlayerActivatePress -= Activate;
         Destroy(this);
     }

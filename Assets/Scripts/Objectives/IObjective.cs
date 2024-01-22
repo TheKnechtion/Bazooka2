@@ -5,8 +5,9 @@ using UnityEngine;
 public interface IObjective
 {
 
-    bool ObjectiveCompleted { get; set; }
+    public bool ObjectiveCompleted { get; set; }
 
+    public string ObjectiveText { get; set; }
 
     public void CompleteObjective();
 

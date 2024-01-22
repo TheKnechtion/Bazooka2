@@ -5,19 +5,22 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class MirrorLightReflection : MonoBehaviour
+public class MirrorLightReflection : Objective
 {
     [SerializeField] LineRenderer lightBeams;
 
-    public UnityEvent OnActivated;
+    //public UnityEvent OnActivated;
+    //public UnityEvent OnDeactivated;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-    
+        ObjectiveCompleted = false;
+        ObjectiveText = $"Solar Power Required To Progress";
     }
 
-    
+
+
     RaycastHit mirrorPoint;
 
     Vector3 reflectVector;
@@ -48,9 +51,12 @@ public class MirrorLightReflection : MonoBehaviour
     }
 
     RaycastHit tempPoint;
+    string? objTag;
+    bool tagChanged;
+
+    bool activated = false;
     void BounceLightBeam()
     {
-        // 
         if (Physics.Raycast(mirrorPoint.point, reflectVector, out RaycastHit point) && mirrorPoint.collider.gameObject.tag == "Mirror" && lightBeams.positionCount < 5)
         {
             lightBeams.positionCount++;
@@ -62,13 +68,28 @@ public class MirrorLightReflection : MonoBehaviour
         }
         else
         {
-            tempPoint = point;
+            tempPoint = mirrorPoint;
         }
 
-        if (tempPoint.collider.gameObject.tag == "SolarPanel" && !hasActivated)
+
+        if (objTag != tempPoint.collider.gameObject.tag)
         {
-            hasActivated = true;
-            OnActivated?.Invoke();
+            objTag = tempPoint.collider.gameObject.tag;
+            tagChanged = true;
+        }
+        else
+        {
+            tagChanged = false;
+        }
+
+
+        if (tempPoint.collider.gameObject.tag == "SolarPanel" && tagChanged)
+        {
+            CompleteObjective();
+        }
+        else if(tempPoint.collider.gameObject.tag != "SolarPanel" && tagChanged && ObjectiveCompleted)
+        {
+            UncompleteObjective();
         }
     }
 

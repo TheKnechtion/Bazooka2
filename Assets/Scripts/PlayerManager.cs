@@ -288,6 +288,19 @@ public class PlayerManager : MonoBehaviour
     }
 
 
+    public bool CheckPlayerBack()
+    {
+        if(isCarryingObjectOnBack)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
     private void OnDisable()
     {
         //ends player movement functions

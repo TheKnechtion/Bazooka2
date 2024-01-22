@@ -7,6 +7,7 @@ public class Elevator : MonoBehaviour
     [SerializeField] float yValue;
     [SerializeField] float waitTime;
     [SerializeField] bool goesBackDown;
+    [SerializeField] bool isActive;
 
     float startHeight;
     bool isElevating = false;
@@ -15,7 +16,7 @@ public class Elevator : MonoBehaviour
     float incrementVectorY = 0f;
     private void OnTriggerEnter(Collider other)
     {
-        if (canActivate && other.transform.tag == "Player")
+        if (canActivate && other.transform.tag == "Player" && isActive)
         {
             other.transform.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
 
@@ -81,6 +82,17 @@ public class Elevator : MonoBehaviour
             
         }
     }
+
+    public void Activate()
+    {
+        isActive = true;
+    }
+
+    public void Deactivate()
+    {
+        isActive = false;
+    }
+
 
     private IEnumerator WaitToGoDown()
     {

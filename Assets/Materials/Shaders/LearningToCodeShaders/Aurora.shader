@@ -12,6 +12,8 @@ Shader "Unlit/Aurora"{
 
         _timeScale ("Time Scale", float) = 1
 
+        _bendAmp ("Bend Amplitude", float) = 1
+
         _waveAmp ("Wave Amplitude", Range(0,1)) = 1
 
         _RepeatPattern ("Repeat Pattern", float) = 1.0
@@ -57,6 +59,7 @@ Shader "Unlit/Aurora"{
             float4 _ColorB;
 
             float _waveAmp;
+            float _bendAmp;
 
             float _timeScale;
 
@@ -113,7 +116,7 @@ Shader "Unlit/Aurora"{
                 float radialDistanceMesh = length(uvCenterMesh);
 
                 float waveMesh = cos((radialDistanceMesh + _Time.y * _timeScale) * TAU * _RepeatPattern);
-                float circleMesh = cos(radialDistanceMesh * TAU);
+                float circleMesh = cos(radialDistanceMesh * _bendAmp * TAU);
                 
 
                 

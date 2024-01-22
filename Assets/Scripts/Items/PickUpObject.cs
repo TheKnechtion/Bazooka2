@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,13 +8,16 @@ using UnityEngine.InputSystem;
 public class PickUpObject : MonoBehaviour
 {
 
-    PlayerController _playerController;
+    PlayerController _playerControllerRef;
     Collider playerCollider;
     bool canPickUp = false;
     bool isHoldingThisObject = false;
     float dragObjectSpeed = 1.0f;
     [SerializeField] float objSize;
     [SerializeField] private string objName;
+
+    [SerializeField] private Collider[] colliders;
+    //private Collider[] colliders;
 
     GameObject playerAttachPoint;
     GameObject objAttachPoint;
@@ -26,9 +30,10 @@ public class PickUpObject : MonoBehaviour
 
     private void Awake()
     {
-        _playerController = new PlayerController();
-        _playerController.PlayerInteract.Activate.performed += HandlePickUp;
-        _playerController.PlayerInteract.Activate.canceled -= HandlePickUp;
+        _playerControllerRef = new PlayerController();
+        _playerControllerRef.PlayerInteract.Activate.performed += HandlePickUp;
+        _playerControllerRef.PlayerInteract.Activate.canceled -= HandlePickUp;
+        GameManager.OnSceneChange += DestroyThis;
     }
 
 
@@ -41,6 +46,9 @@ public class PickUpObject : MonoBehaviour
 
         objectRbCopy = this.GetComponent<Rigidbody>();
         mass = objectRbCopy.mass;
+
+        //colliders = this.gameObject.GetComponents<Collider>();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,6 +66,7 @@ public class PickUpObject : MonoBehaviour
     {
         if (other.transform.tag == "Player" && other.transform.gameObject.GetComponent<PlayerManager>().CanCarryObjectOnBack)
         {
+            UI_Manager.Show_InteractUI($"Pick Up {objName}");
             other.transform.gameObject.GetComponent<PlayerManager>().CanCarryObjectOnBack = false;
             canPickUp = true;
             playerCollider = other;
@@ -82,7 +91,7 @@ public class PickUpObject : MonoBehaviour
         if (canPickUp && isHoldingThisObject)
         {
             StopHolding();
-            transform.position = playerAttachPoint.transform.position - playerAttachPoint.transform.forward*objSize;
+            transform.position = playerAttachPoint.transform.position - playerAttachPoint.transform.up*objSize;
             UI_Manager.Show_InteractUI($"Pick Up {objName}");
         }
         else if (canPickUp)
@@ -92,9 +101,17 @@ public class PickUpObject : MonoBehaviour
         }
     }
 
+    Transform playerSpine;
+    Transform playerDetachPoint;
     void StartHolding()
     {
-        playerAttachPoint = playerCollider.transform.Find("PlayerAttachPoint").gameObject;
+        DeactivateColliders();
+
+        //Debug.Log(playerCollider.transform.Find("Bip001").Find("Bip001 Pelvis").Find("Bip001 Spine").Find("PlayerAttachPoint").name);
+
+        playerSpine = playerCollider.transform.Find("Bip001").Find("Bip001 Pelvis").Find("Bip001 Spine");
+
+        playerAttachPoint = playerSpine.transform.Find("PlayerAttachPoint").gameObject;
 
         playerCollider.transform.GetComponent<PlayerManager>().carriedObject = this.gameObject;
 
@@ -114,48 +131,94 @@ public class PickUpObject : MonoBehaviour
 
         this.transform.SetParent(objAttachPoint.transform,true);
 
-        objAttachPoint.transform.SetParent(playerCollider.transform,true);
+        //playerAttachPoint.transform.rotation = Quaternion.Euler();
+
+        objAttachPoint.transform.SetParent(playerSpine,true);
 
         objAttachPoint.transform.localPosition = playerAttachPoint.transform.localPosition;
 
-        objAttachPoint.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        objAttachPoint.transform.localRotation = Quaternion.Euler(-90f, 0f, 90f);
 
         //transform.localPosition = ;
         isHoldingThisObject = true;
         PlayerMovement.dragObjectSpeed = dragObjectSpeed;
 
+
     }
 
     public void StopHolding()
     {
+
+
         playerCollider.transform.GetComponent<PlayerManager>().carriedObject = this.gameObject;
+
 
         playerCollider.transform.gameObject.GetComponent<PlayerManager>().isCarryingObjectOnBack = false;
 
-        Rigidbody temp = this.AddComponent<Rigidbody>();
+        transform.localPosition = localObjAttachPointPosition;
 
-        temp.mass = mass;
+        objAttachPoint.transform.SetParent(null);
 
         transform.SetParent(null);
-
 
         objAttachPoint.transform.SetParent(this.transform,true);
 
         objAttachPoint.transform.localPosition = localObjAttachPointPosition;
 
 
+
+
+        Rigidbody temp = this.AddComponent<Rigidbody>();
+
+        temp.mass = mass;
+
+
         isHoldingThisObject = false;
         PlayerMovement.dragObjectSpeed = 1.0f;
 
+
+        ActivateColliders();
     }
+
+    public void DeactivateColliders()
+    {
+        foreach(var collider in colliders)
+        {
+            collider.enabled = false;
+        }
+    }
+
+    public void ActivateColliders()
+    {
+        foreach (var collider in colliders)
+        {
+            collider.enabled = true;
+        }
+    }
+
+
+    void DestroyThis(object sender, EventArgs e)
+    {
+        GameManager.OnSceneChange -= DestroyThis;
+
+        if(isHoldingThisObject)
+        {
+            Destroy(this.gameObject.transform.parent.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 
     private void OnEnable()
     {
-        _playerController.PlayerInteract.Enable();
+        _playerControllerRef.PlayerInteract.Enable();
     }
     private void OnDisable()
     {
-        _playerController.PlayerInteract.Disable();
+        _playerControllerRef.PlayerInteract.Disable();
     }
 
 }

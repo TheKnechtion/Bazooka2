@@ -64,6 +64,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 7100a9d082a937e4ab3599772f67eb10, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HeightMap:
+        m_Texture: {fileID: 2800000, guid: b9d86047789d8ee48a24613a6f8aa27c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 6b2c330a569f86f4a8bd93c016ce15fc, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -100,7 +104,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Amplitude: 35.9
+    - _Amplitude: 28.74
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1

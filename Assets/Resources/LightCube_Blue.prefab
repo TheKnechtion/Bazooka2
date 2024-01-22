@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 6358452531581285104}
   - component: {fileID: 4728294717262794432}
   m_Layer: 0
-  m_Name: LightCube_Pink
+  m_Name: LightCube_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ Transform:
   m_GameObject: {fileID: 8235017051380357627}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.68, y: 3.0519745, z: 33.82}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.6276, y: 1.6276, z: 1.6276}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99,7 +99,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7364ddccfcdc2d744acf3c5310806b0a, type: 2}
+  - {fileID: 2100000, guid: 247a6c8506aaf6e4d884393c11cd366d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -180,7 +180,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0, b: 0.6117647, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 30
@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objSize: 1.75
+  objName: Lightcube
 --- !u!65 &4728294717262794432
 BoxCollider:
   m_ObjectHideFlags: 0

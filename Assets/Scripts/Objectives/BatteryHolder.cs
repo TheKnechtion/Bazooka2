@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BatteryHolder : MonoBehaviour
+public class BatteryHolder : Objective
 {
-    public UnityEvent OnBatteryPutInHolder;
+    //public UnityEvent OnBatteryPutInHolder;
     bool hasntActivated = true;
 
+    private void Awake()
+    {
+        ObjectiveCompleted = false;
+        ObjectiveText = $"Battery Required To Progress";
+    }
 
-    
     private void OnTriggerEnter(Collider other)
     {
         if(hasntActivated && other.transform.tag == "Battery")
@@ -34,8 +38,10 @@ public class BatteryHolder : MonoBehaviour
 
 
 
-            OnBatteryPutInHolder.Invoke();
+            //OnBatteryPutInHolder.Invoke();
             hasntActivated = false;
+
+            CompleteObjective();
 
             /*
             if (other.gameObject.GetComponent<Battery>().currentCharge > 0)
@@ -48,5 +54,8 @@ public class BatteryHolder : MonoBehaviour
 
         }
     }
+
+
+
 
 }

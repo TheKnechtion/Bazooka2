@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
             SpawnEnemies();
             canSpawn = false;
         }
-        */
+        
        CheckAllRoomsCleared();
 
         if (EvacTime)
@@ -230,6 +230,8 @@ public class GameManager : MonoBehaviour
 
         //Debug.Log("Spawned Enemies: "+currentNode.spawnedEnemies);
         //Debug.Log("Spawned EVAcEnemies: " + currentNode.spawnedEnemiesEvac);
+        */
+
 
         #region Game State machine
         //I imagine we use this later in development
@@ -283,6 +285,8 @@ public class GameManager : MonoBehaviour
         //}
     }
 
+
+    /*
     private void CheckPlayerWin()
     {
        // Debug.Log(evacTimer.TimeLeft);
@@ -299,7 +303,7 @@ public class GameManager : MonoBehaviour
             PlayerWins();
         }
     }
-
+    */
     private void FixedUpdate()
     {
         if (EvacTime)
@@ -310,7 +314,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-   
+   /*
     private void CheckAllRoomsCleared()
     {
         //Check if all nodes are cleared
@@ -329,7 +333,7 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+   */
     private GameObject SpawnExit(GameObject exit)
     {
         return Instantiate(exit, ExitPosition);
