@@ -41,15 +41,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.022499999
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.022499999
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.022499999
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.317
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -203,7 +203,7 @@ MonoBehaviour:
   FuseTime: 3
   explosive: {fileID: 0}
   meshObject: {fileID: 6342719732654357591}
-  fuseMaterial: {fileID: 2100000, guid: fc6eee47f067c2445a1de743e876ea62, type: 2}
+  fuseMaterial: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
 --- !u!65 &2026108803334132700
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6342719732654357591}
   serializedVersion: 4
-  m_Mass: 5
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
