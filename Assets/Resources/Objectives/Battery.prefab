@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.904263
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.99805814
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.1849983
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26,15 +26,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7367559088687387456, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
+      propertyPath: m_TagString
+      value: Battery
+      objectReference: {fileID: 0}
     - target: {fileID: -6483264720827800135, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -72,6 +76,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Battery
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
+      propertyPath: m_TagString
+      value: Battery
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903893172859080141, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
+      propertyPath: m_TagString
+      value: Battery
+      objectReference: {fileID: 0}
     - target: {fileID: 2938334392151325481, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -84,6 +96,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ca553f13c8ca9894aa58f38fa7d3fbb6, type: 2}
+    - target: {fileID: 5090062054982439474, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
+      propertyPath: m_TagString
+      value: Battery
+      objectReference: {fileID: 0}
     - target: {fileID: 7330095381222774183, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -107,6 +123,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
       insertIndex: -1
       addedObject: {fileID: 192215619136371663}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4487038902567692112}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 951127124609089346}
   m_SourcePrefab: {fileID: 100100000, guid: 2740c97c724b781478cc8f94401b7f70, type: 3}
 --- !u!1 &3275391598942530876 stripped
 GameObject:
@@ -121,8 +143,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3275391598942530876}
   serializedVersion: 4
-  m_Mass: 100
-  m_Drag: 3
+  m_Mass: 1
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -153,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragObjectSpeed: 0.5
+  objName: Battery
 --- !u!65 &192215619136371663
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -174,3 +197,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 4, z: 8}
   m_Center: {x: 0, y: 0, z: 2.5}
+--- !u!65 &4487038902567692112
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275391598942530876}
+  m_Material: {fileID: 13400000, guid: 38687303ca12a334ca284fc2eff1c1e8, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 7}
+  m_Center: {x: 0, y: 0, z: 2.5}
+--- !u!114 &951127124609089346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275391598942530876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75e77ebf71105846b7e3d58e194bb36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCapacity: 100
+  currentCharge: 50

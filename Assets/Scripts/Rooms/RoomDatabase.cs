@@ -11,8 +11,28 @@ public class RoomDatabase
     //public so that it can be used as an entry
     //point to the list for the game manager.
 
-    public DoublyNode headNode; //Is a room
-    public List<DoublyNode> roomList;
+    //public DoublyNode headNode; //Is a room
+    //public List<DoublyNode> roomList;
+
+
+
+
+
+    public List<Room> Room_Database { get; set; }
+
+
+
+    public RoomDatabase()
+    {
+        Room_Database = new List<Room>();
+
+
+        Room r000 = new Room();
+        r000.sceneName = "Scenes/TestingArea/Test_BatteryPuzzle";
+        r000.objetiveType = RoomType.ReturnPower;
+        Room_Database.Add(r000);
+
+    }
 
 
     /*
@@ -22,6 +42,8 @@ public class RoomDatabase
     }
     */
 
+
+    /*
     //creates the room database
     public void CreateLinkedList()
     {
@@ -44,7 +66,7 @@ public class RoomDatabase
         roomThree.nextNode = roomFour;
         roomFour.previousNode = roomThree;
         roomFour.nextNode = null;
-
+    */
 
         /*
         //We add these to a list of DoublyNodes to iterate through it 
@@ -53,7 +75,7 @@ public class RoomDatabase
         roomList.Add(middleNode);
         roomList.Add(tailNode);
         */
-    }
+    
 
 
 

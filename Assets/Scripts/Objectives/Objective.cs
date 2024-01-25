@@ -14,6 +14,7 @@ public class Objective : MonoBehaviour, IObjective
 
     public int currentCount = 0;
 
+
     public void CompleteObjective()
     {
         ObjectiveCompleted = true;

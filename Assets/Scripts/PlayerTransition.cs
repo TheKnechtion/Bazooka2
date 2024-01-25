@@ -6,15 +6,15 @@ using UnityEngine;
 public class PlayerTransition : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        GameManager.OnSceneChange += TransitionPlayerToStartPosition;
+        TransitionPlayerToStartPosition();
     }
 
 
     GameObject player;
 
-    void TransitionPlayerToStartPosition(object sender, EventArgs e)
+    void TransitionPlayerToStartPosition()
     {
         player = GameObject.Find("Player");
         player.transform.position = gameObject.transform.position;

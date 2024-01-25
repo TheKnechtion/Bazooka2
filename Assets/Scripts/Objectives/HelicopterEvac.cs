@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class HelicopterEvac : Objective
 {
+    [SerializeField] string objectiveText;
+    [SerializeField] bool useDefaultText;
+
     private void Awake()
     {
-        ObjectiveCompleted = true;
-        ObjectiveText = $"More Objectives Required To Progress";
+        if(useDefaultText)
+        {
+            ObjectiveText = objectiveText;
+        }
+        else
+        {
+            ObjectiveText = objectiveText;
+        }
+
+        ObjectiveCompleted = false;
+
     }
 
     private void OnTriggerEnter(Collider other)

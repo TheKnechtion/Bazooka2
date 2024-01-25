@@ -71,10 +71,10 @@ public class GameManager : MonoBehaviour
         //txtExporter = new Exporter();
 
         //create the room database as a linked list
-        roomDatabase.CreateLinkedList();
+        //roomDatabase.CreateLinkedList();
 
         //sets the initial current node equal to the head node
-        currentNode = roomDatabase.headNode;
+        //currentNode = roomDatabase.headNode;
 
         //Everything related to the Exit
             //exit = Resources.Load("Evac_Exit") as GameObject;
@@ -172,6 +172,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentRoom, LoadSceneMode.Single);
     }
 
+
+    //used by the Door script to travel to next rooms
+    public void TravelToThisRoom(string roomName)
+    {
+        //move to the next linked node
+
+        OnSceneChange?.Invoke(this, EventArgs.Empty);
+        SceneManager.LoadScene(roomName, LoadSceneMode.Single);
+    }
 
     //Quick way to be sure winner is only printed once
     bool didOnce = false;
