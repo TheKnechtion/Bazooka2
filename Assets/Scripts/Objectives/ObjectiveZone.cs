@@ -33,6 +33,7 @@ public class ObjectiveZone : MonoBehaviour
     [SerializeField] Material objectiveMaterial;
 
     [SerializeField] bool showObjectiveZone;
+    [SerializeField] bool showObjectiveLight;
     [SerializeField] bool showObjectiveText;
 
     Light lightComponent;
@@ -45,17 +46,16 @@ public class ObjectiveZone : MonoBehaviour
 
     void Start()
     {
-        
-
-        if(showObjectiveZone)
+        if(showObjectiveLight)
         {
             lightComponent = this.gameObject.AddComponent<Light>();
             lightComponent.color = Color.red;
+        }
 
-
+        if (showObjectiveZone)
+        {
             objMaterial = new Material(objectiveMaterial);
             this.gameObject.GetComponent<MeshRenderer>().material = objMaterial;
-
         }
         else
         {

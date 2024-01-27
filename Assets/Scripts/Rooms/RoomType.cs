@@ -8,5 +8,6 @@ public enum RoomType
     TimedEvac,
     ReturnPower,
     DestroyTheObjective,
+    Sequence,
     ActivateObjective
 }
