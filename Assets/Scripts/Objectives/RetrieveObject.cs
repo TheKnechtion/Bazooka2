@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class RetrieveObject : Objective
 {
-    
-
     [SerializeField] Vector3 zoneCompletionSize;
     [SerializeField] Vector3 zoneOffset;
-    [SerializeField] GameObject objectiveGameObject;
+
+    [SerializeField] List<GameObject> objectiveGameObjects;
     [SerializeField] string objectiveName;
+
+    [SerializeField] bool retrieveSpecificObject;
+    [SerializeField] int numberOfObjectsToRetrieve;
+
     public LayerMask objectiveLayer;
 
+    string objectiveTag;
+
     List<GameObject> overlappingGameObjects;
+    List<GameObject> objectiveObjectsInZone;
+    Collider[] hitColliders;
 
     bool didOnce = false;
     int hitCollidersCount = 0;
@@ -23,20 +30,52 @@ public class RetrieveObject : Objective
     private void Awake()
     {
         overlappingGameObjects = new List<GameObject>();
+        objectiveObjectsInZone = new List<GameObject>();
+
         ObjectiveCompleted = false;
-        ObjectiveText = $"{objectiveName} Required To Progress";
+
+        if(!retrieveSpecificObject)
+        {
+            ObjectiveText = $"{numberOfObjectsToRetrieve - currentCount} {objectiveName} Required To Progress";
+        }
+        else
+        {
+            ObjectiveText = $"{objectiveName} Required To Progress";
+        }
+
+
+        if(!retrieveSpecificObject)
+        {
+            objectiveTag = objectiveGameObjects[0].tag;
+        }
+
+    }
+
+    private void Start()
+    {
+
     }
 
     void FixedUpdate()
     {
-        RetrieveObject_CompletionCheck();
+        CheckForColliderCountChange();
+
+        if (retrieveSpecificObject && hitColliderCountChanged)
+        {
+            RetrieveObjects_CompletionCheck();
+        }
+        else if (hitColliderCountChanged)
+        {
+            RetrieveUnspecificObject_CompletionCheck();
+        }
+
     }
 
-    void RetrieveObject_CompletionCheck()
+    void CheckForColliderCountChange()
     {
-        Collider[] hitColliders = Physics.OverlapBox(transform.position + zoneOffset, zoneCompletionSize/2, Quaternion.identity, objectiveLayer);
+        hitColliders = Physics.OverlapBox(transform.position + zoneOffset, zoneCompletionSize / 2, Quaternion.identity, objectiveLayer);
 
-        if(hitCollidersCount != hitColliders.Length)
+        if (hitCollidersCount != hitColliders.Length)
         {
             hitCollidersCount = hitColliders.Length;
             hitColliderCountChanged = true;
@@ -45,10 +84,16 @@ public class RetrieveObject : Objective
         {
             hitColliderCountChanged = false;
         }
+    }
 
-
+    void ClearLists()
+    {
+        objectiveObjectsInZone.Clear();
         overlappingGameObjects.Clear();
+    }
 
+    void AddCollidersToList()
+    {
         int i = 0;
 
         while (i < hitColliders.Length)
@@ -56,16 +101,60 @@ public class RetrieveObject : Objective
             overlappingGameObjects.Add(hitColliders[i].gameObject);
             i++;
         }
+    }
 
-        if (overlappingGameObjects.Contains(objectiveGameObject) && hitColliderCountChanged)
+    void CompletionCheck(bool conditionOne, bool conditionTwo)
+    {
+        if (conditionOne)
         {
             CompleteObjective();
         }
-        else if(!overlappingGameObjects.Contains(objectiveGameObject) && hitColliderCountChanged)
+        else if (conditionTwo)
         {
             UncompleteObjective();
         }
     }
+
+
+    void RetrieveUnspecificObject_CompletionCheck()
+    {
+        ClearLists();
+
+        AddCollidersToList();
+
+        currentCount = 0;
+
+        foreach (GameObject overlappingGO in overlappingGameObjects)
+        {
+            if (objectiveTag == overlappingGO.tag)
+            {
+                currentCount++;
+            }
+        }
+        ObjectiveText = $"{numberOfObjectsToRetrieve - currentCount} {objectiveName} Required To Progress";
+
+        CompletionCheck(currentCount >= numberOfObjectsToRetrieve, ObjectiveCompleted);
+    }
+    
+    void RetrieveObjects_CompletionCheck()
+    {
+        ClearLists();
+
+        AddCollidersToList();
+
+        foreach (GameObject overlappingGO in overlappingGameObjects)
+        {
+            if (objectiveGameObjects.Contains(overlappingGO))
+            {
+                objectiveObjectsInZone.Add(overlappingGO);
+            }
+        }
+
+        CompletionCheck(objectiveObjectsInZone.Count == objectiveGameObjects.Count, ObjectiveCompleted);        
+    }
+
+
+
 
     //DO NOT DELETE
     //This needs to be commented out when the game is built

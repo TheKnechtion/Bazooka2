@@ -99,7 +99,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 247a6c8506aaf6e4d884393c11cd366d, type: 2}
+  - {fileID: 2100000, guid: ecc685423b8d89a4ea74895667fe08e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -180,7 +180,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 30
@@ -268,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objSize: 1.75
   objName: Lightcube
+  colliders: []
 --- !u!65 &4728294717262794432
 BoxCollider:
   m_ObjectHideFlags: 0
