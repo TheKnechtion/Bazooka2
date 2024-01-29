@@ -26,7 +26,7 @@ public class DeathScript : MonoBehaviour
             coll = GetComponent<CapsuleCollider>();
             eb = GetComponent<EnemyBehavior>();
             nav = GetComponent<Navigation>();
-            rend = GetComponent<Renderer>();
+            rend = GetComponentInChildren<Renderer>();
         }
 
         character = GetComponent<EnemyBehavior>();
