@@ -122,7 +122,7 @@ public class MortarBehavior : MonoBehaviour
     }
     private void ShootMortar()
     {
-        Instantiate(AmmoPrefab, targetPos, Quaternion.identity);
+        Instantiate(AmmoPrefab, targetPos, Quaternion.Euler(90, 0, 0));
     }
     private void EnableEnemy()
     {

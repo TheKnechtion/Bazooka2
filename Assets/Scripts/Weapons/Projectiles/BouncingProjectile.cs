@@ -13,6 +13,8 @@ public class BouncingProjectile : ProjectileBase
     Vector2 direction2D;
     private Vector3 direction;
 
+    private Rigidbody projectileRb;
+
     private Collider[] collidersHit;
     private Vector3 directionToObjectHit;
     private float distanceToObjectHit;
@@ -25,8 +27,11 @@ public class BouncingProjectile : ProjectileBase
 
     void Start()
     {
+        projectileRb = GetComponent<Rigidbody>();
+
         setStats();
-        direction = RaycastController.shootVector;
+        //direction = RaycastController.shootVector;
+        direction = transform.forward;
     }
 
     void Update()
@@ -36,7 +41,7 @@ public class BouncingProjectile : ProjectileBase
 
     private void FixedUpdate()
     {
-        this.gameObject.GetComponent<Rigidbody>().velocity = direction * speed;
+        projectileRb.velocity = direction * speed;
     }
     void Bounce(Collision collision)
     {
@@ -109,7 +114,7 @@ public class BouncingProjectile : ProjectileBase
 
         if (collision.gameObject.TryGetComponent<PlayerManager>(out PlayerManager pm))
         {
-            if (pm.carriedObject.TryGetComponent<IDamagable>(out IDamagable damagable))
+            if (pm.carriedObject != null && pm.carriedObject.TryGetComponent<IDamagable>(out IDamagable damagable))
             {
                 damagable.TakeDamage(damage);
             }
