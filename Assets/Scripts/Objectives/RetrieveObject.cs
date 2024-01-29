@@ -7,10 +7,12 @@ public class RetrieveObject : Objective
     [SerializeField] Vector3 zoneCompletionSize;
     [SerializeField] Vector3 zoneOffset;
 
-    [SerializeField] List<GameObject> objectiveGameObjects;
     [SerializeField] string objectiveName;
 
     [SerializeField] bool retrieveSpecificObject;
+
+    [SerializeField] List<GameObject> objectiveGameObjects;
+    
     [SerializeField] int numberOfObjectsToRetrieve;
 
     public LayerMask objectiveLayer;

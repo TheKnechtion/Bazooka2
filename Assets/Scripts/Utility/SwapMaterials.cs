@@ -29,6 +29,16 @@ public class SwapMaterials : Objective
         }
     }
 
+    public void SetMaterial_Red()
+    {
+        SetMaterial(materialOne);
+    }
+
+    public void SetMaterial_Blue()
+    {
+        SetMaterial(materialTwo);
+    }
+
 
     public void SetMaterial(Material tempMaterial)
     {

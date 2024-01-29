@@ -11,6 +11,7 @@ public class PickUpObject : MonoBehaviour
     PlayerController _playerControllerRef;
     Collider playerCollider;
     bool canPickUp = false;
+    bool canPutDown = false;
     bool isHoldingThisObject = false;
     float dragObjectSpeed = 1.0f;
     [SerializeField] float objSize;
@@ -57,6 +58,10 @@ public class PickUpObject : MonoBehaviour
         {
             UI_Manager.Show_InteractUI($"Pick Up {objName}");
         }
+        else
+        {
+            canPutDown = false;
+        }
     }
 
 
@@ -71,6 +76,10 @@ public class PickUpObject : MonoBehaviour
             canPickUp = true;
             playerCollider = other;
         }
+        else if(other.transform.tag != "Player")
+        {
+            canPutDown = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -83,12 +92,16 @@ public class PickUpObject : MonoBehaviour
             //StopHolding();
             UI_Manager.StopShow_InteractUI();
         }
+        else
+        {
+            canPutDown = true;
+        }
     }
 
 
     void HandlePickUp(InputAction.CallbackContext e)
     {
-        if (canPickUp && isHoldingThisObject)
+        if (canPickUp && isHoldingThisObject && canPutDown)
         {
             StopHolding();
             transform.position = playerAttachPoint.transform.position - playerAttachPoint.transform.up*objSize;
@@ -105,7 +118,7 @@ public class PickUpObject : MonoBehaviour
     Transform playerDetachPoint;
     void StartHolding()
     {
-        DeactivateColliders();
+        ColliderUtility.DeactivateColliders(colliders);
 
         //Debug.Log(playerCollider.transform.Find("Bip001").Find("Bip001 Pelvis").Find("Bip001 Spine").Find("PlayerAttachPoint").name);
 
@@ -143,7 +156,7 @@ public class PickUpObject : MonoBehaviour
         isHoldingThisObject = true;
         PlayerMovement.dragObjectSpeed = dragObjectSpeed;
 
-
+        canPutDown = true;
     }
 
     public void StopHolding()
@@ -176,25 +189,9 @@ public class PickUpObject : MonoBehaviour
         isHoldingThisObject = false;
         PlayerMovement.dragObjectSpeed = 1.0f;
 
-
-        ActivateColliders();
+        ColliderUtility.ActivateColliders(colliders);
     }
 
-    public void DeactivateColliders()
-    {
-        foreach(var collider in colliders)
-        {
-            collider.enabled = false;
-        }
-    }
-
-    public void ActivateColliders()
-    {
-        foreach (var collider in colliders)
-        {
-            collider.enabled = true;
-        }
-    }
 
 
     void DestroyThis(object sender, EventArgs e)

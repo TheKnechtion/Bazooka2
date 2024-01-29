@@ -536,7 +536,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54110
+  m_Name: pb_Mesh48016
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -833,6 +833,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53b1eb2d5758e2a4e863ab2b52fa190b, type: 3}
+--- !u!1 &641705622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8235017051380357627, guid: 53b1eb2d5758e2a4e863ab2b52fa190b, type: 3}
+  m_PrefabInstance: {fileID: 641705621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &652167196 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8235017051380357627, guid: d0f23a7cbacc97b41babf364a3078dab, type: 3}
@@ -844,7 +849,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54138
+  m_Name: pb_Mesh33058
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1473,7 +1478,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54204
+  m_Name: pb_Mesh33130
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1991,7 +1996,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54188
+  m_Name: pb_Mesh33114
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2156,7 +2161,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54154
+  m_Name: pb_Mesh33074
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2381,11 +2386,11 @@ PrefabInstance:
       objectReference: {fileID: 1101076071}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Swap
+      value: SetMaterial_Blue
       objectReference: {fileID: 0}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveUncomplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Swap
+      value: SetMaterial_Red
       objectReference: {fileID: 0}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2466,7 +2471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: objectiveName
-      value: Pink Lightcube
+      value: Red Lightcube
       objectReference: {fileID: 0}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: zoneCompletionSize.x
@@ -2503,22 +2508,46 @@ PrefabInstance:
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: 'objectiveGameObjects.Array.data[0]'
       value: 
-      objectReference: {fileID: 652167196}
+      objectReference: {fileID: 641705622}
+    - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
+      propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
+      propertyPath: onObjectiveUncomplete.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
+      propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1101076071}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
+      propertyPath: onObjectiveUncomplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveUncomplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1101076071}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
+      propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Swap
+      value: SetMaterial_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
+      propertyPath: onObjectiveUncomplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveUncomplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Swap
+      value: SetMaterial_Red
       objectReference: {fileID: 0}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2527,6 +2556,18 @@ PrefabInstance:
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveUncomplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SwapMaterials, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
+      propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
+      propertyPath: onObjectiveUncomplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053897477412494809, guid: 9adb7925fbbde0945987898f57172335, type: 3}
+      propertyPath: showObjectiveZone
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8151177564889369990, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: m_LocalScale.x
@@ -3231,11 +3272,11 @@ PrefabInstance:
       objectReference: {fileID: 1101076071}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Swap
+      value: SetMaterial_Blue
       objectReference: {fileID: 0}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveUncomplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Swap
+      value: SetMaterial_Red
       objectReference: {fileID: 0}
     - target: {fileID: 1694853284626360452, guid: 9adb7925fbbde0945987898f57172335, type: 3}
       propertyPath: onObjectiveComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

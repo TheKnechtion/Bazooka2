@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9070690062550155646
+--- !u!114 &-3525996555080940881
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Health
-  m_Shader: {fileID: -6465566751694194690, guid: 988439eed0e463b43b5df5c957b8772d, type: 3}
+  m_Name: TestArrow
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -30,14 +30,15 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 08988dd376bfdbe4f9419502bfe2c1b3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -60,16 +61,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _HP_Symbol:
-        m_Texture: {fileID: 2800000, guid: 1cfcdca5a8914994bb30880fe186b868, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Heart_Icon:
-        m_Texture: {fileID: 2800000, guid: 1cfcdca5a8914994bb30880fe186b868, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 08988dd376bfdbe4f9419502bfe2c1b3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -84,32 +77,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_10a6abc7f6874b92ac899d9ebeae9df1_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 0201b6fbcf17e414ba99f298d6148f4e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_157ee9f1565342b496977e121a466ed5_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 61d1c96c72294034989d8376397c33d6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_41f7c4a5e59d4bc39e67bd7d16fca52a_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 9cebd62661d86b14e8cddd5b066f4163, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_6f37bec29cff4f2884a4b44ce24206c6_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 5ea0947d1e720aa4eb75ede948abc6e8, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_a2390a6630b643acb7ac93890e11cd80_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 76c5e23cb8db1d544bb7ce32a378b6de, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Turkey_Icon:
-        m_Texture: {fileID: 2800000, guid: 189679d851bd62d4685356e5d5b67f4c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -143,38 +112,6 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Heart_Eight_Opacity: 0.35
-    - _Heart_Eight_Unlocked: 0
-    - _Heart_Eleven_Opacity: 0.35
-    - _Heart_Eleven_Unlocked: 0
-    - _Heart_Fifteen_Opacity: 0.35
-    - _Heart_Fifteen_Unlocked: 0
-    - _Heart_Five_Opacity: 0.35
-    - _Heart_Five_Unlocked: 1
-    - _Heart_Four_Opacity: 0.35
-    - _Heart_Four_Unlocked: 1
-    - _Heart_Fourteen_Opacity: 0.35
-    - _Heart_Fourteen_Unlocked: 0
-    - _Heart_Nine_Opacity: 0.35
-    - _Heart_Nine_Unlocked: 0
-    - _Heart_One_Opacity: 0.35
-    - _Heart_One_Unlocked: 1
-    - _Heart_Seven_Opacity: 0.35
-    - _Heart_Seven_Unlocked: 0
-    - _Heart_Six_Opacity: 0.35
-    - _Heart_Six_Unlocked: 0
-    - _Heart_Ten_Opacity: 0.35
-    - _Heart_Ten_Unlocked: 0
-    - _Heart_Thirteen_Opacity: 0.35
-    - _Heart_Thirteen_Unlocked: 0
-    - _Heart_Three_Opacity: 0.35
-    - _Heart_Three_Unlocked: 1
-    - _Heart_Twelve_Opacity: 0.35
-    - _Heart_Twelve_Unlocked: 0
-    - _Heart_Two_Opacity: 0.35
-    - _Heart_Two_Unlocked: 1
-    - _IsHeartOneUnlocked: 1
-    - _IsHeartTwoUnlocked: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -189,10 +126,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Heart_One_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Heart_Two_Color: {r: 0.654902, g: 0.654902, b: 0.654902, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

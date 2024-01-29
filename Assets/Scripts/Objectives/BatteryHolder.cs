@@ -26,10 +26,12 @@ public class BatteryHolder : Objective
 
             Destroy(other.transform.GetComponent<Rigidbody>());
 
+            /*
             foreach (BoxCollider bc in other.transform.GetComponents<BoxCollider>())
             {
                 bc.isTrigger = true;
             }
+            */
 
             if (other.transform.TryGetComponent<DragObject>(out DragObject dragObj))
             {

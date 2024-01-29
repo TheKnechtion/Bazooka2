@@ -91,7 +91,7 @@ public class AimCursor : MonoBehaviour
 
         cursorVector = cursorLocation - cam.transform.position;
 
-        cursorImage.color = lightGreen;
+        //cursorImage.color = lightGreen;
     }
 
 
@@ -104,6 +104,8 @@ public class AimCursor : MonoBehaviour
 
     void StartAiming(object sender, EventArgs e)
     {
+        tempColor.a = 1;
+        //cursorImage.color = tempColor;
         isAiming = true;
     }
     void StopAiming(object sender, EventArgs e)
@@ -118,19 +120,18 @@ public class AimCursor : MonoBehaviour
     bool isPaused = false;
     public void MakeCursorVisisble(object sender, EventArgs e)
     {
-        if(!isPaused)
-        {
-            tempColor = lightGreen;
-            tempColor.a = 1;
-
-            isPaused = true;
-        }
-        else
+        if(isPaused)
         {
             tempColor = Color.white;
             tempColor.a = 0;
             cursorImage.color = tempColor;
             isPaused = false;
+        }
+        else
+        {
+            tempColor.a = 1;
+            //cursorImage.color = tempColor;
+            isPaused = true;
         }
 
 
