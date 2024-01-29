@@ -40,6 +40,11 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     public int health = 2;
 
     protected Animator movementAnimator;
+    public Animator MovementAnimator 
+    {
+        get { return movementAnimator; }
+        set { movementAnimator = value; }   
+    }
 
     //track the current player position
     protected Vector3 playerPosition;

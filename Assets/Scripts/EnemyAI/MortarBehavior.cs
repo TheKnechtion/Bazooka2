@@ -1,24 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
-public class MortarBehavior : MonoBehaviour
+public class MortarBehavior : MonoBehaviour, IParticleCaller
 {
     [Tooltip("The enemy you want to be using this mortar.")]
     [SerializeField] private GameObject heldEnemy;
+    private GameObject enemy;
 
     [Tooltip("The child transform where the enemy will spawn.")]
     [SerializeField] private Transform mountPoint;
+    [SerializeField] private DestroyableObject MortarBody;
+
 
     [SerializeField] private LayerMask playerMask;
 
     [Header("Mortar Attributes")]
     [Tooltip("How the close the player has to be for enemy to spawn in.")]
     [SerializeField] private float radius;
+
+
     [Tooltip("How long before mortar shoots after targeting.")]
     [SerializeField] private float shootDelay;
-    [SerializeField]private float timeUntilShoot;
+    private float timeUntilShoot;
+
+    [Tooltip("After shooting, how long to wait before targeting again.")]
+    [SerializeField] private float targetingDelay;
 
     [Header("Mortar Projectile")]
     [SerializeField] private GameObject AmmoPrefab;
@@ -32,6 +42,9 @@ public class MortarBehavior : MonoBehaviour
     private Vector3 targetPos;
     private bool enemySpawned;
     private bool targetingActive;
+
+    //Interface
+    public event EventHandler OnParticleCall;
 
     private void Awake()
     {
@@ -53,16 +66,32 @@ public class MortarBehavior : MonoBehaviour
         timeUntilShoot = 0.0f;
 
         targetPos = new Vector3(0, 15, 0);
+
+        MortarBody = GetComponent<DestroyableObject>();
+        MortarBody.OnDestroyed += MortarDestroyed;
+        
+
+        SpawnEnemy();
+    }
+
+    private void MortarDestroyed(object sender, EventArgs e)
+    {
+        ToggleEnemyBehavior(true);
     }
 
     void Update()
     {
-        if (!enemySpawned) 
+        if (enabled)
         {
-            if (Physics.CheckSphere(gameObject.transform.position, radius, playerMask))
+            if (!enemySpawned)
             {
-                //EnableEnemy();
-                //enemySpawned = true;
+                if (Physics.CheckSphere(gameObject.transform.position, radius, playerMask))
+                {
+                    ToggleEnemyBehavior(true);
+                    //enemy.GetComponent<EnemyBehavior>().MovementAnimator.SetBool("Crouching", true);
+
+                    this.enabled = false;
+                }
             }
         }        
     }
@@ -79,12 +108,14 @@ public class MortarBehavior : MonoBehaviour
             SetLaserWidth(startingWidth, endingWidth);
 
             yield return null;
+
         }
 
         ShootMortar();
 
         ToggleLaser(false);
 
+        yield return new WaitForSeconds(targetingDelay);
         timeUntilShoot = 0.0f;
         targetingActive = false;
     }
@@ -99,18 +130,22 @@ public class MortarBehavior : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.TryGetComponent<PlayerManager>(out PlayerManager m))
+        if (enabled)
         {
-            if (!targetingActive)
+            if (other.gameObject.TryGetComponent<PlayerManager>(out PlayerManager m))
             {
-                StartCoroutine(TrackAndShoot());
+                if (!targetingActive)
+                {
+                    StartCoroutine(TrackAndShoot());
+                }
+
+                targetPos.x = other.transform.position.x;
+                targetPos.z = other.transform.position.z;
+
+                SetLaserPos(targetPos);
             }
-
-            targetPos.x = other.transform.position.x;   
-            targetPos.z = other.transform.position.z;
-
-            SetLaserPos(targetPos);
         }
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -122,12 +157,21 @@ public class MortarBehavior : MonoBehaviour
     }
     private void ShootMortar()
     {
+        OnParticleCall?.Invoke(this, EventArgs.Empty);
         Instantiate(AmmoPrefab, targetPos, Quaternion.Euler(90, 0, 0));
     }
-    private void EnableEnemy()
+    private void SpawnEnemy()
     {
-        Instantiate(heldEnemy, mountPoint.position, Quaternion.identity);
+        enemy = Instantiate(heldEnemy, mountPoint.position, mountPoint.rotation);
+        //enemy.GetComponent<EnemyBehavior>().MovementAnimator.SetBool("Crouching", false);
+        ToggleEnemyBehavior(false);
     }
+
+    private void ToggleEnemyBehavior(bool active)
+    {
+        enemy.GetComponent<EnemyBehavior>().enabled = active;
+    }
+
 
     private void ToggleLaser(bool active)
     {
@@ -151,5 +195,10 @@ public class MortarBehavior : MonoBehaviour
         {
             laserRenderer.widthMultiplier = Mathf.Lerp(start, end, timeUntilShoot / shootDelay);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(gameObject.transform.position, radius);
     }
 }

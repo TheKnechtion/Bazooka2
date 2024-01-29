@@ -10,7 +10,7 @@ public class DeathScript : MonoBehaviour
     GameObject deathEffect;
 
 
-    private CapsuleCollider coll;
+    private Collider coll;
     private EnemyBehavior eb;
     private Navigation nav;
     private Renderer rend;
@@ -23,7 +23,7 @@ public class DeathScript : MonoBehaviour
     {
         if (!easyDestroy)
         {
-            coll = GetComponent<CapsuleCollider>();
+            coll = GetComponent<Collider>();
             eb = GetComponent<EnemyBehavior>();
             nav = GetComponent<Navigation>();
             rend = GetComponentInChildren<Renderer>();

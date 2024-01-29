@@ -104,7 +104,7 @@ public class Projectile : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<PlayerManager>(out PlayerManager pm))
         {
-            if (pm.carriedObject.TryGetComponent<IDamagable>(out IDamagable damagable))
+            if (pm.carriedObject != null && pm.carriedObject.TryGetComponent<IDamagable>(out IDamagable damagable))
             {
                 damagable.TakeDamage(damage);
             }

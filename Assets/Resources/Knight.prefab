@@ -576,7 +576,6 @@ GameObject:
   - component: {fileID: 8032456589840358464}
   - component: {fileID: 5796201462488061629}
   - component: {fileID: 7334304280915698183}
-  - component: {fileID: 3156741620935742141}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -774,22 +773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9dc79fc952450468911cf7d8adab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3156741620935742141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3779819002887235496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d815ba2c0b5b6d459d8e717e0fa73ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  materials:
-  - {fileID: 2100000, guid: 3cc53342953f1e743bb6cd53e7a6c43a, type: 2}
-  - {fileID: 2100000, guid: 93bf5c6f38110334e886f1c5e2b2fa89, type: 2}
-  renderers: []
 --- !u!1 &3840226527533530000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,6 +1324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3720432422150889345}
   - component: {fileID: 6165977650010543441}
+  - component: {fileID: 5600710961483442003}
   m_Layer: 0
   m_Name: German_body_infantry
   m_TagString: Untagged
@@ -1436,6 +1420,25 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.12944067, y: 0.08426675, z: 0.0000010728836}
     m_Extent: {x: 1.0939636, y: 0.34945288, z: 1.4174923}
   m_DirtyAABB: 0
+--- !u!114 &5600710961483442003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5800668175344791148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d815ba2c0b5b6d459d8e717e0fa73ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 641f5a94be9cfa7438fc1572c14d6a93, type: 2}
+  - {fileID: 2100000, guid: 93bf5c6f38110334e886f1c5e2b2fa89, type: 2}
+  renderers:
+  - {fileID: 6165977650010543441}
+  - {fileID: 5894115957014006739}
+  - {fileID: 6392866567070037203}
 --- !u!1 &6021274852170995391
 GameObject:
   m_ObjectHideFlags: 0

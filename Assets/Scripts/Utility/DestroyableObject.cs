@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ public class DestroyableObject : MonoBehaviour, IDamagable
     public int health = 4;
 
     public bool ArmoredTarget { get;  set; }
+
+    public event EventHandler OnDestroyed;
 
     private void Start()
     {
@@ -26,6 +29,7 @@ public class DestroyableObject : MonoBehaviour, IDamagable
 
     public virtual void Die()
     {
+        OnDestroyed?.Invoke(this, EventArgs.Empty);
         Destroy(this.gameObject);
     }
 
@@ -41,7 +45,8 @@ public class DestroyableObject : MonoBehaviour, IDamagable
 
         if (parentObj == null) 
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            Die();
         }
 
 
@@ -54,11 +59,13 @@ public class DestroyableObject : MonoBehaviour, IDamagable
 
 
             Destroy(gameObject.transform.parent.gameObject);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            Die();
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            Die();
         }
         
     }
