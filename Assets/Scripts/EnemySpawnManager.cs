@@ -67,6 +67,7 @@ public class EnemySpawnManager : MonoBehaviour
         //sets the health of the enemy from the database
         tempGameObject.GetComponent<EnemyBehavior>().health = tempEnemyInfo.HP;
 
+        /*
         //sets the def of the enemy from the database (no use in this game, but it sets it)
         tempGameObject.GetComponent<EnemyBehavior>().DEF = tempEnemyInfo.DEF;
 
@@ -76,6 +77,7 @@ public class EnemySpawnManager : MonoBehaviour
         //sets the def of the enemy from the database
         //(This is currently only used for the knight. It sets a value in the weapon database for the knight's weapon.)
         tempGameObject.GetComponent<EnemyBehavior>().AP = tempEnemyInfo.AP;
+        */
 
         //removes the spawned enemy from the list of enemies the player hasn't encountered this playthrough
         listOfUnseenEnemiesInCurrentPlaythough.Remove(tempEnemyInfo.name);
@@ -100,6 +102,7 @@ public class EnemySpawnManager : MonoBehaviour
         //sets the health of the enemy from the database
         tempGameObject.GetComponent<EnemyBehavior>().health = tempEnemyInfo.HP;
 
+        /*
         //sets the def of the enemy from the database (no use in this game, but it sets it)
         tempGameObject.GetComponent<EnemyBehavior>().DEF = tempEnemyInfo.DEF;
 
@@ -109,6 +112,7 @@ public class EnemySpawnManager : MonoBehaviour
         //sets the def of the enemy from the database
         //(This is currently only used for the knight. It sets a value in the weapon database for the knight's weapon.)
         tempGameObject.GetComponent<EnemyBehavior>().AP = tempEnemyInfo.AP;
+        */
 
         //removes the spawned enemy from the list of enemies the player hasn't encountered this playthrough
         listOfUnseenEnemiesInCurrentPlaythough.Remove(tempEnemyInfo.name);

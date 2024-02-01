@@ -15,6 +15,8 @@ public class DeathScript : MonoBehaviour
     private Navigation nav;
     private Renderer rend;
 
+    [SerializeField] private Animator anim;
+
     //This shouldn't be the final destroy, only temporary
     [SerializeField] bool easyDestroy;
 
@@ -28,6 +30,8 @@ public class DeathScript : MonoBehaviour
             nav = GetComponent<Navigation>();
             rend = GetComponentInChildren<Renderer>();
         }
+
+        anim = GetComponent<Animator>();
 
         character = GetComponent<EnemyBehavior>();
         character.OnDeath += Character_OnDeath;
@@ -64,9 +68,11 @@ public class DeathScript : MonoBehaviour
 
     private void DisableComponents()
     { 
-        rend.enabled = false;
+        //rend.enabled = false;
         coll.enabled = false;
         eb.enabled= false;
         nav.enabled = false;
+
+        anim.SetBool("Killed", true);
     }
 }

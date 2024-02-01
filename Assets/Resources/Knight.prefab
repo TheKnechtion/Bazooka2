@@ -619,7 +619,7 @@ Animator:
   m_GameObject: {fileID: 3779819002887235496}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1497d8501c220f54aa06e10f16eeba81, type: 3}
-  m_Controller: {fileID: 9100000, guid: c64671c6415303b4987c2f375fbffd00, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -639,7 +639,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3779819002887235496}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -695,13 +695,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: c2953f9e2978987449a97d68c6924723, type: 2}
   currentState: 0
-  MP: 0
-  AP: 0
-  DEF: 0
   maxHealth: 2
   health: 2
+  animController: {fileID: 9100000, guid: d59a7ece786ec65438d99692ac722e95, type: 2}
   weaponProjectileSpawnNode: {fileID: 8466442086576113033}
-  SetToAttack: 1
+  SetToAttack: 0
   enemyAttackRange_BecomeAggro: 15
   enemyAttackRange_AttackRange: 12
   isAggrod: 0
@@ -760,6 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2fce36f38992e4a8e28c9927587a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   easyDestroy: 0
 --- !u!114 &7334304280915698183
 MonoBehaviour:
