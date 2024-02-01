@@ -77,6 +77,7 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
         if (enBehav)
         {
             enBehav.OnDeath += OnUserKilled;
+            enBehav.MovementAnimator.SetBool("Crouching", true);
         }
     }
 
@@ -180,6 +181,7 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
         if(enBehav)
         {
             enBehav.TargetingEnabled = active;
+            enBehav.MovementAnimator.SetBool("Crouching", !active);
         }
     }
 

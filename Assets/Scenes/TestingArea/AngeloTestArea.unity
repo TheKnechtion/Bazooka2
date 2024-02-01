@@ -610,6 +610,63 @@ MonoBehaviour:
   UseDefaultFields: 0
   Fade_To_Opacity: 0.1
   fadeSpeed: 3
+--- !u!1001 &144515279
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_Name
+      value: weapon_panzerschreck
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.612184
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00009918213
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.743888
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710665
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071069
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000039512653
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00000006585445
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 94a43e67208119b4cae5ba31c9d66339, type: 3}
 --- !u!1 &199401834
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +981,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33342
+  m_Name: pb_Mesh33344
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1089,7 +1146,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33042
+  m_Name: pb_Mesh33044
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -3013,7 +3070,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33156
+  m_Name: pb_Mesh33158
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -3273,7 +3330,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33170
+  m_Name: pb_Mesh33172
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4711,7 +4768,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33248
+  m_Name: pb_Mesh33250
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -5494,3 +5551,4 @@ SceneRoots:
   - {fileID: 2067106371}
   - {fileID: 427362319}
   - {fileID: 5102004924704546007}
+  - {fileID: 144515279}

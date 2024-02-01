@@ -119,12 +119,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected virtual void Awake()
     {
         TargetingEnabled = true;
-    }
-    protected virtual void Start()
-    {
-        setStats();
-
-        agent = GetComponent<NavMeshAgent>();
 
         movementAnimator = GetComponent<Animator>();
         if (animController)
@@ -136,6 +130,14 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             Debug.LogWarning("! No animController Set !");
         }
+    }
+    protected virtual void Start()
+    {
+        setStats();
+
+        agent = GetComponent<NavMeshAgent>();
+
+        
 
         //ensures that if the room  is beaten, this won't spawn again
         //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
