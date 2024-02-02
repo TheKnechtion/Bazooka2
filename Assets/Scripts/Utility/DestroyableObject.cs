@@ -6,14 +6,42 @@ using UnityEngine;
 
 public class DestroyableObject : MonoBehaviour, IDamagable
 {
-    public int health = 4;
+    public int health;
 
+    [Tooltip("Some items are meshes, others are objects. Assign the correct ones")]
+    [SerializeField] private GameObject swapModel;
+    private GameObject destroyModel;
+
+    [SerializeField] private Mesh destroyedMesh;
+    private MeshFilter renderMesh;
     public bool ArmoredTarget { get;  set; }
 
     public event EventHandler OnDestroyed;
 
+    private bool dontDestroy;
+
     private void Start()
     {
+
+        renderMesh = GetComponent<MeshFilter>();
+
+        dontDestroy = false;
+        if (swapModel != null)
+        {
+            dontDestroy = true;
+
+            destroyModel = Instantiate(swapModel, gameObject.transform.position, gameObject.transform.rotation);
+
+            destroyModel.SetActive(false);
+        }
+
+        if (destroyedMesh != null && renderMesh != null) 
+        {
+            dontDestroy = true;
+        }
+
+
+
         ArmoredTarget = false;
     }
 
@@ -23,7 +51,23 @@ public class DestroyableObject : MonoBehaviour, IDamagable
 
         if (health <= 0)
         {
-            Die();
+            if (!dontDestroy)
+            {
+                Die();
+            }
+            else
+            {
+                Die();
+
+                if (destroyModel)
+                {
+                    destroyModel.SetActive(true);
+                }
+                else if (destroyedMesh != null)
+                {
+                    renderMesh.mesh = destroyedMesh;
+                }
+            }
         }
     }
 
@@ -69,7 +113,4 @@ public class DestroyableObject : MonoBehaviour, IDamagable
         }
         
     }
-
-
-
 }
