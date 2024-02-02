@@ -948,7 +948,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-345522
+  m_Name: pb_Mesh-2970
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1770,7 +1770,7 @@ PrefabInstance:
       objectReference: {fileID: 58237376}
     - target: {fileID: 889233437670837826, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_VersionIndex
-      value: 5156
+      value: 5168
       objectReference: {fileID: 0}
     - target: {fileID: 1719399576878446748, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_Mesh
@@ -1778,7 +1778,7 @@ PrefabInstance:
       objectReference: {fileID: 340050282}
     - target: {fileID: 1719399576878446748, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_VersionIndex
-      value: 5156
+      value: 5168
       objectReference: {fileID: 0}
     - target: {fileID: 7391800652854695840, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_Name
@@ -4385,7 +4385,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-343584
+  m_Name: pb_Mesh-1458
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9164,7 +9164,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-345536
+  m_Name: pb_Mesh-2984
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9740,9 +9740,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fb880eeccfd8458923e41002b0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yValue: 25.25
+  colliders: []
+  collidersActive: 0
+  endHeight: 0
+  elevatorMovementDirection: 0
   waitTime: 5
-  goesBackDown: 1
+  autoReturnToStartPosition: 0
   isActive: 1
 --- !u!65 &348948955
 BoxCollider:
@@ -11007,9 +11010,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fb880eeccfd8458923e41002b0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yValue: 11.62
+  colliders: []
+  collidersActive: 0
+  endHeight: 0
+  elevatorMovementDirection: 0
   waitTime: 5
-  goesBackDown: 1
+  autoReturnToStartPosition: 0
   isActive: 1
 --- !u!65 &407111772
 BoxCollider:
@@ -21023,7 +21029,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-345378
+  m_Name: pb_Mesh-2328
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -32247,7 +32253,7 @@ PrefabInstance:
       objectReference: {fileID: 196302221}
     - target: {fileID: 889233437670837826, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_VersionIndex
-      value: 5153
+      value: 5165
       objectReference: {fileID: 0}
     - target: {fileID: 1719399576878446748, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_Mesh
@@ -32255,7 +32261,7 @@ PrefabInstance:
       objectReference: {fileID: 1702434695}
     - target: {fileID: 1719399576878446748, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_VersionIndex
-      value: 5153
+      value: 5165
       objectReference: {fileID: 0}
     - target: {fileID: 7391800652854695840, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_Name
@@ -38702,9 +38708,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fb880eeccfd8458923e41002b0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yValue: 56.5
+  colliders: []
+  collidersActive: 0
+  endHeight: 0
+  elevatorMovementDirection: 0
   waitTime: 5
-  goesBackDown: 1
+  autoReturnToStartPosition: 0
   isActive: 1
 --- !u!65 &1451032347
 BoxCollider:
@@ -42927,7 +42936,7 @@ PrefabInstance:
       objectReference: {fileID: 770574638}
     - target: {fileID: 889233437670837826, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_VersionIndex
-      value: 5150
+      value: 5162
       objectReference: {fileID: 0}
     - target: {fileID: 1719399576878446748, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_Mesh
@@ -42935,7 +42944,7 @@ PrefabInstance:
       objectReference: {fileID: 1860325193}
     - target: {fileID: 1719399576878446748, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_VersionIndex
-      value: 5150
+      value: 5162
       objectReference: {fileID: 0}
     - target: {fileID: 7391800652854695840, guid: 3a95f51227af4404f87ceba14164ba13, type: 3}
       propertyPath: m_Name
@@ -44620,7 +44629,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-343598
+  m_Name: pb_Mesh-1472
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -49143,7 +49152,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-345392
+  m_Name: pb_Mesh-2342
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -56164,9 +56173,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fb880eeccfd8458923e41002b0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yValue: 11.5
+  colliders: []
+  collidersActive: 0
+  endHeight: 0
+  elevatorMovementDirection: 0
   waitTime: 5
-  goesBackDown: 1
+  autoReturnToStartPosition: 0
   isActive: 1
 --- !u!65 &1926997500
 BoxCollider:
