@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,39 +6,119 @@ using UnityEngine;
 
 public class Elevator : Interactable
 {
-    [SerializeField] float yValue;
+    enum orientation
+    {
+        UpToDown,
+        DownToUp
+    }
+
+    enum position
+    {
+        Up,
+        Down
+    }
+
+    [SerializeField] float endHeight;
+
+    [Tooltip("Choose which direction the elevator moves.")]
+    [SerializeField] orientation elevatorMovementDirection;
+
+    [Tooltip("This is the amount of time before the elevator can start descending.")]
     [SerializeField] float waitTime;
-    [SerializeField] bool goesBackDown;
+
+    [Tooltip("When selected, the elevator will automatically return to its start position after waitTime seconds.")]
+    [SerializeField] bool autoReturnToStartPosition;
+
+    [Tooltip("When unselected, the elevator won't move.")]
     [SerializeField] bool isActive;
 
-    float startHeight;
-    bool isElevating = false;
     bool canActivate = true;
+    
+    float startHeight;
+    float bottomHeight;
+    float topHeight;
+    
+    bool isElevating = false;
     bool isGoingDown = false;
+
     float incrementVectorY = 0f;
 
+    position currnetLocation;
 
-    [SerializeField] bool startAtTop;
+
+
+
+    [SerializeField] bool startAtEndPosition;
+
+
+    //public bool objectBeneathElevator;
+
     bool playerOnObject = false;
 
     string obj_tag;
 
-    private void OnTriggerEnter(Collider other)
+
+    private void Start()
     {
-        obj_tag = other.gameObject.tag;
+        startHeight = transform.position.y;
 
-        if (canActivate && obj_tag == "Player" && isActive)
+        incrementVectorY = startHeight;
+
+        if(elevatorMovementDirection == orientation.DownToUp)
         {
-            other.transform.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
-
-            isElevating = true;
-            canActivate = false;
+            bottomHeight = startHeight;
+            topHeight = endHeight;
+            currnetLocation = position.Down;
+        }
+        else
+        {
+            bottomHeight = endHeight;
+            topHeight = startHeight;
+            currnetLocation = position.Up;
         }
 
-        if(obj_tag == "Player")
+
+        if (startAtEndPosition)
+        {
+            transform.position = new Vector3(this.transform.position.x, endHeight, this.transform.position.z);
+            //ColliderUtility.DeactivateColliders(colliders);
+        }
+    }
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag != "Player")
+        {
+            return;
+        }
+        else
         {
             playerOnObject = true;
         }
+
+
+        if (canActivate && isActive)
+        {
+            other.transform.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
+            //other.transform.SetParent(transform);
+            canActivate = false;
+        }
+        else
+        {
+            return;
+        }
+
+        if(elevatorMovementDirection == orientation.DownToUp)
+        {
+            isElevating = true;
+        }
+        else
+        {
+            isGoingDown = true;
+        }
+
     }
 
     
@@ -46,54 +127,48 @@ public class Elevator : Interactable
         if(other.transform.tag == "Player")
         {
             playerOnObject = false;
+            //other.transform.SetParent(null);
+            //GameObject.DontDestroyOnLoad(other.transform);
         }
     }
     
 
 
-    private void Start()
-    {
-        startHeight = transform.position.y;
-
-        if(startAtTop)
-        {
-            transform.position = new Vector3(this.transform.position.x, yValue, this.transform.position.z);
-            ColliderUtility.DeactivateColliders(colliders);
-        }
-
-
-    }
-
     private void FixedUpdate()
     {
-        if(isElevating)
+        /*
+        if (objectBeneathElevator)
+        {
+            ColliderUtility.DeactivateColliders(colliders);
+            collidersActive = false;
+        }
+        */
+
+        if (isElevating)
         {
             Elevate();
+            return;
         }
 
-
-        if(isGoingDown && goesBackDown)
+        if(isGoingDown)
         {
             GoDown();
+            return;
         }
 
 
-        if (startAtTop && isActive)
+        if (startAtEndPosition && isActive)
         {
-            startAtTop = false;
+            startAtEndPosition = false;
             isGoingDown = true;
-            goesBackDown = true;
+            autoReturnToStartPosition = true;
 
             incrementVectorY = this.transform.position.y;
 
             GoDown();
         }
 
-        if (isGoingDown && !playerOnObject && collidersActive)
-        {
-            ColliderUtility.DeactivateColliders(colliders);
-            collidersActive = false;
-        }
+
     }
 
     void Elevate()
@@ -102,11 +177,24 @@ public class Elevator : Interactable
 
         incrementVectorY += 0.05f;
 
-        if (incrementVectorY >= yValue)
+        if (incrementVectorY >= topHeight)
         {
             isElevating = false;
+        }
+        else
+        {
+            return;
+        }
+
+        if(isElevating == false && elevatorMovementDirection == orientation.DownToUp && autoReturnToStartPosition)
+        {
             StartCoroutine(WaitToGoDown());
         }
+        else
+        {
+            StartCoroutine(WaitToActivate());
+        }
+
     }
 
 
@@ -116,19 +204,33 @@ public class Elevator : Interactable
 
         incrementVectorY -= 0.05f;
 
-        if (incrementVectorY <= startHeight)
+        if (incrementVectorY <= bottomHeight)
         {
-
+            /*
             if(!collidersActive)
             {
                 ColliderUtility.ActivateColliders(colliders);
                 collidersActive = true;
             }
-
+            */
 
             isGoingDown = false;
+        }
+        else
+        {
+            return;
+        }
+
+        if (isGoingDown == false && elevatorMovementDirection == orientation.UpToDown && autoReturnToStartPosition)
+        {
+            StartCoroutine(WaitToGoUp());
+        }
+        else
+        {
             StartCoroutine(WaitToActivate());
         }
+
+
     }
 
     public void Activate()
@@ -146,6 +248,11 @@ public class Elevator : Interactable
     {
         yield return new WaitForSeconds(waitTime);
         isGoingDown = true;
+    }
+    private IEnumerator WaitToGoUp()
+    {
+        yield return new WaitForSeconds(waitTime);
+        isElevating = true;
     }
 
     private IEnumerator WaitToActivate()

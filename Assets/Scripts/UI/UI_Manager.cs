@@ -5,6 +5,7 @@ using TMPro;
 using System;
 using UnityEngine.EventSystems;
 using UnityEditor.Search;
+using OpenCover.Framework.Model;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -33,12 +34,18 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject Objective;
     [SerializeField] private GameObject ObjectiveText;
 
+    [SerializeField] private GameObject PauseMenu;
+    [SerializeField] private Material Fade;
+
     static GameObject Activate_Sample;
     static GameObject ActivateText_Sample;
     static GameObject Objective_Sample;
     static GameObject ObjectiveText_Sample;
 
     static GameObject RoomSelectScreenRef;
+    static GameObject PauseMenuRef;
+    static Material FadeRef;
+
 
     private TextMeshProUGUI objRenderer;
     private TextMeshProUGUI statusRenderer;
@@ -92,6 +99,8 @@ public class UI_Manager : MonoBehaviour
 
     void Awake()
     {
+        
+
         DontDestroyOnLoad(this.gameObject);
         
         _playerController = new PlayerController();
@@ -105,6 +114,10 @@ public class UI_Manager : MonoBehaviour
         ActivateText_Sample = ActivateText;
 
         RoomSelectScreenRef = RoomSelectScreen;
+        PauseMenuRef = PauseMenu;
+
+        FadeRef = Fade;
+        FadeRef.SetFloat("_alpha", 0f);
     }
 
     private void Start()
@@ -139,7 +152,6 @@ public class UI_Manager : MonoBehaviour
         PlayerProjectile.OnExplosion += PlayerManager_OnPlayerProjectileAmountChange;
 
         
-
 
 
         Item.OnWeaponPickUp += Item_OnWeaponPickUp;
@@ -290,6 +302,24 @@ public class UI_Manager : MonoBehaviour
         Objective_Sample.SetActive(false);
     }
 
+    public void SelectOption_ObjectiveUI()
+    {
+        Objective_Sample.SetActive(false);
+    }
+
+    public static void Show_PauseMenu()
+    {
+        FadeRef.SetFloat("_alpha", .75f);
+
+        PauseMenuRef.SetActive(true);
+    }
+
+    public static void StopShow_PauseMenu()
+    {
+        FadeRef.SetFloat("_alpha", 0f);
+
+        PauseMenuRef.SetActive(false);
+    }
 
     public static void Show_RoomSelect()
     {
