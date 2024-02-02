@@ -8,6 +8,8 @@ using System;
 public class Navigation : MonoBehaviour
 {
     protected NavMeshAgent agent;
+    protected EnemyBehavior eb;
+
     protected Vector3 playerPos, thisPos, targetPos, reverseDirection;
     public float distance;
 
@@ -22,7 +24,15 @@ public class Navigation : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        agent = GetComponent<NavMeshAgent>();       
+        agent = GetComponent<NavMeshAgent>();
+
+        eb = GetComponent<EnemyBehavior>();
+        eb.OnDeath += OnDeath;
+    }
+
+    private void OnDeath(object sender, EventArgs e)
+    {
+        agent.SetDestination(gameObject.transform.position);
     }
 
     // Update is called once per frame

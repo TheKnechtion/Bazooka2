@@ -29,8 +29,6 @@ public class ParticleOnDemand : MonoBehaviour
 
     private void OnParticlesRequested(object sender, System.EventArgs e)
     {
-        Debug.Log("PLaying FX");
-
         if (ParticleFX)
         {
             ParticleFX.Play();

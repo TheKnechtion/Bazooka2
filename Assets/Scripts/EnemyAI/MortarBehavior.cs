@@ -10,6 +10,7 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
     [Tooltip("The enemy you want to be using this mortar.")]
     [SerializeField] private GameObject heldEnemy;
     private GameObject enemy;
+    private EnemyBehavior enBehav;
 
     [Tooltip("The child transform where the enemy will spawn.")]
     [SerializeField] private Transform mountPoint;
@@ -40,7 +41,7 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
     private LineRenderer laserRenderer;
 
     private Vector3 targetPos;
-    private bool enemySpawned;
+    private bool userKilled;
     private bool targetingActive;
 
     //Interface
@@ -60,7 +61,7 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
     void Start()
     {
         laserObject.SetActive(false);
-        enemySpawned = false;
+        userKilled = false;
 
         targetingActive = false;
         timeUntilShoot = 0.0f;
@@ -72,6 +73,18 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
         
 
         SpawnEnemy();
+
+        if (enBehav)
+        {
+            enBehav.OnDeath += OnUserKilled;
+            enBehav.MovementAnimator.SetBool("Crouching", true);
+        }
+    }
+
+    private void OnUserKilled(object sender, EventArgs e)
+    {
+        userKilled = true;
+        enBehav.OnDeath -= OnUserKilled;
     }
 
     private void MortarDestroyed(object sender, EventArgs e)
@@ -83,15 +96,11 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
     {
         if (enabled)
         {
-            if (!enemySpawned)
+            if (userKilled || Physics.CheckSphere(gameObject.transform.position, radius, playerMask))
             {
-                if (Physics.CheckSphere(gameObject.transform.position, radius, playerMask))
-                {
-                    ToggleEnemyBehavior(true);
-                    //enemy.GetComponent<EnemyBehavior>().MovementAnimator.SetBool("Crouching", true);
+                ToggleEnemyBehavior(true);
 
-                    this.enabled = false;
-                }
+                this.enabled = false;
             }
         }        
     }
@@ -163,13 +172,17 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
     private void SpawnEnemy()
     {
         enemy = Instantiate(heldEnemy, mountPoint.position, mountPoint.rotation);
-        //enemy.GetComponent<EnemyBehavior>().MovementAnimator.SetBool("Crouching", false);
+        enBehav = enemy.GetComponent<EnemyBehavior>();
         ToggleEnemyBehavior(false);
     }
 
     private void ToggleEnemyBehavior(bool active)
     {
-        enemy.GetComponent<EnemyBehavior>().enabled = active;
+        if(enBehav)
+        {
+            enBehav.TargetingEnabled = active;
+            enBehav.MovementAnimator.SetBool("Crouching", !active);
+        }
     }
 
 

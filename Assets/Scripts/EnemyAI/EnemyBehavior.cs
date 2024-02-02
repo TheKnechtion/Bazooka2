@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,11 +22,11 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //Enemy behavoir state enum
     [SerializeField] protected EnemyState currentState;
 
-
     //these are all public so they can be viewed in the inspector in unity
     //when the game is running, data from the database has visibly seen as
     //successfully passing to each of them.
 
+    /*
     //stores the passed in MP
     public int MP;
 
@@ -34,12 +35,15 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     //stored the passed in DEF
     public int DEF;
+    */
 
     //stores the passed in HP
     public int maxHealth = 2;
     public int health = 2;
 
+    [Header("Animation Attributes")]
     protected Animator movementAnimator;
+    [SerializeField] private AnimatorController animController;
     public Animator MovementAnimator 
     {
         get { return movementAnimator; }
@@ -101,23 +105,39 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     public event EventHandler OnTakeDamage;
     public event EventHandler OnDeath;
     protected bool CanDestroy = false;
+    protected bool CalledDie = false;
 
+    public bool TargetingEnabled { get; set; }
 
     protected NavMeshAgent agent;
 
-    protected bool CalledDie = false;
 
     [SerializeField] public bool ArmoredTarget { get; set; }
     #endregion
 
 
+    protected virtual void Awake()
+    {
+        TargetingEnabled = true;
+
+        movementAnimator = GetComponent<Animator>();
+        if (animController)
+        {
+            AnimatorController newCon = Instantiate(animController);
+            movementAnimator.runtimeAnimatorController = newCon;
+        }
+        else
+        {
+            Debug.LogWarning("! No animController Set !");
+        }
+    }
     protected virtual void Start()
     {
         setStats();
 
         agent = GetComponent<NavMeshAgent>();
 
-        movementAnimator = GetComponent<Animator>();
+        
 
         //ensures that if the room  is beaten, this won't spawn again
         //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
@@ -223,7 +243,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         isAggrod = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_BecomeAggro, playerMask);
         inShootRange = Physics.CheckSphere(gameObject.transform.position, enemyAttackRange_AttackRange, playerMask);
 
-        if (isAggrod)
+        if (isAggrod && TargetingEnabled)
         {
            // transform.LookAt(targetToLookAt);
             //If agroed, we want to chase
@@ -318,8 +338,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         OnDeath?.Invoke(this, EventArgs.Empty); //This is for the enemy death particles to activate
 
         GameObject.Find("GameManager").GetComponent<EnemySpawnManager>().UpdateEnemyCount();
-        
-        Destroy(gameObject);  //There is a new Death script that handles destroiyng object and visuals
     }
 
     private void DeathVisualFinsihed(object sender, EventArgs e)
@@ -336,10 +354,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             weaponName= stats.WeaponName;
             
             ArmoredTarget = stats.ArmoredTarget;
-
-            MP = stats.MP;
-            AP= stats.AP;
-            DEF= stats.DEF;
             maxHealth = stats.Health;
             health = maxHealth;
 
