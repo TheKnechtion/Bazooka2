@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1824,9 +1824,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fb880eeccfd8458923e41002b0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yValue: 12.86
+  colliders: []
+  collidersActive: 0
+  endHeight: 0
+  elevatorMovementDirection: 0
   waitTime: 5
-  goesBackDown: 1
+  autoReturnToStartPosition: 0
   isActive: 1
 --- !u!65 &187784695
 BoxCollider:
@@ -5282,7 +5285,8 @@ GameObject:
   - component: {fileID: 345205416}
   - component: {fileID: 345205415}
   - component: {fileID: 345205420}
-  m_Layer: 0
+  - component: {fileID: 345205421}
+  m_Layer: 9
   m_Name: Cube (37)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5354,7 +5358,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
+  - {fileID: 2100000, guid: 4948688d99429ce46b573b78c876fc73, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5639,7 +5643,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 575399
+    m_Bits: 4294967295
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -5652,6 +5656,21 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: e27b2e950cb7fe648b151feedc050c47, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &345205421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345205413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5fb021c28d3944dbcb25e9a57ae029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseDefaultFields: 1
+  Fade_To_Opacity: 0
+  fadeSpeed: 0
 --- !u!1 &346539313
 GameObject:
   m_ObjectHideFlags: 0
@@ -5749,9 +5768,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fb880eeccfd8458923e41002b0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yValue: 6.19
+  colliders: []
+  collidersActive: 0
+  endHeight: 0
+  elevatorMovementDirection: 0
   waitTime: 2
-  goesBackDown: 1
+  autoReturnToStartPosition: 0
   isActive: 1
 --- !u!65 &346539318
 BoxCollider:
@@ -7738,6 +7760,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &471119907
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8105,6 +8129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &478631992
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9155,6 +9181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &501417384
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10056,6 +10084,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &565943948
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10588,6 +10618,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &596732117
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10911,7 +10943,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh72622
+  m_Name: pb_Mesh49504
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -11120,6 +11152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &619633526
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11547,6 +11581,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &648348603
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13744,6 +13780,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &705601416
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14815,6 +14853,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!1 &777988994
 GameObject:
   m_ObjectHideFlags: 0
@@ -14865,6 +14905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &777988997
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16330,6 +16372,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &858204250
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18285,6 +18329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1047001770
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19510,6 +19556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1154134255
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19933,9 +19981,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fb880eeccfd8458923e41002b0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yValue: 8.83
+  colliders: []
+  collidersActive: 0
+  endHeight: 0
+  elevatorMovementDirection: 0
   waitTime: 2
-  goesBackDown: 1
+  autoReturnToStartPosition: 0
   isActive: 1
 --- !u!65 &1163470557
 BoxCollider:
@@ -20996,9 +21047,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fb880eeccfd8458923e41002b0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yValue: 8.84
+  colliders: []
+  collidersActive: 0
+  endHeight: 0
+  elevatorMovementDirection: 0
   waitTime: 2
-  goesBackDown: 1
+  autoReturnToStartPosition: 0
   isActive: 0
 --- !u!65 &1198242395
 BoxCollider:
@@ -21438,6 +21492,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!43 &1237207027
 Mesh:
   m_ObjectHideFlags: 0
@@ -21994,6 +22050,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!43 &1239804210
 Mesh:
   m_ObjectHideFlags: 0
@@ -24283,6 +24341,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1408592610
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25678,6 +25738,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!43 &1469333405
 Mesh:
   m_ObjectHideFlags: 0
@@ -25893,6 +25955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1471588344
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26260,6 +26324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1480558800
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27004,6 +27070,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1508281988
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27335,11 +27403,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 8ceab2813ee8b5649afd5ccd511d996b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40.44
+      value: 48.57
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 8ceab2813ee8b5649afd5ccd511d996b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 34.1
+      value: -25.35
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 8ceab2813ee8b5649afd5ccd511d996b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28244,6 +28312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1556886470
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29873,6 +29943,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1633149924
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30240,6 +30312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1650124434
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33115,6 +33189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!33 &1778927431
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -33928,9 +34004,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fb880eeccfd8458923e41002b0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yValue: 17.35
+  colliders: []
+  collidersActive: 0
+  endHeight: 0
+  elevatorMovementDirection: 0
   waitTime: 5
-  goesBackDown: 1
+  autoReturnToStartPosition: 0
   isActive: 1
 --- !u!65 &1792884584
 BoxCollider:
@@ -35712,6 +35791,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1856843311
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36079,6 +36160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
 --- !u!64 &1862174193
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37956,7 +38039,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh72176
+  m_Name: pb_Mesh49048
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

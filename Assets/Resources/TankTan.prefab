@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c594d9b85cc3cf4f82dde6cc3b47662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageAmount: 0
 --- !u!1 &515112679723047330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,6 +1416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c594d9b85cc3cf4f82dde6cc3b47662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageAmount: 1000
 --- !u!1 &6855823929129685096
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,11 +2430,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 43baaf4d542022d46b4e26f3c509568f, type: 2}
   currentState: 0
-  MP: 0
-  AP: 0
-  DEF: 0
   maxHealth: 2
   health: 2
+  animController: {fileID: 0}
   weaponProjectileSpawnNode: {fileID: 8737109413264873028}
   SetToAttack: 1
   enemyAttackRange_BecomeAggro: 50
@@ -2473,6 +2473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2fce36f38992e4a8e28c9927587a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   easyDestroy: 1
 --- !u!195 &2829048097231090397
 NavMeshAgent:

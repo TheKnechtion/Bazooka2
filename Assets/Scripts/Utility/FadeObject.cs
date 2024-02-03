@@ -30,7 +30,9 @@ public class FadeObject : MonoBehaviour
             fadeSpeed = 3.0f;
         }
         render= GetComponent<Renderer>();
-        initialShader = render.material.shader;
+
+        if (render != null)
+            initialShader = render.material.shader;
     }
 
     public void FadeThis()

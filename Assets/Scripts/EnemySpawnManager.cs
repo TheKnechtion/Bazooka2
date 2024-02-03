@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using System.Drawing;
 
 //used by the game manager to control enemy spawn
 public class EnemySpawnManager : MonoBehaviour
@@ -25,6 +27,8 @@ public class EnemySpawnManager : MonoBehaviour
     public GameObject spawnObject;
 
     public static int enemyCount;
+
+    NavMeshHit hit;
 
     public static event EventHandler OnEnemyDeath;
 
@@ -156,39 +160,12 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void SpawnEnemyByTag(Transform spawnNode, string name)
     {
-        //stores info for an enemy the player hasn't seen yet
-
-        //tempEnemyInfo = enemyDatabase.First(enemy => enemy.name == name);
-        //tempEnemyInfo = enemyDatabase.First(enemy => listOfUnseenEnemiesInCurrentPlaythough.Contains(enemy.name));
-
         //load the appropriate enemy prefab based on the enemy name
         tempGameObject = LoadResource(name);
 
         //instantiate the prefab at the passed in position (an enemy spawn node)
-        tempGameObject = Instantiate(tempGameObject, new Vector3(spawnNode.position.x, 0, spawnNode.position.z), spawnNode.rotation);
-
-
-        #region We sets stats using Scriptable Objects, designers can change easily if needed
-        /*
-        //sets the name of the game object to the enemy's name in the database
-        tempGameObject.name = tempEnemyInfo.name;
-
-        //sets the health of the enemy from the database
-        tempGameObject.GetComponent<EnemyBehavior>().health = tempEnemyInfo.HP;
-
-        //sets the def of the enemy from the database (no use in this game, but it sets it)
-        tempGameObject.GetComponent<EnemyBehavior>().DEF = tempEnemyInfo.DEF;
-
-        //sets the MP of the enemy from the database (no use in this game, but it sets it)
-        tempGameObject.GetComponent<EnemyBehavior>().MP = tempEnemyInfo.MP;
-
-        //sets the def of the enemy from the database
-        //(This is currently only used for the knight. It sets a value in the weapon database for the knight's weapon.)
-        tempGameObject.GetComponent<EnemyBehavior>().AP = tempEnemyInfo.AP;
-        */
-        #endregion
+        tempGameObject = Instantiate(tempGameObject,spawnNode.position, spawnNode.rotation);
     }
-
 
     public void UpdateEnemyCount()
     {
@@ -226,7 +203,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         for (int i = 1; i < spawnPositions.Length; i++)
         {
-            SpawnEnemy(spawnPositions[i].transform.position, n);
+            //SpawnEnemy(spawnPositions[i].transform.position, n);
         }
     }
 
@@ -248,9 +225,14 @@ public class EnemySpawnManager : MonoBehaviour
         enemyCount = spawnPositions.Length-1;
         for (int i = 1; i < spawnPositions.Length; i++)
         {
-            currentName = spawnPositions[i].tag;
-            //SpawnEnemyByTag(spawnPositions[i].transform.position, currentName);
-            SpawnEnemyByTag(spawnPositions[i].transform, currentName);
+            if (NavMesh.SamplePosition(spawnPositions[i].transform.position, out NavMeshHit ttt, 2.0f, NavMesh.AllAreas))
+            {
+                hit.position = spawnPositions[i].transform.position;
+
+                currentName = spawnPositions[i].tag;
+
+                SpawnEnemyByTag(spawnPositions[i].transform, currentName);
+            }            
         }
         //OnEnemyDeath?.Invoke(this, EventArgs.Empty);
     }
