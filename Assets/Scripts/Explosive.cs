@@ -79,12 +79,10 @@ public class Explosive : MonoBehaviour
                     {
                         damageable.TakeDamage(Damage);
                     }
-                }                
+                }
+                
             }
         }
-
-        Destroy(gameObject);
-
     }
 
     private void OnDrawGizmosSelected()

@@ -36,11 +36,13 @@ public class ExplosiveBarrel : DestroyableObject
         health= 0;
         if (!isDestroyed) 
         {
+
+
             isDestroyed= true;
             StartCoroutine(fuse());
             //PickupAbleOBJ_Destroy();
         }
-
+       
         //Custom explosion delete
     }
 
@@ -62,4 +64,7 @@ public class ExplosiveBarrel : DestroyableObject
         PickupAbleOBJ_Destroy();
         yield return null;
     }
+
+
+
 }
