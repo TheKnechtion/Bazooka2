@@ -21,6 +21,12 @@ public class SneakingBehavior : EnemyBehavior
     [SerializeField] private int damage;
     [SerializeField] private GameObject attackZone;
 
+    [Header("Movement Attributes")]
+    [Tooltip("Speed when enemy is behind player")]
+    [SerializeField] private float huntSpeed;
+    [Tooltip("Speed when enemy is fleeing/catching up")]
+    [SerializeField] private float runSpeed;
+
     private IDamagable damagable;
 
     private bool isFleeing;
@@ -85,7 +91,7 @@ public class SneakingBehavior : EnemyBehavior
             case EnemyState.IDLE:
                 attackZone.SetActive(false);
 
-                sneakNav.SetSpeed(8);
+                sneakNav.SetSpeed(runSpeed);
                 sneakNav.MoveTo(targetPos);
 
                 if (remainingDistance <= enagageDistance)
@@ -100,7 +106,7 @@ public class SneakingBehavior : EnemyBehavior
 
                 attackZone.SetActive(true);
 
-                sneakNav.SetSpeed(2);
+                sneakNav.SetSpeed(huntSpeed);
                 sneakNav.MoveTo(targetPos);
 
                 if (remainingDistance > enagageDistance)
@@ -129,7 +135,7 @@ public class SneakingBehavior : EnemyBehavior
 
             case EnemyState.FLEE:
 
-                sneakNav.SetSpeed(6);
+                sneakNav.SetSpeed(runSpeed);
 
                 if (!isFleeing)
                 {
