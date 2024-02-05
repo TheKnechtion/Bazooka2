@@ -7,7 +7,7 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum EnemyState {IDLE, CHASE, ATTACK}
+public enum EnemyState {IDLE, CHASE, ATTACK, FLEE}
 public class EnemyBehavior : MonoBehaviour, IDamagable
 {
     #region Every Behavior class has these

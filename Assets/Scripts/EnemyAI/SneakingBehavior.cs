@@ -11,6 +11,7 @@ public class SneakingBehavior : EnemyBehavior
 
     private StealthState stealthState;
     private Vector3 targetPos; //Uses Player singelton
+    private Vector3 nextPos;
 
     [Header("How close enemy must be to begin attack")]
     [SerializeField] private float enagageDistance;
@@ -22,6 +23,8 @@ public class SneakingBehavior : EnemyBehavior
 
     private IDamagable damagable;
 
+    private bool isFleeing;
+
     protected override void Awake()
     {
         remainingDistance = 0f;
@@ -32,6 +35,10 @@ public class SneakingBehavior : EnemyBehavior
         currentState = EnemyState.IDLE;
 
         sneakNav = GetComponent<SneakingNavigation>();
+
+        nextPos = Vector3.zero;
+
+        isFleeing = false;
 
         attackZone.SetActive(false);
     }
@@ -59,12 +66,14 @@ public class SneakingBehavior : EnemyBehavior
             case StealthState.SPOTTED:
 
                 //Run away behavior
-                FleeArea();
+                Flee();
 
                 break;
             default:
                 break;
         }
+
+        Debug.DrawRay(nextPos, Vector3.up * 5, Color.green);
     }
 
     private void HandleHunting()
@@ -110,10 +119,28 @@ public class SneakingBehavior : EnemyBehavior
                 if (damagable != null)
                 {
                     damagable.TakeDamage(damage);
-                    sneakNav.MoveTo(new Vector3(-45,0,0));
+                }
+                attackZone.SetActive(false);
+
+
+                currentState = EnemyState.FLEE;
+
+                break;
+
+            case EnemyState.FLEE:
+
+                sneakNav.SetSpeed(6);
+
+                if (!isFleeing)
+                {
+                    Flee();
                 }
 
-                currentState = EnemyState.IDLE;
+                if (gameObject.transform.position == nextPos)
+                {
+                    isFleeing = false;
+                    currentState = EnemyState.IDLE;
+                }
 
                 break;
             default:
@@ -121,21 +148,18 @@ public class SneakingBehavior : EnemyBehavior
         }
     }
 
-    private void FleeArea()
+    private void Flee()
     {
-
+        isFleeing = true;
+        nextPos = sneakNav.GetRandomNavPoint(gameObject.transform.position);
+        sneakNav.MoveTo(nextPos);
     }
 
 
     protected override void FixedUpdate()
     {
 
-    }
-
-    private void OnDrawGizmos()
-    {
-        
-    }
+    }    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -148,5 +172,9 @@ public class SneakingBehavior : EnemyBehavior
     private void OnTriggerExit(Collider other)
     {
         
+    }
+    private void OnDrawGizmos()
+    {
+
     }
 }
