@@ -5,11 +5,11 @@ using UnityEngine;
 
 
 public enum StealthState {HIDDEN, SPOTTED}
-public class SneakingBehavior : EnemyBehavior
+public class SneakingBehavior : EnemyBehavior, ISpottable
 {
     private SneakingNavigation sneakNav;
 
-    private StealthState stealthState;
+    [SerializeField] private StealthState stealthState;
     private Vector3 targetPos; //Uses Player singelton
     private Vector3 nextPos;
 
@@ -26,10 +26,12 @@ public class SneakingBehavior : EnemyBehavior
     [SerializeField] private float huntSpeed;
     [Tooltip("Speed when enemy is fleeing/catching up")]
     [SerializeField] private float runSpeed;
+    [SerializeField] private float walkSpeed;
 
     private IDamagable damagable;
 
     private bool isFleeing;
+    private bool foundPoint;
 
     protected override void Awake()
     {
@@ -45,6 +47,7 @@ public class SneakingBehavior : EnemyBehavior
         nextPos = Vector3.zero;
 
         isFleeing = false;
+        foundPoint = false;
 
         attackZone.SetActive(false);
     }
@@ -66,18 +69,20 @@ public class SneakingBehavior : EnemyBehavior
             case StealthState.HIDDEN:
 
                 // Allow hunting and attack behavior
-                HandleHunting();
 
                 break;
             case StealthState.SPOTTED:
 
                 //Run away behavior
-                Flee();
+                currentState = EnemyState.FLEE;
 
                 break;
             default:
                 break;
         }
+
+        HandleHunting();
+
 
         Debug.DrawRay(nextPos, Vector3.up * 5, Color.green);
     }
@@ -91,7 +96,7 @@ public class SneakingBehavior : EnemyBehavior
             case EnemyState.IDLE:
                 attackZone.SetActive(false);
 
-                sneakNav.SetSpeed(runSpeed);
+                sneakNav.SetSpeed(walkSpeed);
                 sneakNav.MoveTo(targetPos);
 
                 if (remainingDistance <= enagageDistance)
@@ -139,12 +144,13 @@ public class SneakingBehavior : EnemyBehavior
 
                 if (!isFleeing)
                 {
-                    Flee();
+                    StartCoroutine(FleeArea());
                 }
-
-                if (gameObject.transform.position == nextPos)
+                else if (gameObject.transform.position == nextPos)
                 {
                     isFleeing = false;
+
+                    stealthState = StealthState.HIDDEN;
                     currentState = EnemyState.IDLE;
                 }
 
@@ -154,13 +160,23 @@ public class SneakingBehavior : EnemyBehavior
         }
     }
 
-    private void Flee()
+    private IEnumerator FleeArea()
     {
         isFleeing = true;
-        nextPos = sneakNav.GetRandomNavPoint(gameObject.transform.position);
+        foundPoint = false;
+        while (!foundPoint)
+        {
+            foundPoint = sneakNav.GetValidRandomPoint(gameObject.transform.position, out nextPos);
+            if (nextPos == gameObject.transform.position)
+            {
+                foundPoint = false;
+            }
+
+            yield return null;
+        }
+
         sneakNav.MoveTo(nextPos);
     }
-
 
     protected override void FixedUpdate()
     {
@@ -182,5 +198,10 @@ public class SneakingBehavior : EnemyBehavior
     private void OnDrawGizmos()
     {
 
+    }
+
+    public void Spot()
+    {
+        stealthState = StealthState.SPOTTED;
     }
 }
