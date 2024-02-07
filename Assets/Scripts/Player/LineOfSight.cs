@@ -27,10 +27,8 @@ public class LineOfSight : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("SomethingEntered...");
         if (other.TryGetComponent<ISpottable>(out ISpottable ss))
         {
-            Debug.Log("A spottable");
             ss.Spot();
         }
     }
