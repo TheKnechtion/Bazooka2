@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public static float environmentalEffectSpeed = 1.0f;
     public static float dragObjectSpeed = 1.0f;
     public static float heldObjectSpeed = 1.0f;
+    
+
 
     float dashCooldown;
 
@@ -33,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
 
 
     Rigidbody player_rb;
+
+    Vector3 playerVelocity;
+
 
     WeaponController weaponController;
 
@@ -77,31 +82,55 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    float acceleration = 0;
+    Vector2 acceleration = new Vector2(0, 0);
+
+    float maxAcceleration = 1f;
+
+    float minAcceleration = -1f;
+
+    void IncrementAcceleration()
+    {
+        if (moveInput.x == 0 && moveInput.y == 0 && playerVelocity.magnitude == 0f)
+        {
+            return;
+        }
+
+
+
+
+        
+        if (moveInput.y == 0 && playerVelocity.magnitude == 0f)
+        {
+            acceleration.y = 0f;
+        }
+        else if (moveInput.y > 0)
+        {
+            acceleration.y = Mathf.Clamp(acceleration.y +  0.01f, minAcceleration, maxAcceleration);    
+        }
+        else if (moveInput.y < 0)
+        {
+            acceleration.y = Mathf.Clamp(acceleration.y - 0.01f, minAcceleration, maxAcceleration);
+            return;
+        }
+        
+
+    }
+    
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //playerVelocity = player_rb.velocity;
 
-        
 
         moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
 
-        /*
-        if(moveInput.magnitude > 0 && acceleration < 1f)
-        {
-            acceleration += 0.1f;
-        }
-        else if(moveInput.magnitude > 0 && acceleration == 1f)
-        {
-            acceleration = 1f;
-        }
-        else
-        {
-            acceleration -= 0.1f;
-        }
-        */
-        
+
+        //IncrementAcceleration();
+
+
+        //Debug.Log(moveInput.y);
+
         /*
         if (!isStopped)
         {
@@ -118,14 +147,17 @@ public class PlayerMovement : MonoBehaviour
         //playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * speed;
         playerMovement = new Vector3(moveInput.x, 0, moveInput.y) * modifiedSpeed * slowSpeed * environmentalEffectSpeed * dragObjectSpeed;
 
+
+
+
         //basic player movement
         //moves the game object this script is attached to based on WASD input 
 
         movementAnimator.SetFloat("MovementSpeed", playerMovement.magnitude);
 
-        //this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement * acceleration;
+        //this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement;
 
-        this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*25f);
+        this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*25f, ForceMode.Force);
 
         currentPosition = transform.position;
     }

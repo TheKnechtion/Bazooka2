@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PickUpObject : MonoBehaviour
+public class PickUpObject : RB_Item
 {
 
     PlayerController _playerControllerRef;
@@ -41,6 +41,8 @@ public class PickUpObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        thisRigidbody = this.GetComponent<Rigidbody>();
+
         objAttachPoint = this.transform.Find("AttachPoint").transform.gameObject;
 
         localObjAttachPointPosition = objAttachPoint.transform.localPosition;
@@ -182,10 +184,9 @@ public class PickUpObject : MonoBehaviour
 
 
         Rigidbody temp = this.AddComponent<Rigidbody>();
-
         temp.mass = mass;
 
-
+        thisRigidbody = temp;
         isHoldingThisObject = false;
         PlayerMovement.dragObjectSpeed = 1.0f;
 

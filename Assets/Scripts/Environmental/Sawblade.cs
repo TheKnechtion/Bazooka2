@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Sawblade : MonoBehaviour
 {
+    [SerializeField] int damage;
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.TryGetComponent<IDamagable>(out IDamagable component))
         {
-            component.TakeDamage(1);
+            component.TakeDamage(damage);
 
             Vector3 pushDirection = collision.transform.position - this.transform.position;
 
@@ -18,4 +20,7 @@ public class Sawblade : MonoBehaviour
             collision.transform.GetComponent<Rigidbody>().AddForce(pushDirection * 200f,ForceMode.Impulse);
         }
     }
+
+
+
 }

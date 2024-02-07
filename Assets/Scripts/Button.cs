@@ -58,6 +58,10 @@ public class Button : MonoBehaviour, IActivate
         }
     }
 
+    public void Deactivate()
+    {
+
+    }
 
     #region Older spawn code
     /*

@@ -34,6 +34,7 @@ public class ObjectiveZone : MonoBehaviour
 
     [SerializeField] bool showObjectiveZone;
     [SerializeField] bool showObjectiveText;
+    [SerializeField] Objective externalObjective;
 
     Light lightComponent;
     Material objMaterial;
@@ -62,6 +63,12 @@ public class ObjectiveZone : MonoBehaviour
             Destroy(this.gameObject.GetComponent<MeshRenderer>());
         }
 
+
+        if(externalObjective != null)
+        {
+            zone_Objective = externalObjective;
+            return;
+        }
 
         if(!this.gameObject.TryGetComponent<Objective>(out zone_Objective))
         {

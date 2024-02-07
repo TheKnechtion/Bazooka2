@@ -9,4 +9,9 @@ public class DoorActivatable : MonoBehaviour, IActivate
         transform.position = new Vector3(66, 66, 66);
     }
 
+    public void Deactivate()
+    {
+
+    }
+
 }
