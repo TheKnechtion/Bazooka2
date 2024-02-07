@@ -9,28 +9,39 @@ public class SneakingNavigation : MonoBehaviour
     private NavMeshAgent agent;
     [SerializeField] private float searchRange;
     [Tooltip("The amount of error from max search range.")]
+    [Min(0)]
     [SerializeField] private float searchBuffer;
     private float distanceToNext;
 
     private NavMeshHit hit;
     private Vector3 directionToNext;
 
+    private int FleeingType;
+    private Vector3 PlatormSpot;
+
+    //Debugging
+    Vector3 testINit;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.angularSpeed = 360;
     }
-
-    // Start is called before the first frame update
     void Start()
     {
         directionToNext = Vector3.zero;
+
+        //To make sure that it will detect navmesh
+        if (NavMesh.SamplePosition(gameObject.transform.position, out hit, 2, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+            PlatormSpot = transform.position;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        //Debug.DrawRay(testINit, directionToNext.normalized * searchRange, Color.red);
     }
 
     public void MoveTo(Vector3 t)
@@ -49,38 +60,41 @@ public class SneakingNavigation : MonoBehaviour
     }
     public bool GetValidRandomPoint(Vector3 initialPos, out Vector3 nextPos)
     {
-        /*
-        directionNext = Random.insideUnitSphere.normalized;
-        directionNext.y = 0;
-        Vector3 finalPos = initialPos + (directionNext.normalized * searchRange);
+        //testINit = initialPos;
+        Vector3 randDir;
+        Vector3 next;
+        Vector3 finalPos;
 
-        if (NavMesh.SamplePosition( finalPos, out hit, 1, NavMesh.AllAreas))
+        FleeingType = Random.Range(0, 1);
+
+        if (FleeingType == 1)
         {
-            Vector3 dirToNext = finalPos - directionNext;
-            float dot = Vector3.Dot(gameObject.transform.forward, dirToNext);
-            if (dot <= 0.0f)
+            randDir = Random.insideUnitSphere;
+            next = initialPos + (randDir * (searchRange - Random.Range(0, searchBuffer)));
+            next.y = 0;
+
+            directionToNext = next - initialPos;
+            directionToNext.y = 0;
+
+            finalPos = initialPos + directionToNext.normalized * searchRange;
+
+            if (NavMesh.SamplePosition(finalPos, out hit, 1, NavMesh.AllAreas))
             {
-                nextPos = hit.position;
-                return true;
+                float dot = Vector3.Dot(transform.forward, directionToNext.normalized);
+                if (dot <= 0.0f)
+                {
+                    nextPos = hit.position;
+                    return true;
+                }
             }
         }
-        */
-
-        Vector3 randDir = Random.insideUnitSphere;
-        Vector3 next = initialPos + (randDir * searchRange);
-        next.y = 0;
-
-        directionToNext = next - initialPos;
-
-        if (NavMesh.SamplePosition(next, out hit, 1, NavMesh.AllAreas))
+        else
         {
-            float dot = Vector3.Dot(transform.forward, directionToNext.normalized);
-            if (dot <= 0.0f)
-            {
-                nextPos = hit.position;
-                return true;
-            }
+            nextPos = PlatormSpot;
+            return true;
         }
+
+        
 
         nextPos = initialPos;
         return false;
@@ -95,5 +109,7 @@ public class SneakingNavigation : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(gameObject.transform.position, 1 * searchRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(gameObject.transform.position, 1 * searchRange - searchBuffer);
     }
 }

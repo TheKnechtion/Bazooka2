@@ -13,8 +13,6 @@ public class CatchObjectsBlocking : MonoBehaviour
 
     private RaycastHit[] wallsHit = new RaycastHit[5];
 
-    private int HitCOunt;
-
     private List<FadeObject> wallsFaded = new List<FadeObject>();
 
     [SerializeField] private LayerMask layerMask;
@@ -62,9 +60,6 @@ public class CatchObjectsBlocking : MonoBehaviour
             //FadeObject m = wallsHit[i].transform.GetComponent<FadeObject>();
             //wallsFaded.Add(m);
         }
-
-        HitCOunt = hits - 1;
-        Debug.Log("FadeObj hit: "+HitCOunt);
 
         fadeAndUnfade();
 
