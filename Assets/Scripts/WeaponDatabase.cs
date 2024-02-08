@@ -34,7 +34,7 @@ public class WeaponDatabase
         //Test weapon 1
         WeaponInfo testWeapon = new WeaponInfo();
         testWeapon.weaponName = "Bazooka";
-        testWeapon.ProjectileName = "Gun";
+        testWeapon.ProjectileName = "GunProj";
         testWeapon.projectileType = ProjectileType.Gun;
         testWeapon.projectilePath = ProjectilePath.Straight;
 
@@ -149,7 +149,7 @@ public class WeaponDatabase
         //Knight weaponn
         WeaponInfo knightWeapon = new WeaponInfo();
         knightWeapon.weaponName = "Knight";
-        knightWeapon.ProjectileName = "Gun";
+        knightWeapon.ProjectileName = "GunProj";
         knightWeapon.projectileType = ProjectileType.Gun;
         knightWeapon.projectilePath = ProjectilePath.Straight;
 

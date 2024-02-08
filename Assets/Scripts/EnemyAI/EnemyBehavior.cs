@@ -61,12 +61,13 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     //the current weapon the enemy has
     protected WeaponInfo currentEnemyWeapon;
+    protected EnemyWeaponController weaponController;
 
     public GameObject weaponProjectileSpawnNode;
 
 
     //controls enemy's weapon
-    protected WeaponController weaponController;
+        //protected WeaponController weaponController;
     protected DataBaseWeaponGrabber weaponGrabber;
 
     [SerializeField] protected bool SetToAttack;
@@ -96,7 +97,8 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected float enemyAttackRange_ExitAggro = 15.0f;
 
     //holds the reference to the projectile object in the resources folder
-    protected UnityEngine.Object projectilePrefab;
+        //protected UnityEngine.Object projectilePrefab;
+    protected GameObject projectilePrefab;
 
     //holds the projectile game object reference
     protected GameObject currentEntity;
@@ -137,21 +139,26 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
         agent = GetComponent<NavMeshAgent>();
 
-        
-
         //ensures that if the room  is beaten, this won't spawn again
         //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
 
         //Pass the weapon script that attacthed to the object
-            //weaponController = gameObject.GetComponent<WeaponController>();
-        weaponGrabber = gameObject.GetComponent<DataBaseWeaponGrabber>();
+        if (gameObject.TryGetComponent<DataBaseWeaponGrabber>(out DataBaseWeaponGrabber dataWep))
+        {
+            weaponGrabber = dataWep;
+            currentEnemyWeapon = weaponGrabber.MakeWeapon(weaponName);
+        }
+        else if (gameObject.TryGetComponent<EnemyWeaponController>(out EnemyWeaponController weapCon))
+        {
+            weaponController = weapCon;
+        }
 
         //set the enemy name to that of the game object
         //enemyName = this.gameObject.name;
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
         //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
-        currentEnemyWeapon = weaponGrabber.MakeWeapon(weaponName);
+        
 
         //sets the initial state of an enemy to docile
         isAggrod = false;
@@ -290,12 +297,18 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     protected virtual void HandleShooting()
     {
-        //manages how quick the player shoots based on their currently equipped weapon
-        if (timeBetweenShots <= 0.0f)
+        if (weaponController != null)
         {
-            timeBetweenShots = currentEnemyWeapon.timeBetweenProjectileFire;
+            weaponController.ShootWeapon();
+        }
+        else
+        {
+            if (timeBetweenShots <= 0.0f)
+            {
+                timeBetweenShots = currentEnemyWeapon.timeBetweenProjectileFire;
 
-            Shoot();
+                Shoot();
+            }
         }
     }
 
@@ -303,11 +316,12 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected virtual void Shoot()
     {
         //instantiates the projectile prefab
-        projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
+         //projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
 
         AudioManager.PlayClipAtPosition(currentEnemyWeapon.weaponSound, weaponProjectileSpawnNode.transform.position);
 
-        currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
+        //currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
+        currentEntity = Instantiate(projectilePrefab, weaponProjectileSpawnNode.transform.position, weaponProjectileSpawnNode.transform.rotation);
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
 
 
@@ -352,6 +366,15 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             enemyName = stats.Name;
             weaponName= stats.WeaponName;
+
+            if (stats.ProjectilePrefab != null)
+            {
+                projectilePrefab = stats.ProjectilePrefab;
+            }
+            else
+            {
+                Debug.LogWarning("! No weapon prefab set !");
+            }
             
             ArmoredTarget = stats.ArmoredTarget;
             maxHealth = stats.Health;

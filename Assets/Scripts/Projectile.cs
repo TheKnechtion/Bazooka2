@@ -7,7 +7,6 @@ public class Projectile : MonoBehaviour
 {
     public bool doesBounce = false;
 
-
     public ProjectileType projectileType;
     public ProjectilePath projectilePath;
 
@@ -129,7 +128,11 @@ public class Projectile : MonoBehaviour
         #endregion
 
         //if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
-        if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); DeleteProjectile(); }
+        if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile")
+        {
+            DealSplashDamage(); 
+            DeleteProjectile(); 
+        }
 
 
         Bounce(collision);
@@ -145,7 +148,11 @@ public class Projectile : MonoBehaviour
 
     void Bounce(Collision collision)
     {
-        if (numberOfBounces > 0)
+        if (gameObject.transform.rotation.x != 0.0f || gameObject.transform.rotation.z != 0.0f)
+        {
+            DeleteProjectile();
+        }
+        else if (numberOfBounces > 0)
         {
             isSpawning = false;
 

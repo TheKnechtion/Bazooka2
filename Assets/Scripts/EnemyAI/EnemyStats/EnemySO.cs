@@ -7,6 +7,7 @@ public class EnemySO : ScriptableObject
 {
     public string Name;
     public string WeaponName;
+    public GameObject ProjectilePrefab;
 
     public bool ArmoredTarget;
 

@@ -20,6 +20,8 @@ public class BehaviorTankBoss : EnemyBehavior
         setStats();
         agent = GetComponent<NavMeshAgent>();
 
+
+
         //ensures that if the room  is beaten, this won't spawn again
         //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
 
@@ -170,7 +172,7 @@ public class BehaviorTankBoss : EnemyBehavior
     protected override void Shoot()
     {
         //instantiates the projectile prefab
-        projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
+            //projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
 
         AudioManager.PlayClipAtPosition(currentEnemyWeapon.weaponSound, weaponProjectileSpawnNode.transform.position);
 

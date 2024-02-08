@@ -18,6 +18,8 @@ public class Navigation : MonoBehaviour
 
     public event EventHandler OnStoppedMoving;
 
+    NavMeshHit hit;
+
     //This is used to determine how far to spread out between other enemies
     private float spaceDistance;
 
@@ -28,6 +30,12 @@ public class Navigation : MonoBehaviour
 
         eb = GetComponent<EnemyBehavior>();
         eb.OnDeath += OnDeath;
+
+        //To make sure that it will detect navmesh
+        if (NavMesh.SamplePosition(gameObject.transform.position, out hit, 2, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+        }
     }
 
     private void OnDeath(object sender, EventArgs e)

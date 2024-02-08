@@ -19,9 +19,10 @@ public class RangedWeapon : WeaponBase, IShoot
     public int currentAmmo;
 
 
-    private float time;
+    [SerializeField]private float time;
 
     private bool canShoot;
+    public bool EnemyVersion;
 
 
     private void Awake()
@@ -34,57 +35,80 @@ public class RangedWeapon : WeaponBase, IShoot
     }
     void Start()
     {
-        //setStats();
-        //if (!projectilePrefab)
-        //{
-        //    Debug.LogWarning("No projectile prefab found");
-        //}
+        time = 0.0f;
     }
+
     private void Update()
     {
+        //if (time != fireRate)
+        //{
+        //    canShoot = false;
+        //}
+        //else if (time == fireRate)
+        //{ canShoot = true; }
 
-        if (time != fireRate)
+        if (time != 0.0f)
         {
             canShoot = false;
         }
-        else if (time >= fireRate)
-        { canShoot = true; }
+        else 
+        {
+            canShoot = true;
+        }
     }
     private void FixedUpdate()
     {
         //reset fire rate WHEN shot
-        if (time <= fireRate)
+        if (!canShoot)
         {
-            time += Time.deltaTime;
-        }
+            Debug.Log("Cant shoot");
+            time -= Time.deltaTime;
+            time = Mathf.Clamp(time, 0.0f, fireRate);
+            //if (time <= fireRate)
+            //{
+            //    time += Time.deltaTime;
+            //}
+            //else
+            //{
+            //    time = fireRate;
+            //}
+        }        
     }
 
-    GameObject item;
     public void Shoot()
     {
-        //Instantiate projectile prefab that we have
-        GameObject newProjectile = projectilePrefab;
-        AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
+        if (canShoot)
+        {
+            time = fireRate;
+
+            //Instantiate projectile prefab that we have
+            GameObject newProjectile = projectilePrefab;
+            AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
 
 
-        Instantiate(newProjectile, shootPoint.position, shootPoint.rotation);
-        //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
-        
+            Instantiate(newProjectile, shootPoint.position, shootPoint.rotation);
+            //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
+        }
     }
 
     public void PlayerShoot()
     {
-        //Instantiate projectile prefab that we have
-        GameObject newProjectile = projectilePrefab;
-        AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
+        if (canShoot)
+        {
+            time = fireRate;
 
-        Instantiate(newProjectile, shootPoint.position, shootPoint.rotation).AddComponent<PlayerProjectile>();
-        //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
+            //Instantiate projectile prefab that we have
+            GameObject newProjectile = projectilePrefab;
+            AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
 
-        currentAmmo--;
+            Instantiate(newProjectile, shootPoint.position, shootPoint.rotation).AddComponent<PlayerProjectile>();
+            //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
 
-        OnPlayerShoot?.Invoke(this, EventArgs.Empty);
+            currentAmmo--;
 
+            OnPlayerShoot?.Invoke(this, EventArgs.Empty);
+
+        }
     }
 
     public void GainAmmo(int amountToGain)
@@ -95,11 +119,16 @@ public class RangedWeapon : WeaponBase, IShoot
 
     public void HandleShooting()
     {
-        if (true == true)
+        //if (true == true)
+        //{
+        //    //Set fireRate timer = 0, so it can count back up.
+        //    //This would set 'canShoot = false'
+        //    time = 0.0f;
+        //    Shoot();
+        //}
+
+        if (canShoot)
         {
-            //Set fireRate timer = 0, so it can count back up.
-            //This would set 'canShoot = false'
-            time = 0.0f;
             Shoot();
         }
     }
@@ -113,16 +142,21 @@ public class RangedWeapon : WeaponBase, IShoot
         else
         {
             weaponName = stats.weaponName;
-            fireRate = stats.fireRate;
-            walkMultiplier = stats.walkMultiplier;
-            projectilePrefab = stats.projectilePrefab;
-            maxActiveProjectiles = stats.maxActiveAmount;
 
-            weaponIcon = stats.weaponIcon;
-            projectileIcon = stats.projectileIcon;
-            ammoCountIcon = stats.ammoCountIcon;
-            maxAmmo = stats.maxAmmo;
-            currentAmmo = maxAmmo;
+            if (!EnemyVersion)
+            {
+                fireRate = stats.fireRate;
+                weaponIcon = stats.weaponIcon;
+                projectileIcon = stats.projectileIcon;
+                ammoCountIcon = stats.ammoCountIcon;
+                maxAmmo = stats.maxAmmo;
+                currentAmmo = maxAmmo;
+                walkMultiplier = stats.walkMultiplier;
+                maxActiveProjectiles = stats.maxActiveAmount;
+
+            }
+
+            projectilePrefab = stats.projectilePrefab;
         }
     }
 
