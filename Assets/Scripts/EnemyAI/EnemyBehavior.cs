@@ -132,15 +132,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             Debug.LogWarning("! No animController Set !");
         }
-    }
-    protected virtual void Start()
-    {
-        setStats();
-
-        agent = GetComponent<NavMeshAgent>();
-
-        //ensures that if the room  is beaten, this won't spawn again
-        //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
 
         //Pass the weapon script that attacthed to the object
         if (gameObject.TryGetComponent<DataBaseWeaponGrabber>(out DataBaseWeaponGrabber dataWep))
@@ -152,6 +143,17 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             weaponController = weapCon;
         }
+    }
+    protected virtual void Start()
+    {
+        setStats();
+
+        agent = GetComponent<NavMeshAgent>();
+
+        //ensures that if the room  is beaten, this won't spawn again
+        //if (GameObject.Find("GameManager").GetComponent<GameManager>().currentNode.isRoomBeaten) { Destroy(this.gameObject); };
+
+        
 
         //set the enemy name to that of the game object
         //enemyName = this.gameObject.name;
@@ -367,14 +369,17 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             enemyName = stats.Name;
             weaponName= stats.WeaponName;
 
-            if (stats.ProjectilePrefab != null)
+            if (weaponController == null)
             {
-                projectilePrefab = stats.ProjectilePrefab;
-            }
-            else
-            {
-                Debug.LogWarning("! No weapon prefab set !");
-            }
+                if (stats.ProjectilePrefab != null)
+                {
+                    projectilePrefab = stats.ProjectilePrefab;
+                }
+                else
+                {
+                    Debug.LogWarning("! No weapon prefab set !");
+                }
+            }            
             
             ArmoredTarget = stats.ArmoredTarget;
             maxHealth = stats.Health;

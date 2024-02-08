@@ -85,17 +85,22 @@ public class WeaponScreen : MonoBehaviour
 
     void Update_WeaponUI_WeaponIcon()
     {
-        WeaponScreenMaterial.SetTexture("_WeaponBody_Texture", tempWeaponInfo.weaponIcon);
+        if (tempWeaponInfo.weaponIcon)
+        {
+            WeaponScreenMaterial.SetTexture("_WeaponBody_Texture", tempWeaponInfo.weaponIcon);
+        }
     }
 
     void Update_WeaponUI_ProjectileIcon()
     {
-        WeaponScreenMaterial.SetTexture("_WeaponAmmo_Texture", tempWeaponInfo.projectileIcon);
+        if (tempWeaponInfo.projectileIcon)
+            WeaponScreenMaterial.SetTexture("_WeaponAmmo_Texture", tempWeaponInfo.projectileIcon);
     }
 
     void Update_WeaponUI_AmmoIcon()
     {
-        WeaponScreenMaterial.SetTexture("_Ammo_Texture", tempWeaponInfo.ammoCountIcon);
+        if (tempWeaponInfo.ammoCountIcon)
+            WeaponScreenMaterial.SetTexture("_Ammo_Texture", tempWeaponInfo.ammoCountIcon);
     }
 
 

@@ -68,7 +68,7 @@ public class BehaviorTurret : EnemyBehavior
 
         //create's the correct weapon for an enemy based on the spawned enemy's name
         //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
-        currentEnemyWeapon = weaponGrabber.MakeWeapon(weaponName);
+        //currentEnemyWeapon = weaponGrabber.MakeWeapon(weaponName);
 
         turretState = TurretState.SEARCHING;
     }

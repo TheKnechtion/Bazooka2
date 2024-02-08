@@ -45,6 +45,10 @@ public class BouncingProjectile : ProjectileBase
     }
     void Bounce(Collision collision)
     {
+        if (gameObject.transform.rotation.x != 0.0f || gameObject.transform.rotation.z != 0.0f)
+        {
+            DeleteProjectile();
+        }
         if (bounceCount > 0)
         {
             isSpawning = false;
