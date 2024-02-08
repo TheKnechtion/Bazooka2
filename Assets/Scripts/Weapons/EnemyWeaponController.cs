@@ -25,6 +25,6 @@ public class EnemyWeaponController : MonoBehaviour
 
     public void ShootWeapon()
     {
-        weapon.Shoot();
+        weapon.HandleShooting();
     }
 }

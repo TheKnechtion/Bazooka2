@@ -19,6 +19,8 @@ public class BouncingProjectile : ProjectileBase
     private Vector3 directionToObjectHit;
     private float distanceToObjectHit;
 
+    private float yNormalBuffer;
+
     private bool doSplashDamage;
     private bool exploding;
 
@@ -28,6 +30,7 @@ public class BouncingProjectile : ProjectileBase
     void Start()
     {
         projectileRb = GetComponent<Rigidbody>();
+        yNormalBuffer = 0.1f;
 
         setStats();
         //direction = RaycastController.shootVector;
@@ -45,7 +48,7 @@ public class BouncingProjectile : ProjectileBase
     }
     void Bounce(Collision collision)
     {
-        if (gameObject.transform.rotation.x != 0.0f || gameObject.transform.rotation.z != 0.0f)
+        if (Mathf.Abs(collision.contacts[0].normal.y) > yNormalBuffer)
         {
             DeleteProjectile();
         }

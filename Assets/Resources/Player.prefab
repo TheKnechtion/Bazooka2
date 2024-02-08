@@ -1646,8 +1646,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c923d661d038e1c4f9a6d61a99860bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRange: 0
   CheckingMask:
+    serializedVersion: 2
+    m_Bits: 0
+  EnvironmentMask:
     serializedVersion: 2
     m_Bits: 0
 --- !u!114 &-2026575318513869659

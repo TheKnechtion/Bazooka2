@@ -274,6 +274,7 @@ public class PlayerManager : MonoBehaviour
             weaponController.PlayerShootWeapon();
             //Shoot();
         }
+
     }
 
 

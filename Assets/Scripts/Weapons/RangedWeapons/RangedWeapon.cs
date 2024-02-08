@@ -17,13 +17,16 @@ public class RangedWeapon : WeaponBase, IShoot
     public int maxActiveProjectiles;
     public int maxAmmo;
     public int currentAmmo;
+    private GameObject newProjectile;
 
 
     [SerializeField]private float time;
 
     private bool canShoot;
+    private bool barrelObstructed;
     public bool EnemyVersion;
 
+    private bool userIsPlayer;
 
     private void Awake()
     {
@@ -36,6 +39,11 @@ public class RangedWeapon : WeaponBase, IShoot
     void Start()
     {
         time = 0.0f;
+
+        if (gameObject.GetComponentInParent<PlayerManager>())
+        {
+            userIsPlayer = true;
+        }
     }
 
     private void Update()
@@ -77,23 +85,25 @@ public class RangedWeapon : WeaponBase, IShoot
 
     public void Shoot()
     {
-        if (canShoot)
+        time = fireRate;
+
+        //Instantiate projectile prefab that we have
+        AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
+
+        GameObject newProjectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+
+        if (userIsPlayer)
         {
-            time = fireRate;
-
-            //Instantiate projectile prefab that we have
-            GameObject newProjectile = projectilePrefab;
-            AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
-
-
-            Instantiate(newProjectile, shootPoint.position, shootPoint.rotation);
-            //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
+            currentAmmo--;
+            newProjectile.AddComponent<PlayerProjectile>();
         }
+
+        //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
     }
 
     public void PlayerShoot()
     {
-        if (canShoot)
+        if (canShoot && !barrelObstructed)
         {
             time = fireRate;
 
@@ -127,7 +137,7 @@ public class RangedWeapon : WeaponBase, IShoot
         //    Shoot();
         //}
 
-        if (canShoot)
+        if (canShoot && !barrelObstructed)
         {
             Shoot();
         }
@@ -160,5 +170,13 @@ public class RangedWeapon : WeaponBase, IShoot
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        barrelObstructed = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        barrelObstructed = false;
+    }
 
 }

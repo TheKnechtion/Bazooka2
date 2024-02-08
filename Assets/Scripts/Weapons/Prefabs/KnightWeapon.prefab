@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 856943082732100755}
   - component: {fileID: 637480751055863398}
+  - component: {fileID: 6241012819632753048}
   m_Layer: 0
   m_Name: KnightWeapon
   m_TagString: Untagged
@@ -88,6 +89,29 @@ MonoBehaviour:
   maxActiveProjectiles: 0
   maxAmmo: 0
   currentAmmo: 0
+  time: 0
+  EnemyVersion: 0
+--- !u!65 &6241012819632753048
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413264035518659173}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.34016466, y: 0.3809208, z: 0.4552821}
+  m_Center: {x: -0.001090467, y: 0.16574113, z: 0.86244935}
 --- !u!1 &5854806213620234166
 GameObject:
   m_ObjectHideFlags: 0

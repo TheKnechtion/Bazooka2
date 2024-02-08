@@ -91,7 +91,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     protected Navigation nav;
     protected float distanceToPlayer;
-
+    [SerializeField] private float verticalAngle;
 
     //Used to determine how far the player has to be for the enemy to start attacking
     protected float enemyAttackRange_ExitAggro = 15.0f;
@@ -117,6 +117,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     [SerializeField] public bool ArmoredTarget { get; set; }
     #endregion
 
+    [SerializeField] private float testFloat;
 
     protected virtual void Awake()
     {
@@ -220,12 +221,20 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
                 break;
             case EnemyState.ATTACK:
                 nav.StopMovement();
-                transform.LookAt(targetToLookAt);
-                HandleShooting();
+
+                
+                verticalAngle = GetVerticalAngleToPlayer(enemyPosition, playerPosition);
+                if (verticalAngle > 60)
+                {
+                    transform.LookAt(targetToLookAt);
+                    HandleShooting();
+                }
                 break;
             default:
                 break;
         }
+
+        testFloat = GetVerticalAngleToPlayer(enemyPosition, playerPosition);
     }
 
     protected virtual void FixedUpdate()
@@ -246,6 +255,20 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         }
     }
 
+    private float GetVerticalAngleToPlayer(Vector3 u, Vector3 v)
+    {
+        float angle = 0.0f;
+
+        float dot = Vector3.Dot(u, v);
+
+        float magOfU = Mathf.Sqrt( (u.x)*(u.x) + (u.y)*(u.y) + (u.z)*(u.z));
+        float magOfV = Mathf.Sqrt( (v.x)*(v.x) + (v.y)*(v.y) + (v.z)*(v.z));
+
+        angle = Mathf.Acos( (dot / (magOfU * magOfV)) );
+        angle = angle * Mathf.Rad2Deg;
+
+        return angle;
+    }
     protected virtual void HandleEnemyAggro()
     {
         //Determines aggro of the enemy

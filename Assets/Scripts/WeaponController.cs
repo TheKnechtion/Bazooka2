@@ -231,7 +231,7 @@ public class WeaponController:MonoBehaviour
         //UpdateUI?.Invoke(this, EventArgs.Empty);
         if (currentWeapon.currentAmmo > 0)
         {
-            currentWeapon.PlayerShoot();
+            currentWeapon.HandleShooting();
         }
     }
 
