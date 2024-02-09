@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class Explosive : MonoBehaviour
     private PlayAndDestroy particleSystem;
 
     //private ParticleSystem VFXRadius;
+
+    public event EventHandler CanDestroy;
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +86,8 @@ public class Explosive : MonoBehaviour
                 
             }
         }
+
+        CanDestroy.Invoke(this, EventArgs.Empty);
     }
 
     private void OnDrawGizmosSelected()

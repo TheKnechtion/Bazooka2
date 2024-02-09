@@ -64,6 +64,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634}
@@ -152,6 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 0}
   - {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

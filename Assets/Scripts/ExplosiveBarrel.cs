@@ -19,7 +19,6 @@ public class ExplosiveBarrel : DestroyableObject
     // Start is called before the first frame update
     void Start()
     {
-
         if (render == null)
         {
             render = meshObject.GetComponent<Renderer>();
@@ -28,16 +27,20 @@ public class ExplosiveBarrel : DestroyableObject
 
         isDestroyed = false;
         explosive = this.GetComponent<Explosive>();
+
+        explosive.CanDestroy += OnFinishedExploding;
+    }
+
+    private void OnFinishedExploding(object sender, System.EventArgs e)
+    {
+        Destroy(gameObject);
     }
 
     public override void Die()
     {
-
         health= 0;
         if (!isDestroyed) 
         {
-
-
             isDestroyed= true;
             StartCoroutine(fuse());
             //PickupAbleOBJ_Destroy();
@@ -50,7 +53,7 @@ public class ExplosiveBarrel : DestroyableObject
 
     private IEnumerator fuse()
     {
-        if (fuseMaterial)
+        if (fuseMaterial != null)
         {
             explosiveMats[0] = render.material;
             explosiveMats[1] = fuseMaterial;

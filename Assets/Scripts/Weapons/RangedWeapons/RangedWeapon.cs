@@ -58,31 +58,21 @@ public class RangedWeapon : WeaponBase, IShoot
         if (time != 0.0f)
         {
             canShoot = false;
+            HandleFireRate();
         }
         else 
         {
             canShoot = true;
         }
     }
-    private void FixedUpdate()
-    {
-        //reset fire rate WHEN shot
-        if (!canShoot)
-        {
-            Debug.Log("Cant shoot");
-            time -= Time.deltaTime;
-            time = Mathf.Clamp(time, 0.0f, fireRate);
-            //if (time <= fireRate)
-            //{
-            //    time += Time.deltaTime;
-            //}
-            //else
-            //{
-            //    time = fireRate;
-            //}
-        }        
-    }
 
+    private void HandleFireRate()
+    {
+        Debug.Log("Cant shoot");
+        time -= Time.deltaTime;
+
+        time = Mathf.Clamp(time, 0.0f, fireRate);
+    }
     public void Shoot()
     {
         time = fireRate;

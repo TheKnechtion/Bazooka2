@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7358111455964947814}
-  m_Mesh: {fileID: -216100642525554132, guid: 5b9da7497218670459cc99f247310f05, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!23 &7758682508242186373
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118,4 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5fb021c28d3944dbcb25e9a57ae029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentShader: {fileID: -6465566751694194690, guid: 8622155f29dc73e43927339807315fd5, type: 3}
+  UseDefaultFields: 0
+  Fade_To_Opacity: 0
+  fadeSpeed: 0
