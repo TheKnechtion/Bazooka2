@@ -118,7 +118,7 @@ Shader "Unlit/Textured"
                 
 
 
-                float patternTex = tex2D(_Pattern,i.uv);
+                float patternTex = 1-tex2D(_Pattern,i.uv);
 
                 //float4 finalColor = lerp(float4(1,0,0,1),secondTex,patternTex);
 

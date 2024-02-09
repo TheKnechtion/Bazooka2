@@ -61,6 +61,7 @@ public class ExplosiveBarrel : DestroyableObject
 
         explosive.Explode();
 
+
         PickupAbleOBJ_Destroy();
         yield return null;
     }

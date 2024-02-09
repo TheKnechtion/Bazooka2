@@ -20,6 +20,8 @@ public class Elevator : Interactable
 
     [SerializeField] float endHeight;
 
+    [SerializeField] List<float> floorHeights;
+
     [Tooltip("Choose which direction the elevator moves.")]
     [SerializeField] orientation elevatorMovementDirection;
 
@@ -32,14 +34,18 @@ public class Elevator : Interactable
     [Tooltip("When unselected, the elevator won't move.")]
     [SerializeField] bool isActive;
 
+
+    IEnumerator currentCoroutine = null;
+
+
     bool canActivate = true;
 
     float startHeight;
     float bottomHeight;
     float topHeight;
 
-    bool isElevating = false;
-    bool isGoingDown = false;
+    public bool isElevating = false;
+    public bool isGoingDown = false;
 
     float incrementVectorY = 0f;
 
@@ -102,7 +108,7 @@ public class Elevator : Interactable
 
         if (canActivate && isActive)
         {
-            other.transform.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
+            //other.transform.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
             //other.transform.SetParent(transform);
             canActivate = false;
         }
@@ -111,6 +117,13 @@ public class Elevator : Interactable
             return;
         }
 
+
+        Move();
+    }
+
+
+    void Move()
+    {
         if (elevatorMovementDirection == orientation.DownToUp)
         {
             isElevating = true;
@@ -119,7 +132,12 @@ public class Elevator : Interactable
         {
             isGoingDown = true;
         }
+    }
 
+
+    public void GoToFloor(int floorNumber)
+    {
+        
     }
 
 
@@ -184,7 +202,7 @@ public class Elevator : Interactable
         }
         else
         {
-            return;
+
         }
 
         if (isElevating == false && elevatorMovementDirection == orientation.DownToUp && autoReturnToStartPosition)
@@ -255,11 +273,35 @@ public class Elevator : Interactable
         yield return new WaitForSeconds(waitTime);
         isElevating = true;
     }
-
     private IEnumerator WaitToActivate()
     {
         yield return new WaitForSeconds(waitTime);
         canActivate = true;
+    }
+    void StartCoroutine_Custom(IEnumerator coroutine)
+    {
+        //CoroutineCheck(currentCoroutine);
+        //currentCoroutine = coroutine;
+
+        StartCoroutine(coroutine);
+    }
+
+
+    void CoroutineCheck(IEnumerator coroutine)
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+    }
+
+
+    private IEnumerator WaitToDo(bool condition)
+    {
+        yield return new WaitForSeconds(waitTime);
+        condition = true;
+        yield return condition;
+
     }
 
 }

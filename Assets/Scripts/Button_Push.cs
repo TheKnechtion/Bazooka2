@@ -9,11 +9,13 @@ public class Button_Push : MonoBehaviour
   
     bool canActivate = false;
 
-    Material activatedMat;
+    Material inactiveMat;
+    [SerializeField] Material activatedMat;
     MeshRenderer buttonRenderer;
 
     [SerializeField] private string displayObjectName;
 
+    [SerializeField] bool doOnce;
 
 
 
@@ -25,9 +27,9 @@ public class Button_Push : MonoBehaviour
     {
         PlayerManager.OnPlayerActivatePress += Activate;
 
-        activatedMat = (Material)Resources.Load("Activated");
-        buttonRenderer = gameObject.GetComponent<MeshRenderer>();
 
+        buttonRenderer = gameObject.GetComponent<MeshRenderer>();
+        inactiveMat = buttonRenderer.material;
     }
 
     //activate the "press space" UI
@@ -54,14 +56,20 @@ public class Button_Push : MonoBehaviour
 
     public void Activate(object sender, System.EventArgs e)
     {
-        if(canActivate)
+        if (canActivate)
         {
             buttonRenderer.material = activatedMat;
 
             OnActivated.Invoke();
+        }
 
+        if (doOnce)
+        {
             DeleteOnActivate();
         }
+
+        StartCoroutine(WaitToActivate());
+
     }
 
     void DeleteOnActivate()
@@ -70,7 +78,12 @@ public class Button_Push : MonoBehaviour
         PlayerManager.OnPlayerActivatePress -= Activate;
         Destroy(this);
     }
-
+    private IEnumerator WaitToActivate()
+    {
+        yield return new WaitForSeconds(3f);
+        buttonRenderer.material = inactiveMat;
+        canActivate = true;
+    }
 
 
 

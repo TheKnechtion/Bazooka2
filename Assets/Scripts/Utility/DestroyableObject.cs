@@ -73,7 +73,7 @@ public class DestroyableObject : MonoBehaviour, IDamagable
 
     public virtual void Die()
     {
-        OnDestroyed?.Invoke(this, EventArgs.Empty);
+        //OnDestroyed?.Invoke(this, EventArgs.Empty);
         Destroy(this.gameObject);
     }
 
@@ -90,7 +90,11 @@ public class DestroyableObject : MonoBehaviour, IDamagable
         if (parentObj == null) 
         {
             //Destroy(gameObject);
-            Die();
+            //Die();
+
+            Destroy(this.gameObject);
+
+            return;
         }
 
 
