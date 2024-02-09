@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,6 +45,9 @@ public class Elevator : Interactable
     float bottomHeight;
     float topHeight;
 
+
+
+
     public bool isElevating = false;
     public bool isGoingDown = false;
 
@@ -83,6 +87,8 @@ public class Elevator : Interactable
             currnetLocation = position.Up;
         }
 
+        targetFloor = 1;
+
         /*
         if (startAtEndPosition)
         {
@@ -119,6 +125,9 @@ public class Elevator : Interactable
 
 
         Move();
+    
+    
+
     }
 
 
@@ -134,11 +143,16 @@ public class Elevator : Interactable
         }
     }
 
+    public int targetFloor { get; set; }
+    int currentFloor = 1;
 
-    public void GoToFloor(int floorNumber)
-    {
-        
-    }
+    public int topFloor { get; set; }
+
+    public int bottomFloor { get; set; }
+
+    bool isMoving = false;
+
+
 
 
     private void OnTriggerExit(Collider other)
@@ -172,6 +186,12 @@ public class Elevator : Interactable
         if (isGoingDown)
         {
             GoDown();
+            return;
+        }
+
+        if (targetFloor != currentFloor)
+        {
+            GoToFloor();
             return;
         }
 
@@ -216,6 +236,55 @@ public class Elevator : Interactable
 
     }
 
+
+    public void GoToFloor()
+    {
+        if (floorHeights[currentFloor-1] - floorHeights[targetFloor-1] > 0)
+        {
+            GoDown_Button();
+        }
+        else if(floorHeights[currentFloor - 1] - floorHeights[targetFloor - 1] < 0)
+        {
+            GoUp_Button();
+        }
+
+
+    }
+
+    void GoDown_Button()
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, incrementVectorY, gameObject.transform.position.z);
+
+        incrementVectorY -= 0.05f;
+
+
+        if (incrementVectorY <= floorHeights[targetFloor - 1])
+        {
+            currentFloor = targetFloor;
+        }
+        else
+        {
+
+        }
+
+    }
+
+
+    void GoUp_Button()
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, incrementVectorY, gameObject.transform.position.z);
+
+        incrementVectorY += 0.05f;
+
+        if (incrementVectorY >= floorHeights[targetFloor - 1])
+        {
+            currentFloor = targetFloor;
+        }
+        else
+        {
+
+        }
+    }
 
     void GoDown()
     {
