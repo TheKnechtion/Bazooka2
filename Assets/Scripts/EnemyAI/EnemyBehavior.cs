@@ -222,9 +222,10 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             case EnemyState.ATTACK:
                 nav.StopMovement();
 
-                
-                verticalAngle = GetVerticalAngleToPlayer(enemyPosition, playerPosition);
-                if (verticalAngle > 60)
+
+                //verticalAngle = GetVerticalAngleToPlayer(transform.forward, playerPosition);
+                verticalAngle = AngleToPlayer(distanceToPlayer, enemyPosition, playerPosition);
+                if (verticalAngle < 60)
                 {
                     transform.LookAt(targetToLookAt);
                     HandleShooting();
@@ -234,7 +235,10 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
                 break;
         }
 
-        testFloat = GetVerticalAngleToPlayer(enemyPosition, playerPosition);
+        #region Debugging
+        //testFloat = GetVerticalAngleToPlayer(transform.forward, playerPosition);
+        //testFloat = AngleToPlayer(distanceToPlayer, enemyPosition, playerPosition);
+        #endregion
     }
 
     protected virtual void FixedUpdate()
@@ -255,18 +259,20 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         }
     }
 
-    private float GetVerticalAngleToPlayer(Vector3 u, Vector3 v)
+    private float AngleToPlayer(float hypDistance, Vector3 enPos, Vector3 targetPos)
     {
+        float xzDistance = 0.0f;
         float angle = 0.0f;
 
-        float dot = Vector3.Dot(u, v);
+        enPos.y = 0;
+        targetPos.y = 0;
 
-        float magOfU = Mathf.Sqrt( (u.x)*(u.x) + (u.y)*(u.y) + (u.z)*(u.z));
-        float magOfV = Mathf.Sqrt( (v.x)*(v.x) + (v.y)*(v.y) + (v.z)*(v.z));
+        xzDistance = Vector3.Distance(enPos, targetPos);
 
-        angle = Mathf.Acos( (dot / (magOfU * magOfV)) );
-        angle = angle * Mathf.Rad2Deg;
+        angle = Mathf.Acos(xzDistance / hypDistance);
 
+
+        angle *= Mathf.Rad2Deg;
         return angle;
     }
     protected virtual void HandleEnemyAggro()
