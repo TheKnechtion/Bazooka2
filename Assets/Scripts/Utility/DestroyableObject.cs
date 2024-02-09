@@ -22,8 +22,14 @@ public class DestroyableObject : MonoBehaviour, IDamagable
 
     private void Start()
     {
-
-        renderMesh = GetComponent<MeshFilter>();
+        if (gameObject.TryGetComponent<MeshFilter>(out MeshFilter t))
+        {
+            renderMesh = t;
+        }
+        else if (gameObject.GetComponentInChildren<MeshFilter>())
+        {
+            renderMesh = gameObject.GetComponentInChildren<MeshFilter>();
+        }
 
         dontDestroy = false;
         if (swapModel != null)
@@ -57,8 +63,7 @@ public class DestroyableObject : MonoBehaviour, IDamagable
             }
             else
             {
-                Die();
-
+                OnDestroyed?.Invoke(this, EventArgs.Empty);
                 if (destroyModel)
                 {
                     destroyModel.SetActive(true);
