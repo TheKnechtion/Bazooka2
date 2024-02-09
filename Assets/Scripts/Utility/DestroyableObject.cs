@@ -12,8 +12,11 @@ public class DestroyableObject : MonoBehaviour, IDamagable
     [SerializeField] private GameObject swapModel;
     private GameObject destroyModel;
 
+
     [SerializeField] private Mesh destroyedMesh;
     private MeshFilter renderMesh;
+
+    [SerializeField] private ParticleSystem destroyEffect;
     public bool ArmoredTarget { get;  set; }
 
     public event EventHandler OnDestroyed;
@@ -53,35 +56,42 @@ public class DestroyableObject : MonoBehaviour, IDamagable
 
     public void TakeDamage(int passedDamage)
     {
-        health -= passedDamage;
-
-        if (health <= 0)
+        if (health>0)
         {
-            if (!dontDestroy)
+            health -= passedDamage;
+
+            if (health <= 0)
             {
                 Die();
             }
-            else
-            {
-                OnDestroyed?.Invoke(this, EventArgs.Empty);
-                if (destroyModel)
-                {
-                    destroyModel.SetActive(true);
-                }
-                else if (destroyedMesh != null)
-                {
-                    renderMesh.mesh = destroyedMesh;
-                }
-            }
-        }
+        }        
     }
 
     public virtual void Die()
     {
         OnDestroyed?.Invoke(this, EventArgs.Empty);
-        Destroy(this.gameObject);
-    }
+        if (dontDestroy)
+        {
+            if (destroyEffect != null)
+            {
+                destroyEffect.Play();
+            }
+            if (destroyModel)
+            {
+                destroyModel.SetActive(true);
+            }
+            else if (destroyedMesh != null)
+            {
+                renderMesh.mesh = destroyedMesh;
+            }
 
+            this.enabled = false;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     Transform? parentObj;
     PlayerManager tempManager;
@@ -98,8 +108,6 @@ public class DestroyableObject : MonoBehaviour, IDamagable
             Die();
         }
 
-
-        
         if (parentObj.name == "AttachPoint")
         {
             tempManager = parentObj.parent.parent.parent.parent.GetComponent<PlayerManager>();
@@ -115,7 +123,6 @@ public class DestroyableObject : MonoBehaviour, IDamagable
         {
             //Destroy(gameObject);
             Die();
-        }
-        
+        }        
     }
 }

@@ -17,7 +17,7 @@ public class ItemHover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        yOffset = transform.position.y;
     }
 
     // Update is called once per frame
