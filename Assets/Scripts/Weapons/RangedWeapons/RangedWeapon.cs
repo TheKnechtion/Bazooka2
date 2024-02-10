@@ -23,7 +23,7 @@ public class RangedWeapon : WeaponBase, IShoot
     [SerializeField]private float time;
 
     private bool canShoot;
-    private bool barrelObstructed;
+    [SerializeField]private bool barrelObstructed;
     public bool EnemyVersion;
 
     private bool userIsPlayer;

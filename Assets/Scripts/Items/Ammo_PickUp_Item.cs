@@ -12,8 +12,14 @@ public class Ammo_PickUp_Item : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerManager>().GainAmmo(amountToGain);
-            pickedUpAmmo?.Invoke(this, EventArgs.Empty);
+            if (other.TryGetComponent<WeaponController>(out WeaponController t))
+            {
+                t.currentWeapon.GainAmmo(amountToGain);
+                pickedUpAmmo?.Invoke(this, EventArgs.Empty);
+            }
+
+            //other.gameObject.GetComponent<PlayerManager>().GainAmmo(amountToGain);
+            //pickedUpAmmo?.Invoke(this, EventArgs.Empty);
             Destroy(this.gameObject);
         }
     }

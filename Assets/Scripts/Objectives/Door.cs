@@ -24,8 +24,8 @@ public class Door : MonoBehaviour
         //if the player collides with the door and the room is cleared, the player may freely travel to the next node
         if (other.gameObject.tag == "Player")
         {
-            GameObject.Find("GameManager").GetComponent<GameManager>().TravelToThisRoom(roomDatabase.Room_Database[0].sceneName);
-
+            //GameObject.Find("GameManager").GetComponent<GameManager>().TravelToThisRoom(roomDatabase.Room_Database[0].sceneName);
+            GameObject.Find("GameManager").GetComponent<GameManager>().TravelToThisRoom(roomName);
         }
     }
 

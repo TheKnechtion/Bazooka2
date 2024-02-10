@@ -847,6 +847,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &29187772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1592,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -1648,46 +1691,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1997,6 +2000,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &49524495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2262,6 +2268,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &61309620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,6 +3421,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &76383289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3572,6 +3584,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &84473904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3732,6 +3747,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &84828651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4065,7 +4083,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413300
+  m_Name: pb_Mesh68718
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4367,6 +4385,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &151569781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4650,6 +4671,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &165134773
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,6 +5097,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &184143500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5614,6 +5641,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &200209317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5622,6 +5652,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -5681,46 +5751,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6066,13 +6096,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!43 &216868063
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414816
+  m_Name: pb_Mesh70246
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7370,6 +7403,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &253619878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7486,13 +7522,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!43 &271870068
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414580
+  m_Name: pb_Mesh70008
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7774,6 +7813,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!65 &287901587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8205,6 +8247,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &306710507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8213,6 +8258,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -8272,46 +8357,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8951,6 +8996,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &321532740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9111,6 +9159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &332634717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9257,7 +9308,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh412708
+  m_Name: pb_Mesh68126
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9424,6 +9475,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -9483,46 +9574,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9832,6 +9883,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &367112123
 GameObject:
   m_ObjectHideFlags: 0
@@ -10199,7 +10253,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414746
+  m_Name: pb_Mesh70176
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -11257,6 +11311,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &410595277
 GameObject:
   m_ObjectHideFlags: 0
@@ -11296,6 +11353,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -11356,46 +11453,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11428,6 +11485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -11952,7 +12012,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413414
+  m_Name: pb_Mesh68832
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12246,7 +12306,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh412458
+  m_Name: pb_Mesh67876
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12647,7 +12707,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414142
+  m_Name: pb_Mesh69570
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -24640,6 +24700,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!4 &468347797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6002749996016428781, guid: 2dee651bc9a13524894384838aeb2a74, type: 3}
@@ -25432,6 +25495,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -25481,7 +25547,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh415046
+  m_Name: pb_Mesh70476
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -25658,6 +25724,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -26956,6 +27025,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -27015,46 +27124,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27375,6 +27444,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &568437451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27383,6 +27455,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -27442,46 +27554,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27662,6 +27734,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &591919165
 GameObject:
   m_ObjectHideFlags: 0
@@ -27805,6 +27880,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &622687900
 GameObject:
   m_ObjectHideFlags: 0
@@ -28094,6 +28172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &652974324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28240,7 +28321,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413024
+  m_Name: pb_Mesh68442
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -28704,6 +28785,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &681392604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28864,6 +28948,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &690105335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28872,6 +28959,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -28932,6 +29059,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1434283337}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1434283336}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1434283335}
+  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+--- !u!4 &690105336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+  m_PrefabInstance: {fileID: 690105335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &694556286
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1000794078}
+    m_Modifications:
     - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
       propertyPath: Damage
       value: 5
@@ -28972,33 +29126,6 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.06258273
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1434283337}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1434283336}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1434283335}
-  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
---- !u!4 &690105336 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-  m_PrefabInstance: {fileID: 690105335}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &694556286
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1000794078}
-    m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -29058,46 +29185,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29418,6 +29505,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &714140804
 GameObject:
   m_ObjectHideFlags: 0
@@ -30264,6 +30354,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &727012643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30564,6 +30657,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &755830691
 GameObject:
   m_ObjectHideFlags: 0
@@ -31073,13 +31169,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!43 &795160135
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh415060
+  m_Name: pb_Mesh70490
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -31521,6 +31620,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -31581,6 +31720,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1698940667}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1698940666}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1698940665}
+  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+--- !u!4 &812518732 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+  m_PrefabInstance: {fileID: 812518731}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &813387932
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1000794078}
+    m_Modifications:
     - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
       propertyPath: Damage
       value: 5
@@ -31621,33 +31787,6 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.06258273
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1698940667}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1698940666}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1698940665}
-  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
---- !u!4 &812518732 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-  m_PrefabInstance: {fileID: 812518731}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &813387932
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1000794078}
-    m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -31707,46 +31846,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32330,6 +32429,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -32390,6 +32529,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2120968281}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2120968280}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2120968279}
+  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+--- !u!4 &846221077 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+  m_PrefabInstance: {fileID: 846221076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &866393676
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1000794078}
+    m_Modifications:
     - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
       propertyPath: Damage
       value: 5
@@ -32430,33 +32596,6 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.06258273
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2120968281}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2120968280}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2120968279}
-  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
---- !u!4 &846221077 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-  m_PrefabInstance: {fileID: 846221076}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &866393676
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1000794078}
-    m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -32516,46 +32655,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33200,6 +33299,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &909071259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33208,6 +33310,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -33268,46 +33410,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33333,7 +33435,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413384
+  m_Name: pb_Mesh68802
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -33498,7 +33600,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh415092
+  m_Name: pb_Mesh70522
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -33817,6 +33919,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &960170584
 GameObject:
   m_ObjectHideFlags: 0
@@ -34925,7 +35030,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413054
+  m_Name: pb_Mesh68472
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -35634,6 +35739,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1000794077
 GameObject:
   m_ObjectHideFlags: 0
@@ -35852,6 +35960,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -35913,6 +36024,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -35964,6 +36078,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -36023,46 +36177,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36668,6 +36782,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1040310974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36676,6 +36793,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487026772276952590, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487026772276952590, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.24
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -36736,6 +36901,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1338292013}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1338292012}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1338292011}
+  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+--- !u!4 &1040310975 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+  m_PrefabInstance: {fileID: 1040310974}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1049543529
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1000794078}
+    m_Modifications:
     - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
       propertyPath: Damage
       value: 5
@@ -36776,41 +36968,6 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.06258273
       objectReference: {fileID: 0}
-    - target: {fileID: 5487026772276952590, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 5487026772276952590, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.24
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1338292013}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1338292012}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1338292011}
-  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
---- !u!4 &1040310975 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-  m_PrefabInstance: {fileID: 1040310974}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1049543529
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1000794078}
-    m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -36871,46 +37028,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36943,6 +37060,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -37146,6 +37266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1076159230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
@@ -37164,6 +37287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -37617,6 +37743,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1092626481
 GameObject:
   m_ObjectHideFlags: 0
@@ -37888,6 +38017,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1142654254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38048,6 +38180,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1154974332
 GameObject:
   m_ObjectHideFlags: 0
@@ -38084,7 +38219,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -38301,7 +38436,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413700
+  m_Name: pb_Mesh69118
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -38580,6 +38715,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1179485989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38588,6 +38726,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -38648,6 +38826,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1780011263}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1780011262}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1780011261}
+  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+--- !u!4 &1179485990 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+  m_PrefabInstance: {fileID: 1179485989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1181521566
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1000794078}
+    m_Modifications:
     - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
       propertyPath: Damage
       value: 5
@@ -38688,33 +38893,6 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.06258273
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1780011263}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1780011262}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1780011261}
-  m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
---- !u!4 &1179485990 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-  m_PrefabInstance: {fileID: 1179485989}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1181521566
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1000794078}
-    m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -38775,46 +38953,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38847,6 +38985,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -39050,6 +39191,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1192392220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39058,6 +39202,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -39118,46 +39302,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39190,6 +39334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -39251,6 +39398,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -39300,7 +39450,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413520
+  m_Name: pb_Mesh68938
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -39998,6 +40148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!4 &1220679956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4917735956120020609, guid: ea7e6becc6f47714182a222f4e950e19, type: 3}
@@ -40849,6 +41002,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1225505534
 GameObject:
   m_ObjectHideFlags: 0
@@ -41254,6 +41410,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1236794197
 GameObject:
   m_ObjectHideFlags: 0
@@ -41531,6 +41690,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -41591,46 +41790,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41663,6 +41822,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -42849,7 +43011,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh412364
+  m_Name: pb_Mesh67782
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -43271,6 +43433,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -43724,13 +43889,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!43 &1330818999
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh415158
+  m_Name: pb_Mesh70588
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -44783,6 +44951,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1338292008 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
@@ -44801,6 +44972,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -44852,6 +45026,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -44912,46 +45126,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44984,6 +45158,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -46155,13 +46332,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!43 &1389560074
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413118
+  m_Name: pb_Mesh68536
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -47081,6 +47261,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -47413,13 +47596,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!43 &1451453186
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414086
+  m_Name: pb_Mesh69514
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -47596,6 +47782,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -47939,6 +48128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1491510781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48239,6 +48431,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1505021832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48399,13 +48594,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!43 &1510973016
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh412782
+  m_Name: pb_Mesh68200
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -49039,6 +49237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1522203972
 GameObject:
   m_ObjectHideFlags: 0
@@ -49173,7 +49374,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh412382
+  m_Name: pb_Mesh67800
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -49615,6 +49816,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1544235626
 GameObject:
   m_ObjectHideFlags: 0
@@ -49769,7 +49973,7 @@ Transform:
   m_GameObject: {fileID: 1545285035}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -44.03, y: -3.46, z: 23.61}
+  m_LocalPosition: {x: -43.44, y: 0, z: 22.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49935,6 +50139,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1554155301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50366,7 +50573,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413570
+  m_Name: pb_Mesh68988
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -50533,6 +50740,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -50593,46 +50840,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50665,6 +50872,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -51013,6 +51223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1606429173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51594,6 +51807,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1627877559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51742,6 +51958,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -51802,46 +52058,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51874,6 +52090,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -51923,7 +52142,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413856
+  m_Name: pb_Mesh69284
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -53712,7 +53931,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh413836
+  m_Name: pb_Mesh69264
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -53889,6 +54108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -54067,7 +54289,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414684
+  m_Name: pb_Mesh70114
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -54373,7 +54595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 1ffceae5577a1ae458c008d9faabfa75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 80.43753
+      value: 79.85
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 1ffceae5577a1ae458c008d9faabfa75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54572,6 +54794,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1741899241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55168,6 +55393,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -55217,7 +55445,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414066
+  m_Name: pb_Mesh69494
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -55605,6 +55833,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1770314891
 GameObject:
   m_ObjectHideFlags: 0
@@ -56476,6 +56707,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487026772276952590, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487026772276952590, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.48
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -56536,54 +56815,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
-    - target: {fileID: 5487026772276952590, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 5487026772276952590, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.48
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -56616,6 +56847,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -56759,6 +56993,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -58093,6 +58330,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1831842085
 GameObject:
   m_ObjectHideFlags: 0
@@ -58206,6 +58446,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -58265,46 +58545,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -58485,6 +58725,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1841390201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59505,7 +59748,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414510
+  m_Name: pb_Mesh69938
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -59670,7 +59913,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh412924
+  m_Name: pb_Mesh68342
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -59975,7 +60218,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414888
+  m_Name: pb_Mesh70318
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -60396,6 +60639,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &1937461513
 GameObject:
   m_ObjectHideFlags: 0
@@ -60509,6 +60755,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -60569,46 +60855,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60634,7 +60880,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh126388
+  m_Name: pb_Mesh69426
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -60953,6 +61199,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &2006846116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
@@ -60971,6 +61220,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -61174,6 +61426,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &2041737989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
@@ -61192,6 +61447,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -61253,6 +61511,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -61456,13 +61717,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!43 &2046490553
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh414592
+  m_Name: pb_Mesh70020
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -62998,6 +63262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -64181,6 +64448,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000794078}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0225
@@ -64241,46 +64548,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -64313,6 +64580,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -64374,6 +64644,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -65440,6 +65713,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &1214836591495277758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65649,6 +65925,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  swapModel: {fileID: 0}
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1001 &8211606687918988998
 PrefabInstance:
   m_ObjectHideFlags: 0
