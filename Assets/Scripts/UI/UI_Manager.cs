@@ -23,8 +23,9 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject TipSpace;
     [SerializeField] private GameObject QuitButton;
     [SerializeField] private GameObject ReplayButton;
-    [SerializeField] private GameObject RoomSelectScreen;
+    //[SerializeField] private GameObject RoomSelectScreen;
     //[SerializeField] private GameObject HeartList;
+    [SerializeField] private GameObject LevelSelect;
 
 
     [SerializeField] private GameObject Activate;
@@ -104,7 +105,7 @@ public class UI_Manager : MonoBehaviour
         Activate_Sample = Activate;
         ActivateText_Sample = ActivateText;
 
-        RoomSelectScreenRef = RoomSelectScreen;
+        //RoomSelectScreenRef = RoomSelectScreen;
     }
 
     private void Start()

@@ -15,7 +15,7 @@ public class BehaviorTankBoss : EnemyBehavior
     public static event EventHandler OnTankKilled;
 
     [SerializeField] private HealthBar healthBar;
-    void Start()
+    protected override void Start()
     {        
         setStats();
         agent = GetComponent<NavMeshAgent>();

@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     private void BossKilled(object sender, EventArgs e)
     {
-        PlayerWins();
+        
     }
 
 
@@ -153,14 +153,6 @@ public class GameManager : MonoBehaviour
     }
 
     int currentRoom = 1;
-
-    Scene currentScene;
-
-
-    string[] TransitionRooms;
-
-    
-
 
     //used by the Door script to travel to next rooms
     public void TravelToNextRoom()
@@ -181,9 +173,6 @@ public class GameManager : MonoBehaviour
         OnSceneChange?.Invoke(this, EventArgs.Empty);
         SceneManager.LoadScene(roomName, LoadSceneMode.Single);
     }
-
-    //Quick way to be sure winner is only printed once
-    bool didOnce = false;
     private void Update()
     {
         //checks if the this node of the tail node/final room, then checks if the final room has been beaten
@@ -261,40 +250,6 @@ public class GameManager : MonoBehaviour
         #endregion
     }
 
-    private void SpawnEnemies()
-    {
-        System.Random n = new System.Random();
-
-        //check if the evac event begins
-        //else check if the room has been beaten
-        //if either is true, spawn appropriate enemies
-        //!currentNode.spawnedEnemiesEvac
-        if (EvacTime && !currentNode.spawnedEnemiesEvac)
-        {
-            enemySpawner.GetEvacSpawnPoint();
-            enemySpawner.SpawnEnemiesByTag();
-            currentNode.spawnedEnemiesEvac = true;
-        }
-        else if (!currentNode.isRoomBeaten)
-        {
-            enemySpawner.GetSpawnPoints();
-            enemySpawner.SpawnEnemiesByTag();
-            currentNode.spawnedEnemies = true;
-        }
-
-
-
-        //else if (!currentNode.isRoomBeaten && !spawnedEnemies)
-        //{
-        //    Debug.Log("Rgular spawn");
-        //    enemySpawner.GetSpawnPoints();
-        //    //enemySpawner.SpawnEnemies(n.Next(0, 2));
-        //    enemySpawner.SpawnEnemies(0);
-        //    spawnedEnemies = true;
-        //}
-    }
-
-
     /*
     private void CheckPlayerWin()
     {
@@ -343,10 +298,6 @@ public class GameManager : MonoBehaviour
 
     }
    */
-    private GameObject SpawnExit(GameObject exit)
-    {
-        return Instantiate(exit, ExitPosition);
-    }
 
     //used to track the player's HP upon beating the game or dying
     int playerHP;

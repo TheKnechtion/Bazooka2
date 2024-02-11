@@ -17,8 +17,6 @@ public class InitializeGame : MonoBehaviour
         //the main camera
         //the win/lose UI
 
-    GameObject reference;
-
     private void Awake()
     {
         
@@ -27,25 +25,17 @@ public class InitializeGame : MonoBehaviour
             //the game manager
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("GameManager")), "GameManager"));
 
-
-
             //the player
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Player"), playerSpawnLocation, playerSpawnLookDirection), "Player"));
-            //SetGameObjectName(Instantiate(LoadPrefabFromString("Player")), "Player");
-
+            
             //the main camera
             SetGameObjectName(Instantiate(LoadPrefabFromString("Main Camera")), "Main Camera");
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Cinemachine Camera")), "Follow Camera"));
-            //SetGameObjectName(Instantiate(LoadPrefabFromString("Top View Camera")), "Top View Camera");
 
-            //the win/lose UI
+            //UI
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
-
         }
     }
-
-    
-
     
     GameObject LoadPrefabFromString(string prefabName)
     {        
@@ -57,13 +47,5 @@ public class InitializeGame : MonoBehaviour
         gameObject.name = replacementName;
         return gameObject;
     }
-
-    void SetPlayerPosition()
-    {
-
-    }
-
-
-
 
 }

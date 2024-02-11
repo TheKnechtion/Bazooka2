@@ -420,7 +420,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             playerMask = stats.playerMask;
             environmentMask = stats.environmentMask;
         }
-        catch (NullReferenceException e)
+        catch 
         {
             Debug.LogWarning("This enemy has no 'Stats' assigned. Add in prefab.");
         }

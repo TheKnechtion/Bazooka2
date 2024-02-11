@@ -8,8 +8,6 @@ public class Item : MonoBehaviour
     public int heal = 0;
 
     string itemTag, itemName;
-    WeaponInfo tempWeaponInfo;
-    WeaponController tempWeaponController = new WeaponController();
 
     public static event EventHandler OnWeaponPickUp;
 
