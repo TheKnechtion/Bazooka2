@@ -8,6 +8,9 @@ public class InitializeGame : MonoBehaviour
     public Quaternion playerSpawnLookDirection;
     public Vector3 playerSpawnLocation;
 
+    //THIS scene's next possible levels
+    // (Always set upon entering a new scene)
+    public SceneScriptable NextScenes;
 
     public List<GameObject> dontDestroyOnLoadGameObjects;
 
@@ -15,7 +18,7 @@ public class InitializeGame : MonoBehaviour
         //the game manager
         //the player
         //the main camera
-        //the win/lose UI
+        //the UI Canvas
 
     private void Awake()
     {
@@ -36,7 +39,15 @@ public class InitializeGame : MonoBehaviour
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
         }
     }
-    
+
+    private void Start()
+    {
+        if (NextScenes != null)
+        {
+            LevelManager.NextScenes = NextScenes;
+        }
+    }
+
     GameObject LoadPrefabFromString(string prefabName)
     {        
         return (Resources.Load(prefabName) as GameObject);

@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 public class LevelChooser : MonoBehaviour
 {
     //Scriptable object containing NEXT possible scene choices
-    public SceneScriptable NextScenes { get; set; }
+    private SceneScriptable NextScenes;
 
     //Buttons
     [SerializeField] private GameObject Buttons;
+    private bool mouseToggled;
 
     private void Awake()
     {
@@ -20,31 +21,41 @@ public class LevelChooser : MonoBehaviour
         }
         else
         {
-            EnableButton(false);
+            ToggleButtons(false);
         }
 
         SceneManager.activeSceneChanged += SceneChange;
     }
 
-    private void SceneChange(Scene arg0, Scene arg1)
+    private void Start()
     {
-        EnableButton(false);
+        NextScenes = LevelManager.NextScenes;
 
-        //TODO: Grab the NextScenes scriptable
-    }
+        mouseToggled = false;
 
-    private void OnEnable()
-    {
         if (NextScenes == null)
         {
             Debug.LogWarning("! Next-Scenes options not set !");
         }
-        else if (NextScenes.SceneChoices.Length == 1)
-        {
-            //Load the 1 scene that is set to transition
+    }
 
-            ChooseLevel(NextScenes.SceneChoices[0]);
+    private void Update()
+    {
+        if (Buttons.activeInHierarchy)
+        {
+            if (!mouseToggled)
+            {
+                ToggleMouse(true, CursorLockMode.Confined);
+            }
         }
+    }
+
+    private void SceneChange(Scene arg0, Scene arg1)
+    {
+        ToggleButtons(false);
+        ToggleMouse(false, CursorLockMode.Locked);
+
+        NextScenes = LevelManager.NextScenes;
     }
 
     public void OptionOne()
@@ -57,10 +68,17 @@ public class LevelChooser : MonoBehaviour
         ChooseLevel(NextScenes.SceneChoices[1]);
     }
 
-    private void EnableButton(bool setting)
+    private void ToggleButtons(bool setting)
     {
         Buttons.SetActive(setting);
     }
+
+    private void ToggleMouse(bool setting, CursorLockMode lockState)
+    {
+        Cursor.visible = setting;
+        Cursor.lockState = lockState;
+    }
+
 
     private void ChooseLevel(string name)
     {

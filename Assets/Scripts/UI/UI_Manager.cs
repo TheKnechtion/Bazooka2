@@ -122,6 +122,7 @@ public class UI_Manager : MonoBehaviour
         //CurrentWeaponRenderer = CurrentWeaponSpace.GetComponent<TextMeshProUGUI>();
         //ActiveProjectileRenderer = ActiveProjectileSpace.GetComponent<TextMeshProUGUI>();
 
+
         //Subscribes UI_Manager to GameManager. We use events to 
 
         UI_state = CanvasState.NONE;
@@ -240,7 +241,6 @@ public class UI_Manager : MonoBehaviour
         
         _instance = this;
     }
-
     private void populateTextArray()
     { 
         statusArray = new string[3];
