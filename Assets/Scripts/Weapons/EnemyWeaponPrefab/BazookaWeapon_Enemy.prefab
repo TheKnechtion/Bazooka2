@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3603712259522451687}
   - component: {fileID: 4075367716231486137}
   - component: {fileID: 2686975499509625089}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BazookaWeapon_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +110,7 @@ MonoBehaviour:
   maxAmmo: 0
   currentAmmo: 0
   time: 0
+  barrelObstructed: 0
   EnemyVersion: 1
 --- !u!65 &2686975499509625089
 BoxCollider:
@@ -141,7 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 676217528385465477}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

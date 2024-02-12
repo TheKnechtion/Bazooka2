@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8748371033468476029}
   - component: {fileID: 2394163082163737287}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SniperWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,6 +58,7 @@ MonoBehaviour:
   maxAmmo: 0
   currentAmmo: 0
   time: 0
+  barrelObstructed: 0
   EnemyVersion: 1
 --- !u!1 &3834631790852703766
 GameObject:

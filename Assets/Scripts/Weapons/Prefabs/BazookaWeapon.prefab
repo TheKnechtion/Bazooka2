@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 526765653342349229}
   - component: {fileID: 4806853853132608965}
   - component: {fileID: 3928488094461461660}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BazookaWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5c78b2e0e4959d546baafffbca2c40e6, type: 2}
@@ -110,6 +110,7 @@ MonoBehaviour:
   maxAmmo: 0
   currentAmmo: 0
   time: 0
+  barrelObstructed: 0
   EnemyVersion: 0
 --- !u!65 &3928488094461461660
 BoxCollider:
@@ -141,7 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6839061803516120476}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

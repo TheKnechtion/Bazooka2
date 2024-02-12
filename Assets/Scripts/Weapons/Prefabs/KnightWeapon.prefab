@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 856943082732100755}
   - component: {fileID: 637480751055863398}
   - component: {fileID: 6241012819632753048}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: KnightWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +90,7 @@ MonoBehaviour:
   maxAmmo: 0
   currentAmmo: 0
   time: 0
+  barrelObstructed: 0
   EnemyVersion: 0
 --- !u!65 &6241012819632753048
 BoxCollider:

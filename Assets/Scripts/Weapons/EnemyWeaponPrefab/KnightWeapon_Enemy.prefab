@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8211715955448163801}
   - component: {fileID: 339870309261140609}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: KnightWeapon_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,6 +140,8 @@ MonoBehaviour:
   maxActiveProjectiles: 0
   maxAmmo: 0
   currentAmmo: 0
+  time: 0
+  barrelObstructed: 0
   EnemyVersion: 1
 --- !u!1 &9042031620740074979
 GameObject:
