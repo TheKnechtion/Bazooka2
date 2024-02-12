@@ -38,13 +38,10 @@ public class InitializeGame : MonoBehaviour
             //UI
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
         }
-    }
 
-    private void Start()
-    {
         if (NextScenes != null)
         {
-            LevelManager.NextScenes = NextScenes;
+            LevelManager.AddNextScenes(NextScenes);
         }
     }
 

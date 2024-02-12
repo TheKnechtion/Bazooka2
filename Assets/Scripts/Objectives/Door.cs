@@ -25,12 +25,9 @@ public class Door : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             //GameObject.Find("GameManager").GetComponent<GameManager>().TravelToThisRoom(roomDatabase.Room_Database[0].sceneName);
-            GameObject.Find("GameManager").GetComponent<GameManager>().TravelToThisRoom(roomName);
+            //GameObject.Find("GameManager").GetComponent<GameManager>().TravelToThisRoom(roomName);
+
+            LevelManager.EnterNewScene(roomName);
         }
     }
-
-    
-
-
-
 }

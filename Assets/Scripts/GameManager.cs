@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private bool playerWin, playerLose, exitSpawned;
 
     //Events for UI
-
+    public static event EventHandler OnLevelCompleted;
     public static event EventHandler OnPlayerWin;
     public static event EventHandler OnPlayerLose;
     public static event EventHandler OnEvacStart;
@@ -53,9 +53,6 @@ public class GameManager : MonoBehaviour
     public static bool EvacTime = false;
 
     private GameState state;
-
-
-    public Scene[] Scenes;
 
     private void Awake()
     {
@@ -139,9 +136,19 @@ public class GameManager : MonoBehaviour
         //OnSceneChange?.Invoke(this, EventArgs.Empty);
     }
 
+    /// <summary>
+    /// 
+    /// We kill bosses at the end of levels, so this is happens at the end 
+    /// of any level.
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void BossKilled(object sender, EventArgs e)
     {
-        
+        //TODO: Tell the UI to activate the Level-select UI
+
+        OnLevelCompleted.Invoke(this, EventArgs.Empty);
     }
 
 
@@ -175,6 +182,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        #region Unused
         //checks if the this node of the tail node/final room, then checks if the final room has been beaten
         //if(currentNode.nextNode == null && currentNode.isRoomBeaten && !didOnce)
         //{
@@ -229,7 +237,7 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Spawned Enemies: "+currentNode.spawnedEnemies);
         //Debug.Log("Spawned EVAcEnemies: " + currentNode.spawnedEnemiesEvac);
         */
-
+        #endregion
 
         #region Game State machine
         //I imagine we use this later in development

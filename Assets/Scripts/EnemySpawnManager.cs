@@ -171,21 +171,21 @@ public class EnemySpawnManager : MonoBehaviour
     {
         enemyCount--;
         OnEnemyDeath?.Invoke(this, EventArgs.Empty);
-        CheckIfAllEnemiesAreBeaten();
+        //CheckIfAllEnemiesAreBeaten();
     }
 
-    void CheckIfAllEnemiesAreBeaten()
-    {
+    //void CheckIfAllEnemiesAreBeaten()
+    //{
 
-        if (enemyCount == 0 && !gameObject.GetComponent<GameManager>().currentNode.isRoomBeaten)
-        {
-            gameObject.GetComponent<GameManager>().currentNode.isRoomBeaten = true;
-        }
-        else if(enemyCount == 0 && !gameObject.GetComponent<GameManager>().currentNode.beatEvacRoom)
-        {
-            gameObject.GetComponent<GameManager>().currentNode.beatEvacRoom = true;
-        }
-    }
+    //    if (enemyCount == 0 && !gameObject.GetComponent<GameManager>().currentNode.isRoomBeaten)
+    //    {
+    //        gameObject.GetComponent<GameManager>().currentNode.isRoomBeaten = true;
+    //    }
+    //    else if(enemyCount == 0 && !gameObject.GetComponent<GameManager>().currentNode.beatEvacRoom)
+    //    {
+    //        gameObject.GetComponent<GameManager>().currentNode.beatEvacRoom = true;
+    //    }
+    //}
 
     public void GetSpawnPoints()
     {

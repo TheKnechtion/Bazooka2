@@ -103,7 +103,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     //holds the projectile game object reference
     protected GameObject currentEntity;
 
-
     public event EventHandler OnTakeDamage;
     public event EventHandler OnDeath;
     protected bool CanDestroy = false;

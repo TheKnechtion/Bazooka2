@@ -25,8 +25,8 @@ public class LevelChooser : MonoBehaviour
         }
 
         SceneManager.activeSceneChanged += SceneChange;
+        GameManager.OnLevelCompleted += NextSceneSequence;
     }
-
     private void Start()
     {
         NextScenes = LevelManager.NextScenes;
@@ -49,7 +49,11 @@ public class LevelChooser : MonoBehaviour
             }
         }
     }
-
+    private void NextSceneSequence(object sender, EventArgs e)
+    {
+        ToggleButtons(true);
+        ToggleMouse(true, CursorLockMode.Confined);
+    }
     private void SceneChange(Scene arg0, Scene arg1)
     {
         ToggleButtons(false);
@@ -86,7 +90,7 @@ public class LevelChooser : MonoBehaviour
         {
             //TODO: Load next scene
 
-            SceneManager.LoadScene(name, LoadSceneMode.Single);
+            LevelManager.EnterNewScene(name);
         }
     }
 }
