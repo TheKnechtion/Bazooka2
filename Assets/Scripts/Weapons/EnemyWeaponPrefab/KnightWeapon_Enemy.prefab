@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9038640225997546531}
   - component: {fileID: 8246180023271806528}
   - component: {fileID: 107428468873189231}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8211715955448163801}
   - component: {fileID: 339870309261140609}
-  m_Layer: 11
+  - component: {fileID: 7798933017636359482}
+  m_Layer: 12
   m_Name: KnightWeapon_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,6 +144,27 @@ MonoBehaviour:
   time: 0
   barrelObstructed: 0
   EnemyVersion: 1
+--- !u!65 &7798933017636359482
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2251360093364778229}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.34016466, y: 0.3809208, z: 0.4552821}
+  m_Center: {x: -0.001090467, y: 0.16574113, z: 0.86244935}
 --- !u!1 &9042031620740074979
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6832712068400797686}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

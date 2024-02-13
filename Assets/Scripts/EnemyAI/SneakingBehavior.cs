@@ -56,14 +56,6 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
     {
         targetPos = PlayerInfo.instance.playerPosition;
 
-
-        /*
-         * Hunting = Hidden & Aggro;
-         * Attacking = Hidden & In Range
-         * 
-         * Fleeing = Spotted 
-         */
-
         switch (stealthState)
         {
             case StealthState.HIDDEN:
@@ -149,7 +141,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
                 else if (gameObject.transform.position == nextPos)
                 {
                     isFleeing = false;
-
+                    
                     stealthState = StealthState.HIDDEN;
                     currentState = EnemyState.IDLE;
                 }
@@ -158,6 +150,8 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
             default:
                 break;
         }
+
+        Debug.Log(nextPos);
     }
 
     private IEnumerator FleeArea()
@@ -176,12 +170,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
         }
 
         sneakNav.MoveTo(nextPos);
-    }
-
-    protected override void FixedUpdate()
-    {
-
-    }    
+    }  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -190,16 +179,6 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
             currentState = EnemyState.ATTACK;
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        
-    }
-    private void OnDrawGizmos()
-    {
-
-    }
-
     public void Spot()
     {
         stealthState = StealthState.SPOTTED;
