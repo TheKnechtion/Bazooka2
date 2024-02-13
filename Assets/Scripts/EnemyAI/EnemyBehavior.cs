@@ -116,7 +116,9 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     [SerializeField] public bool ArmoredTarget { get; set; }
     #endregion
 
-    [SerializeField] private float testFloat;
+    [Tooltip("Set the max VERTICAL aiming angle for enemies")]
+    [Range(0f, 60f)]
+    [SerializeField] private float maxAimingAngle;
 
     protected virtual void Awake()
     {
@@ -224,7 +226,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
                 //verticalAngle = GetVerticalAngleToPlayer(transform.forward, playerPosition);
                 verticalAngle = AngleToPlayer(distanceToPlayer, enemyPosition, playerPosition);
-                if (verticalAngle < 60)
+                if (verticalAngle < maxAimingAngle)
                 {
                     transform.LookAt(targetToLookAt);
                     HandleShooting();
