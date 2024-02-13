@@ -6116,7 +6116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1401139856
 Transform:
   m_ObjectHideFlags: 0
@@ -6126,7 +6126,7 @@ Transform:
   m_GameObject: {fileID: 1401139855}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.64, y: 0, z: 11.44}
+  m_LocalPosition: {x: 10.17, y: 0, z: -0.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7798,7 +7798,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1734040995559719501, guid: 8ceab2813ee8b5649afd5ccd511d996b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40.37
+      value: -3.19
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 8ceab2813ee8b5649afd5ccd511d996b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7806,7 +7806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 8ceab2813ee8b5649afd5ccd511d996b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.21
+      value: -8.74
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 8ceab2813ee8b5649afd5ccd511d996b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10522,6 +10522,10 @@ PrefabInstance:
     - target: {fileID: 3386038097429114910, guid: 7d627f6918138714aa15d11c4e1fcc72, type: 3}
       propertyPath: m_Name
       value: SpiderSneaking
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386038097429114910, guid: 7d627f6918138714aa15d11c4e1fcc72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6698315490959921965, guid: 7d627f6918138714aa15d11c4e1fcc72, type: 3}
       propertyPath: runSpeed

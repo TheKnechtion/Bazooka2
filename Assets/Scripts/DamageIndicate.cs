@@ -21,6 +21,11 @@ public class DamageIndicate : MonoBehaviour
         if (renderers.Length == 0)
          render = GetComponent<Renderer>();
 
+        if (render != null)
+        {
+            materials[0] = render.material;
+        }
+
         if (gameObject.tag == "Player")
         {
             if (transform.parent.TryGetComponent<PlayerInfo>(out PlayerInfo info))
@@ -52,11 +57,6 @@ public class DamageIndicate : MonoBehaviour
         else { StartCoroutine(indicateDamage(render)); }
         
     }
-
-    //private void EnemyBehavior_OnTakeDamage(object sender, System.EventArgs e)
-    //{
-    //    StartCoroutine(indicateDamage());
-    //}
     private IEnumerator indicateDamage(Renderer render)
     {
         //Debug.Log("Changing materal");
