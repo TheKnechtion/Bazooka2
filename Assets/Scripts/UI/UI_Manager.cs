@@ -122,6 +122,11 @@ public class UI_Manager : MonoBehaviour
         //CurrentWeaponRenderer = CurrentWeaponSpace.GetComponent<TextMeshProUGUI>();
         //ActiveProjectileRenderer = ActiveProjectileSpace.GetComponent<TextMeshProUGUI>();
 
+        if (LevelSelect != null)
+        {
+            LevelSelect.SetActive(false);
+        }
+
 
         //Subscribes UI_Manager to GameManager. We use events to 
 
@@ -140,9 +145,7 @@ public class UI_Manager : MonoBehaviour
 
         PlayerProjectile.OnExplosion += PlayerManager_OnPlayerProjectileAmountChange;
 
-        
-
-
+        GameManager.OnNeedLevelSelect += ShowNextSceneOptions;
 
         Item.OnWeaponPickUp += Item_OnWeaponPickUp;
 
@@ -164,17 +167,10 @@ public class UI_Manager : MonoBehaviour
 
     }
 
-
-
-
-
     bool atStart = true;
 
     private void Update()
     {
-
-
-
         objRenderer.text = $"Enemies Left: {EnemySpawnManager.enemyCount}";
 
         if (atStart)
@@ -257,15 +253,15 @@ public class UI_Manager : MonoBehaviour
     }
 
 
-    
 
+    private void ShowNextSceneOptions(object sender, bool e)
+    {
+        LevelSelect.SetActive(e);
+    }
     private void Activate_Sample_InteractUI(object sender, System.EventArgs e)
     {
         Activate_Sample.SetActive(true);
     }
-
-
-
     private void DeActivate_Sample_InteractUI(object sender, System.EventArgs e)
     {
         Activate_Sample.SetActive(false);

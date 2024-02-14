@@ -19,10 +19,6 @@ public class LevelChooser : MonoBehaviour
         {
             Debug.LogWarning("! Level-Select Buttons not set !");
         }
-        else
-        {
-            ToggleButtons(false);
-        }
 
         SceneManager.activeSceneChanged += SceneChange;
         GameManager.OnLevelCompleted += NextSceneSequence;
@@ -39,6 +35,11 @@ public class LevelChooser : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
     private void Update()
     {
         if (Buttons.activeInHierarchy)
@@ -51,12 +52,12 @@ public class LevelChooser : MonoBehaviour
     }
     private void NextSceneSequence(object sender, EventArgs e)
     {
-        ToggleButtons(true);
+        //ToggleButtons(true);
         ToggleMouse(true, CursorLockMode.Confined);
     }
     private void SceneChange(Scene arg0, Scene arg1)
     {
-        ToggleButtons(false);
+        //ToggleButtons(false);
         ToggleMouse(false, CursorLockMode.Locked);
 
         NextScenes = LevelManager.NextScenes;
@@ -91,6 +92,8 @@ public class LevelChooser : MonoBehaviour
             //TODO: Load next scene
 
             LevelManager.EnterNewScene(name);
+
+            this.gameObject.SetActive(false);
         }
     }
 }

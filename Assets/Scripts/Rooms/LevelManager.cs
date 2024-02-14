@@ -21,4 +21,16 @@ public static class LevelManager
 
         SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
     }
+
+    //This method will call the first scene.
+    //Only called when there is 1 'next' scene.
+    public static void MoveToNextScene()
+    {
+        EnterNewScene(NextScenes.SceneChoices[0]);
+    }
+
+    public static int GetHeldSceneCount()
+    {
+        return NextScenes.SceneChoices.Length;
+    }
 }
