@@ -40,7 +40,7 @@ public class Navigation : MonoBehaviour
 
     private void OnDeath(object sender, EventArgs e)
     {
-        agent.SetDestination(gameObject.transform.position);
+        //agent.SetDestination(gameObject.transform.position);
     }
 
     // Update is called once per frame

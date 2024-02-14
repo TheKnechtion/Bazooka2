@@ -2339,9 +2339,9 @@ GameObject:
   - component: {fileID: 901396253549501998}
   - component: {fileID: -6008919543035644676}
   - component: {fileID: 6567083082894664384}
-  - component: {fileID: -3441918154272621518}
   - component: {fileID: 2829048097231090397}
   - component: {fileID: 4396173519546475042}
+  - component: {fileID: 8907918679515890154}
   m_Layer: 10
   m_Name: TankTan
   m_TagString: Enemy
@@ -2463,20 +2463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 0
   stoppingDistance: 0
---- !u!114 &-3441918154272621518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8962397383071972805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed2fce36f38992e4a8e28c9927587a7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  easyDestroy: 1
 --- !u!195 &2829048097231090397
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2511,6 +2497,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9dc79fc952450468911cf7d8adab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8907918679515890154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8962397383071972805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1aaaaf975fb29342a5b0c56ee97850e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewards:
+  - {fileID: 3718547056025076979, guid: be24d48f3d1539c4893efee5a112328f, type: 3}
+  - {fileID: 5942331936927365616, guid: ad144a09a6ac7c840b6daef37082254f, type: 3}
+  destoyedVersion: {fileID: 5622177973581505586, guid: 394a6d3e0be9d504e89cec84bbf2ac4f, type: 3}
+  bodyObjects:
+  - {fileID: 1438121388225170721}
+  - {fileID: 8156266233011703027}
+  - {fileID: 6855823929129685096}
 --- !u!1 &9159901737404007847
 GameObject:
   m_ObjectHideFlags: 0
