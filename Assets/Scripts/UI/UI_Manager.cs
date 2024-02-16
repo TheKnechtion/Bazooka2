@@ -25,7 +25,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject ReplayButton;
     [SerializeField] private GameObject RoomSelectScreen;
     //[SerializeField] private GameObject HeartList;
-    [SerializeField] private GameObject LevelSelect;
+    //[SerializeField] private GameObject LevelSelect;
 
 
     [SerializeField] private GameObject Activate;
@@ -122,10 +122,10 @@ public class UI_Manager : MonoBehaviour
         //CurrentWeaponRenderer = CurrentWeaponSpace.GetComponent<TextMeshProUGUI>();
         //ActiveProjectileRenderer = ActiveProjectileSpace.GetComponent<TextMeshProUGUI>();
 
-        if (LevelSelect != null)
-        {
-            LevelSelect.SetActive(false);
-        }
+        //if (LevelSelect != null)
+        //{
+        //    LevelSelect.SetActive(false);
+        //}
 
 
         //Subscribes UI_Manager to GameManager. We use events to 
