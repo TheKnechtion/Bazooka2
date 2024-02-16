@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ExplosiveSmoke_M
-  m_Shader: {fileID: 4800000, guid: 179c22242d881384a9a9b7abd22a944b, type: 3}
+  m_Shader: {fileID: 202, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -31,6 +31,7 @@ Material:
     m_Floats:
     - _InvFade: 1.0575
     - _ScrollSpeed: 10
+    - _textureScale: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmisColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}

@@ -26,8 +26,10 @@ public class WeaponController:MonoBehaviour
     WeaponInfo weapon;
 
     //NEW WEAPON HANDLING STUFF
-    [SerializeField] private GameObject[] prefabRefernceList;
-    [SerializeField] private GameObject[] WeaponList;
+    [SerializeField] private GameObject[] prefabRefernceArray;
+    [SerializeField] private GameObject[] WeaponArray;
+    private List<GameObject> weaponTooAddList;
+
     [SerializeField] private Transform weaponLocation;
 
     public GameObject currentWeaponPrefab;
@@ -51,13 +53,15 @@ public class WeaponController:MonoBehaviour
     {
         if (Player)
         {
-            WeaponList = new GameObject[prefabRefernceList.Length];
-            for (int i = 0; i < prefabRefernceList.Length; i++)
+            WeaponArray = new GameObject[prefabRefernceArray.Length];
+            for (int i = 0; i < prefabRefernceArray.Length; i++)
             {
-                GameObject temp = Instantiate(prefabRefernceList[i], weaponLocation);
-                WeaponList[i] = temp;
-                WeaponList[i].SetActive(false);
+                GameObject temp = Instantiate(prefabRefernceArray[i], weaponLocation);
+                WeaponArray[i] = temp;
+                WeaponArray[i].SetActive(false);
             }
+
+            weaponTooAddList = new List<GameObject>();
         }
     }
 
@@ -66,10 +70,9 @@ public class WeaponController:MonoBehaviour
 
     private void Start()
     {
-
         weaponIndex = 0;
         activateWeapon(weaponIndex);
-        currentWeapon = WeaponList[weaponIndex].GetComponent<RangedWeapon>();
+        currentWeapon = WeaponArray[weaponIndex].GetComponent<RangedWeapon>();
 
         PlayerManager.OnWeaponChange += ChangedWeapon;
 
@@ -102,20 +105,12 @@ public class WeaponController:MonoBehaviour
                 ListIncrement();
             }
 
-            //maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
-
             FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
             //Debug.Log("E pressed" + e.Epressed);
             //Debug.Log("Q pressed" + e.Qpressed);
         }
         
     }
-
-    private void Update()
-    {
-
-    }
-
 
     private void FixedUpdate()
     {
@@ -127,68 +122,24 @@ public class WeaponController:MonoBehaviour
             switchTime = weaponSwitchTime; 
             canSwitch = true;
         }
-
-        //if (!initializedWeapons)
-        //{
-        //    ListIncrement();
-
-        //    maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
-        //    UpdateUI?.Invoke(this, EventArgs.Empty);
-
-        //    FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
-
-        //}
-
-        //Debug.Log(switchTime);
     }
-
-
-    private void LateUpdate()
-    {
-        //if (!initializedWeapons)
-        //{
-        //    initializedWeapons = true;
-
-        //    ListIncrement();
-
-        //    maxActiveProjectiles_ref = currentWeapon.maxActiveProjectiles;
-        //    UpdateUI?.Invoke(this, EventArgs.Empty);
-
-        //    FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
-
-           
-        //}
-    }
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Q))
-    //    {
-    //        ListDecrement();
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.E))
-    //    {
-    //        ListIncrement();
-    //    }
-
-    //}
 
     #region Weapon Changing - prefabs
     private void deactivateWeapon(int index) 
     {
-        WeaponList[index].SetActive(false);
+        WeaponArray[index].SetActive(false);
     }
 
     private void activateWeapon(int index)
     {
-        WeaponList[index].SetActive(true);
+        WeaponArray[index].SetActive(true);
     }
 
     
     private void ListIncrement()
     {
         deactivateWeapon(weaponIndex);
-        if (weaponIndex < WeaponList.Length-1)
+        if (weaponIndex < WeaponArray.Length-1)
         {
             weaponIndex++;
             activateWeapon(weaponIndex);
@@ -199,7 +150,7 @@ public class WeaponController:MonoBehaviour
             weaponIndex = 0;
             activateWeapon(weaponIndex);
         }
-        currentWeapon = WeaponList[weaponIndex].GetComponent<RangedWeapon>();
+        currentWeapon = WeaponArray[weaponIndex].GetComponent<RangedWeapon>();
     }
 
     private void ListDecrement()
@@ -213,10 +164,10 @@ public class WeaponController:MonoBehaviour
         else
         {
             //When at 0 and Decrement, go to tail-end of list
-            weaponIndex = WeaponList.Length-1;
+            weaponIndex = WeaponArray.Length-1;
             activateWeapon(weaponIndex);
         }
-        currentWeapon = WeaponList[weaponIndex].GetComponent<RangedWeapon>();
+        currentWeapon = WeaponArray[weaponIndex].GetComponent<RangedWeapon>();
     }
     #endregion
 
@@ -235,6 +186,23 @@ public class WeaponController:MonoBehaviour
         }
     }
 
+    public bool AddWeapon(GameObject newWeapon)
+    {
+        GameObject temp = Instantiate(newWeapon, weaponLocation);
+
+        weaponTooAddList = WeaponArray.ToList();
+        if (weaponTooAddList.Contains(temp))
+        {
+            return false;
+        }
+
+        weaponTooAddList.Add(temp);
+        WeaponArray = weaponTooAddList.ToArray();
+
+        deactivateWeapon(WeaponArray.Length-1);
+
+        return true;
+    }
 
     //Utility for finding appropriate weapon data based on passed in string
     public WeaponInfo MakeWeapon(string weaponName)

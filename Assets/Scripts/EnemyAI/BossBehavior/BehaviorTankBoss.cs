@@ -13,6 +13,7 @@ public class BehaviorTankBoss : EnemyBehavior
     private Quaternion bodyRotation;
 
     public static event EventHandler OnTankKilled;
+    public event EventHandler InstanceTankKilled;
 
     [SerializeField] private HealthBar healthBar;
     protected override void Start()
@@ -197,6 +198,7 @@ public class BehaviorTankBoss : EnemyBehavior
     public override void Die()
     {
         OnTankKilled.Invoke(this, EventArgs.Empty);
+        InstanceTankKilled.Invoke(this, EventArgs.Empty);
         
         base.Die();
     }

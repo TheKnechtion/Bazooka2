@@ -46,7 +46,11 @@ public class Button : MonoBehaviour, IActivate
     {
         if(!activated)
         {
-            buttonRenderer.material = activatedMat;
+            if (activatedMat !=null)
+            {
+                buttonRenderer.material = activatedMat;
+            }
+
             activatedObject.GetComponent<Act>().Activate();
             activated = true;
 
