@@ -7,13 +7,18 @@ using UnityEngine.Events;
 public class Button_Push : MonoBehaviour
 {
   
-    bool canActivate = false;
+    bool inRange = false;
+
+    bool canActivate = true;
 
     Material inactiveMat;
     [SerializeField] Material activatedMat;
     MeshRenderer buttonRenderer;
 
     [SerializeField] private string displayObjectName;
+
+    [SerializeField] bool buttonIsTurnedOff;
+
 
     [SerializeField] bool doOnce;
 
@@ -25,9 +30,6 @@ public class Button_Push : MonoBehaviour
 
     private void Awake()                                    
     {
-        PlayerManager.OnPlayerActivatePress += Activate;
-
-
         buttonRenderer = gameObject.GetComponent<MeshRenderer>();
         inactiveMat = buttonRenderer.material;
     }
@@ -35,9 +37,23 @@ public class Button_Push : MonoBehaviour
     //activate the "press space" UI
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag != "Player")
         {
-            canActivate = true;
+            return;
+        }
+
+        if(buttonIsTurnedOff)
+        {
+            return;
+        }
+
+
+        PlayerManager.OnPlayerActivatePress += Activate;
+
+        inRange = true;
+
+        if(canActivate)
+        {
             UI_Manager.Show_InteractUI($"Activate {displayObjectName}");
         }
     }
@@ -46,21 +62,46 @@ public class Button_Push : MonoBehaviour
     //de-activate the "press space" UI
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag != "Player")
         {
-            canActivate = false;
-            UI_Manager.StopShow_InteractUI();
+            return;
         }
+
+        if (buttonIsTurnedOff)
+        {
+            return;
+        }
+
+        PlayerManager.OnPlayerActivatePress -= Activate;
+
+        inRange = false;
+
+        UI_Manager.StopShow_InteractUI();
+        
     }
 
 
+    public void TurnOnButton()
+    {
+        buttonIsTurnedOff = true;
+    }
+
+    public void TurnOffButton()
+    {
+        buttonIsTurnedOff = true;
+    }
+
     public void Activate(object sender, System.EventArgs e)
     {
-        if (canActivate)
+        if (inRange && canActivate)
         {
             buttonRenderer.material = activatedMat;
 
+            UI_Manager.StopShow_InteractUI();
+
             OnActivated.Invoke();
+
+            canActivate = false;
         }
 
         if (doOnce)
@@ -82,6 +123,12 @@ public class Button_Push : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         buttonRenderer.material = inactiveMat;
+
+        if(inRange)
+        {
+            UI_Manager.Show_InteractUI($"Activate {displayObjectName}");
+        }
+
         canActivate = true;
     }
 

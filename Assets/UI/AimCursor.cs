@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 using static Cinemachine.CinemachineTargetGroup;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
+using static UnityEngine.InputSystem.UI.VirtualMouseInput;
 
 public class AimCursor : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class AimCursor : MonoBehaviour
 
     public static Image cursorImage;
 
+    public Texture2D cursor;
+
     public static Vector3 cursorVector;
 
     Camera cam;
@@ -44,14 +47,18 @@ public class AimCursor : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+
+        //Cursor.SetCursor(cursor, Vector2.zero, UnityEngine.CursorMode.Auto);
+
+
 
 
         PlayerManager.OnPlayerAim += StartAiming;
         PlayerManager.OnPlayerStopAim += StopAiming;
 
-        PauseManager.OnPause += MakeCursorVisisble;
+        PauseManager.OnPause += MakeCursorVisible;
 
 
         cursorImage = gameObject.GetComponent<Image>();
@@ -71,6 +78,7 @@ public class AimCursor : MonoBehaviour
 
     private void Update()
     {
+        //Cursor.visible = true;
         mouseDelta = PlayerManager.mouseDelta;
 
         mouseMovementVector = new Vector3(mouseDelta.x, mouseDelta.y, 0) * cursorSensitivity;
@@ -91,7 +99,7 @@ public class AimCursor : MonoBehaviour
 
         cursorVector = cursorLocation - cam.transform.position;
 
-        cursorImage.color = lightGreen;
+
     }
 
 
@@ -104,6 +112,7 @@ public class AimCursor : MonoBehaviour
 
     void StartAiming(object sender, EventArgs e)
     {
+        cursorImage.color = lightGreen;
         isAiming = true;
     }
     void StopAiming(object sender, EventArgs e)
@@ -116,7 +125,7 @@ public class AimCursor : MonoBehaviour
 
 
     bool isPaused = false;
-    public void MakeCursorVisisble(object sender, EventArgs e)
+    public void MakeCursorVisible(object sender, EventArgs e)
     {
         if(!isPaused)
         {
@@ -136,6 +145,6 @@ public class AimCursor : MonoBehaviour
 
     }
 
-
+    
 
 }

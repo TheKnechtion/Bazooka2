@@ -75,6 +75,10 @@ public class ObjectiveZone : MonoBehaviour
             this.gameObject.transform.parent.TryGetComponent<Objective>(out zone_Objective);
         }
 
+        if(zone_Objective == null)
+        {
+            ObjectiveCompleted = true;
+        }
         
     }
 
