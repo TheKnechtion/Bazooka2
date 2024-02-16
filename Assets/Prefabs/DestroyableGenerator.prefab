@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 71826686696538934}
   - component: {fileID: 7585540312265406037}
   - component: {fileID: 2636128410518939141}
+  - component: {fileID: 9072388772367651902}
   m_Layer: 0
   m_Name: DestroyableGenerator
-  m_TagString: Untagged
+  m_TagString: ActivatableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,6 +64,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8715953611870176896}
   - {fileID: 5346639261641438705}
   - {fileID: 6776753550529496892}
   m_Father: {fileID: 0}
@@ -83,6 +85,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 3511997639049688318, guid: a6ae2c025f3fbc741aefa92e2a141ec9, type: 3}
   destroyEffect: {fileID: 5856186434267449908}
+  smokeEffect: {fileID: 1638003371074980143}
 --- !u!65 &2636128410518939141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104,6 +107,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.81, y: 3.1042528, z: 5.645586}
   m_Center: {x: 0, y: 1.4021959, z: -0.5877925}
+--- !u!54 &9072388772367651902
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733597330035729970}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3090291676212834798
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +217,73 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &2916474592065558547
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 71826686696538934}
+    m_Modifications:
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162406438764946045, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+      propertyPath: m_Name
+      value: DestroyedSmokeLoopToggled
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+--- !u!198 &1638003371074980143 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4522244403755225404, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+  m_PrefabInstance: {fileID: 2916474592065558547}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8715953611870176896 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5804066323798105747, guid: a7d41d45a0e63ad4eb9d146ea5387c48, type: 3}
+  m_PrefabInstance: {fileID: 2916474592065558547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3465799286576344425
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject TipSpace;
     [SerializeField] private GameObject QuitButton;
     [SerializeField] private GameObject ReplayButton;
-    //[SerializeField] private GameObject RoomSelectScreen;
+    [SerializeField] private GameObject RoomSelectScreen;
     //[SerializeField] private GameObject HeartList;
     [SerializeField] private GameObject LevelSelect;
 
@@ -105,7 +105,7 @@ public class UI_Manager : MonoBehaviour
         Activate_Sample = Activate;
         ActivateText_Sample = ActivateText;
 
-        //RoomSelectScreenRef = RoomSelectScreen;
+        RoomSelectScreenRef = RoomSelectScreen;
     }
 
     private void Start()
@@ -256,7 +256,8 @@ public class UI_Manager : MonoBehaviour
 
     private void ShowNextSceneOptions(object sender, bool e)
     {
-        LevelSelect.SetActive(e);
+        //LevelSelect.SetActive(e);
+        RoomSelectScreenRef.SetActive(e);
     }
     private void Activate_Sample_InteractUI(object sender, System.EventArgs e)
     {

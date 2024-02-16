@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public static event EventHandler OnPlayerWin;
     public static event EventHandler OnPlayerLose;
     public static event EventHandler OnEvacStart;
+    public static event EventHandler OnEvacStop;
 
     public static event EventHandler<bool> OnNeedLevelSelect;
 
@@ -85,14 +86,19 @@ public class GameManager : MonoBehaviour
 
         //prevent the game manager game object from being destroyed between scenes
         DontDestroyOnLoad(this.gameObject);
-            //DontDestroyOnLoad(exit);
+        //DontDestroyOnLoad(exit);
 
 
 
 
 
-        //SceneManager.activeSceneChanged += SceneManager_changedRoom;
+        SceneManager.activeSceneChanged += SceneChanged;
         //SceneManager.sceneLoaded += SceneManager_roomLoaded;
+    }
+
+    private void SceneChanged(Scene arg0, Scene arg1)
+    {
+        UI_Manager.StopShow_RoomSelect();
     }
 
 
@@ -175,8 +181,10 @@ public class GameManager : MonoBehaviour
     /// <param name="e"></param>
     private void BossKilled(object sender, EventArgs e)
     {
-        //TODO: Tell the UI to activate the Level-select UI
+        //Activate the Helicopter Evac (maybe Door transition)
+        
 
+        //LevelChooser mouse and stuff
         OnLevelCompleted.Invoke(this, EventArgs.Empty);
     }
 

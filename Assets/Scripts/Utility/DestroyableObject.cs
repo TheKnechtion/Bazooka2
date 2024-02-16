@@ -17,6 +17,7 @@ public class DestroyableObject : MonoBehaviour, IDamagable
     private MeshFilter renderMesh;
 
     [SerializeField] private ParticleSystem destroyEffect;
+    [SerializeField] private ParticleSystem smokeEffect;
     public bool ArmoredTarget { get;  set; }
 
     public event EventHandler OnDestroyed;
@@ -75,6 +76,10 @@ public class DestroyableObject : MonoBehaviour, IDamagable
             if (destroyEffect != null)
             {
                 destroyEffect.Play();
+            }
+            if (smokeEffect !=null)
+            {
+                smokeEffect.Play();
             }
             if (destroyModel)
             {

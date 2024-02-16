@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpawnLookDirection: {x: 0, y: 0, z: 0, w: 1}
   playerSpawnLocation: {x: -44, y: 0, z: -15}
-  NextScenes: {fileID: 11400000, guid: b293624c5f6a2214c833147064702d41, type: 2}
+  NextScenes: {fileID: 11400000, guid: 512031cc799da654f93bf4dcef04b1a4, type: 2}
   dontDestroyOnLoadGameObjects: []
 --- !u!4 &11341468
 Transform:
@@ -851,6 +851,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &29187772
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,6 +2005,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &49524495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,6 +2274,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &61309620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3425,6 +3428,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &76383289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3588,6 +3592,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &84473904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3751,6 +3756,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &84828651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4084,7 +4090,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68718
+  m_Name: pb_Mesh332008
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4389,6 +4395,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &151569781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4675,6 +4682,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &165134773
 GameObject:
   m_ObjectHideFlags: 0
@@ -5101,6 +5109,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &184143500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5645,6 +5654,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &200209317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6100,13 +6110,14 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!43 &216868063
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70246
+  m_Name: pb_Mesh333536
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7407,6 +7418,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &253619878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7526,13 +7538,14 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!43 &271870068
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70008
+  m_Name: pb_Mesh333298
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7817,6 +7830,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!65 &287901587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8251,6 +8265,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &306710507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9000,6 +9015,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &321532740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9163,6 +9179,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &332634717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9309,7 +9326,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68126
+  m_Name: pb_Mesh331416
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9887,6 +9904,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &367112123
 GameObject:
   m_ObjectHideFlags: 0
@@ -10005,6 +10023,71 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &373075696
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -83.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.17642784
+      objectReference: {fileID: 0}
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 117.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92063385
+      objectReference: {fileID: 0}
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.39042708
+      objectReference: {fileID: 0}
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45.962
+      objectReference: {fileID: 0}
+    - target: {fileID: 205654944663834214, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194125477169939507, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_Name
+      value: Evac_Helicopter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194125477169939507, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5732143659074876576, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3219936899360978917, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1613778980}
+  m_SourcePrefab: {fileID: 100100000, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
 --- !u!1 &374778315
 GameObject:
   m_ObjectHideFlags: 0
@@ -10254,7 +10337,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70176
+  m_Name: pb_Mesh333466
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -11315,6 +11398,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &410595277
 GameObject:
   m_ObjectHideFlags: 0
@@ -11489,6 +11573,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -12013,7 +12098,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68832
+  m_Name: pb_Mesh332122
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12307,7 +12392,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh67876
+  m_Name: pb_Mesh331166
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12708,7 +12793,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh69570
+  m_Name: pb_Mesh332860
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -24704,6 +24789,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!4 &468347797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6002749996016428781, guid: 2dee651bc9a13524894384838aeb2a74, type: 3}
@@ -25499,6 +25585,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -25548,7 +25635,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70476
+  m_Name: pb_Mesh333766
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -25728,6 +25815,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -27448,6 +27536,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &568437451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27738,6 +27827,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &591919165
 GameObject:
   m_ObjectHideFlags: 0
@@ -27884,6 +27974,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &622687900
 GameObject:
   m_ObjectHideFlags: 0
@@ -28176,6 +28267,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &652974324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28322,7 +28414,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68442
+  m_Name: pb_Mesh331732
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -28789,6 +28881,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &681392604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28952,6 +29045,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &690105335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29509,6 +29603,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &714140804
 GameObject:
   m_ObjectHideFlags: 0
@@ -30358,6 +30453,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &727012643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30661,6 +30757,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &755830691
 GameObject:
   m_ObjectHideFlags: 0
@@ -31173,13 +31270,14 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!43 &795160135
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70490
+  m_Name: pb_Mesh333780
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -33303,6 +33401,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &909071259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33436,7 +33535,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68802
+  m_Name: pb_Mesh332092
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -33601,7 +33700,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70522
+  m_Name: pb_Mesh333812
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -33923,6 +34022,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &960170584
 GameObject:
   m_ObjectHideFlags: 0
@@ -35031,7 +35131,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68472
+  m_Name: pb_Mesh331762
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -35743,6 +35843,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1000794077
 GameObject:
   m_ObjectHideFlags: 0
@@ -35964,6 +36065,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -36028,6 +36130,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -36786,6 +36889,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1040310974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37064,6 +37168,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -37270,6 +37375,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1076159230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
@@ -37291,6 +37397,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -37747,6 +37854,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1092626481
 GameObject:
   m_ObjectHideFlags: 0
@@ -38021,6 +38129,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1142654254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38184,6 +38293,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1154974332
 GameObject:
   m_ObjectHideFlags: 0
@@ -38437,7 +38547,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh69118
+  m_Name: pb_Mesh332408
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -38719,6 +38829,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1179485989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38989,6 +39100,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -39195,6 +39307,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1192392220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39338,6 +39451,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -39402,6 +39516,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -39451,7 +39566,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68938
+  m_Name: pb_Mesh332228
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -40152,6 +40267,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!4 &1220679956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4917735956120020609, guid: ea7e6becc6f47714182a222f4e950e19, type: 3}
@@ -41006,6 +41122,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1225505534
 GameObject:
   m_ObjectHideFlags: 0
@@ -41414,6 +41531,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1236794197
 GameObject:
   m_ObjectHideFlags: 0
@@ -41826,6 +41944,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -43012,7 +43131,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh67782
+  m_Name: pb_Mesh331072
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -43437,6 +43556,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -43893,13 +44013,14 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!43 &1330818999
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70588
+  m_Name: pb_Mesh333878
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -44955,6 +45076,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1338292008 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
@@ -44976,6 +45098,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -45162,6 +45285,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -46336,13 +46460,14 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!43 &1389560074
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68536
+  m_Name: pb_Mesh331826
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -47265,6 +47390,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -47600,13 +47726,14 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!43 &1451453186
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh69514
+  m_Name: pb_Mesh332804
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -47786,6 +47913,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -48132,6 +48260,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1491510781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48435,6 +48564,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1505021832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48598,13 +48728,14 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!43 &1510973016
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68200
+  m_Name: pb_Mesh331490
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -49241,6 +49372,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1522203972
 GameObject:
   m_ObjectHideFlags: 0
@@ -49375,7 +49507,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh67800
+  m_Name: pb_Mesh331090
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -49820,6 +49952,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1544235626
 GameObject:
   m_ObjectHideFlags: 0
@@ -50143,6 +50276,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1554155301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50574,7 +50708,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68988
+  m_Name: pb_Mesh332278
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -50876,6 +51010,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -51227,6 +51362,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1606429173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51367,6 +51503,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 753390768a582b245a75ac71dcc16ab6, type: 3}
   m_PrefabInstance: {fileID: 1606429173}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1613778978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3219936899360978917, guid: b63f2e79737fd944ca3ab2e85cee9ac4, type: 3}
+  m_PrefabInstance: {fileID: 373075696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1613778980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613778978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e45c96ef4041d4d91efa0d5d9bcb3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onObjectiveComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onObjectiveUncomplete:
+    m_PersistentCalls:
+      m_Calls: []
+  currentCount: 0
+  objectiveText: 
+  useDefaultText: 0
 --- !u!1 &1618028881
 GameObject:
   m_ObjectHideFlags: 0
@@ -51811,6 +51973,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1627877559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52094,6 +52257,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -52143,7 +52307,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh69284
+  m_Name: pb_Mesh332574
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -53932,7 +54096,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh69264
+  m_Name: pb_Mesh332554
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -54112,6 +54276,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -54290,7 +54455,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70114
+  m_Name: pb_Mesh333404
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -54798,6 +54963,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1741899241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55397,6 +55563,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -55446,7 +55613,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh69494
+  m_Name: pb_Mesh332784
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -55837,6 +56004,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1770314891
 GameObject:
   m_ObjectHideFlags: 0
@@ -56851,6 +57019,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -56997,6 +57166,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -58334,6 +58504,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1831842085
 GameObject:
   m_ObjectHideFlags: 0
@@ -58729,6 +58900,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1841390201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59749,7 +59921,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42936
+  m_Name: pb_Mesh333228
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -59914,7 +60086,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68342
+  m_Name: pb_Mesh331632
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -60219,7 +60391,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70318
+  m_Name: pb_Mesh333608
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -60643,6 +60815,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &1937461513
 GameObject:
   m_ObjectHideFlags: 0
@@ -60881,7 +61054,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42424
+  m_Name: pb_Mesh332716
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -61203,6 +61376,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &2006846116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
@@ -61224,6 +61398,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -61430,6 +61605,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1 &2041737989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
@@ -61451,6 +61627,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -61515,6 +61692,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -61721,13 +61899,14 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!43 &2046490553
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70020
+  m_Name: pb_Mesh333310
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -63266,6 +63445,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -64584,6 +64764,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -64648,6 +64829,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
@@ -65717,6 +65899,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &1214836591495277758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65929,6 +66112,7 @@ MonoBehaviour:
   swapModel: {fileID: 0}
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!1001 &8211606687918988998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66012,3 +66196,4 @@ SceneRoots:
   - {fileID: 1214836591495277758}
   - {fileID: 1154974336}
   - {fileID: 1730982264}
+  - {fileID: 373075696}

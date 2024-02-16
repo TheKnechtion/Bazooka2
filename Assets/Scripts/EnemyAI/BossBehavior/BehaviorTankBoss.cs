@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class BehaviorTankBoss : EnemyBehavior
@@ -14,6 +15,8 @@ public class BehaviorTankBoss : EnemyBehavior
 
     public static event EventHandler OnTankKilled;
     public event EventHandler InstanceTankKilled;
+
+    public static UnityEvent OnTankKilledUEvent;
 
     [SerializeField] private HealthBar healthBar;
     protected override void Start()

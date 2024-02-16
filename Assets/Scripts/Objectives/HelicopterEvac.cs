@@ -22,6 +22,16 @@ public class HelicopterEvac : Objective
 
     }
 
+    private void Start()
+    {
+        BehaviorTankBoss.OnTankKilled += OnBossKilled;
+    }
+
+    private void OnBossKilled(object sender, System.EventArgs e)
+    {
+        ObjectiveCompleted = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(ObjectiveCompleted && other.transform.tag=="Player")
