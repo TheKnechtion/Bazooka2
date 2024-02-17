@@ -22,12 +22,30 @@ public class HelicopterEvac : Objective
 
     }
 
+    private void Start()
+    {
+        BehaviorTankBoss.OnTankKilled += OnBossKilled;
+    }
+
+    private void OnBossKilled(object sender, System.EventArgs e)
+    {
+        ObjectiveCompleted = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(ObjectiveCompleted && other.transform.tag=="Player")
+        if (LevelManager.GetHeldSceneCount() > 1)
         {
-            UI_Manager.Show_RoomSelect();
+            if (ObjectiveCompleted && other.transform.tag == "Player")
+            {
+                UI_Manager.Show_RoomSelect();
+            }
         }
+        else
+        {
+            LevelManager.MoveToNextScene();
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)

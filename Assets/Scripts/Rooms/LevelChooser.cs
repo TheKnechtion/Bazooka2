@@ -22,7 +22,15 @@ public class LevelChooser : MonoBehaviour
 
         SceneManager.activeSceneChanged += SceneChange;
         GameManager.OnLevelCompleted += NextSceneSequence;
+
+        RoomSelectScreen.OnRoomSelected += OnRoomSelected;
     }
+
+    private void OnRoomSelected(object sender, int e)
+    {
+        ChooseOption(e);
+    }
+
     private void Start()
     {
         NextScenes = LevelManager.NextScenes;
@@ -44,35 +52,41 @@ public class LevelChooser : MonoBehaviour
     {
         if (Buttons.activeInHierarchy)
         {
-            if (!mouseToggled)
-            {
-                ToggleMouse(true, CursorLockMode.Confined);
-            }
+            //if (!mouseToggled)
+            //{
+            //    ToggleMouse(true, CursorLockMode.Confined);
+            //}
         }
     }
     private void NextSceneSequence(object sender, EventArgs e)
     {
         //ToggleButtons(true);
-        ToggleMouse(true, CursorLockMode.Confined);
+        //ToggleMouse(true, CursorLockMode.Confined);
     }
     private void SceneChange(Scene arg0, Scene arg1)
     {
         //ToggleButtons(false);
-        ToggleMouse(false, CursorLockMode.Locked);
+        //ToggleMouse(false, CursorLockMode.Locked);
 
         NextScenes = LevelManager.NextScenes;
     }
 
-    public void OptionOne()
+    private void ChooseOption(int n)
     {
         ChooseLevel(NextScenes.SceneChoices[0]);
     }
 
-    public void OptionTwo()
+    /*
+    private void OptionOne()
+    {
+        ChooseLevel(NextScenes.SceneChoices[0]);
+    }
+
+    private void OptionTwo()
     {
         ChooseLevel(NextScenes.SceneChoices[1]);
     }
-
+    */
     private void ToggleButtons(bool setting)
     {
         Buttons.SetActive(setting);

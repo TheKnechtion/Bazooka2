@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,11 +12,13 @@ public class RoomSelectScreen : MonoBehaviour
     [SerializeField] RectTransform proceedButton;
     [SerializeField] Material roomSelectScreen;
 
+    private int selectedRoom;
 
+    public static event EventHandler<int> OnRoomSelected;
     //reward - string
-    
+
     //objective - string
-    
+
     //sceneName - string
 
 
@@ -80,6 +83,8 @@ public class RoomSelectScreen : MonoBehaviour
     {
         if (RectTransformUtility.RectangleContainsScreenPoint(optionOne, cursor.position))
         {
+            //Move to room choice 1
+            selectedRoom = 0;
             isOptionOneSelected = true;
         }
         else if (!RectTransformUtility.RectangleContainsScreenPoint(proceedButton, cursor.position))
@@ -89,17 +94,28 @@ public class RoomSelectScreen : MonoBehaviour
 
         if (RectTransformUtility.RectangleContainsScreenPoint(optionTwo, cursor.position))
         {
+            //Move to room choice 2
+            selectedRoom = 1;
             isOptionTwoSelected = true;
         }
         else if (!RectTransformUtility.RectangleContainsScreenPoint(proceedButton, cursor.position))
         {
             isOptionTwoSelected = false;
         }
+
+        if (RectTransformUtility.RectangleContainsScreenPoint(proceedButton, cursor.position))
+        {
+            if (optionOne || optionTwo)
+            {
+                OnRoomSelected.Invoke(this, selectedRoom);
+            }
+        }
     }
 
 
     private void OnEnable()
     {
+        selectedRoom = -1;
         _playerController.PlayerAim.Enable();
     }
 
