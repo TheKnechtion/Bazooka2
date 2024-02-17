@@ -1,11 +1,15 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Elevator : Interactable
 {
+    
+
     enum orientation
     {
         UpToDown,
@@ -20,6 +24,10 @@ public class Elevator : Interactable
 
     [SerializeField] float endHeight;
 
+    public List<float> floorHeights;
+    public List<bool> activeHeights;
+
+
     [Tooltip("Choose which direction the elevator moves.")]
     [SerializeField] orientation elevatorMovementDirection;
 
@@ -32,20 +40,83 @@ public class Elevator : Interactable
     [Tooltip("When unselected, the elevator won't move.")]
     [SerializeField] bool isActive;
 
+
+    [Tooltip("When selected, the elevator will activate when stepped on by the player.")]
+    [SerializeField] bool isActivatedWhenSteppedOn;
+
+    [Tooltip("This is the initial floor the elevator is on.")]
+    [SerializeField] int defaultFloor;
+
+    [Tooltip("This is the initial floor the elevator will go to when activated.")]
+    [SerializeField] int initialTargetFloor;
+
+    IEnumerator currentCoroutine = null;
+
+
     bool canActivate = true;
 
-    float startHeight;
+    float elevatorHeight = 0f;
     float bottomHeight;
     float topHeight;
 
-    bool isElevating = false;
-    bool isGoingDown = false;
 
-    float incrementVectorY = 0f;
+
+    public bool isElevating = false;
+    public bool isGoingDown = false;
+
 
     position currnetLocation;
 
+    public int targetFloor { get; set; }
+    int currentFloor = 1;
 
+    int previousFloor;
+
+
+    public int topFloor { get; set; }
+
+    public int bottomFloor { get; set; }
+
+    bool isReturningToPreviousFloor = false;
+
+    GameObject currentPlayer;
+
+    public void TargetFloor(int floor)
+    {
+        targetFloor = floor;
+
+        if(targetFloor != currentFloor)
+        {
+            previousFloor = currentFloor;
+        }
+    }
+
+    public void ActivateTargetFloor(int floor)
+    {
+        activeHeights[floor - 1] = true; 
+    }
+
+    public void DeactivateTargetFloor(int floor)
+    {
+        activeHeights[floor - 1] = false;
+    }
+
+    public void ReturnToPreviousFloor()
+    {
+        if(isReturningToPreviousFloor)
+        {
+            return;
+        }
+
+        if (!activeHeights[previousFloor - 1])
+        {
+            return;
+        }
+
+        targetFloor = previousFloor;
+        previousFloor = currentFloor;
+        isReturningToPreviousFloor = true;
+    }
 
 
     //[SerializeField] bool startAtEndPosition;
@@ -60,22 +131,32 @@ public class Elevator : Interactable
 
     private void Start()
     {
-        startHeight = transform.position.y;
-
-        incrementVectorY = startHeight;
+        elevatorHeight = transform.position.y;
 
         if (elevatorMovementDirection == orientation.DownToUp)
         {
-            bottomHeight = startHeight;
+            bottomHeight = elevatorHeight;
             topHeight = endHeight;
             currnetLocation = position.Down;
         }
         else
         {
             bottomHeight = endHeight;
-            topHeight = startHeight;
+            topHeight = elevatorHeight;
             currnetLocation = position.Up;
         }
+
+        if(defaultFloor != 0)
+        {
+            currentFloor = defaultFloor;
+            targetFloor = currentFloor;
+        }
+        else
+        {
+            targetFloor = 1;
+        }
+
+        previousFloor = initialTargetFloor;
 
         /*
         if (startAtEndPosition)
@@ -96,13 +177,14 @@ public class Elevator : Interactable
         }
         else
         {
+            currentPlayer = other.gameObject;
             playerOnObject = true;
         }
 
 
         if (canActivate && isActive)
         {
-            other.transform.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
+            //other.transform.GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionY;
             //other.transform.SetParent(transform);
             canActivate = false;
         }
@@ -111,6 +193,16 @@ public class Elevator : Interactable
             return;
         }
 
+        if(isActivatedWhenSteppedOn)
+        {
+            Move();
+        }
+
+    }
+
+
+    void Move()
+    {
         if (elevatorMovementDirection == orientation.DownToUp)
         {
             isElevating = true;
@@ -119,21 +211,22 @@ public class Elevator : Interactable
         {
             isGoingDown = true;
         }
-
     }
+
 
 
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "Player")
         {
+            //currentPlayer = null;
             playerOnObject = false;
             //other.transform.SetParent(null);
             //GameObject.DontDestroyOnLoad(other.transform);
         }
     }
 
-
+    Vector3 playerPosition;
 
     private void FixedUpdate()
     {
@@ -145,15 +238,41 @@ public class Elevator : Interactable
         }
         */
 
+
+
+        if(!isActive)
+        {
+            return;
+        }
+
+        /*
+        if (playerOnObject)
+        {
+            playerPosition = currentPlayer.transform.position;
+            currentPlayer.transform.position = new Vector3(playerPosition.x,this.transform.position.y+0.05f, playerPosition.z);
+        }
+        */
+
         if (isElevating)
         {
             Elevate();
             return;
         }
-
+        
         if (isGoingDown)
         {
             GoDown();
+            return;
+        }
+
+        if(targetFloor == currentFloor)
+        {
+            return;
+        }
+
+        if (activeHeights[targetFloor - 1])
+        {
+            GoToFloor();
             return;
         }
 
@@ -174,17 +293,17 @@ public class Elevator : Interactable
 
     void Elevate()
     {
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, incrementVectorY, gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, elevatorHeight, gameObject.transform.position.z);
 
-        incrementVectorY += 0.05f;
+        elevatorHeight += 0.05f;
 
-        if (incrementVectorY >= topHeight)
+        if (elevatorHeight >= topHeight)
         {
             isElevating = false;
         }
         else
         {
-            return;
+
         }
 
         if (isElevating == false && elevatorMovementDirection == orientation.DownToUp && autoReturnToStartPosition)
@@ -199,13 +318,65 @@ public class Elevator : Interactable
     }
 
 
+    public void GoToFloor()
+    {
+
+        if (this.transform.position.y - floorHeights[targetFloor-1] > 0)
+        {
+            GoDown_Button();
+        }
+        else if(this.transform.position.y - floorHeights[targetFloor - 1] < 0)
+        {
+            GoUp_Button();
+        }
+
+
+    }
+
+    void GoDown_Button()
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, elevatorHeight, gameObject.transform.position.z);
+
+        elevatorHeight -= 0.05f;
+
+
+        if (elevatorHeight <= floorHeights[targetFloor - 1])
+        {
+            currentFloor = targetFloor;
+            isReturningToPreviousFloor = false;
+        }
+        else
+        {
+
+        }
+
+    }
+
+
+    void GoUp_Button()
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, elevatorHeight, gameObject.transform.position.z);
+
+        elevatorHeight += 0.05f;
+
+        if (elevatorHeight >= floorHeights[targetFloor - 1])
+        {
+            currentFloor = targetFloor;
+            isReturningToPreviousFloor = false;
+        }
+        else
+        {
+
+        }
+    }
+
     void GoDown()
     {
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, incrementVectorY, gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, elevatorHeight, gameObject.transform.position.z);
 
-        incrementVectorY -= 0.05f;
+        elevatorHeight -= 0.05f;
 
-        if (incrementVectorY <= bottomHeight)
+        if (elevatorHeight <= bottomHeight)
         {
             /*
             if(!collidersActive)
@@ -234,6 +405,16 @@ public class Elevator : Interactable
 
     }
 
+    public void ActivateFloor(int floorToActivate)
+    {
+        activeHeights[floorToActivate - 1] = true;
+    }
+
+    public void DeactivateFloor(int floorToDeactivate)
+    {
+        activeHeights[floorToDeactivate - 1] = false;
+    }
+
     public void Activate()
     {
         isActive = true;
@@ -255,11 +436,13 @@ public class Elevator : Interactable
         yield return new WaitForSeconds(waitTime);
         isElevating = true;
     }
-
     private IEnumerator WaitToActivate()
     {
         yield return new WaitForSeconds(waitTime);
         canActivate = true;
     }
+
+
+
 
 }

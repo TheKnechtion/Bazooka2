@@ -5,6 +5,7 @@ using TMPro;
 using System;
 using UnityEngine.EventSystems;
 using UnityEditor.Search;
+using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -23,9 +24,9 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject TipSpace;
     [SerializeField] private GameObject QuitButton;
     [SerializeField] private GameObject ReplayButton;
-    //[SerializeField] private GameObject RoomSelectScreen;
+    [SerializeField] private GameObject RoomSelectScreen;
     //[SerializeField] private GameObject HeartList;
-    [SerializeField] private GameObject LevelSelect;
+    [SerializeField] private GameObject ElevatorButtons;
 
 
     [SerializeField] private GameObject Activate;
@@ -97,15 +98,15 @@ public class UI_Manager : MonoBehaviour
         
         _playerController = new PlayerController();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
         Objective_Sample = Objective;
         ObjectiveText_Sample = ObjectiveText;
         Activate_Sample = Activate;
         ActivateText_Sample = ActivateText;
 
-        //RoomSelectScreenRef = RoomSelectScreen;
+        RoomSelectScreenRef = RoomSelectScreen;
     }
 
     private void Start()
@@ -121,12 +122,6 @@ public class UI_Manager : MonoBehaviour
         //HpRenderer = HpSpace.GetComponent<TextMeshProUGUI>();
         //CurrentWeaponRenderer = CurrentWeaponSpace.GetComponent<TextMeshProUGUI>();
         //ActiveProjectileRenderer = ActiveProjectileSpace.GetComponent<TextMeshProUGUI>();
-
-        if (LevelSelect != null)
-        {
-            LevelSelect.SetActive(false);
-        }
-
 
         //Subscribes UI_Manager to GameManager. We use events to 
 
@@ -145,7 +140,9 @@ public class UI_Manager : MonoBehaviour
 
         PlayerProjectile.OnExplosion += PlayerManager_OnPlayerProjectileAmountChange;
 
-        GameManager.OnNeedLevelSelect += ShowNextSceneOptions;
+        
+
+
 
         Item.OnWeaponPickUp += Item_OnWeaponPickUp;
 
@@ -167,10 +164,17 @@ public class UI_Manager : MonoBehaviour
 
     }
 
+
+
+
+
     bool atStart = true;
 
     private void Update()
     {
+
+
+
         objRenderer.text = $"Enemies Left: {EnemySpawnManager.enemyCount}";
 
         if (atStart)
@@ -237,6 +241,7 @@ public class UI_Manager : MonoBehaviour
         
         _instance = this;
     }
+
     private void populateTextArray()
     { 
         statusArray = new string[3];
@@ -253,15 +258,15 @@ public class UI_Manager : MonoBehaviour
     }
 
 
+    
 
-    private void ShowNextSceneOptions(object sender, bool e)
-    {
-        LevelSelect.SetActive(e);
-    }
     private void Activate_Sample_InteractUI(object sender, System.EventArgs e)
     {
         Activate_Sample.SetActive(true);
     }
+
+
+
     private void DeActivate_Sample_InteractUI(object sender, System.EventArgs e)
     {
         Activate_Sample.SetActive(false);
@@ -352,6 +357,5 @@ public class UI_Manager : MonoBehaviour
         }
         
     }
-
 
 }
