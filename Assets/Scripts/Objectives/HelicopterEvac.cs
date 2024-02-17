@@ -34,18 +34,17 @@ public class HelicopterEvac : Objective
 
     private void OnTriggerEnter(Collider other)
     {
-        if (LevelManager.GetHeldSceneCount() > 1)
+        if (ObjectiveCompleted)
         {
-            if (ObjectiveCompleted && other.transform.tag == "Player")
+            if (LevelManager.GetHeldSceneCount() > 1)
             {
                 UI_Manager.Show_RoomSelect();
             }
-        }
-        else
-        {
-            LevelManager.MoveToNextScene();
-        }
-        
+            else
+            {
+                LevelManager.MoveToNextScene();
+            }
+        }                
     }
 
     private void OnTriggerExit(Collider other)

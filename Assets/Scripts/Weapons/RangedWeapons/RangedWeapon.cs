@@ -68,7 +68,7 @@ public class RangedWeapon : WeaponBase, IShoot
 
     private void HandleFireRate()
     {
-        Debug.Log("Cant shoot");
+        //Debug.Log("Cant shoot");
         time -= Time.deltaTime;
 
         time = Mathf.Clamp(time, 0.0f, fireRate);

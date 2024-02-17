@@ -18,7 +18,6 @@ public static class LevelManager
     public static void EnterNewScene(string nextScene)
     {
         Debug.Log("Moving to "+nextScene);
-
         SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
     }
 

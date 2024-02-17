@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 205654944663834214}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Evac_Helicopter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c81e1afb0ff2b4847a671e49a2caad70, type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -115,10 +115,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c81e1afb0ff2b4847a671e49a2caad70, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5732143659074876576}
+      addedObject: {fileID: 2736239191349437375}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c81e1afb0ff2b4847a671e49a2caad70, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2736239191349437375}
+      addedObject: {fileID: 5904220223970366753}
   m_SourcePrefab: {fileID: 100100000, guid: c81e1afb0ff2b4847a671e49a2caad70, type: 3}
 --- !u!4 &2874513860535332191 stripped
 Transform:
@@ -130,18 +130,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c81e1afb0ff2b4847a671e49a2caad70, type: 3}
   m_PrefabInstance: {fileID: 2337062942502570676}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5732143659074876576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3219936899360978917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733e712a0a14f5747adb0ef2a6cf83db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &2736239191349437375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -163,6 +151,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0077191493, y: 0.006509679, z: 0.009999998}
   m_Center: {x: -0.00010230084, y: 0.00012532953, z: 2.4416697e-18}
+--- !u!114 &5904220223970366753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3219936899360978917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e45c96ef4041d4d91efa0d5d9bcb3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onObjectiveComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onObjectiveUncomplete:
+    m_PersistentCalls:
+      m_Calls: []
+  currentCount: 0
+  objectiveText: 
+  useDefaultText: 0
 --- !u!1001 &3897474638919426462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171,9 +180,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 205654944663834214}
     m_Modifications:
+    - target: {fileID: 100000, guid: e731a1ac8914e2548ae80adaba4759b1, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: e731a1ac8914e2548ae80adaba4759b1, type: 3}
       propertyPath: m_Name
       value: Helicopter
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e731a1ac8914e2548ae80adaba4759b1, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e731a1ac8914e2548ae80adaba4759b1, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: e731a1ac8914e2548ae80adaba4759b1, type: 3}
       propertyPath: m_LocalPosition.x

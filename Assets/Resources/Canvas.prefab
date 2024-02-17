@@ -1348,6 +1348,55 @@ MonoBehaviour:
   Turkey_Four: {fileID: 2800000, guid: 33a17e078ca6f4e409d2661c3eb3c3b9, type: 3}
   Turkey_Five: {fileID: 2800000, guid: 76c5e23cb8db1d544bb7ce32a378b6de, type: 3}
   Turkey_Six: {fileID: 2800000, guid: 189679d851bd62d4685356e5d5b67f4c, type: 3}
+--- !u!1 &2958751170923866039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3432032596008627855}
+  - component: {fileID: 2059222836592834874}
+  m_Layer: 5
+  m_Name: LevelChooser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3432032596008627855
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958751170923866039}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1421005147754778040}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2059222836592834874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958751170923866039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba202ceb13e0a2f4a9ed0d71983befbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Buttons: {fileID: 0}
 --- !u!1 &3261848887569243719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,6 +2543,7 @@ RectTransform:
   - {fileID: 7592347142049043908}
   - {fileID: 4388471233272524818}
   - {fileID: 5353238504365650122}
+  - {fileID: 3432032596008627855}
   - {fileID: 7124559139509498450}
   - {fileID: 4770365100869463556}
   - {fileID: 1938540062086720770}
