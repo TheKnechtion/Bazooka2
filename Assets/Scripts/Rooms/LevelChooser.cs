@@ -9,9 +9,13 @@ public class LevelChooser : MonoBehaviour
     //Scriptable object containing NEXT possible scene choices
     private SceneScriptable NextScenes;
 
+    [SerializeField] private FadeScreen fadeScreen;
+
     //Buttons
     //[SerializeField] private GameObject Buttons;
     private bool mouseToggled;
+
+    private bool canTransition;
 
     private void Awake()
     {
@@ -20,15 +24,33 @@ public class LevelChooser : MonoBehaviour
         //    Debug.LogWarning("! Level-Select Buttons not set !");
         //}
 
+        canTransition = false;
+
         SceneManager.activeSceneChanged += SceneChange;
         GameManager.OnLevelCompleted += NextSceneSequence;
 
         RoomSelectScreen.OnRoomSelected += OnRoomSelected;
+
+        HelicopterEvac.MoveToNext += EvacSingleNext;
+
+        fadeScreen.OnFadedFull += OnFadeFull;
+    }
+
+    private void EvacSingleNext(object sender, EventArgs e)
+    {
+        fadeScreen.screenAnimator.SetBool("ScreenFade", true);
+        StartCoroutine(TransitionOnFade(NextScenes.SceneChoices[0]));
+    }
+
+    private void OnFadeFull(object sender, EventArgs e)
+    {
+        canTransition = true;
     }
 
     private void OnRoomSelected(object sender, int e)
     {
-        ChooseLevel(NextScenes.SceneChoices[e]);
+        fadeScreen.screenAnimator.SetBool("ScreenFade", true);
+        StartCoroutine(TransitionOnFade(NextScenes.SceneChoices[e]));
     }
 
     private void Start()
@@ -41,23 +63,15 @@ public class LevelChooser : MonoBehaviour
         {
             Debug.LogWarning("! Next-Scenes options not set !");
         }
+
+        SceneManager.activeSceneChanged += SceneChanged;
     }
 
-    private void OnEnable()
+    private void SceneChanged(Scene arg0, Scene arg1)
     {
-        
+        canTransition = false;
     }
 
-    private void Update()
-    {
-        //if (Buttons.activeInHierarchy)
-        //{
-        //    //if (!mouseToggled)
-        //    //{
-        //    //    ToggleMouse(true, CursorLockMode.Confined);
-        //    //}
-        //}
-    }
     private void NextSceneSequence(object sender, EventArgs e)
     {
         //ToggleButtons(true);
@@ -65,35 +79,24 @@ public class LevelChooser : MonoBehaviour
     }
     private void SceneChange(Scene arg0, Scene arg1)
     {
-        //ToggleButtons(false);
-        //ToggleMouse(false, CursorLockMode.Locked);
-
         NextScenes = LevelManager.NextScenes;
     }
-
-    /*
-    private void OptionOne()
+    private IEnumerator TransitionOnFade(string name)
     {
-        ChooseLevel(NextScenes.SceneChoices[0]);
-    }
+        while (!canTransition)
+        {
+            yield return null;
+        }
 
-    private void OptionTwo()
-    {
-        ChooseLevel(NextScenes.SceneChoices[1]);
-    }
-    */
-    private void ToggleButtons(bool setting)
-    {
-        //Buttons.SetActive(setting);
-    }
+        ChooseLevel(name);
 
-    private void ToggleMouse(bool setting, CursorLockMode lockState)
-    {
-        Cursor.visible = setting;
-        Cursor.lockState = lockState;
+        while (canTransition)
+        {
+            yield return null;
+        }
+
+        fadeScreen.screenAnimator.SetBool("ScreenFade", false);
     }
-
-
     private void ChooseLevel(string name)
     {
         if (NextScenes != null)
@@ -101,8 +104,6 @@ public class LevelChooser : MonoBehaviour
             //TODO: Load next scene
 
             LevelManager.EnterNewScene(name);
-
-            this.gameObject.SetActive(false);
         }
     }
 }

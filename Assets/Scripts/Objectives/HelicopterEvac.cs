@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class HelicopterEvac : Objective
     [SerializeField] string objectiveText;
     [SerializeField] bool useDefaultText;
 
+    public static event EventHandler MoveToNext;
     private void Awake()
     {
         if(useDefaultText)
@@ -24,6 +26,7 @@ public class HelicopterEvac : Objective
 
     private void Start()
     {
+        //Should be for (Generic) Boss death event
         BehaviorTankBoss.OnTankKilled += OnBossKilled;
     }
 
@@ -42,7 +45,7 @@ public class HelicopterEvac : Objective
             }
             else
             {
-                LevelManager.MoveToNextScene();
+                MoveToNext.Invoke(this, EventArgs.Empty);
             }
         }                
     }

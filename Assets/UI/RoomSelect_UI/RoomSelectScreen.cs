@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,6 +39,8 @@ public class RoomSelectScreen : MonoBehaviour
         _playerController.PlayerAim.Select.performed += OnClick;
         _playerController.PlayerAim.Select.canceled -= OnClick;
     }
+
+    
 
     bool isOptionOneSelected = false;
     bool isOptionTwoSelected = false;
@@ -105,9 +108,13 @@ public class RoomSelectScreen : MonoBehaviour
 
         if (RectTransformUtility.RectangleContainsScreenPoint(proceedButton, cursor.position))
         {
-            if (optionOne || optionTwo)
+            if (selectedRoom > -1)
             {
                 OnRoomSelected.Invoke(this, selectedRoom);
+            }
+            else
+            {
+                OnRoomSelected.Invoke(this, 0);
             }
         }
     }
