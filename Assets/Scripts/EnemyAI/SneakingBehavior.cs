@@ -151,7 +151,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
                 break;
         }
 
-        Debug.Log(nextPos);
+        //Debug.Log(nextPos);
     }
 
     private IEnumerator FleeArea()

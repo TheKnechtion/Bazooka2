@@ -32,6 +32,7 @@ public class LevelChooser : MonoBehaviour
         RoomSelectScreen.OnRoomSelected += OnRoomSelected;
 
         HelicopterEvac.MoveToNext += EvacSingleNext;
+        TransitionObject.OnEndReached += EvacSingleNext;
 
         fadeScreen.OnFadedFull += OnFadeFull;
     }

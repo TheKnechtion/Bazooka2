@@ -116,6 +116,8 @@ public class RoomSelectScreen : MonoBehaviour
             {
                 OnRoomSelected.Invoke(this, 0);
             }
+
+            UI_Manager.StopShow_RoomSelect();
         }
     }
 

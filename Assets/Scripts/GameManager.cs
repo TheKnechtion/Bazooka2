@@ -142,33 +142,8 @@ public class GameManager : MonoBehaviour
         BehaviorTankBoss.OnTankKilled += BossKilled;
             //BehaviorTankBoss.OnTankKilled += OnNeedSceneSwitch;
 
-        TransitionObject.OnEndReached += OnNeedSceneSwitch;
-
 
         //OnSceneChange?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void OnNeedSceneSwitch(object sender, bool e)
-    {
-        if (!e)
-        {
-            OnNeedLevelSelect?.Invoke(this, e);
-        }
-        else
-        {
-            int NextSceneCount = LevelManager.GetHeldSceneCount();
-
-            if (NextSceneCount > 1) //There is a the player must choose
-            {
-                OnNeedLevelSelect?.Invoke(this, e);
-            }
-            else //There is no path, only 1 'next' level
-            {
-                //This feels be a 'lil' icky, directly switching from here.
-                //Might move it to LevelChooser soon.
-                LevelManager.MoveToNextScene();
-            }
-        }        
     }
 
     /// <summary>
