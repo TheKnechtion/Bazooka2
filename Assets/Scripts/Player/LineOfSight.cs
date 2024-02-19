@@ -55,7 +55,8 @@ public class LineOfSight : MonoBehaviour
         {
             for (int i = 0; i < CollidersHit.Length; i++)
             {
-                if (CollidersHit[i].gameObject.TryGetComponent<ISpottable>(out spottableType))
+                if (CollidersHit[i] != null &&
+                    CollidersHit[i].gameObject.TryGetComponent<ISpottable>(out spottableType))
                 {
                     direction = (CollidersHit[i].gameObject.transform.position - gameObject.transform.position).normalized;
                     distance = Vector3.Distance(gameObject.transform.position, CollidersHit[i].gameObject.transform.position);

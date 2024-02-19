@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -19,8 +21,19 @@ public class BehaviorTankBoss : EnemyBehavior
     public static UnityEvent OnTankKilledUEvent;
 
     [SerializeField] private HealthBar healthBar;
+
+    private bool initialAggro;
+
+    private GameObject UI_Reference;
+    private HealthBar_UI UI_HealthBar;
+
     protected override void Start()
-    {        
+    {
+        initialAggro = false;
+        UI_Reference = GameObject.Find("Canvas");
+        UI_HealthBar = UI_Reference.GetComponentInChildren<HealthBar_UI>();
+        UI_HealthBar.UpdateHealthbar(health / maxHealth);
+
         setStats();
         agent = GetComponent<NavMeshAgent>();
 
@@ -106,6 +119,13 @@ public class BehaviorTankBoss : EnemyBehavior
         
         if (isAggrod)
         {
+            if (!initialAggro)
+            {
+                UI_HealthBar.ToggleHpBar(true);
+                initialAggro = true;
+            }
+                
+
             //If agroed, we want to chase
             currentState = EnemyState.CHASE;
 
@@ -193,6 +213,8 @@ public class BehaviorTankBoss : EnemyBehavior
     public override void TakeDamage(int passedDamage)
     {
         base.TakeDamage(passedDamage);
+        UI_HealthBar.UpdateHealthbar((float)health / (float)maxHealth);
+
         healthBar.ChangeStatus(health, maxHealth);
         //float deltDamage = health/maxHealth;
         //healthForeground.fillAmount = deltDamage;
@@ -202,7 +224,8 @@ public class BehaviorTankBoss : EnemyBehavior
     {
         OnTankKilled.Invoke(this, EventArgs.Empty);
         InstanceTankKilled.Invoke(this, EventArgs.Empty);
-        
+        UI_HealthBar.ResetHealthBar();
+
         base.Die();
     }
 
