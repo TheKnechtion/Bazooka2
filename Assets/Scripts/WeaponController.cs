@@ -42,6 +42,7 @@ public class WeaponController:MonoBehaviour
 
     [SerializeField] private bool Player; //Dirty Hack, TODO: FIX later
 
+    public event EventHandler AmmoGained;
     public event EventHandler FinishedWeaponChange;
     public static event EventHandler UpdateUI;
 
@@ -189,13 +190,21 @@ public class WeaponController:MonoBehaviour
     public bool AddWeapon(GameObject newWeapon)
     {
         GameObject temp = Instantiate(newWeapon, weaponLocation);
-
-        weaponTooAddList = WeaponArray.ToList();
-        if (weaponTooAddList.Contains(temp))
+        RangedWeapon currentIndex;
+        for (int i = 0; i < WeaponArray.Length; i++)
         {
-            return false;
+            currentIndex = WeaponArray[i].GetComponent<RangedWeapon>();
+
+            if (temp.GetComponent<RangedWeapon>().weaponName == currentIndex.weaponName)
+            {
+                currentIndex.GainAmmo(currentIndex.maxAmmo - currentIndex.currentAmmo);
+                AmmoGained?.Invoke(this, EventArgs.Empty);
+                Destroy(temp);
+                return false;
+            }
         }
 
+        weaponTooAddList = WeaponArray.ToList();
         weaponTooAddList.Add(temp);
         WeaponArray = weaponTooAddList.ToArray();
 

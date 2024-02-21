@@ -39,6 +39,8 @@ public class HelicopterEvac : Objective
     {
         if (ObjectiveCompleted)
         {
+            other.GetComponent<PlayerManager>().SetWeaponUsability(false);
+
             if (LevelManager.GetHeldSceneCount() > 1)
             {
                 UI_Manager.Show_RoomSelect();
@@ -52,6 +54,8 @@ public class HelicopterEvac : Objective
 
     private void OnTriggerExit(Collider other)
     {
+        other.GetComponent<PlayerManager>().SetWeaponUsability(true);
+
         if (ObjectiveCompleted && other.transform.tag == "Player")
         {
             UI_Manager.StopShow_RoomSelect();

@@ -5,6 +5,7 @@ using System;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class PlayerManager : MonoBehaviour
 
     List<WeaponInfo> playerOwnedWeapons;
 
-
+    public bool AllowShooting;
 
     public bool isCarryingObjectOnBack = false;
     public bool CanCarryObjectOnBack = true;
@@ -86,6 +87,7 @@ public class PlayerManager : MonoBehaviour
 
         weaponController = GetComponent<WeaponController>();
 
+        weaponController.AmmoGained += UpdateCurrentWeaponInfo;
         weaponController.FinishedWeaponChange += UpdateCurrentWeaponInfo;
         Ammo_PickUp_Item.pickedUpAmmo += UpdateCurrentWeaponInfo;
         MaxProjOnScreen_Increase_PickUp.pickedUpAmmo += UpdateCurrentWeaponInfo;
@@ -118,7 +120,7 @@ public class PlayerManager : MonoBehaviour
 
         _playerController.PlayerActions.ChangeWeapon.performed += ChangedWeapon;
 
-
+        AllowShooting = true;
 
 
 
@@ -132,6 +134,13 @@ public class PlayerManager : MonoBehaviour
         //CheckWeaponChange();
 
         weaponController.InitializeWeaponUI();
+
+        SceneManager.activeSceneChanged += SceneChanged;
+    }
+
+    private void SceneChanged(Scene arg0, Scene arg1)
+    {
+        SetWeaponUsability(true);
     }
 
     public static RangedWeapon currentWeapon_ref;
@@ -268,7 +277,7 @@ public class PlayerManager : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
 
-        if (activeProjectiles < weaponController.currentWeapon.maxActiveProjectiles && timeBetweenShots <= 0)
+        if (activeProjectiles < weaponController.currentWeapon.maxActiveProjectiles && timeBetweenShots <= 0 && AllowShooting)
         {
             timeBetweenShots = weaponController.currentWeapon.fireRate;
             weaponController.PlayerShootWeapon();
@@ -276,7 +285,10 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-
+    public void SetWeaponUsability(bool toggled)
+    {
+        AllowShooting = toggled;
+    }
 
 
     private void OnEnable()
