@@ -12,6 +12,8 @@ public class DestroyableObject : MonoBehaviour, IDamagable
     [SerializeField] private GameObject swapModel;
     private GameObject destroyModel;
 
+    public GameObject[] destroyThese;
+
 
     [SerializeField] private Mesh destroyedMesh;
     private MeshFilter renderMesh;
@@ -88,6 +90,12 @@ public class DestroyableObject : MonoBehaviour, IDamagable
             else if (destroyedMesh != null)
             {
                 renderMesh.mesh = destroyedMesh;
+            }
+
+            for (int i = 0; i < destroyThese.Length; i++)
+            {
+                Destroy(destroyThese[i]);
+                destroyThese[i] = null;
             }
 
             this.enabled = false;
