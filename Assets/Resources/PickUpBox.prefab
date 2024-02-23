@@ -44,12 +44,11 @@ GameObject:
   - component: {fileID: 7605934056043643352}
   - component: {fileID: 4445622598877754435}
   - component: {fileID: 2856096866515855386}
-  - component: {fileID: 7630977032773181693}
   - component: {fileID: 1092684371621580578}
   - component: {fileID: 5977204783742059902}
-  m_Layer: 9
+  m_Layer: 19
   m_Name: PickUpBox
-  m_TagString: BounceSurface
+  m_TagString: Crate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,28 +162,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 141.1102, y: 78.43781, z: 94.74999}
   m_Center: {x: 0, y: 39.218906, z: -0.000026702888}
---- !u!64 &7630977032773181693
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8072557095963910103}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4517481033685210119, guid: 669e8bd6bb97ecd428d256151a3eaa21, type: 3}
 --- !u!54 &1092684371621580578
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -225,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objSize: 1
-  objName: Box
+  objName: Crate
   colliders:
   - {fileID: 4445622598877754435}
   - {fileID: 2856096866515855386}
