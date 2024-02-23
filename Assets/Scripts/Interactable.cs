@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public Collider[] colliders;
-    public bool collidersActive;
+    //public Collider[] colliders;
+    //public bool collidersActive;
 
 }

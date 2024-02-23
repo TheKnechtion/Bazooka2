@@ -22,10 +22,17 @@ public class Elevator : Interactable
         Down
     }
 
+
+    [Tooltip("When selected, the elevator will activate when stepped on by the player.")]
+    [SerializeField] bool isActivatedWhenSteppedOn;
+
+    [Tooltip("The height the elevator will end at (only used for StepOn Elevators)")]
     [SerializeField] float endHeight;
 
     public List<float> floorHeights;
     public List<bool> activeHeights;
+
+
 
 
     [Tooltip("Choose which direction the elevator moves.")]
@@ -40,12 +47,8 @@ public class Elevator : Interactable
     [Tooltip("When unselected, the elevator won't move.")]
     [SerializeField] bool isActive;
 
-
-    [Tooltip("When selected, the elevator will activate when stepped on by the player.")]
-    [SerializeField] bool isActivatedWhenSteppedOn;
-
     [Tooltip("This is the initial floor the elevator is on.")]
-    [SerializeField] int defaultFloor;
+    [SerializeField] int initialFloor;
 
     [Tooltip("This is the initial floor the elevator will go to when activated.")]
     [SerializeField] int initialTargetFloor;
@@ -61,8 +64,8 @@ public class Elevator : Interactable
 
 
 
-    public bool isElevating = false;
-    public bool isGoingDown = false;
+    bool isElevating = false;
+    bool isGoingDown = false;
 
 
     position currnetLocation;
@@ -146,9 +149,9 @@ public class Elevator : Interactable
             currnetLocation = position.Up;
         }
 
-        if(defaultFloor != 0)
+        if(initialFloor != 0)
         {
-            currentFloor = defaultFloor;
+            currentFloor = initialFloor;
             targetFloor = currentFloor;
         }
         else
