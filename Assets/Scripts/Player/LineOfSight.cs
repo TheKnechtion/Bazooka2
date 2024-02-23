@@ -78,15 +78,12 @@ public class LineOfSight : MonoBehaviour
 
     private float AngleToTarget(float hypDistance, Vector3 playerPos, Vector3 targetPos)
     {
-        float xzDistance = 0.0f;
-        float angle = 0.0f;
-
         playerPos.y = 0;
         targetPos.y = 0;
 
-        xzDistance = Vector3.Distance(playerPos, targetPos);
+        float xzDistance = Vector3.Distance(playerPos, targetPos);
 
-        angle = Mathf.Acos(xzDistance / hypDistance);
+        float angle = Mathf.Acos(xzDistance / hypDistance);
 
 
         angle *= Mathf.Rad2Deg;
