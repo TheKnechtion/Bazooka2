@@ -24,17 +24,7 @@ public class LevelChooser : MonoBehaviour
         //    Debug.LogWarning("! Level-Select Buttons not set !");
         //}
 
-        canTransition = false;
-
-        SceneManager.activeSceneChanged += SceneChange;
-        GameManager.OnLevelCompleted += NextSceneSequence;
-
-        RoomSelectScreen.OnRoomSelected += OnRoomSelected;
-
-        HelicopterEvac.MoveToNext += EvacSingleNext;
-        TransitionObject.OnEndReached += EvacSingleNext;
-
-        fadeScreen.OnFadedFull += OnFadeFull;
+        
     }
 
     private void EvacSingleNext(object sender, EventArgs e)
@@ -65,12 +55,34 @@ public class LevelChooser : MonoBehaviour
             Debug.LogWarning("! Next-Scenes options not set !");
         }
 
-        SceneManager.activeSceneChanged += SceneChanged;
+        canTransition = false;
+
+        SceneManager.activeSceneChanged += SceneChange;
+        GameManager.OnLevelCompleted += NextSceneSequence;
+
+        RoomSelectScreen.OnRoomSelected += OnRoomSelected;
+
+        HelicopterEvac.MoveToNext += EvacSingleNext;
+        TransitionObject.OnEndReached += EvacSingleNext;
+
+        if (fadeScreen == null)
+        {
+            fadeScreen = GetComponentInChildren<FadeScreen>();
+        }
+        else
+        {
+            fadeScreen.OnFadedFull += OnFadeFull;
+        }
     }
 
     private void SceneChanged(Scene arg0, Scene arg1)
     {
         canTransition = false;
+
+        if (fadeScreen == null)
+        {
+            fadeScreen = GetComponentInChildren<FadeScreen>();
+        }
     }
 
     private void NextSceneSequence(object sender, EventArgs e)
@@ -80,6 +92,7 @@ public class LevelChooser : MonoBehaviour
     }
     private void SceneChange(Scene arg0, Scene arg1)
     {
+        canTransition = false;
         NextScenes = LevelManager.NextScenes;
     }
     private IEnumerator TransitionOnFade(string name)
@@ -106,5 +119,15 @@ public class LevelChooser : MonoBehaviour
 
             LevelManager.EnterNewScene(name);
         }
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.activeSceneChanged -= SceneChange;
+        GameManager.OnLevelCompleted -= NextSceneSequence;
+        RoomSelectScreen.OnRoomSelected -= OnRoomSelected;
+        HelicopterEvac.MoveToNext -= EvacSingleNext;
+        TransitionObject.OnEndReached -= EvacSingleNext;
+        fadeScreen.OnFadedFull -= OnFadeFull;
     }
 }

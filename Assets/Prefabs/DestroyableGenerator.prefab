@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 7585540312265406037}
   - component: {fileID: 2636128410518939141}
   - component: {fileID: 9072388772367651902}
+  - component: {fileID: 6623722475528589423}
   m_Layer: 0
   m_Name: DestroyableGenerator
   m_TagString: ActivatableObject
@@ -83,6 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   swapModel: {fileID: 0}
+  destroyThese: []
   destroyedMesh: {fileID: 3511997639049688318, guid: a6ae2c025f3fbc741aefa92e2a141ec9, type: 3}
   destroyEffect: {fileID: 5856186434267449908}
   smokeEffect: {fileID: 1638003371074980143}
@@ -134,6 +136,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6623722475528589423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733597330035729970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ae027a7a50242488bbe786983e8c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToPlay: {fileID: 8300000, guid: 152276e7f391445468f04b1f6cfd5829, type: 3}
+  clipToPlayOnDestroy: {fileID: 8300000, guid: c34bd8188558cfb498da01688fd81163, type: 3}
 --- !u!1 &3090291676212834798
 GameObject:
   m_ObjectHideFlags: 0

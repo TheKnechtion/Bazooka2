@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -43,7 +42,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     [Header("Animation Attributes")]
     protected Animator movementAnimator;
-    [SerializeField] private AnimatorController animController;
+    [SerializeField] private RuntimeAnimatorController animController;
     public Animator MovementAnimator 
     {
         get { return movementAnimator; }
@@ -127,7 +126,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         movementAnimator = GetComponent<Animator>();
         if (animController)
         {
-            AnimatorController newCon = Instantiate(animController);
+            RuntimeAnimatorController newCon = Instantiate(animController);
             movementAnimator.runtimeAnimatorController = newCon;
         }
         else
