@@ -37,7 +37,7 @@ public class CatchObjectsBlocking : MonoBehaviour
     {
         wallsFaded.Clear();
         targetPos = playerInfo.playerPosition;
-        targetPos.y = 1;
+        targetPos.y = playerInfo.playerPosition.y+1;
 
         //direction = targetPos - gameObject.transform.position;
         direction = gameObject.transform.position - targetPos; //new
