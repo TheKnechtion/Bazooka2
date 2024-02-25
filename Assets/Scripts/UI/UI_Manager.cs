@@ -140,10 +140,7 @@ public class UI_Manager : MonoBehaviour
 
         PlayerProjectile.OnExplosion += PlayerManager_OnPlayerProjectileAmountChange;
 
-        
-
-
-
+        WeaponPickup.OnWeaponPickedUp += OnWeaponPickedUp;
         Item.OnWeaponPickUp += Item_OnWeaponPickUp;
 
         populateTextArray();
@@ -164,9 +161,7 @@ public class UI_Manager : MonoBehaviour
 
     }
 
-
-
-
+    
 
     bool atStart = true;
 
@@ -183,7 +178,7 @@ public class UI_Manager : MonoBehaviour
             atStart = false;
         }
 
-
+        /*
         if(tutorialShowTime > 0.0f)
         {
             tutorialShowTime -= Time.deltaTime;
@@ -192,7 +187,7 @@ public class UI_Manager : MonoBehaviour
         {
             TipSpace.SetActive(false);
         }
-
+        */
 
         switch (UI_state)
         {
@@ -264,9 +259,10 @@ public class UI_Manager : MonoBehaviour
     {
         Activate_Sample.SetActive(true);
     }
-
-
-
+    private void OnWeaponPickedUp(object sender, EventArgs e)
+    {
+       StartCoroutine( PromptForSeconds(TipSpace, 3.0f) );
+    }
     private void DeActivate_Sample_InteractUI(object sender, System.EventArgs e)
     {
         Activate_Sample.SetActive(false);
@@ -302,6 +298,13 @@ public class UI_Manager : MonoBehaviour
         RoomSelectScreenRef.SetActive(false);
     }
 
+    private IEnumerator PromptForSeconds(GameObject textObj, float secondsActive)
+    {
+        textObj.SetActive(true);
+        yield return new WaitForSeconds(secondsActive);
+        textObj.SetActive(false);
+        yield return null;
+    }
 
     private void GameManager_OnEvacStart(object sender, System.EventArgs e)
     {

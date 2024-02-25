@@ -10,6 +10,8 @@ public class WeaponSO : ScriptableObject
     public int maxActiveAmount;
     public float walkMultiplier;
 
+    public bool InfiniteAmmo;
+
     public GameObject projectilePrefab;
     public string fireWeaponSound;
 

@@ -32,7 +32,7 @@ public class MenuStartGame : MonoBehaviour
 
 
         Scene curerentScene = SceneManager.GetActiveScene();
-        SceneManager.UnloadSceneAsync(curerentScene);
+        //SceneManager.UnloadSceneAsync(curerentScene);
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }

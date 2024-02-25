@@ -12,6 +12,7 @@ public abstract class WeaponBase : MonoBehaviour
     public float fireRate;
     public float walkMultiplier;
 
+    protected bool infiniteAmmo;
     protected GameObject projectilePrefab;
 
     protected abstract void setStats();

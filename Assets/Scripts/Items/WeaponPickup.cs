@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class WeaponPickup : MonoBehaviour
     [Header("Stored Weapon")]
     [Tooltip("This weapon will be instantiated and added to Player weapon array.")]
     [SerializeField] private GameObject weaponPrefab;
+
+    public static event EventHandler OnWeaponPickedUp;
 
     private void Awake()
     {
@@ -20,6 +23,7 @@ public class WeaponPickup : MonoBehaviour
     {
         if (other.TryGetComponent<WeaponController>(out WeaponController t))
         {
+            OnWeaponPickedUp?.Invoke(this, EventArgs.Empty);
             t.AddWeapon(weaponPrefab);
             Destroy(gameObject);
         }

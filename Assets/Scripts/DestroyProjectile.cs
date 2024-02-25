@@ -10,6 +10,7 @@ public class DestroyProjectile : MonoBehaviour
     //ParticleSystem particleObject;
     UnityEngine.Object destroyedEffect;
 
+    [SerializeField] private float LifeTime;
 
     private Collider coll;
     private Renderer rend;
@@ -17,6 +18,11 @@ public class DestroyProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (LifeTime > 0.0f)
+        {
+            Destroy(gameObject, LifeTime);
+        }
+
         coll = GetComponent<Collider>();
         rend = GetComponent<Renderer>();
 

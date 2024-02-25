@@ -84,7 +84,10 @@ public class RangedWeapon : WeaponBase, IShoot
 
         if (userIsPlayer)
         {
-            currentAmmo--;
+            if (!infiniteAmmo)
+            {
+                currentAmmo--;
+            }
             newProjectile.AddComponent<PlayerProjectile>();
         }
 
@@ -104,7 +107,10 @@ public class RangedWeapon : WeaponBase, IShoot
             Instantiate(newProjectile, shootPoint.position, shootPoint.rotation).AddComponent<PlayerProjectile>();
             //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
 
-            currentAmmo--;
+            if (!infiniteAmmo)
+            {
+                currentAmmo--;
+            }
 
             OnPlayerShoot?.Invoke(this, EventArgs.Empty);
 
@@ -153,7 +159,7 @@ public class RangedWeapon : WeaponBase, IShoot
                 currentAmmo = maxAmmo;
                 walkMultiplier = stats.walkMultiplier;
                 maxActiveProjectiles = stats.maxActiveAmount;
-
+                infiniteAmmo = stats.InfiniteAmmo;
             }
 
             projectilePrefab = stats.projectilePrefab;

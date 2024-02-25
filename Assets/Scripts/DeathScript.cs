@@ -9,7 +9,7 @@ public class DeathScript : MonoBehaviour
     //ParticleSystem particleObject;
     GameObject deathEffect;
 
-
+    private Rigidbody rb_Body;
     private Collider coll;
     private EnemyBehavior eb;
     private Navigation nav;
@@ -31,6 +31,11 @@ public class DeathScript : MonoBehaviour
             rend = GetComponentInChildren<Renderer>();
         }
 
+        if (gameObject.TryGetComponent<Rigidbody>(out Rigidbody t))
+        {
+            rb_Body = t;
+        }
+
         anim = GetComponent<Animator>();
 
         character = GetComponent<EnemyBehavior>();
@@ -49,7 +54,18 @@ public class DeathScript : MonoBehaviour
         }
         else
         {
+            if (rb_Body != null)
+            {
+                rb_Body.isKinematic = false;
+            }
+
+            if (nav != null && nav.isActiveAndEnabled)
+            {
+                nav.StopMovement();
+            }
+
             DisableComponents();
+            
             //particleObject.Play();
 
             deathEffect = (GameObject)Resources.Load("DeathEffect");

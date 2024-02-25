@@ -59,7 +59,8 @@ Transform:
   m_LocalPosition: {x: -0.6889992, y: 0.67883325, z: -0.1589191}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1121207781306006162}
   m_Father: {fileID: 7917691548880034453}
   m_LocalEulerAnglesHint: {x: 14.922, y: 90, z: 270}
 --- !u!1 &2256373163497300840
@@ -123,6 +124,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7917691548880034449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3135167013748522088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1121207781306006162}
+  m_Layer: 0
+  m_Name: LaserPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1121207781306006162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135167013748522088}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.007, y: 0.093, z: 1.173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3658964779768066329}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5477387087782886923
 GameObject:
@@ -1644,6 +1676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkProj: 0
+  AllowShooting: 0
   isCarryingObjectOnBack: 0
   CanCarryObjectOnBack: 1
   isDraggingObject: 0
@@ -1688,7 +1721,7 @@ MonoBehaviour:
   ignoreProjectileLayerObjects:
     serializedVersion: 2
     m_Bits: 0
-  GunBarrelLocation: {fileID: 1115085120059043790}
+  GunBarrelLocation: {fileID: 3135167013748522088}
 --- !u!54 &664677363585575053
 Rigidbody:
   m_ObjectHideFlags: 0
