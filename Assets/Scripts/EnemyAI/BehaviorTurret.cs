@@ -106,20 +106,8 @@ public class BehaviorTurret : EnemyBehavior
                 //Debug.Log("Looking for you...");
 
                 timeToDeagro = DeAggroTime;
-                if (!isTurning)
-                {
-                    if (!swapDirection)
-                    {
-                        //StartCoroutine(swivelView(currentRotation, leftTurn));
-                        StartCoroutine(swivelView(currentRotationQuat, leftTurnQuat));
-                    }
-                    else
-                    {
-                        //StartCoroutine(swivelView(currentRotation, rightTurn));
-                        StartCoroutine(swivelView(currentRotationQuat, rightTurnQuat));
-                    }
+                SmoothRotate(initRotationEuler, 2.0f);
 
-                }                
                 break;
             case TurretState.ENGAGED:
                 //Debug.Log("I SEE YOU");
@@ -130,7 +118,12 @@ public class BehaviorTurret : EnemyBehavior
                 }
                 else 
                 {
-                    HandleShooting();
+                    SmoothRotate(enemyLookDirection, 1.0f);
+
+                    if (gameObject.transform.rotation == LookRotation)
+                    {
+                        HandleShooting();
+                    }
                 }
                 break;
             case TurretState.LOSTSIGHT:
@@ -164,7 +157,6 @@ public class BehaviorTurret : EnemyBehavior
             }
             else
             {
-                transform.rotation = initRotation;
                 turretState = TurretState.SEARCHING;
             }
         }
@@ -187,24 +179,6 @@ public class BehaviorTurret : EnemyBehavior
 
         yield return null;
     }
-
-    //private IEnumerator swivelView(Vector3 current, Vector3 TargetRotate)
-    //{
-    //    isTurning = true;
-    //    while (t < timeToTurn)
-    //    {
-    //        transform.eulerAngles = Vector3.Lerp(current, TargetRotate, t);
-    //        t +=  0.5f * Time.deltaTime;
-    //    }
-
-
-    //    yield return new WaitForSeconds(AimingTime);
-    //    t = 0;
-    //    swapDirection = !swapDirection;
-    //    isTurning = false;
-
-    //    yield return null;
-    //}
     protected override void HandleEnemyAggro()
     {
         //Determines aggro of the enemy
@@ -224,15 +198,8 @@ public class BehaviorTurret : EnemyBehavior
                 if (PlayerSpotted())
                 {
                     turretState = TurretState.ENGAGED;
-                    transform.LookAt(playerPosition);
                     isAggrod = true;                   
                 }
-
-                //if (DotProduct > 0.7f)
-                //{
-                //    isAggrod = true;
-                //    playerWasSpotted = true;
-                //}
             }
         }
     }
