@@ -10,6 +10,8 @@ public class DestroyProjectile : MonoBehaviour
     //ParticleSystem particleObject;
     UnityEngine.Object destroyedEffect;
 
+    [SerializeField] private GameObject destroyVFX;
+
     [SerializeField] private float LifeTime;
 
     private Collider coll;
@@ -46,8 +48,8 @@ public class DestroyProjectile : MonoBehaviour
 
         }
 
-        destroyedEffect = Resources.Load("GunEffect");
-        destroyedEffect.GetComponent<ParticleSystem>();
+        //destroyedEffect = Resources.Load("GunEffect");
+        //destroyedEffect.GetComponent<ParticleSystem>();
 
         //particleObject = GetComponentInChildren<ParticleSystem>();
         //particleObject.Stop();
@@ -59,9 +61,13 @@ public class DestroyProjectile : MonoBehaviour
         //particleObject.Play();
 
         AudioManager.PlayClipAtPosition("explosion_sound",transform.position);
-        
-       Object Effect = Instantiate(destroyedEffect, transform.position, Quaternion.identity);
-        Destroy(Effect, 3f);
+
+        if (destroyVFX != null)
+        {
+            GameObject Effect = Instantiate(destroyVFX, transform.position, Quaternion.identity);
+            Destroy(Effect, 3f);
+        }
+       
 
         //Destroy(gameObject, particleObject.duration);
         Destroy(gameObject);

@@ -1594,7 +1594,7 @@ MonoBehaviour:
   animController: {fileID: 9100000, guid: d59a7ece786ec65438d99692ac722e95, type: 2}
   weaponProjectileSpawnNode: {fileID: 0}
   SetToAttack: 0
-  enemyAttackRange_BecomeAggro: 15
+  enemyAttackRange_BecomeAggro: 12
   enemyAttackRange_AttackRange: 12
   isAggrod: 0
   inShootRange: 0
@@ -1607,7 +1607,7 @@ MonoBehaviour:
   verticalAngle: 0
   maxAimingAngle: 30
   turretState: 0
-  VisionRange: 0.7
+  FOV_Angle: 45
   AimingTime: 1.5
   TurningAngle: 0
   DeAggroTime: 2

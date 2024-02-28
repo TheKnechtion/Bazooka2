@@ -9,7 +9,9 @@ public class BehaviorTurret : EnemyBehavior
 {
     [SerializeField] private TurretState turretState;
 
-    [SerializeField] private float VisionRange;
+    [Range(10f, 90f)]
+    [SerializeField] private float FOV_Angle;
+    private float radFOV_Angle;
     private float DotProduct;
 
 
@@ -42,9 +44,10 @@ public class BehaviorTurret : EnemyBehavior
     protected override void Start()
     {
         setStats();
+        SetFOV_Angle(FOV_Angle);
 
         t = 0;
-        timeToTurn = 1.5f; 
+        timeToTurn = 1.5f;
         isTurning = false;
         swapDirection = false;
 
@@ -52,14 +55,14 @@ public class BehaviorTurret : EnemyBehavior
         initRotation = transform.rotation;
         initRotationEuler = transform.eulerAngles;
 
-        leftTurn = new Vector3(0, initRotationEuler.y-TurningAngle,0);
-        rightTurn = new Vector3(0, initRotationEuler.y + TurningAngle,0);
+        leftTurn = new Vector3(0, initRotationEuler.y - TurningAngle, 0);
+        rightTurn = new Vector3(0, initRotationEuler.y + TurningAngle, 0);
 
         leftTurnQuat = Quaternion.Euler(leftTurn);
-        rightTurnQuat = Quaternion.Euler(rightTurn);    
+        rightTurnQuat = Quaternion.Euler(rightTurn);
 
         //Pass the weapon script that attacthed to the object
-            //weaponController = gameObject.GetComponent<WeaponController>();
+        //weaponController = gameObject.GetComponent<WeaponController>();
         weaponGrabber = gameObject.GetComponent<DataBaseWeaponGrabber>();
 
 
@@ -71,6 +74,12 @@ public class BehaviorTurret : EnemyBehavior
         //currentEnemyWeapon = weaponGrabber.MakeWeapon(weaponName);
 
         turretState = TurretState.SEARCHING;
+    }
+
+    private void SetFOV_Angle(float FOV)
+    {
+        float rad = FOV * Mathf.Deg2Rad;
+        radFOV_Angle = 1- Mathf.Sin(rad);
     }
 
     protected override void Update()
@@ -208,7 +217,7 @@ public class BehaviorTurret : EnemyBehavior
     {
         DotProduct = Vector3.Dot(transform.forward, enemyLookDirection);
 
-        if (DotProduct > VisionRange)
+        if (DotProduct > radFOV_Angle)
         {
             return true;
         }
@@ -219,21 +228,22 @@ public class BehaviorTurret : EnemyBehavior
     }
     public Vector3 ViewAngle(float degree)
     {
-        float viewRad = degree * Mathf.Deg2Rad;
-        return new Vector3(Mathf.Cos(viewRad), 0, Mathf.Sin(viewRad));
+        degree += gameObject.transform.eulerAngles.y;
+        float viewRad = (degree) * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Sin(viewRad), 0, Mathf.Cos(viewRad));
     }
     protected override void OnDrawGizmosSelected()
     {
         base.OnDrawGizmosSelected();
 
 
-        Vector3 leftViewSight = ViewAngle(90);
-        Vector3 rightViewSight = ViewAngle(90);
+        Vector3 rightViewSight = ViewAngle(FOV_Angle);
+        Vector3 leftViewSight = ViewAngle(-FOV_Angle);
 
         Handles.color = Color.green;
-        Handles.DrawLine(transform.position, leftViewSight.normalized * enemyAttackRange_AttackRange);
-        Handles.color = Color.red;
-        //Handles.DrawLine(transform.position, rightViewSight.normalized * enemyAttackRange_AttackRange);
+        Handles.DrawLine(transform.position, transform.position + rightViewSight.normalized * enemyAttackRange_AttackRange);
+        //Handles.color = Color.red;
+        Handles.DrawLine(transform.position, transform.position + leftViewSight.normalized * enemyAttackRange_AttackRange);
     }
 
 
