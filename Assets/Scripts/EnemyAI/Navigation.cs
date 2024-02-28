@@ -16,6 +16,8 @@ public class Navigation : MonoBehaviour
     public float stoppingDistance;
     protected const float stopCheckradius = 1.5f;
 
+    [SerializeField] protected bool DisableMovement;
+
     public event EventHandler OnStoppedMoving;
 
     NavMeshHit hit;
@@ -58,6 +60,11 @@ public class Navigation : MonoBehaviour
 
     public virtual void MoveToPlayer(bool isAggroed, bool stopAtDistance)
     {
+        if (DisableMovement)
+        {
+            return;
+        }
+
         agent.isStopped = false;
         
         distance = Vector3.Distance(playerPos, thisPos);

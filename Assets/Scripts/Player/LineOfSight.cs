@@ -44,7 +44,7 @@ public class LineOfSight : MonoBehaviour
     void Update()
     {
         CheckForSpotting();
-        Debug.Log("Collider Count: "+hitCount);
+        //Debug.Log("Collider Count: "+hitCount);
     }
 
     private void CheckForSpotting()

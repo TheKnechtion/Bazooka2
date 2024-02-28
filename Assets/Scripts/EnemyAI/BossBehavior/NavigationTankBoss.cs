@@ -8,6 +8,11 @@ public class NavigationTankBoss : Navigation
 {
     public override void MoveToPlayer(bool isAggroed, bool stopAtDistance)
     {
+        if (DisableMovement)
+        {
+            return;
+        }
+
         distance = Vector3.Distance(playerPos, thisPos);
         if (isAggroed == true)
         {

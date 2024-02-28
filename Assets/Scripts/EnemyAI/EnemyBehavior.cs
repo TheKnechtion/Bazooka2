@@ -54,9 +54,9 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     //track the current enemy position
     protected Vector3 enemyPosition;
-
-
     protected Vector3 enemyLookDirection;
+    protected Quaternion LookRotation;
+
 
     //the current weapon the enemy has
     protected WeaponInfo currentEnemyWeapon;
@@ -192,7 +192,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         distanceToPlayer = Vector3.Distance(playerPosition, enemyPosition);
 
         //track the enemy position
-        enemyPosition = this.transform.position;
+        enemyPosition = gameObject.transform.position;
 
         //track the player position
         playerPosition = PlayerInfo.instance.playerPosition;
@@ -227,8 +227,17 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
                 verticalAngle = AngleToPlayer(distanceToPlayer, enemyPosition, playerPosition);
                 if (verticalAngle < maxAimingAngle)
                 {
-                    transform.LookAt(targetToLookAt);
-                    HandleShooting();
+                    //LookRotation = Quaternion.LookRotation(enemyLookDirection);
+                    //gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, LookRotation, 4f);
+                    //transform.LookAt(targetToLookAt);
+
+                    SmoothRotate(enemyLookDirection, 4.0f);
+
+                    if (gameObject.transform.rotation == LookRotation)
+                    {
+                        HandleShooting();
+
+                    }
                 }
                 break;
             default:
@@ -259,6 +268,11 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         }
     }
 
+    protected void SmoothRotate(Vector3 target, float speed)
+    {
+        LookRotation = Quaternion.LookRotation(target);
+        gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, LookRotation, speed);
+    }
     private float AngleToPlayer(float hypDistance, Vector3 enPos, Vector3 targetPos)
     {
         float xzDistance = 0.0f;
