@@ -217,24 +217,24 @@ public class BehaviorTurret : EnemyBehavior
             return false;
         }
     }
+    public Vector3 ViewAngle(float degree)
+    {
+        float viewRad = degree * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Cos(viewRad), 0, Mathf.Sin(viewRad));
+    }
+    protected override void OnDrawGizmosSelected()
+    {
+        base.OnDrawGizmosSelected();
 
 
-    //private Vector3 ViewDirection(float EulerRotation, float DegreeView)
-    //{
-    //    DegreeView += EulerRotation;
-    //    return new Vector3(Mathf.Sin(DegreeView * Mathf.Deg2Rad), 0 , Mathf.Cos(DegreeView * Mathf.Deg2Rad));
-    //}
-    //protected override void OnDrawGizmosSelected()
-    //{
-    //    base.OnDrawGizmosSelected();
+        Vector3 leftViewSight = ViewAngle(90);
+        Vector3 rightViewSight = ViewAngle(90);
 
-    //    Handles.color = Color.green;
-    //    Vector3 leftViewSight  = ViewDirection(currentRotation.y, TurningAngle);
-    //    Vector3 rightViewSight = ViewDirection(currentRotation.y, -TurningAngle);
+        Handles.color = Color.green;
+        Handles.DrawLine(transform.position, leftViewSight.normalized * enemyAttackRange_AttackRange);
+        Handles.color = Color.red;
+        //Handles.DrawLine(transform.position, rightViewSight.normalized * enemyAttackRange_AttackRange);
+    }
 
-    //    Handles.DrawLine(transform.position, leftViewSight.normalized * enemyAttackRange_AttackRange);
-    //    Handles.DrawLine(transform.position, rightViewSight.normalized * enemyAttackRange_AttackRange);
-    //}
 
-    
 }
