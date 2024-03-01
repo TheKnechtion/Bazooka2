@@ -48,7 +48,7 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
     public event EventHandler OnParticleCall;
 
     private void Awake()
-    {
+    {       
         try
         {
             laserRenderer = laserObject.GetComponent<LineRenderer>();
@@ -148,8 +148,10 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
                     StartCoroutine(TrackAndShoot());
                 }
 
-                targetPos.x = other.transform.position.x;
-                targetPos.z = other.transform.position.z;
+                //targetPos.x = other.transform.position.x;
+                //targetPos.z = other.transform.position.z;
+                targetPos = other.transform.position;
+                targetPos.y += 15.0f;
 
                 SetLaserPos(targetPos);
             }
