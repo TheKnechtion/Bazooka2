@@ -59,8 +59,6 @@ public class RepeatingObjSpawner : MonoBehaviour
             currentSpawnTime = 0.0f;
             ActivateObject();
         }
-
-        Debug.Log("Spawn time: "+currentSpawnTime);
     }
 
     private void ActivateObject()

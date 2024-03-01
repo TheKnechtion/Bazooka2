@@ -84,6 +84,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     [SerializeField] protected float enemyAttackRange_BecomeAggro = 15.0f;
     [SerializeField] protected float enemyAttackRange_AttackRange = 12.0f;
     public bool isAggrod, inShootRange;
+    private bool lockedOn;
 
     [SerializeField] protected LayerMask playerMask;
     [SerializeField] protected LayerMask environmentMask;
@@ -166,7 +167,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         //sets the initial state of an enemy to docile
         isAggrod = false;
         inShootRange = false;
-
+        lockedOn = false;
         ArmoredTarget= false;
 
         nav = GetComponent<Navigation>();
@@ -214,29 +215,35 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         switch (currentState)
         {
             case EnemyState.IDLE:
+                lockedOn = false;
                 movementAnimator.SetFloat("MovementSpeed", 0);
                 break;
             case EnemyState.CHASE:
+                lockedOn = false;
                 nav.ResumeMovement();
                 break;
             case EnemyState.ATTACK:
                 nav.StopMovement();
-
-
                 //verticalAngle = GetVerticalAngleToPlayer(transform.forward, playerPosition);
                 verticalAngle = AngleToPlayer(distanceToPlayer, enemyPosition, playerPosition);
                 if (verticalAngle < maxAimingAngle)
                 {
                     //LookRotation = Quaternion.LookRotation(enemyLookDirection);
                     //gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, LookRotation, 4f);
+
                     //transform.LookAt(targetToLookAt);
 
-                    SmoothRotate(enemyLookDirection, 4.0f);
+                    //SmoothRotate(enemyLookDirection, 4.0f);
 
-                    if (gameObject.transform.rotation == LookRotation)
+
+                    if (!lockedOn)
                     {
+                        StartCoroutine(Smoothrotate(enemyLookDirection, 1.0f, 0.1f));
+                    }
+                    else
+                    {
+                        transform.LookAt(targetToLookAt);
                         HandleShooting();
-
                     }
                 }
                 break;
@@ -273,6 +280,24 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         LookRotation = Quaternion.LookRotation(target);
         gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, LookRotation, speed);
     }
+
+    IEnumerator Smoothrotate(Vector3 target, float speed, float time)
+    {
+        LookRotation = Quaternion.LookRotation(target);
+        float t = 0.0f;
+        while (t < time)
+        {
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, LookRotation, t);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.LookAt(targetToLookAt);
+        lockedOn = true;
+
+        yield return null;
+    }
+
     private float AngleToPlayer(float hypDistance, Vector3 enPos, Vector3 targetPos)
     {
         float xzDistance = 0.0f;
