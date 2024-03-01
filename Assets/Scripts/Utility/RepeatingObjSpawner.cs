@@ -6,12 +6,17 @@ public class RepeatingObjSpawner : MonoBehaviour
 {
     [Header("Object Pool")]
     [SerializeField] private GameObject[] PossibleObjects;
+
+    [Tooltip("Activate an object every 'x' amount of seconds.")]
+    [Range(0f, 4.0f)]
     [SerializeField] private float SpawnDelay;
     private float currentSpawnTime;
 
-    [Range(1, 5)]
+    [Tooltip("Objects will be active for 'this' amount of time, seconds.")]
+    [Range(1, 15)]
     [SerializeField] private float ObjectLifeTime;
 
+    [Tooltip("How many instances of each object there will be stored.")]
     [Range(1, 5)]
     [SerializeField] private int InstancesPerObj;
 
