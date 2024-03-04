@@ -194,7 +194,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         gameObject.GetComponent<WeaponController>().enabled = true;
         gameObject.GetComponent<Animator>().SetBool("Dead", false);
 
-        healthState = PlayerHealthState.ALIVE;
+        StartCoroutine(DelaySetAliveState(0.7f));
         currentHP = maximumHP;
 
         OnTakeDamage?.Invoke(this, EventArgs.Empty);
@@ -283,4 +283,17 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         yield return null;
     }
 
+    private IEnumerator DelaySetAliveState(float time)
+    {
+        float t = 0.0f;
+        while (t < time)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        healthState = PlayerHealthState.ALIVE;
+
+        yield return null;
+    }
 }

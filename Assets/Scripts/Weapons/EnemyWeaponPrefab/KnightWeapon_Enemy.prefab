@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8211715955448163801}
   - component: {fileID: 339870309261140609}
   - component: {fileID: 7798933017636359482}
+  - component: {fileID: 8285053256986775288}
   m_Layer: 12
   m_Name: KnightWeapon_Enemy
   m_TagString: Untagged
@@ -163,8 +164,35 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.34016466, y: 0.3809208, z: 0.4552821}
-  m_Center: {x: -0.001090467, y: 0.16574113, z: 0.86244935}
+  m_Size: {x: 0.34016466, y: 0.3809208, z: 1.0005164}
+  m_Center: {x: -0.001090467, y: 0.16574113, z: 0.5898322}
+--- !u!54 &8285053256986775288
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2251360093364778229}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &9042031620740074979
 GameObject:
   m_ObjectHideFlags: 0

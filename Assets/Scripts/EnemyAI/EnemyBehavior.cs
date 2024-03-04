@@ -210,7 +210,16 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         //if the player is out of range, the enemy will stop shooting
         //if (enemyPlayerTracker > enemyAttackRange_ExitAggro) { isAggrod = false; }
 
-        HandleEnemyAggro();
+        if (PlayerInfo.instance.HeatlthState == PlayerHealthState.DEAD)
+        {
+            currentState = EnemyState.IDLE;
+        }
+        else
+        {
+            HandleEnemyAggro();
+        }
+
+
 
         switch (currentState)
         {

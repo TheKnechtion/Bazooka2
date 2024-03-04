@@ -94,6 +94,7 @@ public class RangedWeapon : WeaponBase, IShoot
         //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
     }
 
+    //Unused---
     public void PlayerShoot()
     {
         if (canShoot && !barrelObstructed)

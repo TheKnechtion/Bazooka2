@@ -82,6 +82,10 @@ public class Explosive : MonoBehaviour
                     {
                         damageable.TakeDamage(Damage);
                     }
+                    else if (collidersHit[i].gameObject.GetComponentInParent<IDamagable>() != null)
+                    {
+                        collidersHit[i].gameObject.GetComponentInParent<IDamagable>().TakeDamage(Damage);
+                    }
                 }
                 
             }
