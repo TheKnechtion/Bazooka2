@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public enum PlayerState {INVULNERABLE, VULNERABLE}
+public enum PlayerHealthState {ALIVE, DEAD}
 public class PlayerInfo:MonoBehaviour, IDamagable
 {
 
@@ -52,7 +54,12 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     //stores the player look direction
     public Vector3 playerLookDirection = new Vector3();
 
+    private Vector3 CheckpointPosition;
+
     [SerializeField] private PlayerState state;
+    public PlayerHealthState HeatlthState { get { return healthState; } set { healthState = value; } }
+    private PlayerHealthState healthState;
+
     private bool isInvulnerable = false;
 
     public bool ArmoredTarget { get; set; }
@@ -61,6 +68,11 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     public static event EventHandler OnPlayerHpChange;
     public static event EventHandler OnPlayerSpawn;
     public static event EventHandler OnPlayerWeaponChange;
+
+    public event EventHandler<int> OnPlayerDeath;
+    public int RemainingAttempts;
+
+    public event EventHandler CheckpointRestarted;
 
     void Awake()
     {
@@ -83,6 +95,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         GameManager.OnPlayerWin += OnWin;
 
         state = PlayerState.VULNERABLE;
+        healthState = PlayerHealthState.ALIVE;
 
         OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
 
@@ -143,11 +156,51 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     //handles player death
     public void Die()
     {
-        //calls the 
-        GameObject.Find("GameManager").GetComponent<GameManager>().PlayerLoses();
+        healthState = PlayerHealthState.DEAD;
 
-        //destroy's the player game object
-        Destroy(this.gameObject);
+        //calls the 
+        //GameObject.Find("GameManager").GetComponent<GameManager>().PlayerLoses();
+
+        if (RemainingAttempts > 0)
+        {
+            //Disable controls
+            //Play Death Animation
+
+            gameObject.GetComponent<PlayerMovement>().enabled = false;
+            gameObject.GetComponent<WeaponController>().enabled = false;
+            gameObject.GetComponent<Animator>().SetBool("Dead", true);
+        }
+        else
+        {
+            //destroy's the player game object
+            Destroy(this.gameObject);
+        }
+
+        //StartCoroutine(DeathInvoking(1.5f));
+        OnPlayerDeath?.Invoke(this, RemainingAttempts);
+
+    }
+
+    public void SetCheckpointPos(Vector3 newPos)
+    {
+        CheckpointPosition = newPos;
+    }
+    public void CheckpointRespawn()
+    {
+        CheckpointRestarted?.Invoke(this, EventArgs.Empty);
+        RemainingAttempts--;
+
+        gameObject.GetComponent<PlayerMovement>().enabled = true;
+        gameObject.GetComponent<WeaponController>().enabled = true;
+        gameObject.GetComponent<Animator>().SetBool("Dead", false);
+
+        healthState = PlayerHealthState.ALIVE;
+        currentHP = maximumHP;
+
+        OnTakeDamage?.Invoke(this, EventArgs.Empty);
+        OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
+
+        gameObject.transform.position = CheckpointPosition;
     }
 
     //the method used to pass damage from projectiles
@@ -214,6 +267,20 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         {
             ownedWeapons.Add(newWeapon);
         }
+    }
+
+    private IEnumerator DeathInvoking(float time)
+    {
+        float t = 0.0f;
+        while (t < time)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        OnPlayerDeath?.Invoke(this, RemainingAttempts);
+
+        yield return null;
     }
 
 }

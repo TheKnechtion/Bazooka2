@@ -24,6 +24,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject TipSpace;
     [SerializeField] private GameObject QuitButton;
     [SerializeField] private GameObject ReplayButton;
+    [SerializeField] private GameObject CheckpointButton;
     [SerializeField] private GameObject RoomSelectScreen;
     //[SerializeField] private GameObject HeartList;
     [SerializeField] private GameObject ElevatorButtons;
@@ -63,6 +64,7 @@ public class UI_Manager : MonoBehaviour
     int currentPlayerHp;
     int maxPlayerHp;
 
+    private bool CheckpointAvailable;
 
     PlayerController _playerController;
 
@@ -132,6 +134,8 @@ public class UI_Manager : MonoBehaviour
         GameManager.OnEvacStart += GameManager_OnEvacStart;
 
         PlayerInfo.OnPlayerHpChange += PlayerInfo_OnPlayerHpChange;
+        PlayerInfo.instance.CheckpointRestarted += CheckpointSpawn;
+
         PlayerManager.OnPlayerWeaponChange += PlayerManager_OnPlayerWeaponChange;
         EnemySpawnManager.OnEnemyDeath += EnemySpawnManager_OnEnemyDeath;
 
@@ -206,6 +210,11 @@ public class UI_Manager : MonoBehaviour
                 QuitButton.SetActive(true);
                 ReplayButton.SetActive(true);
 
+                if (CheckpointAvailable)
+                {
+                    CheckpointButton.SetActive(true);
+                }
+
                 break;
             case CanvasState.EVAC:
 
@@ -225,6 +234,8 @@ public class UI_Manager : MonoBehaviour
                 statusRenderer.text = statusArray[2];
                 QuitButton.SetActive(false);
                 ReplayButton.SetActive(false);
+                CheckpointButton.SetActive(false);
+
                 break;
             default:
                UI_state = CanvasState.NONE;
@@ -253,8 +264,8 @@ public class UI_Manager : MonoBehaviour
     }
 
 
-    
 
+    
     private void Activate_Sample_InteractUI(object sender, System.EventArgs e)
     {
         Activate_Sample.SetActive(true);
@@ -316,11 +327,15 @@ public class UI_Manager : MonoBehaviour
         UI_state = CanvasState.WIN;
     }
 
-    private void GameManager_OnPlayerLose(object sender, System.EventArgs e)
+    private void GameManager_OnPlayerLose(object sender, bool canCheckpoint)
     {
+        CheckpointAvailable = canCheckpoint;
         UI_state = CanvasState.LOSE;
     }
-
+    private void CheckpointSpawn(object sender, EventArgs e)
+    {
+        UI_state = CanvasState.NONE;
+    }
     private void PlayerInfo_OnPlayerHpChange(object sender, System.EventArgs e)
     {
         currentPlayerHp = PlayerInfo.instance.currentHP;

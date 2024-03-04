@@ -84,6 +84,22 @@ public class WeaponController:MonoBehaviour
         canSwitch = false;
     }
 
+    private void OnEnable()
+    {
+        if (currentWeapon != null)
+        {
+            currentWeapon.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (currentWeapon != null)
+        {
+            currentWeapon.gameObject.SetActive(false);
+        }
+    }
+
     public void InitializeWeaponUI()
     {
         FinishedWeaponChange?.Invoke(this, EventArgs.Empty);

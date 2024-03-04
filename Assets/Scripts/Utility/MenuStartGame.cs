@@ -35,4 +35,12 @@ public class MenuStartGame : MonoBehaviour
         //SceneManager.UnloadSceneAsync(curerentScene);
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
+
+    public void CheckpointRestart()
+    {
+        if (PlayerInfo.instance != null)
+        {
+            PlayerInfo.instance.CheckpointRespawn();
+        }
+    }
 }

@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     //Events for UI
     public static event EventHandler OnLevelCompleted;
     public static event EventHandler OnPlayerWin;
-    public static event EventHandler OnPlayerLose;
+    public static event EventHandler<bool> OnPlayerLose;
     public static event EventHandler OnEvacStart;
     public static event EventHandler OnEvacStop;
 
@@ -81,8 +81,6 @@ public class GameManager : MonoBehaviour
             //exit = SpawnExit(exit);
             //exit.SetActive(false);
         EvacExit.OnPlayerExit += Exit_OnPlayerExit;
-
-        evacTimer = new Timer(40.0f);
 
         //prevent the game manager game object from being destroyed between scenes
         DontDestroyOnLoad(this.gameObject);
@@ -140,8 +138,12 @@ public class GameManager : MonoBehaviour
         exitSpawned = false;
 
         BehaviorTankBoss.OnTankKilled += BossKilled;
-            //BehaviorTankBoss.OnTankKilled += OnNeedSceneSwitch;
+        //BehaviorTankBoss.OnTankKilled += OnNeedSceneSwitch;
 
+        if (PlayerInfo.instance != null)
+        {
+            PlayerInfo.instance.OnPlayerDeath += PlayerDeath;
+        }
 
         //OnSceneChange?.Invoke(this, EventArgs.Empty);
     }
@@ -163,6 +165,11 @@ public class GameManager : MonoBehaviour
         OnLevelCompleted.Invoke(this, EventArgs.Empty);
     }
 
+    private void PlayerDeath(object sender, int remainingAttempts)
+    {
+        bool canCheckpoint = remainingAttempts > 0;
+        PlayerLoses(canCheckpoint);
+    }
 
     //used by the Door script to travel to previous rooms
     public void TravelToPreviousRoom()
@@ -288,15 +295,6 @@ public class GameManager : MonoBehaviour
         }
     }
     */
-    private void FixedUpdate()
-    {
-        if (EvacTime)
-        {
-
-            evacTimer.tickTimer(Time.deltaTime);
-            //Debug.Log("EVAC TIME: " + evacTimer.TimeLeft);
-        }
-    }
 
    /*
     private void CheckAllRoomsCleared()
@@ -339,10 +337,10 @@ public class GameManager : MonoBehaviour
     }
 
     //activates the player lose ui element
-    public void PlayerLoses()
+    public void PlayerLoses(bool checkPointBool)
     {
         //Raise the Lose event for UI
-        OnPlayerLose?.Invoke(this, EventArgs.Empty);
+        OnPlayerLose?.Invoke(this, checkPointBool);
 
         playerHP = 0;
 
