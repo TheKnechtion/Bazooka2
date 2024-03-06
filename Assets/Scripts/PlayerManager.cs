@@ -9,6 +9,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
+    public enum PlayerMovementStates
+    {
+        None,
+        Flattened
+    }
+
+    public PlayerMovementStates playerMovementState;
 
     public static PlayerController _playerController;
     WeaponController weaponController;
@@ -65,6 +72,8 @@ public class PlayerManager : MonoBehaviour
     Vector3 projectionVector;
     private void Awake()
     {
+        playerMovementState = PlayerMovementStates.None;
+
         try
         {
             gameObject.transform.position = GameObject.Find("PlayerSpawnNode").transform.position;
@@ -228,6 +237,11 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (playerMovementState == PlayerMovementStates.Flattened)
+        {
+            return;
+        }
 
         playerLookDirection = RaycastController.playerLookDirection;
 

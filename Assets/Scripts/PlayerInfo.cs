@@ -214,7 +214,9 @@ public class PlayerInfo:MonoBehaviour, IDamagable
             currentHP = (currentHP >= 0) ? currentHP : 0;
 
             OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
-        }        
+        }
+
+        AudioManager.PlayClipAtPosition("pain",this.transform.position);
     }
     
     public void Heal_HP(int amount)

@@ -12,12 +12,18 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip hitSound;
     [SerializeField] AudioClip engineSound;
     [SerializeField] AudioClip clickSound;
+    [SerializeField] AudioClip painSound;
+
+
 
     static AudioClip bazookaSoundRef;
     static AudioClip explosionSoundRef;
     static AudioClip hitSoundRef;
     static AudioClip engineSoundRef;
     static AudioClip clickSoundRef;
+
+
+    static AudioClip painSoundRef;
 
     AudioSource audioSource;
     public float weaponsVolume = 0.5f;
@@ -34,6 +40,7 @@ public class AudioManager : MonoBehaviour
         hitSoundRef = hitSound;
         clickSoundRef=clickSound;
         engineSoundRef = engineSound;
+        painSoundRef = painSound;
     }
 
     float loopClipTime;
@@ -76,6 +83,11 @@ public class AudioManager : MonoBehaviour
             case "click":
                 clipToPlay = clickSoundRef;
                 break;
+
+            case "pain":
+                clipToPlay = painSoundRef;
+                break;
+
 
             default:
                 clipToPlay = explosionSoundRef;

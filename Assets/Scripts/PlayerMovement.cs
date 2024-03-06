@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     
     public float modifiedSpeed; //For wepaon holding Speeds
 
+    public float getUpSpeed;
+
+
     bool dash = false;
 
     float speed;
@@ -30,6 +33,9 @@ public class PlayerMovement : MonoBehaviour
     public static Vector3 currentPosition;
 
     public static event EventHandler OnPlayerMoved;
+
+
+    PlayerManager _playerManager;
 
 
     Rigidbody player_rb;
@@ -52,7 +58,9 @@ public class PlayerMovement : MonoBehaviour
         //PlayerManager.OnWeaponChange += ChangedWeapon;
         weaponController.FinishedWeaponChange += ChangedWeapon;
 
+        _playerManager = this.transform.GetComponent<PlayerManager>();
 
+        getUpSpeed = 2.0f;
     }
 
     private void ChangedWeapon(object sender, EventArgs e)
@@ -72,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool isStopped = false;
 
+    bool isFlattened = false;
     public void UpdateWhenMoved(InputAction.CallbackContext e)
     {
 
@@ -146,6 +155,39 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
+    public void Flattened()
+    {
+        isFlattened = true;
+
+        player_rb.constraints |= RigidbodyConstraints.FreezePositionY;
+
+        _playerManager.playerMovementState = PlayerManager.PlayerMovementStates.Flattened;
+
+        movementAnimator.SetBool("Flattened", isFlattened);
+        playerMovement = Vector3.zero;
+        moveInput = Vector3.zero;
+        slowSpeed = 0.0f;
+
+        StartCoroutine(GetUp());
+    }
+
+
+    private IEnumerator GetUp()
+    {
+        yield return new WaitForSeconds(getUpSpeed);
+        isFlattened = false;
+
+        player_rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        _playerManager.playerMovementState = PlayerManager.PlayerMovementStates.None;
+
+        movementAnimator.SetBool("Flattened", isFlattened);
+        slowSpeed = 1.0f;
+    }
+
+
+    
 
     private void OnEnable()
     {

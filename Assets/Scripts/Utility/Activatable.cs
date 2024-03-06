@@ -8,12 +8,24 @@ public class Activatable : MonoBehaviour
     public bool isActive = false;
     public bool disappearOnDeactivation = false;
     public bool explodeWhenDeactivated = false;
-
-
     Explosive explosive = null;
+
+
     private void Start()
     {
-        this.TryGetComponent<Explosive>(out explosive);
+
+
+        if(explodeWhenDeactivated)
+        {
+            explosive = this.transform.GetComponent<Explosive>();
+        }
+
+
+        if (explodeWhenDeactivated && disappearOnDeactivation)
+        {
+            explosive.CanDestroy += OnFinishedExploding;
+        }
+
     }
 
     public virtual void Activate()
@@ -28,7 +40,7 @@ public class Activatable : MonoBehaviour
         if(explodeWhenDeactivated)
         {
             explosive.Explode();
-            Destroy(this.gameObject);
+            return;
         }
 
         if(disappearOnDeactivation)
@@ -37,4 +49,12 @@ public class Activatable : MonoBehaviour
         }
 
     }
+
+    private void OnFinishedExploding(object sender, System.EventArgs e)
+    {
+        explosive.CanDestroy -= OnFinishedExploding;
+        Destroy(gameObject);
+    }
+
+
 }

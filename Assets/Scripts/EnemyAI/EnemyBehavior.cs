@@ -415,6 +415,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     public virtual void TakeDamage(int passedDamage)
     {
         health -= passedDamage;
+        AudioManager.PlayClipAtPosition("pain", this.transform.position);
         OnTakeDamage?.Invoke(this, EventArgs.Empty);
     }
 

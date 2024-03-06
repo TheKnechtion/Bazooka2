@@ -55,13 +55,19 @@ public class Explosive : MonoBehaviour
 
     private void Update()
     {
-        temp.transform.rotation = Quaternion.Euler(Vector3.zero);
+        if (temp != null)
+        {
+            temp.transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
     }
 
 
     public void Explode()
     {
-        temp.transform.SetParent(null);
+        if (temp != null)
+        {
+            temp.transform.SetParent(null);
+        }
 
         AudioManager.PlayClipAtPosition("explosion_sound", this.transform.position);
 
@@ -92,7 +98,16 @@ public class Explosive : MonoBehaviour
         }
 
         CanDestroy.Invoke(this, EventArgs.Empty);
+
+        return;
     }
+
+
+
+
+
+
+
 
     private void OnDrawGizmosSelected()
     {

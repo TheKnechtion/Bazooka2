@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Sawblade : MonoBehaviour
 {
+    
+    [SerializeField] int damageOnContact;
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.TryGetComponent<IDamagable>(out IDamagable component))
