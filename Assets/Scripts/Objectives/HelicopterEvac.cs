@@ -7,6 +7,8 @@ public class HelicopterEvac : Objective
 {
     [SerializeField] string objectiveText;
     [SerializeField] bool useDefaultText;
+    [SerializeField] private GameObject EvacZone;
+    [SerializeField] private bool DisableZoneOnStart;
 
     public static event EventHandler MoveToNext;
     private void Awake()
@@ -22,17 +24,25 @@ public class HelicopterEvac : Objective
 
         ObjectiveCompleted = false;
 
+        if (DisableZoneOnStart)
+        {
+            if (EvacZone != null)
+            {
+                EvacZone.SetActive(false);
+            }
+        }
     }
 
     private void Start()
     {
         //Should be for (Generic) Boss death event
-        BehaviorTankBoss.OnTankKilled += OnBossKilled;
+        BehaviorTankBoss.OnTankKilled += Completed;
     }
 
-    private void OnBossKilled(object sender, System.EventArgs e)
+    private void Completed(object sender, EventArgs e)
     {
-        ObjectiveCompleted = true;
+        CompleteObjective();
+        EvacZone.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -161,6 +161,11 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         //calls the 
         //GameObject.Find("GameManager").GetComponent<GameManager>().PlayerLoses();
 
+        if (gameObject.GetComponentInChildren<PickUpObject>() != null)
+        {
+            gameObject.GetComponentInChildren<PickUpObject>().StopHolding();
+        }
+
         if (RemainingAttempts > 0)
         {
             //Disable controls
@@ -188,6 +193,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     }
     public void CheckpointRespawn()
     {
+        healthState = PlayerHealthState.ALIVE;
+
         CheckpointRestarted?.Invoke(this, EventArgs.Empty);
         RemainingAttempts--;
 
@@ -196,7 +203,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         gameObject.GetComponent<WeaponController>().enabled = true;
         gameObject.GetComponent<Animator>().SetBool("Dead", false);
 
-        StartCoroutine(DelaySetAliveState(0.7f));
+        StartCoroutine(TemporaryInvulnerable(1.0f));
         currentHP = maximumHP;
 
         OnTakeDamage?.Invoke(this, EventArgs.Empty);
@@ -285,8 +292,10 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         yield return null;
     }
 
-    private IEnumerator DelaySetAliveState(float time)
+    private IEnumerator TemporaryInvulnerable(float time)
     {
+        state = PlayerState.INVULNERABLE;
+
         float t = 0.0f;
         while (t < time)
         {
@@ -294,7 +303,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
             yield return null;
         }
 
-        healthState = PlayerHealthState.ALIVE;
+        state = PlayerState.VULNERABLE;
 
         yield return null;
     }

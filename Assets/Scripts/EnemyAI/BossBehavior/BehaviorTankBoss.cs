@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,6 +26,8 @@ public class BehaviorTankBoss : EnemyBehavior
     [SerializeField] private GameObject MountedEnemy;
 
     private bool initialAggro;
+    private bool DavinciAtkActive, CanDavinci;
+    private bool SoldierMountActive;
 
     private GameObject UI_Reference;
     private HealthBar_UI UI_HealthBar;
@@ -34,6 +35,10 @@ public class BehaviorTankBoss : EnemyBehavior
     protected override void Start()
     {
         initialAggro = false;
+        DavinciAtkActive = false;
+        CanDavinci = false;
+        SoldierMountActive = false;
+
         UI_Reference = GameObject.Find("Canvas");
         UI_HealthBar = UI_Reference.GetComponentInChildren<HealthBar_UI>();
         UI_HealthBar.UpdateHealthbar(health / maxHealth);
@@ -118,15 +123,24 @@ public class BehaviorTankBoss : EnemyBehavior
                 turret.transform.LookAt(targetToLookAt);
                 break;
             case EnemyState.ATTACK:
-                turret.transform.LookAt(targetToLookAt);
+                if (!DavinciAtkActive)
+                {
+                    turret.transform.LookAt(targetToLookAt);
+                }
                 break;
             default:
                 break;
         }
 
-        if (health / maxHealth < 0.5f)
+        if (PercentHealth(0.5f) && !SoldierMountActive)
         {
             MountedEnemy.SetActive(true);
+            SoldierMountActive = true;
+        }
+
+        if (PercentHealth(0.3f) && !CanDavinci)
+        {
+            CanDavinci = true;
         }
     }
 
@@ -191,7 +205,27 @@ public class BehaviorTankBoss : EnemyBehavior
         {
             timeBetweenShots = currentEnemyWeapon.timeBetweenProjectileFire;
 
-            StartCoroutine(stopandShoot());
+            if (CanDavinci)
+            {
+                int randomAttack = UnityEngine.Random.Range(1, 3);
+
+                switch (randomAttack)
+                {
+                    case 1:
+                        StartCoroutine(stopandShoot());
+                        break;
+                    case 2:
+                        StartCoroutine(DavinciAttack(3.0f, 3f));
+                        break;
+                    default:
+                        StartCoroutine(stopandShoot());
+                        break;
+                }
+            }
+            else
+            {
+               StartCoroutine(stopandShoot());
+            }
         }
     }
 
@@ -212,6 +246,56 @@ public class BehaviorTankBoss : EnemyBehavior
         yield return null;
     }
 
+    private IEnumerator DavinciAttack(float time, float spinSpeed = 1)
+    {
+        DavinciAtkActive = true;
+        Quaternion newRotation = new Quaternion();
+        float t = 0.0f;
+        bool shotsFired = false;
+
+        while (t < time)
+        {
+            if (!shotsFired)
+            {
+                shotsFired = true;
+                StartCoroutine(RepeatedShooting(0.4f, 5));
+            }
+            newRotation.eulerAngles += new Vector3(0, 1 * spinSpeed, 0);
+            turret.transform.rotation = newRotation;
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        DavinciAtkActive = false;
+
+        yield return null;
+    }
+
+    private IEnumerator RepeatedShooting(float shotDelay, int shotCount)
+    {
+        float t = 0.0f;
+
+        for (int i = 0; i < shotCount; i++)
+        {
+            Shoot();
+
+            if (!DavinciAtkActive)
+            {
+                break;
+            }
+
+            while (t < shotDelay || !DavinciAtkActive)
+            {
+                t += Time.deltaTime;
+                yield return null;
+            }
+
+            t = 0.0f;
+        }
+
+        yield return null;
+    }
 
     protected override void Shoot()
     {
@@ -225,14 +309,16 @@ public class BehaviorTankBoss : EnemyBehavior
             ShootFX.Play();
         }
 
-        currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, enemyLookDirection));
+        //currentEntity = Instantiate(projectilePrefab, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, enemyLookDirection));
+        currentEntity = Instantiate(projectilePrefab, weaponProjectileSpawnNode.transform.position, weaponProjectileSpawnNode.transform.rotation);
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
 
 
-        currentEntity.GetComponent<Projectile>().direction = enemyLookDirection;
+        //currentEntity.GetComponent<Projectile>().direction = enemyLookDirection;
+        currentEntity.GetComponent<Projectile>().direction = weaponProjectileSpawnNode.transform.forward;
+
         var light = currentEntity.AddComponent<Light>();
         light.color = Color.red;
-
     }
 
     public override void TakeDamage(int passedDamage)
@@ -252,6 +338,11 @@ public class BehaviorTankBoss : EnemyBehavior
         UI_HealthBar.ResetHealthBar();
 
         base.Die();
+    }
+
+    private bool PercentHealth(float percentThreshold)
+    {
+        return ((float)health / (float)maxHealth) < percentThreshold; 
     }
 
 }

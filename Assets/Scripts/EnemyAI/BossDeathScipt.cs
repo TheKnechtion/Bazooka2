@@ -44,10 +44,10 @@ public class BossDeathScipt : MonoBehaviour
         {
             SpawnRewards(rewards);
         }
-
+        DeathEventInvoke();
         Destroy(gameObject);
     }
-
+    public void DeathEventInvoke() { }
     private void SpawnRewards(GameObject[] array)
     {
         for (int i = 0; i < array.Length; i++)
