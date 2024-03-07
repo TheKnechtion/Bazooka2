@@ -13,6 +13,8 @@ public class BehaviorTankBoss : EnemyBehavior
     private NavigationTankBoss tankNav;
     [SerializeField] private GameObject turret;
 
+    [SerializeField] private ParticleSystem ShootFX;
+
     private Quaternion bodyRotation;
 
     public static event EventHandler OnTankKilled;
@@ -98,7 +100,14 @@ public class BehaviorTankBoss : EnemyBehavior
         //if the player is out of range, the enemy will stop shooting
         //if (enemyPlayerTracker > enemyAttackRange_ExitAggro) { isAggrod = false; }
 
-        HandleEnemyAggro();
+        if (PlayerInfo.instance != null && PlayerInfo.instance.HeatlthState != PlayerHealthState.DEAD)
+        {
+            HandleEnemyAggro();
+        }
+        else
+        {
+            currentState = EnemyState.IDLE;
+        }
 
         switch (currentState)
         {
@@ -210,6 +219,11 @@ public class BehaviorTankBoss : EnemyBehavior
             //projectilePrefab = Resources.Load(currentEnemyWeapon.ProjectileName);
 
         AudioManager.PlayClipAtPosition(currentEnemyWeapon.weaponSound, weaponProjectileSpawnNode.transform.position);
+
+        if (ShootFX != null)
+        {
+            ShootFX.Play();
+        }
 
         currentEntity = Instantiate(projectilePrefab as GameObject, weaponProjectileSpawnNode.transform.position, Quaternion.LookRotation(Vector3.up, enemyLookDirection));
         currentEntity.GetComponent<Projectile>().currentWeaponInfo = currentEnemyWeapon;
