@@ -109,12 +109,20 @@ public class Navigation : MonoBehaviour
 
     public void StopMovement()
     {
-        agent.isStopped = true;
+        if (agent.isActiveAndEnabled && agent != null)
+        {
+            agent.isStopped = true;
+        }
     }
 
     public void ResumeMovement()
     {
-        agent.isStopped = false; 
+        if(agent.isActiveAndEnabled && agent != null)
+        {
+            agent.isStopped = false;
+        }
+
+        gameObject.SetActive(true);
     }
 
 

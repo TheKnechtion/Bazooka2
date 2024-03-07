@@ -167,6 +167,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
             //Play Death Animation
 
             gameObject.GetComponent<PlayerMovement>().enabled = false;
+            gameObject.GetComponent<PlayerManager>().enabled = false;
             gameObject.GetComponent<WeaponController>().enabled = false;
             gameObject.GetComponent<Animator>().SetBool("Dead", true);
         }
@@ -191,6 +192,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         RemainingAttempts--;
 
         gameObject.GetComponent<PlayerMovement>().enabled = true;
+        gameObject.GetComponent<PlayerManager>().enabled = true;
         gameObject.GetComponent<WeaponController>().enabled = true;
         gameObject.GetComponent<Animator>().SetBool("Dead", false);
 

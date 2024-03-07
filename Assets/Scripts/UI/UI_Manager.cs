@@ -335,6 +335,8 @@ public class UI_Manager : MonoBehaviour
     private void CheckpointSpawn(object sender, EventArgs e)
     {
         UI_state = CanvasState.NONE;
+
+        Cursor.visible = false;
     }
     private void PlayerInfo_OnPlayerHpChange(object sender, System.EventArgs e)
     {

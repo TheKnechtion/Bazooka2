@@ -229,10 +229,17 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
                 break;
             case EnemyState.CHASE:
                 lockedOn = false;
-                nav.ResumeMovement();
+                if (nav.isActiveAndEnabled && nav != null)
+                {
+                    nav.ResumeMovement();
+
+                }
                 break;
-            case EnemyState.ATTACK:
-                nav.StopMovement();
+            case EnemyState.ATTACK:                
+                if (nav.isActiveAndEnabled && nav != null)
+                {
+                    nav.StopMovement();
+                }
                 //verticalAngle = GetVerticalAngleToPlayer(transform.forward, playerPosition);
                 verticalAngle = AngleToPlayer(distanceToPlayer, enemyPosition, playerPosition);
                 if (verticalAngle < maxAimingAngle)
@@ -341,16 +348,24 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             if (Physics.Raycast(wallDetect, out hit, distanceToPlayer, environmentMask))
             {
                 //Debug.Log("I hit a wall");
-                nav.MoveToPlayer(isAggrod, false);
-                movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
+                
+                if (nav.isActiveAndEnabled && nav != null)
+                {
+                    nav.MoveToPlayer(isAggrod, false);
+                    movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
+                }
 
             }
             else
             {
                 //Debug.Log("Not hitting wall");
                 //transform.LookAt(targetToLookAt);
-                nav.MoveToPlayer(isAggrod, true);   
-                movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
+                if (nav.isActiveAndEnabled && nav != null)
+                {
+                    nav.MoveToPlayer(isAggrod, true);
+                    movementAnimator.SetFloat("MovementSpeed", agent.velocity.magnitude);
+                }
+               
 
                 if (inShootRange && SetToAttack)
                 {

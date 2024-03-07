@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Explosive : MonoBehaviour
 {
-    [SerializeField] private float ExplosionRadius;
-    [SerializeField] private int Damage;
+    public float ExplosionRadius;
+    public int Damage;
     [SerializeField] private Collider myCollider;
 
     [SerializeField] private GameObject ExplosionFXPrefab;

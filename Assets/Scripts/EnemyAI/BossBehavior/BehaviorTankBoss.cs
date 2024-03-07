@@ -22,6 +22,8 @@ public class BehaviorTankBoss : EnemyBehavior
 
     [SerializeField] private HealthBar healthBar;
 
+    [SerializeField] private GameObject MountedEnemy;
+
     private bool initialAggro;
 
     private GameObject UI_Reference;
@@ -37,6 +39,10 @@ public class BehaviorTankBoss : EnemyBehavior
         setStats();
         agent = GetComponent<NavMeshAgent>();
 
+        if (MountedEnemy != null)
+        {
+            MountedEnemy.SetActive(false);
+        }
 
 
         //ensures that if the room  is beaten, this won't spawn again
@@ -107,6 +113,11 @@ public class BehaviorTankBoss : EnemyBehavior
                 break;
             default:
                 break;
+        }
+
+        if (health / maxHealth < 0.5f)
+        {
+            MountedEnemy.SetActive(true);
         }
     }
 
