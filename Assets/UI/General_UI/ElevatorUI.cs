@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.EventSystems;
-using UnityEditor.Search;
 using UnityEngine.UI;
 
 public class ElevatorUI : MonoBehaviour
