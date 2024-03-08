@@ -2771,7 +2771,7 @@ MonoBehaviour:
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
   smokeEffect: {fileID: 0}
-  FuseTime: 3
+  fuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
   fuseMaterial: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
@@ -10383,15 +10383,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1734040995559719501, guid: 1ffceae5577a1ae458c008d9faabfa75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.08
+      value: 10.18
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 1ffceae5577a1ae458c008d9faabfa75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.04
+      value: 14.25
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 1ffceae5577a1ae458c008d9faabfa75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.96
+      value: 14.34
       objectReference: {fileID: 0}
     - target: {fileID: 1734040995559719501, guid: 1ffceae5577a1ae458c008d9faabfa75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11391,6 +11391,10 @@ PrefabInstance:
     - target: {fileID: 998470444300104796, guid: 3fb42eabbdd7b0440ad846b93b0fbec8, type: 3}
       propertyPath: Damage
       value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 998470444300104796, guid: 3fb42eabbdd7b0440ad846b93b0fbec8, type: 3}
+      propertyPath: FuseTime
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 1913353484399190155, guid: 3fb42eabbdd7b0440ad846b93b0fbec8, type: 3}
       propertyPath: m_Name

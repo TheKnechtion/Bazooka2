@@ -109,7 +109,7 @@ public class BouncingProjectile : ProjectileBase
     {
         if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damageable))
         {
-            if (!damageable.ArmoredTarget)
+            if (!damageable.ArmoredTarget || ArmorPen)
             {
                 damageable.TakeDamage(damage);
                 if (doSplashDamage)
@@ -169,6 +169,7 @@ public class BouncingProjectile : ProjectileBase
 
             damage = stats.Damage;
             doSplashDamage = stats.DoSplashDamage;
+            ArmorPen = stats.ArmorPen;
             splashDamage = stats.SplashDamage;
             splashRadius = stats.SplashRadius;
             bounceCount = stats.BounceCount;
