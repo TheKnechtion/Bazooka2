@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class ExplosiveBarrel : DestroyableObject
 {
-    [SerializeField] private float FuseTime;
+    [SerializeField] private float fuseTime;
+    public float FuseTime { 
+        get { return fuseTime; } 
+        set 
+        {
+            if (value > 0)
+            {
+                fuseTime = value;
+            }
+            else
+            {
+                fuseTime = 0;
+            }
+        } 
+    }
 
     [SerializeField] private Explosive explosive;
     private bool isDestroyed;
@@ -60,7 +74,7 @@ public class ExplosiveBarrel : DestroyableObject
             render.materials = explosiveMats;
         }
 
-        yield return new WaitForSeconds(FuseTime);
+        yield return new WaitForSeconds(fuseTime);
 
         explosive.Explode();
 

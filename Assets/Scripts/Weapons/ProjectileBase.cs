@@ -13,6 +13,8 @@ public abstract class ProjectileBase : MonoBehaviour
     protected int bounceCount;
     protected int speed;
 
+    protected bool ArmorPen;
+
     protected float lifeTime;
     protected float splashRadius;
 

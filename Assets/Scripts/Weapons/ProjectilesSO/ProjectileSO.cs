@@ -8,7 +8,10 @@ public class ProjectileSO : ScriptableObject
     public ProjectileType projectileType;
     public LayerMask EnvironmentMask;
     public int Damage;
+
     public bool DoSplashDamage;
+    public bool ArmorPen;
+
     public int SplashDamage;
     public int BounceCount;
     public int Speed;

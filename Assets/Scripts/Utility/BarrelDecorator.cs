@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class BarrelDecorator : MonoBehaviour
 {
+    [Header("Barrel Instance Attributes")]
     [SerializeField] private float Radius;
+    [SerializeField] private float FuseTime;
     [SerializeField] private int Damage;
     [SerializeField] private GameObject BarrelPrefab;
     [Tooltip("How long (seconds) it takes to spawn a new barrel")]
     [Range(0.5f, 10.0f)]
     [SerializeField] private float SpawnDelay;
 
-    private Explosive heldExplosive;
+    private Explosive explosiveComponent;
+    private ExplosiveBarrel barrelComponent;
     private GameObject BarrelRef;
 
     private bool CreatingBarrel;
@@ -35,11 +38,17 @@ public class BarrelDecorator : MonoBehaviour
     private void CreateDecoratedBarrel()
     {
         BarrelRef = Instantiate(BarrelPrefab, transform.position, transform.rotation);
-        heldExplosive = BarrelRef.GetComponent<Explosive>();
-        if (heldExplosive != null)
+        explosiveComponent = BarrelRef.GetComponent<Explosive>();
+        if (explosiveComponent != null)
         {
-            heldExplosive.ExplosionRadius = Radius;
-            heldExplosive.Damage = Damage;
+            explosiveComponent.ExplosionRadius = Radius;
+            explosiveComponent.Damage = Damage;
+        }
+
+        barrelComponent = BarrelRef.GetComponent<ExplosiveBarrel>();
+        if (barrelComponent != null)
+        {
+            barrelComponent.FuseTime = FuseTime;
         }
     }
 
