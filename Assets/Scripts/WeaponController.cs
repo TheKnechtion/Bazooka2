@@ -250,8 +250,22 @@ public class WeaponController:MonoBehaviour
         return tempWeaponInfo;
     }
 
+    public void ResetToBase()
+    {
+        List<GameObject> temp;
+        temp = WeaponArray.ToList();
+        temp.Clear();
+        WeaponArray = temp.ToArray();
 
+        for (int i = 0; i < prefabRefernceArray.Length; i++)
+        {
+            GameObject newWeap = Instantiate(prefabRefernceArray[i], weaponLocation);
+            WeaponArray[i] = newWeap;
+            WeaponArray[i].SetActive(false);
+        }
 
+        
+    }
 }
 
 

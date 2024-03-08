@@ -39,6 +39,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: ExplosionRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: fuseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Height
+      value: 2.5730882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Radius
+      value: 0.76857036
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.x
+      value: 0.013618052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.y
+      value: 0.92380595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06258273
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.025
@@ -91,49 +131,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
     - target: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       propertyPath: m_Name
       value: BombBarrel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: Damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181088096042595386, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: ExplosionRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745812309659407436, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068d9d533e737984eb0a925091a4a3c6, type: 2}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4538967351816389198, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: fuseMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Height
-      value: 2.5730882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Radius
-      value: 0.76857036
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.x
-      value: 0.013618052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.y
-      value: 0.92380595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691193135284230771, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
-      propertyPath: m_Center.z
-      value: -0.06258273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -200,7 +212,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  FuseTime: 3
+  swapModel: {fileID: 0}
+  destroyThese: []
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
+  fuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 6342719732654357591}
   fuseMaterial: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}

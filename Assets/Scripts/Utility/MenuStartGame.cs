@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuStartGame : MonoBehaviour
 {
+    public static event EventHandler OnRestart;
     public void StartGame()
     {
         SceneManager.LoadScene(1, LoadSceneMode.Single);
@@ -17,6 +19,7 @@ public class MenuStartGame : MonoBehaviour
 
     public void RestartGame()
     {
+        /*
         GameObject f = GameObject.Find("GameManager");
         Destroy(f);
         GameObject a = GameObject.Find("Evac_Exit");
@@ -29,11 +32,12 @@ public class MenuStartGame : MonoBehaviour
         Destroy(w); 
         GameObject e = GameObject.Find("Canvas");
         Destroy(e);
+        */
 
-
-        Scene curerentScene = SceneManager.GetActiveScene();
-        //SceneManager.UnloadSceneAsync(curerentScene);
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        //We restart fully from the current scene
+        OnRestart?.Invoke(this, EventArgs.Empty);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex, LoadSceneMode.Single);
     }
 
     public void CheckpointRestart()
