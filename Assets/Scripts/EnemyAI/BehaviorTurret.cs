@@ -232,6 +232,8 @@ public class BehaviorTurret : EnemyBehavior
         float viewRad = (degree) * Mathf.Deg2Rad;
         return new Vector3(Mathf.Sin(viewRad), 0, Mathf.Cos(viewRad));
     }
+
+    /*
     protected override void OnDrawGizmosSelected()
     {
         base.OnDrawGizmosSelected();
@@ -245,6 +247,6 @@ public class BehaviorTurret : EnemyBehavior
         //Handles.color = Color.red;
         Handles.DrawLine(transform.position, transform.position + leftViewSight.normalized * enemyAttackRange_AttackRange);
     }
-
+    */
 
 }
