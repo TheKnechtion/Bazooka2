@@ -199,9 +199,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  swapModel: {fileID: 0}
+  destroyThese: []
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
   FuseTime: 3
   explosive: {fileID: 0}
-  meshObject: {fileID: 7313226198808451634, guid: 19b9e984d88917946964b7c12b8ed223, type: 3}
+  meshObject: {fileID: 6342719732654357591, guid: 2dee651bc9a13524894384838aeb2a74, type: 3}
   fuseMaterial: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
 --- !u!65 &2751345696009661729
 BoxCollider:
@@ -285,6 +290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objSize: 1.75
+  objName: 
+  colliders: []
 --- !u!4 &6368762450653581618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
