@@ -71,6 +71,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
     public event EventHandler<int> OnPlayerDeath;
     public int RemainingAttempts;
+    [SerializeField] private int MaxAttempts;
 
     public event EventHandler CheckpointRestarted;
 
@@ -93,6 +94,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         CameraSwitcher.OnCameraEnable += cameraSwitched;
         CameraSwitcher.OnCameraDisable += cameraReturned;
         GameManager.OnPlayerWin += OnWin;
+        MenuStartGame.OnRestart += OnLevelRestart;
 
         state = PlayerState.VULNERABLE;
         healthState = PlayerHealthState.ALIVE;
@@ -100,6 +102,14 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
 
         _instance = this;
+    }
+
+    //Level restart Player remaining attempts
+    //And clears weapons except BASE bazooka
+    private void OnLevelRestart(object sender, EventArgs e)
+    {
+        RemainingAttempts = MaxAttempts;
+        //weaponController.ResetToBase();
     }
 
     private void OnWin(object sender, EventArgs e)
@@ -166,6 +176,15 @@ public class PlayerInfo:MonoBehaviour, IDamagable
             gameObject.GetComponentInChildren<PickUpObject>().StopHolding();
         }
 
+        //Disable controls
+        //Play Death Animation
+
+        gameObject.GetComponent<PlayerMovement>().enabled = false;
+        gameObject.GetComponent<PlayerManager>().enabled = false;
+        gameObject.GetComponent<WeaponController>().enabled = false;
+        gameObject.GetComponent<Animator>().SetBool("Dead", true);
+
+        /*
         if (RemainingAttempts > 0)
         {
             //Disable controls
@@ -181,6 +200,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
             //destroy's the player game object
             Destroy(this.gameObject);
         }
+        */
 
         //StartCoroutine(DeathInvoking(1.5f));
         OnPlayerDeath?.Invoke(this, RemainingAttempts);

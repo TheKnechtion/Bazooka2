@@ -9,6 +9,7 @@ public class HelicopterEvac : Objective
     [SerializeField] bool useDefaultText;
     [SerializeField] private GameObject EvacZone;
     [SerializeField] private bool DisableZoneOnStart;
+    [SerializeField] private bool CompleteByDefault;
 
     public static event EventHandler MoveToNext;
     private void Awake()
@@ -23,6 +24,8 @@ public class HelicopterEvac : Objective
         }
 
         ObjectiveCompleted = false;
+
+        if(CompleteByDefault) { ObjectiveCompleted = true; }
 
         if (DisableZoneOnStart)
         {
@@ -72,5 +75,9 @@ public class HelicopterEvac : Objective
         }
     }
 
+    private void Update()
+    {
+        Debug.Log("Obj completed: "+ObjectiveCompleted);
+    }
 
 }
