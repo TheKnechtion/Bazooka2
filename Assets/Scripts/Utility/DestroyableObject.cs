@@ -120,22 +120,24 @@ public class DestroyableObject : MonoBehaviour, IDamagable
             //Destroy(gameObject);
             Die();
         }
-
-        if (parentObj.name == "AttachPoint")
-        {
-            tempManager = parentObj.parent.parent.parent.parent.GetComponent<PlayerManager>();
-            tempManager.CanCarryObjectOnBack = true;
-            tempManager.isCarryingObjectOnBack = false;
-
-
-            Destroy(gameObject.transform.parent.gameObject);
-            //Destroy(gameObject);
-            Die();
-        }
         else
         {
-            //Destroy(gameObject);
-            Die();
-        }        
+            if (parentObj.name == "AttachPoint")
+            {
+                tempManager = parentObj.parent.parent.parent.parent.GetComponent<PlayerManager>();
+                tempManager.CanCarryObjectOnBack = true;
+                tempManager.isCarryingObjectOnBack = false;
+
+
+                Destroy(gameObject.transform.parent.gameObject);
+                //Destroy(gameObject);
+                Die();
+            }
+            else
+            {
+                //Destroy(gameObject);
+                Die();
+            }
+        }
     }
 }

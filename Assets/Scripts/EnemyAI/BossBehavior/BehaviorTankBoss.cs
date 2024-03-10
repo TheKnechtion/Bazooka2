@@ -187,11 +187,14 @@ public class BehaviorTankBoss : EnemyBehavior
             {
                 Physics.Raycast(weaponProjectileSpawnNode.transform.position, transform.forward, out hit);
 
-                if (inShootRange && hit.collider.gameObject.tag == "Player")
+                if (hit.transform != null)
                 {
-                    currentState = EnemyState.ATTACK;
-                    HandleShooting();
-                }
+                    if (inShootRange && hit.collider.gameObject.tag == "Player")
+                    {
+                        currentState = EnemyState.ATTACK;
+                        HandleShooting();
+                    }
+                }                
             }
         }
         else
@@ -249,6 +252,8 @@ public class BehaviorTankBoss : EnemyBehavior
     private IEnumerator DavinciAttack(float time, float spinSpeed = 1)
     {
         DavinciAtkActive = true;
+        
+
         Quaternion newRotation = new Quaternion();
         float t = 0.0f;
         bool shotsFired = false;

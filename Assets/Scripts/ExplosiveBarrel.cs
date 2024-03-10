@@ -40,7 +40,7 @@ public class ExplosiveBarrel : DestroyableObject
         }
 
         isDestroyed = false;
-        explosive = this.GetComponent<Explosive>();
+        explosive = gameObject.GetComponent<Explosive>();
 
         explosive.CanDestroy += OnFinishedExploding;
     }
@@ -69,9 +69,9 @@ public class ExplosiveBarrel : DestroyableObject
     {
         if (fuseMaterial != null)
         {
-            explosiveMats[0] = render.material;
+            explosiveMats[0] = render.sharedMaterial;
             explosiveMats[1] = fuseMaterial;
-            render.materials = explosiveMats;
+            render.sharedMaterials = explosiveMats;
         }
 
         yield return new WaitForSeconds(fuseTime);

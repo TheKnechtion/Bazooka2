@@ -377,4 +377,24 @@ public class UI_Manager : MonoBehaviour
         
     }
 
+    private void OnDestroy()
+    {
+        GameManager.OnPlayerLose -= GameManager_OnPlayerLose;
+        GameManager.OnPlayerWin -= GameManager_OnPlayerWin;
+        GameManager.OnEvacStart -= GameManager_OnEvacStart;
+
+        PlayerInfo.OnPlayerHpChange -= PlayerInfo_OnPlayerHpChange;
+        PlayerInfo.instance.CheckpointRestarted -= CheckpointSpawn;
+
+        PlayerManager.OnPlayerWeaponChange -= PlayerManager_OnPlayerWeaponChange;
+        EnemySpawnManager.OnEnemyDeath -= EnemySpawnManager_OnEnemyDeath;
+
+        PlayerManager.OnPlayerShoot -= PlayerManager_OnPlayerProjectileAmountChange;
+        PlayerManager.OnPlayerWeaponChange -= PlayerManager_OnPlayerProjectileAmountChange;
+
+        PlayerProjectile.OnExplosion -= PlayerManager_OnPlayerProjectileAmountChange;
+
+        WeaponPickup.OnWeaponPickedUp -= OnWeaponPickedUp;
+        Item.OnWeaponPickUp -= Item_OnWeaponPickUp;
+    }
 }

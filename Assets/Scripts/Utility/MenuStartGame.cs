@@ -19,7 +19,7 @@ public class MenuStartGame : MonoBehaviour
 
     public void RestartGame()
     {
-        /*
+        
         GameObject f = GameObject.Find("GameManager");
         Destroy(f);
         GameObject a = GameObject.Find("Evac_Exit");
@@ -32,7 +32,6 @@ public class MenuStartGame : MonoBehaviour
         Destroy(w); 
         GameObject e = GameObject.Find("Canvas");
         Destroy(e);
-        */
 
         //We restart fully from the current scene
         OnRestart?.Invoke(this, EventArgs.Empty);

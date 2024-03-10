@@ -45,7 +45,10 @@ public class HelicopterEvac : Objective
     private void Completed(object sender, EventArgs e)
     {
         CompleteObjective();
-        EvacZone.SetActive(true);
+        if (EvacZone != null)
+        {
+            EvacZone.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,11 +76,6 @@ public class HelicopterEvac : Objective
         {
             UI_Manager.StopShow_RoomSelect();
         }
-    }
-
-    private void Update()
-    {
-        Debug.Log("Obj completed: "+ObjectiveCompleted);
     }
 
 }
