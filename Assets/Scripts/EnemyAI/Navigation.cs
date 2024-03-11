@@ -28,6 +28,7 @@ public class Navigation : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        gameObject.SetActive(true);
         agent = GetComponent<NavMeshAgent>();
 
         eb = GetComponent<EnemyBehavior>();

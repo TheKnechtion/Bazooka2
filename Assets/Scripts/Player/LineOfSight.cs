@@ -37,7 +37,8 @@ public class LineOfSight : MonoBehaviour
         direction = Vector3.zero;
         distance = 0.0f;
 
-        CheckingMaskInt =  LayerMask.NameToLayer(CheckingMask.ToString());
+        CheckingMaskInt =  CheckingMask.value;
+        int aksen = EnvironmentMask.value;
     }
 
     // Update is called once per frame
@@ -63,7 +64,7 @@ public class LineOfSight : MonoBehaviour
                     DotProduct = Vector3.Dot(gameObject.transform.forward, direction);
                     angleToTarget = AngleToTarget(distance, transform.position, CollidersHit[i].transform.position);
 
-                    if (Mathf.Abs(DotProduct) > RadSpotAngle && angleToTarget <= 30.0f )
+                    if (DotProduct > RadSpotAngle && angleToTarget <= 30.0f )
                     {
                         if (!Physics.Raycast(gameObject.transform.position, direction, distance, EnvironmentMask))
                         {

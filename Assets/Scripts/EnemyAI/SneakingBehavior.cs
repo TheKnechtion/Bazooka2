@@ -54,7 +54,10 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
 
     protected override void Update()
     {
-        targetPos = PlayerInfo.instance.playerPosition;
+        if (PlayerInfo.instance != null)
+        {
+            targetPos = PlayerInfo.instance.playerPosition;
+        }
 
         switch (stealthState)
         {
@@ -114,13 +117,11 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
                 break;
             case EnemyState.ATTACK:
 
-                //Deal damage to player within trigger attack-zone
-                //Play attack anim
-
-                //Scurry after Attacking (Will be same as spotted scurry)
 
                 if (damagable != null)
                 {
+                    //Play attack animation
+
                     damagable.TakeDamage(damage);
                 }
                 attackZone.SetActive(false);

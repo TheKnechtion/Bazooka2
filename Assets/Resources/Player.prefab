@@ -310,7 +310,7 @@ MonoBehaviour:
     m_Bits: 1024
   EnvironmentMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 513
   VisionRadius: 8
   SpottingAngle: 40
 --- !u!1 &7917691548880127617
@@ -1706,6 +1706,7 @@ MonoBehaviour:
   playerLookDirection: {x: 0, y: 0, z: 0}
   state: 0
   RemainingAttempts: 1
+  MaxAttempts: 0
 --- !u!114 &6410629799103784124
 MonoBehaviour:
   m_ObjectHideFlags: 0
