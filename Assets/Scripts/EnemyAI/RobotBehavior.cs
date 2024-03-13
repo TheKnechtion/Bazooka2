@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -30,6 +31,7 @@ public class RobotBehavior : EnemyBehavior
     private bool Grabbing;
 
     private int EscapedPressCount;
+    private int EscapedPressRequired;
 
     //Had to do this, currentState was conflicting with switch-statement,
     //Not sure why...
@@ -42,6 +44,11 @@ public class RobotBehavior : EnemyBehavior
 
     public UnityEvent OnGrabEvent;
     public UnityEvent OnLetGoEvent;
+
+
+
+    [SerializeField] private GameObject DebugUIObj;
+    private TextMeshProUGUI DebugUI;
     protected override void Start()
     {
         base.Start();
@@ -58,6 +65,9 @@ public class RobotBehavior : EnemyBehavior
         Grabbing = false;
 
         EscapedPressCount = 0;
+        EscapedPressRequired = 5;
+
+        DebugUI = DebugUIObj.GetComponentInChildren<TextMeshProUGUI>();   
     }
 
     protected override void Update()
@@ -91,67 +101,81 @@ public class RobotBehavior : EnemyBehavior
             RobotState = EnemyState.IDLE;
         }
 
-        switch (RobotState)
+        if (Time.timeScale == 1.0f)
         {
-            case EnemyState.IDLE:
-                Debug.Log("Switch Idle");
-                nav.StopMovement();
+            switch (RobotState)
+            {
+                case EnemyState.IDLE:
+                    Debug.Log("Switch Idle");
+                    nav.StopMovement();
 
-                if (!StunCalled)
-                {
-                    if (isAggrod)
+                    if (!StunCalled)
                     {
-                        RobotState = EnemyState.CHASE;
-                    }
-                }
-
-                break;
-            case EnemyState.CHASE:
-                Debug.Log("Switch Chase");
-
-                if (nav != null)
-                {
-                    nav.MoveToPlayer(true, false);
-                }
-                if (!isAggrod)
-                {
-                    RobotState = EnemyState.IDLE;
-                }
-                if (Grabbing)
-                {
-                    RobotState = EnemyState.ATTACK;
-                }
-
-                break;
-            case EnemyState.ATTACK:
-                Debug.Log("Switch Attack");
-                nav.StopMovement();
-
-                if (Grabbing)
-                {
-                    PlayerObject.transform.position = GrabPoint;
-                }
-
-                if (!StunCalled && Input.GetKeyDown(EscapeKey))
-                {
-                    EscapedPressCount++;
-                    if (EscapedPressCount > 5)
-                    {
-                        Grabbing = false;
-
-                        if (PlayerObject != null)
+                        if (isAggrod)
                         {
-                            OnLetGo(PlayerObject);
+                            RobotState = EnemyState.CHASE;
                         }
                     }
-                }
 
-                break;
-            default:
-                RobotState = EnemyState.IDLE;
-                break;
-        }
-        Debug.Log("Post Switch: "+ RobotState);
+                    break;
+                case EnemyState.CHASE:
+                    Debug.Log("Switch Chase");
+
+                    if (nav != null)
+                    {
+                        nav.MoveToPlayer(true, false);
+                    }
+                    if (!isAggrod)
+                    {
+                        RobotState = EnemyState.IDLE;
+                    }
+                    if (Grabbing)
+                    {
+                        RobotState = EnemyState.ATTACK;
+                    }
+
+                    break;
+                case EnemyState.ATTACK:
+                    Debug.Log("Switch Attack");
+                    nav.StopMovement();
+
+                    if (Grabbing)
+                    {
+                        PlayerObject.transform.position = GrabPoint;
+                        PlayerObject.transform.rotation = Quaternion.LookRotation(-enemyLookDirection);
+                    }
+
+                    if (!StunCalled && Input.GetKeyDown(EscapeKey))
+                    {
+                        EscapedPressCount++;
+                        if (EscapedPressCount >= EscapedPressRequired)
+                        {
+                            Grabbing = false;
+
+                            if (PlayerObject != null)
+                            {
+                                OnLetGo(PlayerObject);
+                            }
+                        }
+                    }
+
+                    if (DebugUI != null)
+                    {
+                        if (!DebugUI.isActiveAndEnabled)
+                        {
+                            DebugUI.gameObject.SetActive(true);
+                        }
+
+                        displayInputs();
+                    }
+
+                    break;
+                default:
+                    RobotState = EnemyState.IDLE;
+                    break;
+            }
+            Debug.Log("Post Switch: " + RobotState);
+        }       
 
     }
 
@@ -181,8 +205,6 @@ public class RobotBehavior : EnemyBehavior
             t.enabled = false;
             m.enabled = false;
 
-            //StartCoroutine(SmoothGrab(other, GrabPoint, 0.8f));
-
         }
         return other.gameObject;
 
@@ -197,6 +219,7 @@ public class RobotBehavior : EnemyBehavior
 
             t.enabled = true;
             m.enabled = true;
+           
             RobotState = EnemyState.IDLE;
 
 
@@ -204,12 +227,18 @@ public class RobotBehavior : EnemyBehavior
             {
                 StartCoroutine(RobotStun(StunLength));
             }
+
+            if (DebugUI != null)
+            {
+                DebugUI.gameObject.SetActive(false);
+            }
+
         }
     }
     private IEnumerator RobotStun(float time)
     {
         StunCalled = true;
-
+        EscapedPressCount = 0;
         float t = 0.0f;
         GrabZone.gameObject.SetActive(false);
 
@@ -239,5 +268,10 @@ public class RobotBehavior : EnemyBehavior
         passedObj.transform.position = finalPos;
 
         yield return null;
+    }
+
+    private void displayInputs()
+    {
+        DebugUI.text = $"{EscapedPressCount}/{EscapedPressRequired}";
     }
 }
