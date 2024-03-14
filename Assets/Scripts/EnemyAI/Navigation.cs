@@ -90,6 +90,7 @@ public class Navigation : MonoBehaviour
             else
             { 
                 agent.stoppingDistance = 0;
+                StopAndLookTowardsDest(playerPos);
                 agent.SetDestination(playerPos);
             }
         }
@@ -126,6 +127,15 @@ public class Navigation : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    private void StopAndLookTowardsDest(Vector3 destination)
+    {
+        StopMovement();
+
+        Vector3 direction = destination - transform.position;
+        gameObject.transform.rotation = Quaternion.LookRotation(direction);
+
+        ResumeMovement();
+    }
 
     protected IEnumerator backUP()
     {

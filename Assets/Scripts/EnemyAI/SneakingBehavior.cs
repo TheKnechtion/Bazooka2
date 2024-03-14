@@ -127,6 +127,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
                 attackZone.SetActive(false);
 
 
+                sneakNav.CancelCurrentDestination();
                 currentState = EnemyState.FLEE;
 
                 break;
@@ -142,7 +143,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
                 else if (gameObject.transform.position == nextPos)
                 {
                     isFleeing = false;
-                    
+
                     stealthState = StealthState.HIDDEN;
                     currentState = EnemyState.IDLE;
                 }
@@ -157,6 +158,8 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
 
     private IEnumerator FleeArea()
     {
+        sneakNav.CancelCurrentDestination();
+
         isFleeing = true;
         foundPoint = false;
         while (!foundPoint)

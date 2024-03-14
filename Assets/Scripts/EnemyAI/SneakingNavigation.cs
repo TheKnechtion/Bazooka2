@@ -18,18 +18,20 @@ public class SneakingNavigation : MonoBehaviour
     private int FleeingType;
     private Vector3 PlatormSpot;
 
+    private bool TurnedToNewDest;
+
     //Debugging
     Vector3 testINit;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.angularSpeed = 360;
-        agent.stoppingDistance = 0.0f;
     }
     void Start()
     {
         directionToNext = Vector3.zero;
+        TurnedToNewDest = false;
+
 
         //To make sure that it will detect navmesh
         if (NavMesh.SamplePosition(gameObject.transform.position, out hit, 2, NavMesh.AllAreas))
@@ -56,6 +58,24 @@ public class SneakingNavigation : MonoBehaviour
 
     public void StopMovement()
     {
+        //agent.SetDestination(gameObject.transform.position);
+
+        if (agent.isActiveAndEnabled && agent != null)
+        {
+            agent.isStopped = false;
+        }
+    }
+
+    public void ResumeMovement()
+    {
+        if (agent.isActiveAndEnabled && agent != null)
+        {
+            agent.isStopped = false;
+        }
+    }
+
+    public void CancelCurrentDestination()
+    {
         agent.SetDestination(gameObject.transform.position);
     }
     public bool GetValidRandomPoint(Vector3 initialPos, out Vector3 nextPos)
@@ -64,6 +84,8 @@ public class SneakingNavigation : MonoBehaviour
         Vector3 randDir;
         Vector3 next;
         Vector3 finalPos;
+
+        TurnedToNewDest = false;
 
         FleeingType = Random.Range(0, 2);
 
@@ -97,6 +119,8 @@ public class SneakingNavigation : MonoBehaviour
         nextPos = initialPos;
         return false;
     }
+
+    
 
     public float GetDistance()
     {
