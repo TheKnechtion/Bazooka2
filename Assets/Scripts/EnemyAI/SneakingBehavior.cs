@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Unity.AI;
+using UnityEngine.AI;
 
 public enum StealthState {HIDDEN, SPOTTED}
 public class SneakingBehavior : EnemyBehavior, ISpottable
@@ -12,6 +13,8 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
     [SerializeField] private StealthState stealthState;
     private Vector3 targetPos; //Uses Player singelton
     private Vector3 nextPos;
+
+    private const float AnimCrossFadeTime = 0.2f;
 
     [Header("How close enemy must be to begin attack")]
     [SerializeField] private float enagageDistance;
@@ -32,9 +35,9 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
 
     private bool isFleeing;
     private bool foundPoint;
-
     protected override void Awake()
     {
+        base.Awake();
         remainingDistance = 0f;
     }
     protected override void Start()
@@ -43,6 +46,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
         currentState = EnemyState.IDLE;
 
         sneakNav = GetComponent<SneakingNavigation>();
+        agent = GetComponent<NavMeshAgent>();
 
         nextPos = Vector3.zero;
 
@@ -89,6 +93,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
         switch (currentState)
         {
             case EnemyState.IDLE:
+
                 attackZone.SetActive(false);
 
                 sneakNav.SetSpeed(walkSpeed);
@@ -123,6 +128,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
                     //Play attack animation
 
                     damagable.TakeDamage(damage);
+                    StartCoroutine(AttackAndReset(0.3f));
                 }
                 attackZone.SetActive(false);
 
@@ -140,7 +146,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
                 {
                     StartCoroutine(FleeArea());
                 }
-                else if (gameObject.transform.position == nextPos)
+                else if (ApproximatePosition(gameObject.transform.position, nextPos))
                 {
                     isFleeing = false;
 
@@ -152,6 +158,8 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
             default:
                 break;
         }
+
+        movementAnimator.SetFloat("MoveSpeed", agent.speed);
 
         //Debug.Log(nextPos);
     }
@@ -176,6 +184,27 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
         sneakNav.MoveTo(nextPos);
     }  
 
+    private IEnumerator AttackAndReset(float time)
+    {
+        movementAnimator.SetBool("Attack", true);
+
+        float t = 0.0f;
+        while (t < time)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+        movementAnimator.SetBool("Attack", false);
+
+        yield return null;
+    }
+
+    private bool ApproximatePosition(Vector3 start, Vector3 compareTo)
+    {
+        return Mathf.Abs(start.x - compareTo.x) <= 0.5f &&
+               Mathf.Abs(start.y - compareTo.y) <= 0.5f &&
+               Mathf.Abs(start.z - compareTo.z) <= 0.5f;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && other.TryGetComponent<IDamagable>(out damagable))

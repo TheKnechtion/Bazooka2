@@ -42,7 +42,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     [Header("Animation Attributes")]
     protected Animator movementAnimator;
-    [SerializeField] private RuntimeAnimatorController animController;
+    [SerializeField] protected RuntimeAnimatorController animController;
     public Animator MovementAnimator 
     {
         get { return movementAnimator; }
@@ -125,6 +125,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         TargetingEnabled = true;
 
         movementAnimator = GetComponent<Animator>();
+
         if (animController)
         {
             RuntimeAnimatorController newCon = Instantiate(animController);
