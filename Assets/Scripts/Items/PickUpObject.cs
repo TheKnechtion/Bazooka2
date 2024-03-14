@@ -34,7 +34,7 @@ public class PickUpObject : MonoBehaviour
         _playerControllerRef = new PlayerController();
         _playerControllerRef.PlayerInteract.Activate.performed += HandlePickUp;
         _playerControllerRef.PlayerInteract.Activate.canceled -= HandlePickUp;
-        GameManager.OnSceneChange += DestroyThis;
+        LevelManager.OnNewScene += DestroyThis;
     }
 
 
@@ -206,6 +206,11 @@ public class PickUpObject : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        LevelManager.OnNewScene -= DestroyThis;
     }
 
 

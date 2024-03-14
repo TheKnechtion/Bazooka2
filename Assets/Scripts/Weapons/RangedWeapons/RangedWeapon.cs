@@ -19,6 +19,7 @@ public class RangedWeapon : WeaponBase, IShoot
     public int currentAmmo;
     private GameObject newProjectile;
 
+    private List<Collider> barrelCollisions;
 
     [SerializeField]private float time;
 
@@ -44,6 +45,8 @@ public class RangedWeapon : WeaponBase, IShoot
         {
             userIsPlayer = true;
         }
+
+        barrelCollisions = new List<Collider>();
     }
 
     private void Update()
@@ -64,6 +67,25 @@ public class RangedWeapon : WeaponBase, IShoot
         {
             canShoot = true;
         }
+
+        if (barrelCollisions.Count == 0)
+        {
+            barrelObstructed = false;
+        }
+        else
+        {
+            barrelObstructed = true;
+            foreach (Collider other in barrelCollisions)
+            {
+                if (other == null)
+                {
+                    barrelCollisions.Remove(other);
+                    break;
+                }
+            }
+        }
+
+        Debug.Log("Barrel Colls "+barrelCollisions.Count);
     }
 
     private void HandleFireRate()
@@ -167,13 +189,19 @@ public class RangedWeapon : WeaponBase, IShoot
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        barrelObstructed = true;
+        if (!barrelCollisions.Contains(other))
+        {
+            barrelCollisions.Add(other);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        barrelObstructed = false;
+        if (barrelCollisions.Contains(other))
+        {
+            barrelCollisions.Remove(other);
+        }
     }
 
 }

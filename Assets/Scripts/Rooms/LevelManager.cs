@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,9 @@ public static class LevelManager
     public static void EnterNewScene(string nextScene)
     {
         Debug.Log("Moving to "+nextScene);
+
+        OnNewScene?.Invoke(null, EventArgs.Empty);
+
         SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
     }
 
