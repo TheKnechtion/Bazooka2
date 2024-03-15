@@ -62,16 +62,7 @@ public class BehaviorTurret : EnemyBehavior
         rightTurnQuat = Quaternion.Euler(rightTurn);
 
         //Pass the weapon script that attacthed to the object
-        //weaponController = gameObject.GetComponent<WeaponController>();
         weaponGrabber = gameObject.GetComponent<DataBaseWeaponGrabber>();
-
-
-        //set the enemy name to that of the game object
-        //enemyName = this.gameObject.name;
-
-        //create's the correct weapon for an enemy based on the spawned enemy's name
-        //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
-        //currentEnemyWeapon = weaponGrabber.MakeWeapon(weaponName);
 
         turretState = TurretState.SEARCHING;
     }
@@ -115,7 +106,10 @@ public class BehaviorTurret : EnemyBehavior
                 //Debug.Log("Looking for you...");
 
                 timeToDeagro = DeAggroTime;
-                SmoothRotate(initRotationEuler, 2.0f);
+                if (gameObject.transform.rotation.eulerAngles != initRotationEuler)
+                {
+                    SmoothRotate(initRotationEuler, 9.0f);
+                }
 
                 break;
             case TurretState.ENGAGED:
@@ -169,24 +163,6 @@ public class BehaviorTurret : EnemyBehavior
                 turretState = TurretState.SEARCHING;
             }
         }
-    }
-
-    private IEnumerator swivelView(Quaternion current, Quaternion TargetRotate)
-    {
-        isTurning = true;
-        while (t < timeToTurn)
-        {
-            transform.rotation = Quaternion.Slerp(current, TargetRotate, t);
-            t += 0.1f * Time.deltaTime;
-        }
-
-
-        yield return new WaitForSeconds(AimingTime);
-        t = 0;
-        swapDirection = !swapDirection;
-        isTurning = false;
-
-        yield return null;
     }
     protected override void HandleEnemyAggro()
     {
