@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SneakingNavigation : MonoBehaviour
+public class SneakingNavigation : MonoBehaviour, INavComponent
 {
     private NavMeshAgent agent;
     [SerializeField] private float searchRange;
@@ -74,7 +74,7 @@ public class SneakingNavigation : MonoBehaviour
         }
     }
 
-    public void CancelCurrentDestination()
+    public void CancelPath()
     {
         agent.SetDestination(gameObject.transform.position);
     }
