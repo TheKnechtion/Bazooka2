@@ -12,7 +12,7 @@ public class DeathScript : MonoBehaviour
     private Rigidbody rb_Body;
     private Collider coll;
     private EnemyBehavior eb;
-    private Navigation nav;
+    private INavComponent nav;
     private Renderer rend;
 
     [SerializeField] private Animator anim;
@@ -27,7 +27,7 @@ public class DeathScript : MonoBehaviour
         {
             coll = GetComponent<Collider>();
             eb = GetComponent<EnemyBehavior>();
-            nav = GetComponent<Navigation>();
+            nav = GetComponent<INavComponent>();
             rend = GetComponentInChildren<Renderer>();
         }
 
@@ -59,7 +59,7 @@ public class DeathScript : MonoBehaviour
                 rb_Body.isKinematic = false;
             }
 
-            if (nav != null && nav.isActiveAndEnabled)
+            if (nav != null)
             {
                 nav.StopMovement();
             }
@@ -87,7 +87,11 @@ public class DeathScript : MonoBehaviour
         //rend.enabled = false;
         coll.enabled = false;
         eb.enabled= false;
-        nav.enabled = false;
+
+        if (nav != null)
+        {
+            nav.CancelPath();
+        }
 
         anim.SetBool("Killed", true);
     }

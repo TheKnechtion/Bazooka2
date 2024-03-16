@@ -33,8 +33,9 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
 
     private IDamagable damagable;
 
-    private bool isFleeing;
-    private bool foundPoint;
+    private bool IsFleeing;
+    private bool FoundPoint;
+    private bool Attacking;
     protected override void Awake()
     {
         base.Awake();
@@ -50,8 +51,9 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
 
         nextPos = Vector3.zero;
 
-        isFleeing = false;
-        foundPoint = false;
+        IsFleeing = false;
+        FoundPoint = false;
+        Attacking = false;
 
         attackZone.SetActive(false);
     }
@@ -123,17 +125,15 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
             case EnemyState.ATTACK:
 
 
-                if (damagable != null)
+                if (damagable != null && !Attacking)
                 {
-                    //Play attack animation
-
-                    damagable.TakeDamage(damage);
+                    //Play attack animation and Damage
                     StartCoroutine(AttackAndReset(0.3f));
                 }
                 attackZone.SetActive(false);
 
 
-                sneakNav.CancelCurrentDestination();
+                sneakNav.CancelPath();
                 currentState = EnemyState.FLEE;
 
                 break;
@@ -142,13 +142,13 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
 
                 sneakNav.SetSpeed(runSpeed);
 
-                if (!isFleeing)
+                if (!IsFleeing)
                 {
                     StartCoroutine(FleeArea());
                 }
                 else if (ApproximatePosition(gameObject.transform.position, nextPos))
                 {
-                    isFleeing = false;
+                    IsFleeing = false;
 
                     stealthState = StealthState.HIDDEN;
                     currentState = EnemyState.IDLE;
@@ -166,16 +166,16 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
 
     private IEnumerator FleeArea()
     {
-        sneakNav.CancelCurrentDestination();
+        sneakNav.CancelPath();
 
-        isFleeing = true;
-        foundPoint = false;
-        while (!foundPoint)
+        IsFleeing = true;
+        FoundPoint = false;
+        while (!FoundPoint)
         {
-            foundPoint = sneakNav.GetValidRandomPoint(gameObject.transform.position, out nextPos);
+            FoundPoint = sneakNav.GetValidRandomPoint(gameObject.transform.position, out nextPos);
             if (nextPos == gameObject.transform.position)
             {
-                foundPoint = false;
+                FoundPoint = false;
             }
 
             yield return null;
@@ -186,7 +186,9 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
 
     private IEnumerator AttackAndReset(float time)
     {
-        movementAnimator.SetBool("Attack", true);
+        Attacking = true;
+        movementAnimator.Play("attack");
+        damagable.TakeDamage(damage);
 
         float t = 0.0f;
         while (t < time)
@@ -194,8 +196,7 @@ public class SneakingBehavior : EnemyBehavior, ISpottable
             t += Time.deltaTime;
             yield return null;
         }
-        movementAnimator.SetBool("Attack", false);
-
+        Attacking = false;
         yield return null;
     }
 

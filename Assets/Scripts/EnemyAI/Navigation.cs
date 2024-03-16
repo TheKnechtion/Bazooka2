@@ -5,7 +5,7 @@ using Unity.AI;
 using UnityEngine.AI;
 using System;
 
-public class Navigation : MonoBehaviour
+public class Navigation : MonoBehaviour, INavComponent
 {
     protected NavMeshAgent agent;
     protected EnemyBehavior eb;
@@ -159,5 +159,15 @@ public class Navigation : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void MoveTo(Vector3 t)
+    {
+        agent.SetDestination(t);
+    }
+
+    public void CancelPath()
+    {
+        agent.SetDestination(gameObject.transform.position);
     }
 }
