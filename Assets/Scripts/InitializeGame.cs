@@ -37,6 +37,9 @@ public class InitializeGame : MonoBehaviour
 
             //UI
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
+
+            //Decal Pool
+            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("DecalPool")), "DecalPool"));
         }
 
         if (NextScenes != null)

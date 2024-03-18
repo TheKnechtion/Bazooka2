@@ -8,6 +8,11 @@ using UnityEngine.InputSystem;
 public class RobotBehavior : EnemyBehavior
 {
     /// <summary>
+    /// Refernce to this Robot's rigidbody
+    /// </summary>
+    private Rigidbody myBody;
+
+    /// <summary>
     /// The area transform that will interact with the Player for grabbing.
     /// </summary>
     /// 
@@ -52,6 +57,8 @@ public class RobotBehavior : EnemyBehavior
     protected override void Start()
     {
         base.Start();
+
+        myBody = GetComponent<Rigidbody>();
 
         RobotState = EnemyState.IDLE;
 
@@ -191,13 +198,18 @@ public class RobotBehavior : EnemyBehavior
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerObject = OnGrab(other.gameObject);
+        OnGrab(other.gameObject);
     }
-    public GameObject OnGrab(GameObject other)
-    {
+    public void OnGrab(GameObject other)
+    {        
+
         if (other.TryGetComponent<PlayerMovement>(out PlayerMovement t) &&
             other.TryGetComponent<PlayerManager>(out PlayerManager m))
         {
+            GrabZone.gameObject.SetActive(false);
+
+            PlayerObject = other.gameObject;
+
             OnGrabEvent.Invoke();
             Grabbing = true;
             EscapedPressCount = 0;
@@ -206,8 +218,6 @@ public class RobotBehavior : EnemyBehavior
             m.enabled = false;
 
         }
-        return other.gameObject;
-
     }
 
     public void OnLetGo(GameObject other)

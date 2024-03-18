@@ -73,6 +73,7 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
+        /*
         time += Time.deltaTime;
 
         if(time >= despawnTime)
@@ -80,6 +81,7 @@ public class Projectile : MonoBehaviour
             DealSplashDamage();
             DeleteProjectile();
         }
+        */
 
         this.gameObject.GetComponent<Rigidbody>().velocity = direction * magnitude;
 
@@ -97,7 +99,7 @@ public class Projectile : MonoBehaviour
 
                 damageable.TakeDamage(damage);
                 DealSplashDamage();
-                DeleteProjectile();
+                //DeleteProjectile();
             }
         }
 
@@ -148,11 +150,7 @@ public class Projectile : MonoBehaviour
 
     void Bounce(Collision collision)
     {
-        if (gameObject.transform.rotation.x != 0.0f || gameObject.transform.rotation.z != 0.0f)
-        {
-            DeleteProjectile();
-        }
-        else if (numberOfBounces > 0)
+        if (numberOfBounces > 0)
         {
             isSpawning = false;
 

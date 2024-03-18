@@ -107,7 +107,6 @@ public class BouncingProjectile : ProjectileBase
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Called");
         if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damageable))
         {
             if (!damageable.ArmoredTarget || ArmorPen)
@@ -116,7 +115,7 @@ public class BouncingProjectile : ProjectileBase
                 if (doSplashDamage)
                     DealSplashDamage();
                
-                DeleteProjectile();
+                //DeleteProjectile();
             }
         }
 
@@ -182,5 +181,4 @@ public class BouncingProjectile : ProjectileBase
             lifeTime = stats.LifeTime;
         }
     }
-
 }

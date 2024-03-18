@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 66372672346960848}
   - component: {fileID: 6363951894643702198}
   - component: {fileID: 1238748140268772635}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: SniperProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c7a0002b3ddb147abbe44371894136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyVFX: {fileID: 0}
   LifeTime: 3
 --- !u!54 &6363951894643702198
 Rigidbody:

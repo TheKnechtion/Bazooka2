@@ -73,6 +73,7 @@ public class DestroyableObject : MonoBehaviour, IDamagable
     public virtual void Die()
     {
         OnDestroyed?.Invoke(this, EventArgs.Empty);
+
         if (dontDestroy)
         {
             if (destroyEffect != null)

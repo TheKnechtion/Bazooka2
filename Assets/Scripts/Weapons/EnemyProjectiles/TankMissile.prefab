@@ -114,7 +114,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.25
   m_Height: 0.95900965
@@ -5063,6 +5063,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2513975923631345461}
+  - component: {fileID: 7583303302411061641}
   m_Layer: 7
   m_Name: Body
   m_TagString: Projectile
@@ -5079,7 +5080,7 @@ Transform:
   m_GameObject: {fileID: 5998140780843481077}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5088,6 +5089,29 @@ Transform:
   - {fileID: 3499500301332701565}
   m_Father: {fileID: 2357540252391095322}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!136 &7583303302411061641
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5998140780843481077}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.17
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.23, z: 0}
 --- !u!1 &6880248605785837301
 GameObject:
   m_ObjectHideFlags: 0

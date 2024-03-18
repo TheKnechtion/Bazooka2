@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class DecalPool : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class DecalPool : MonoBehaviour
     private Queue<GameObject> ResetQueue;
     void Start()
     {
+        DontDestroyOnLoad(this);
         DecalStack = new Stack<GameObject>();
         ResetQueue = new Queue<GameObject>();
 
@@ -22,19 +24,19 @@ public class DecalPool : MonoBehaviour
             {
                 for (int n = 0; n < ExplosionDecals.Length; n++)
                 {
-                    GameObject newDecal = Instantiate(ExplosionDecals[n]);
+                    GameObject newDecal = Instantiate(ExplosionDecals[n], transform);
                     DecalStack.Push(newDecal);
                     newDecal.SetActive(false);  
                 }
             }
         }
 
-        DestroyProjectile.OnDestroy += DestroyProjectile_OnDestroy;
+        DestroyProjectile.ProjectileDestroyed += DestroyProjectile_OnDestroy;
     }
 
-    private void DestroyProjectile_OnDestroy(object sender, System.Tuple<Vector3, Quaternion> e)
+    private void DestroyProjectile_OnDestroy(object sender, System.Tuple<Vector3, Quaternion, Transform> e)
     {
-        GetDecal(e.Item1, e.Item2);
+        GetDecal(e.Item1, e.Item2, e.Item3);
     }
 
     private void Update()
@@ -44,22 +46,30 @@ public class DecalPool : MonoBehaviour
             DecalStack.Push(ResetQueue.Dequeue());
         }
     }
-    private void GetDecal(Vector3 position, Quaternion lookRotation)
+    private void GetDecal(Vector3 position, Quaternion lookRotation, Transform parent)
     {
         if (DecalStack.Count > 0)
         {
-            GameObject decal = DecalStack.Pop();
-            decal.transform.position = position;
-            decal.transform.rotation = lookRotation;
-            decal.SetActive(true);
+            if (position != null)
+            {
+                GameObject decal = DecalStack.Pop();
+                decal.transform.position = position;
+                decal.transform.rotation = lookRotation;
+                decal.transform.SetParent(parent, true);
+                decal.SetActive(true);
 
-            StartCoroutine(ResetIntoStack(decal, 3));
+                StartCoroutine(ResetIntoStack(decal, 3));
+            }
         }
     }
     private void DeativateAndReset(GameObject passedObj)
     {
-        passedObj.SetActive(false);
-        ResetQueue.Enqueue(passedObj);
+        if (passedObj != null)
+        {
+            passedObj.SetActive(false);
+            passedObj.transform.SetParent(transform);
+            ResetQueue.Enqueue(passedObj);
+        }        
     }
 
     private IEnumerator ResetIntoStack(GameObject passedObj, float time)
@@ -78,6 +88,6 @@ public class DecalPool : MonoBehaviour
 
     private void OnDestroy()
     {
-        DestroyProjectile.OnDestroy -= DestroyProjectile_OnDestroy;
+        DestroyProjectile.ProjectileDestroyed -= DestroyProjectile_OnDestroy;
     }
 }

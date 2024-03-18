@@ -13,9 +13,15 @@ public class DestroyProjectile : MonoBehaviour
 
     [SerializeField] private float LifeTime;
 
-    public static event EventHandler<Tuple<Vector3, Quaternion>> OnDestroy;
+    private int ExlcudeFromRaycastMask;
+
+    public static event EventHandler<Tuple<Vector3, Quaternion, Transform>> ProjectileDestroyed;
     void Start()
     {
+        //These are bitmask layers to EXCLUDE for setting the damage decals
+        ExlcudeFromRaycastMask = ~((1 << 7) | (1 << 8));
+        //Debug.Log(Convert.ToString(ExlcudeFromRaycastMask, 2).PadLeft(32, '0'));
+
         if (LifeTime > 0.0f)
         {
             Destroy(gameObject, LifeTime);
@@ -31,42 +37,33 @@ public class DestroyProjectile : MonoBehaviour
             bounceBullet = bp;
             bounceBullet.OnDestroyed += Bullet_OnDestroyed;
         }
+
     }
 
     private void Bullet_OnDestroyed(object sender, System.EventArgs e)
     {
         AudioManager.PlayClipAtPosition("explosion_sound",transform.position);
 
-        //Set the explosion Decal position here       
-        Debug.DrawRay(transform.position, transform.forward * 3.0f, Color.red);
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 3.0f))
+        //Set the explosion Decal position here    
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 3.0f, ExlcudeFromRaycastMask))
         {
-            Quaternion rotation = Quaternion.LookRotation(-hit.normal, Vector3.up);
-            Tuple<Vector3, Quaternion> hitData = new Tuple<Vector3, Quaternion>(hit.point, rotation);
-            OnDestroy.Invoke(this, hitData);
+            if (hit.transform.GetComponent<DestroyableObject>() == null)
+            {
+                Quaternion rotation = Quaternion.LookRotation(-hit.normal, Vector3.up);
+                Tuple<Vector3, Quaternion, Transform> hitData = new Tuple<Vector3, Quaternion, Transform>(
+                    hit.point, rotation,
+                    hit.collider.gameObject.transform);
 
-            /*
-             * DecalPool.GetRandomDecal(transform.position, -hit.normal)
-             * 
-             * Grabs a decal then sets its postion 
-             * and Rotation based of the normal hit.
-             * 
-             * Decals will disable after time set in the pool
-             */
+                ProjectileDestroyed?.Invoke(this, hitData);
+            }
         }
 
         if (destroyVFX != null)
         {
             GameObject Effect = Instantiate(destroyVFX, transform.position, Quaternion.identity);
             Destroy(Effect, 3f);
-        }
-       
+        }       
 
         Destroy(gameObject);
-    }
-
-    private void DisableComponents()
-    {
-        bullet.direction = Vector3.zero;
     }
 }

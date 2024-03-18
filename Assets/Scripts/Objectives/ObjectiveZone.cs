@@ -125,14 +125,17 @@ public class ObjectiveZone : MonoBehaviour
 
     void CompletionCheck()
     {
-        if(zone_Objective.ObjectiveCompleted)
+        if(zone_Objective != null)
         {
-            CompleteObjective();
-        }
-        else
-        {
-            UncompleteObjective();
-        }
+            if (zone_Objective.ObjectiveCompleted)
+            {
+                CompleteObjective();
+            }
+            else
+            {
+                UncompleteObjective();
+            }
+        }        
     }
 
 
