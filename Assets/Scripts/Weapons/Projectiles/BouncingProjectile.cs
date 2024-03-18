@@ -107,6 +107,7 @@ public class BouncingProjectile : ProjectileBase
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Called");
         if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damageable))
         {
             if (!damageable.ArmoredTarget || ArmorPen)
@@ -146,11 +147,15 @@ public class BouncingProjectile : ProjectileBase
         #endregion
 
         //if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
-        if (bounceCount <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); DeleteProjectile(); }
-
-
-
-        Bounce(collision);
+        if (bounceCount <= 0 || collision.gameObject.tag == "Projectile") 
+        { 
+            DealSplashDamage();
+            DeleteProjectile(); 
+        }
+        else
+        {
+            Bounce(collision);
+        }
 
         //if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
         if (collision.gameObject.tag == "LimitedBounceObject") { collision.gameObject.GetComponent<LimitedBounceObject>().ProjectileCollision(); }

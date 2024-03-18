@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,17 +8,12 @@ public class DestroyProjectile : MonoBehaviour
 {
     Projectile bullet;
     BouncingProjectile bounceBullet;
-    //ParticleSystem particleObject;
-    UnityEngine.Object destroyedEffect;
 
     [SerializeField] private GameObject destroyVFX;
 
     [SerializeField] private float LifeTime;
 
-    private Collider coll;
-    private Renderer rend;
-
-    // Start is called before the first frame update
+    public static event EventHandler<Tuple<Vector3, Quaternion>> OnDestroy;
     void Start()
     {
         if (LifeTime > 0.0f)
@@ -25,42 +21,39 @@ public class DestroyProjectile : MonoBehaviour
             Destroy(gameObject, LifeTime);
         }
 
-        coll = GetComponent<Collider>();
-        rend = GetComponent<Renderer>();
-
-        try
+        if (TryGetComponent<Projectile>(out Projectile p))
         {
-            bullet = GetComponent<Projectile>();
+            bullet = p;
             bullet.OnDestroyed += Bullet_OnDestroyed;
         }
-        catch 
+        else if (TryGetComponent<BouncingProjectile>(out BouncingProjectile bp))
         {
-
-        }
-
-        try
-        {
-            bounceBullet = GetComponent<BouncingProjectile>();
+            bounceBullet = bp;
             bounceBullet.OnDestroyed += Bullet_OnDestroyed;
         }
-        catch
-        {
-
-        }
-
-        //destroyedEffect = Resources.Load("GunEffect");
-        //destroyedEffect.GetComponent<ParticleSystem>();
-
-        //particleObject = GetComponentInChildren<ParticleSystem>();
-        //particleObject.Stop();
     }
 
     private void Bullet_OnDestroyed(object sender, System.EventArgs e)
     {
-        //DisableComponents();
-        //particleObject.Play();
-
         AudioManager.PlayClipAtPosition("explosion_sound",transform.position);
+
+        //Set the explosion Decal position here       
+        Debug.DrawRay(transform.position, transform.forward * 3.0f, Color.red);
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 3.0f))
+        {
+            Quaternion rotation = Quaternion.LookRotation(-hit.normal, Vector3.up);
+            Tuple<Vector3, Quaternion> hitData = new Tuple<Vector3, Quaternion>(hit.point, rotation);
+            OnDestroy.Invoke(this, hitData);
+
+            /*
+             * DecalPool.GetRandomDecal(transform.position, -hit.normal)
+             * 
+             * Grabs a decal then sets its postion 
+             * and Rotation based of the normal hit.
+             * 
+             * Decals will disable after time set in the pool
+             */
+        }
 
         if (destroyVFX != null)
         {
@@ -69,14 +62,11 @@ public class DestroyProjectile : MonoBehaviour
         }
        
 
-        //Destroy(gameObject, particleObject.duration);
         Destroy(gameObject);
     }
 
     private void DisableComponents()
     {
-        //rend.enabled = false;
-        //coll.enabled = false;
         bullet.direction = Vector3.zero;
     }
 }
