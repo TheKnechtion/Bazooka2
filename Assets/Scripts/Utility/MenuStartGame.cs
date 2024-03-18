@@ -32,6 +32,8 @@ public class MenuStartGame : MonoBehaviour
         Destroy(w); 
         GameObject e = GameObject.Find("Canvas");
         Destroy(e);
+        GameObject d = GameObject.Find("DecalPool");
+        Destroy(d);
 
         //We restart fully from the current scene
         OnRestart?.Invoke(this, EventArgs.Empty);

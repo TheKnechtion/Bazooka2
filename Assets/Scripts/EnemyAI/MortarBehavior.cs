@@ -129,14 +129,6 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
         targetingActive = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<PlayerManager>(out PlayerManager m))
-        {
-            
-        }
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (enabled)
@@ -158,18 +150,11 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
         }
         
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<PlayerManager>(out PlayerManager m))
-        {
-            
-        }
-    }
     private void ShootMortar()
     {
         OnParticleCall?.Invoke(this, EventArgs.Empty);
-        Instantiate(AmmoPrefab, targetPos, Quaternion.Euler(90, 0, 0));
+        GameObject var = Instantiate(AmmoPrefab, targetPos, Quaternion.identity);
+        var.transform.rotation = Quaternion.Euler(90, 0, 0);
     }
     private void SpawnEnemy()
     {

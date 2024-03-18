@@ -263,8 +263,11 @@ public class WeaponController:MonoBehaviour
             WeaponArray[i] = newWeap;
             WeaponArray[i].SetActive(false);
         }
+    }
 
-        
+    private void OnDestroy()
+    {
+        PlayerManager.OnWeaponChange -= ChangedWeapon;
     }
 }
 

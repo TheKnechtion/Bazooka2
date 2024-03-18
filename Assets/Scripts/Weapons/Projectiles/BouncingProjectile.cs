@@ -115,7 +115,7 @@ public class BouncingProjectile : ProjectileBase
                 if (doSplashDamage)
                     DealSplashDamage();
                
-                DeleteProjectile();
+                //DeleteProjectile();
             }
         }
 
@@ -146,11 +146,15 @@ public class BouncingProjectile : ProjectileBase
         #endregion
 
         //if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
-        if (bounceCount <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); DeleteProjectile(); }
-
-
-
-        Bounce(collision);
+        if (bounceCount <= 0 || collision.gameObject.tag == "Projectile") 
+        { 
+            DealSplashDamage();
+            DeleteProjectile(); 
+        }
+        else
+        {
+            Bounce(collision);
+        }
 
         //if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
         if (collision.gameObject.tag == "LimitedBounceObject") { collision.gameObject.GetComponent<LimitedBounceObject>().ProjectileCollision(); }
@@ -177,5 +181,4 @@ public class BouncingProjectile : ProjectileBase
             lifeTime = stats.LifeTime;
         }
     }
-
 }

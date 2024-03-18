@@ -37,7 +37,6 @@ public class BehaviorTurret : EnemyBehavior
     private Quaternion initRotation;
     private Vector3 initRotationEuler;
 
-    private float t;
     private float timeToTurn;
 
     // Start is called before the first frame update
@@ -46,7 +45,6 @@ public class BehaviorTurret : EnemyBehavior
         setStats();
         SetFOV_Angle(FOV_Angle);
 
-        t = 0;
         timeToTurn = 1.5f;
         isTurning = false;
         swapDirection = false;
