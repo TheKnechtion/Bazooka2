@@ -54,6 +54,28 @@ public class RobotBehavior : EnemyBehavior
 
     [SerializeField] private GameObject DebugUIObj;
     private TextMeshProUGUI DebugUI;
+
+    protected override void Awake()
+    {
+        if (TryGetComponent<Animator>(out Animator anim))
+        {
+            movementAnimator = anim;
+        }
+        else if (GetComponentInChildren<Animator>() != null)
+        {
+            movementAnimator = GetComponentInChildren<Animator>();
+        }
+
+        if (animController)
+        {
+            RuntimeAnimatorController newCon = Instantiate(animController);
+            movementAnimator.runtimeAnimatorController = newCon;
+        }
+        else
+        {
+            Debug.LogWarning("! No animController Set !");
+        }
+    }
     protected override void Start()
     {
         base.Start();
@@ -128,6 +150,11 @@ public class RobotBehavior : EnemyBehavior
                 case EnemyState.CHASE:
                     Debug.Log("Switch Chase");
 
+                    if (movementAnimator != null)
+                    {
+                        movementAnimator.SetBool("Walk", true);
+                    }
+
                     if (nav != null)
                     {
                         nav.MoveToPlayer(true, false);
@@ -145,6 +172,11 @@ public class RobotBehavior : EnemyBehavior
                 case EnemyState.ATTACK:
                     Debug.Log("Switch Attack");
                     nav.StopMovement();
+
+                    if (movementAnimator != null)
+                    {
+                        movementAnimator.SetBool("Grab", true);
+                    }
 
                     if (Grabbing)
                     {
@@ -208,6 +240,7 @@ public class RobotBehavior : EnemyBehavior
         {
             GrabZone.gameObject.SetActive(false);
 
+            nav.CancelPath();
             PlayerObject = other.gameObject;
 
             OnGrabEvent.Invoke();
@@ -247,6 +280,12 @@ public class RobotBehavior : EnemyBehavior
     }
     private IEnumerator RobotStun(float time)
     {
+        if (movementAnimator != null)
+        {
+            movementAnimator.SetBool("Grab", false);
+            movementAnimator.SetBool("Shutdown", true);
+        }
+
         StunCalled = true;
         EscapedPressCount = 0;
         float t = 0.0f;
@@ -261,6 +300,8 @@ public class RobotBehavior : EnemyBehavior
         StunCalled = false;
 
         GrabZone.gameObject.SetActive(true);
+        movementAnimator.SetBool("Shutdown", false);
+
 
         yield return null;
     }
