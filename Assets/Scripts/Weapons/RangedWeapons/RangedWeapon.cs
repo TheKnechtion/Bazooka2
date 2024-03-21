@@ -191,14 +191,14 @@ public class RangedWeapon : WeaponBase, IShoot
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!barrelCollisions.Contains(other))
+        if (barrelCollisions != null &&  !barrelCollisions.Contains(other))
         {
             barrelCollisions.Add(other);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (barrelCollisions.Contains(other))
+        if (barrelCollisions != null && barrelCollisions.Contains(other))
         {
             barrelCollisions.Remove(other);
         }
