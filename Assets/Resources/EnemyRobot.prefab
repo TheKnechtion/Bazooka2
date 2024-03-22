@@ -1724,7 +1724,7 @@ MonoBehaviour:
   weaponProjectileSpawnNode: {fileID: 0}
   SetToAttack: 0
   enemyAttackRange_BecomeAggro: 15
-  enemyAttackRange_AttackRange: 15
+  enemyAttackRange_AttackRange: 30
   isAggrod: 0
   inShootRange: 0
   playerMask:
@@ -1808,7 +1808,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
