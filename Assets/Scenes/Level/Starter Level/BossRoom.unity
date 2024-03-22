@@ -25771,10 +25771,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c3128e66707d9794ea225040bf8a6a0d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 506676807}
+      addedObject: {fileID: 506676806}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c3128e66707d9794ea225040bf8a6a0d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 506676806}
+      addedObject: {fileID: 506676809}
   m_SourcePrefab: {fileID: 100100000, guid: c3128e66707d9794ea225040bf8a6a0d, type: 3}
 --- !u!1 &506676805 stripped
 GameObject:
@@ -25799,8 +25799,13 @@ MonoBehaviour:
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
   smokeEffect: {fileID: 0}
---- !u!64 &506676807
-MeshCollider:
+--- !u!4 &506676808 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c3128e66707d9794ea225040bf8a6a0d, type: 3}
+  m_PrefabInstance: {fileID: 506676804}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &506676809
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -25817,15 +25822,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4196901699145302488, guid: c3128e66707d9794ea225040bf8a6a0d, type: 3}
---- !u!4 &506676808 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c3128e66707d9794ea225040bf8a6a0d, type: 3}
-  m_PrefabInstance: {fileID: 506676804}
-  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 300, y: 900, z: 294.95325}
+  m_Center: {x: 0, y: 0, z: 72.47633}
 --- !u!1001 &514533144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32777,6 +32776,10 @@ PrefabInstance:
     - target: {fileID: 554819475026101091, guid: 3fb42eabbdd7b0440ad846b93b0fbec8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 998470444300104796, guid: 3fb42eabbdd7b0440ad846b93b0fbec8, type: 3}
+      propertyPath: Damage
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 998470444300104796, guid: 3fb42eabbdd7b0440ad846b93b0fbec8, type: 3}
       propertyPath: Radius
