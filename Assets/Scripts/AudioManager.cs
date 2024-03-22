@@ -88,7 +88,11 @@ public class AudioManager : MonoBehaviour
                 clipToPlay = explosionSoundRef;
                 break;
         }
-        AudioSource.PlayClipAtPoint(clipToPlay, position, weaponsVolumeRef);
+
+        if (clipToPlay != null)
+        {
+            AudioSource.PlayClipAtPoint(clipToPlay, position, weaponsVolumeRef);
+        }
     }
 
     public static void PlayPainClipAtPosition(Vector3 position)
