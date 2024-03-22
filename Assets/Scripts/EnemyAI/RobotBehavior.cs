@@ -43,9 +43,16 @@ public class RobotBehavior : EnemyBehavior
     private EnemyState RobotState;
 
     /// <summary>
-    /// This will be referneced to the player when grabbed, not a dependency
+    /// This will be referneced to the player when grabbed
     /// </summary>
     private GameObject PlayerObject;
+
+    /// <summary>
+    /// Array of sparks that will pop when input to escape is detected
+    /// </summary>
+    [SerializeField] private ParticleSystem[] DamageSparks;
+
+    [SerializeField] private ParticleSystem StunSmoke;
 
     public UnityEvent OnGrabEvent;
     public UnityEvent OnLetGoEvent;
@@ -187,6 +194,16 @@ public class RobotBehavior : EnemyBehavior
                     if (!StunCalled && Input.GetKeyDown(EscapeKey))
                     {
                         EscapedPressCount++;
+
+                        if (DamageSparks != null && DamageSparks.Length > 0)
+                        {
+                            int rand = UnityEngine.Random.Range(0, DamageSparks.Length);
+                            if (DamageSparks[rand] != null)
+                            {
+                                DamageSparks[rand].Play();
+                            }
+                        }
+
                         if (EscapedPressCount >= EscapedPressRequired)
                         {
                             Grabbing = false;
@@ -197,15 +214,23 @@ public class RobotBehavior : EnemyBehavior
                             }
                         }
                     }
+                    
 
                     if (DebugUI != null)
                     {
-                        if (!DebugUI.isActiveAndEnabled)
+                        if (!StunCalled)
                         {
-                            DebugUI.gameObject.SetActive(true);
-                        }
+                            if (!DebugUI.isActiveAndEnabled)
+                            {
+                                DebugUI.gameObject.SetActive(true);
+                            }
+                            displayInputs();
 
-                        displayInputs();
+                        }
+                        else
+                        {
+                            disableUI();
+                        }         
                     }
 
                     break;
@@ -213,19 +238,8 @@ public class RobotBehavior : EnemyBehavior
                     RobotState = EnemyState.IDLE;
                     break;
             }
-            Debug.Log("Post Switch: " + RobotState);
         }       
 
-    }
-
-    protected override void FixedUpdate()
-    {
-
-    }
-
-    protected override void HandleEnemyAggro()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -280,6 +294,11 @@ public class RobotBehavior : EnemyBehavior
     }
     private IEnumerator RobotStun(float time)
     {
+        if (StunSmoke != null)
+        {
+            StunSmoke.Play();
+        }
+
         if (movementAnimator != null)
         {
             movementAnimator.SetBool("Grab", false);
@@ -323,6 +342,17 @@ public class RobotBehavior : EnemyBehavior
 
     private void displayInputs()
     {
-        DebugUI.text = $"{EscapedPressCount}/{EscapedPressRequired}";
+        if (DebugUI != null)
+        {
+            DebugUI.text = $"{EscapeKey}";
+        }
+    }
+
+    private void disableUI()
+    {
+        if (DebugUI != null)
+        {
+            DebugUI.gameObject.SetActive(false);
+        }
     }
 }
