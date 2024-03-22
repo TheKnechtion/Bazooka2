@@ -9,6 +9,7 @@ public class MenuStartGame : MonoBehaviour
     public static event EventHandler OnRestart;
     public void StartGame()
     {
+        DestroyCurrentUI();
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
@@ -17,9 +18,9 @@ public class MenuStartGame : MonoBehaviour
         Application.Quit();
     }
 
-    public void RestartGame()
+
+    public void DestroyCurrentUI()
     {
-        
         GameObject f = GameObject.Find("GameManager");
         Destroy(f);
         GameObject a = GameObject.Find("Evac_Exit");
@@ -29,11 +30,18 @@ public class MenuStartGame : MonoBehaviour
         GameObject v = GameObject.Find("Main Camera");
         Destroy(v);
         GameObject w = GameObject.Find("Follow Camera");
-        Destroy(w); 
+        Destroy(w);
         GameObject e = GameObject.Find("Canvas");
         Destroy(e);
         GameObject d = GameObject.Find("DecalPool");
         Destroy(d);
+
+    }
+
+    public void RestartGame()
+    {
+
+        DestroyCurrentUI();
 
         //We restart fully from the current scene
         OnRestart?.Invoke(this, EventArgs.Empty);
