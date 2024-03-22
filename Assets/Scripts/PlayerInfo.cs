@@ -238,6 +238,9 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         if (!isInvulnerable)
         {
             OnTakeDamage?.Invoke(this, EventArgs.Empty);
+
+            AudioManager.PlayPainClipAtPosition(this.transform.position);
+
             currentHP -= passedDamage;
 
             currentHP = (currentHP >= 0) ? currentHP : 0;

@@ -19,12 +19,18 @@ public class AudioManager : MonoBehaviour
     static AudioClip engineSoundRef;
     static AudioClip clickSoundRef;
 
+    [SerializeField] AudioClip[] painSounds;
+    static AudioClip[] painSoundsRef;
+
     AudioSource audioSource;
     public float weaponsVolume = 0.5f;
     public float themeVolume = 0.01f;
+    public float painVolume = 0.75f;
     static float weaponsVolumeRef;
-    
-    
+    static float painVolumeRef;
+
+
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -34,6 +40,7 @@ public class AudioManager : MonoBehaviour
         hitSoundRef = hitSound;
         clickSoundRef=clickSound;
         engineSoundRef = engineSound;
+        painSoundsRef=painSounds;
     }
 
     float loopClipTime;
@@ -41,7 +48,7 @@ public class AudioManager : MonoBehaviour
     {
         weaponsVolumeRef = weaponsVolume;
 
-
+        painVolumeRef = painVolume;
     }
     public void PlayTheme()
     {
@@ -83,5 +90,14 @@ public class AudioManager : MonoBehaviour
         }
         AudioSource.PlayClipAtPoint(clipToPlay, position, weaponsVolumeRef);
     }
+
+    public static void PlayPainClipAtPosition(Vector3 position)
+    {
+        clipToPlay = painSoundsRef[UnityEngine.Random.Range(0, painSoundsRef.Length - 1)];
+
+        AudioSource.PlayClipAtPoint(clipToPlay, position, painVolumeRef);
+    }
+
+
 
 }
