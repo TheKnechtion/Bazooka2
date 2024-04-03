@@ -46,13 +46,13 @@ public class BouncingProjectile : ProjectileBase
     {
         projectileRb.velocity = direction * speed;
     }
-    void Bounce(Collision collision)
+    private void Bounce(Collision collision)
     {
         if (Mathf.Abs(collision.contacts[0].normal.y) > yNormalBuffer)
         {
             DeleteProjectile();
         }
-        if (bounceCount > 0)
+        else if (bounceCount > 0)
         {
             isSpawning = false;
 
@@ -68,6 +68,11 @@ public class BouncingProjectile : ProjectileBase
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
 
             bounceCount--;
+        }
+        else
+        {
+            DealSplashDamage();
+            DeleteProjectile();
         }
     }
 
@@ -117,39 +122,21 @@ public class BouncingProjectile : ProjectileBase
                
                 //DeleteProjectile();
             }
-        }
 
-        if (collision.gameObject.TryGetComponent<PlayerManager>(out PlayerManager pm))
-        {
-            if (pm.carriedObject != null && pm.carriedObject.TryGetComponent<IDamagable>(out IDamagable damagable))
+            if (collision.gameObject.TryGetComponent<PlayerManager>(out PlayerManager pm))
             {
-                damagable.TakeDamage(damage);
+                if (pm.carriedObject != null && pm.carriedObject.TryGetComponent<IDamagable>(out IDamagable damagable))
+                {
+                    damagable.TakeDamage(damage);
+                }
             }
+
+            DeleteProjectile();
         }
-
-
-        #region Old Damage Detection
-        //if (collision.gameObject.tag == "Enemy")
-        //{
-        //    collision.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
-        //    DealSplashDamage();
-        //    DeleteProjectile();
-        //    //Destroy(gameObject);
-        //}
-
-        //if(collision.gameObject.tag == "Player")
-        //{
-        //    collision.gameObject.GetComponent<PlayerInfo>().TakeDamage(damage);
-        //    DealSplashDamage();
-        //    DeleteProjectile();
-        //}
-        #endregion
-
-        //if (numberOfBounces <= 0 || collision.gameObject.tag == "Projectile") { DealSplashDamage(); Destroy(gameObject); }
-        if (bounceCount <= 0 || collision.gameObject.tag == "Projectile") 
-        { 
+        else if(bounceCount <= 0 || collision.gameObject.tag == "Projectile")
+        {
             DealSplashDamage();
-            DeleteProjectile(); 
+            DeleteProjectile();
         }
         else
         {
