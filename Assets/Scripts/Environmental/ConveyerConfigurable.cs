@@ -10,7 +10,7 @@ public class ConveyerConfigurable : MonoBehaviour
     private Rigidbody rb;
     private void OnTriggerStay(Collider collision)
     {
-        Debug.Log("Something hit");
+        //Debug.Log("Something hit");
         if (collision.transform.tag == "Player")
         {
             rb = collision.transform.GetComponent<Rigidbody>();

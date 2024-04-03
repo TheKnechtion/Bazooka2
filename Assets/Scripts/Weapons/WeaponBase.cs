@@ -8,6 +8,8 @@ public abstract class WeaponBase : MonoBehaviour
     //These are aspects that each weapon will handle
     [SerializeField] protected WeaponSO stats;
 
+    [SerializeField] protected Transform CollsionTransform;
+
     public string weaponName;
     public float fireRate;
     public float walkMultiplier;

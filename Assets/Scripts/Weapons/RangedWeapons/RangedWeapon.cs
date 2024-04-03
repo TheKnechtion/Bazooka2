@@ -19,7 +19,11 @@ public class RangedWeapon : WeaponBase, IShoot
     public int currentAmmo;
     private GameObject newProjectile;
 
-    private List<Collider> barrelCollisions;
+    private Collider[] barrelBuffer;
+
+    //Layer to exclude on barrel collision
+    private const int barrelBitMask = ~( (1<<8)|(1<<12)|(1<<10) );
+    private const float overlapRadius = 0.4f;
 
     [SerializeField]private float time;
 
@@ -46,7 +50,7 @@ public class RangedWeapon : WeaponBase, IShoot
             userIsPlayer = true;
         }
 
-        barrelCollisions = new List<Collider>();
+        barrelBuffer = new Collider[3];
     }
 
     private void Update()
@@ -68,24 +72,22 @@ public class RangedWeapon : WeaponBase, IShoot
             canShoot = true;
         }
 
-        if (barrelCollisions.Count == 0)
+        if (CollsionTransform != null)
         {
-            barrelObstructed = false;
-        }
-        else
-        {
-            barrelObstructed = true;
-            foreach (Collider other in barrelCollisions)
+            float barrelColCount = BarrelCollsions(CollsionTransform);
+            if (barrelColCount < 1)
             {
-                if (other == null)
-                {
-                    barrelCollisions.Remove(other);
-                    break;
-                }
+                barrelObstructed = false;
             }
-        }
+            else if (barrelColCount > 0)
+            {
+                barrelObstructed = true;
+            }
 
-        Debug.Log("Barrel Colls "+barrelCollisions.Count);
+            //Debug.Log(Convert.ToString(barrelBitMask, 2).PadLeft(32,'0'));
+            //Debug.Log("Bazooka Obstruc. " + barrelObstructed);
+        }
+        
     }
 
     private void HandleFireRate()
@@ -114,6 +116,12 @@ public class RangedWeapon : WeaponBase, IShoot
         }
 
         //Instantiate(newProjectile, shootPoint.position, Quaternion.LookRotation(Vector3.up, gameObject.transform.forward));
+    }
+
+    private int BarrelCollsions(Transform collTransform)
+    {
+        int count = Physics.OverlapSphereNonAlloc(collTransform.position, overlapRadius, barrelBuffer, barrelBitMask);
+        return count;
     }
 
     //Unused---
@@ -189,19 +197,13 @@ public class RangedWeapon : WeaponBase, IShoot
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnDrawGizmos()
     {
-        if (barrelCollisions != null &&  !barrelCollisions.Contains(other))
+        if (CollsionTransform != null)
         {
-            barrelCollisions.Add(other);
-        }
+            Vector3 c = CollsionTransform.position;
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(c, overlapRadius);
+        }       
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (barrelCollisions != null && barrelCollisions.Contains(other))
-        {
-            barrelCollisions.Remove(other);
-        }
-    }
-
 }

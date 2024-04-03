@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 3637038586049112166}
   - {fileID: 6055049123260220413}
+  - {fileID: 4990752244537479321}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6918858493676361597
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 9480e8d0c3ada534092a10a606e7cb54, type: 2}
+  CollsionTransform: {fileID: 4990752244537479321}
   weaponName: 1
   fireRate: 2
   walkMultiplier: 0
@@ -165,6 +167,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3535299162158162808}
   m_Mesh: {fileID: 4300000, guid: a20359f598082d9428b881e62fdec31f, type: 3}
+--- !u!1 &5639957868039598510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4990752244537479321}
+  m_Layer: 12
+  m_Name: CollisionTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4990752244537479321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639957868039598510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.167, z: 0.538}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7326618061408303328}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8611543975571655795
 GameObject:
   m_ObjectHideFlags: 0

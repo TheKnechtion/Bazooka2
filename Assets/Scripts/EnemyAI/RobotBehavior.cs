@@ -130,7 +130,7 @@ public class RobotBehavior : EnemyBehavior
         //creates an enemy look direction based on the enemy position and the player's current position
         enemyLookDirection = (playerPosition - enemyPosition).normalized;
 
-        Debug.Log("Pre Switch: "+ RobotState);
+        //Debug.Log("Pre Switch: "+ RobotState);
 
         if (PlayerInfo.instance.HeatlthState == PlayerHealthState.DEAD)
         {
@@ -142,7 +142,7 @@ public class RobotBehavior : EnemyBehavior
             switch (RobotState)
             {
                 case EnemyState.IDLE:
-                    Debug.Log("Switch Idle");
+                    //Debug.Log("Switch Idle");
                     nav.StopMovement();
 
                     if (!StunCalled)
@@ -155,7 +155,7 @@ public class RobotBehavior : EnemyBehavior
 
                     break;
                 case EnemyState.CHASE:
-                    Debug.Log("Switch Chase");
+                    //Debug.Log("Switch Chase");
 
                     if (movementAnimator != null)
                     {
@@ -177,7 +177,7 @@ public class RobotBehavior : EnemyBehavior
 
                     break;
                 case EnemyState.ATTACK:
-                    Debug.Log("Switch Attack");
+                    //Debug.Log("Switch Attack");
                     nav.StopMovement();
 
                     if (movementAnimator != null)
