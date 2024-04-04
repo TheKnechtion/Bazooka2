@@ -196,7 +196,7 @@ public class RangedWeapon : WeaponBase, IShoot
             projectilePrefab = stats.projectilePrefab;
         }
     }
-
+    /*
     private void OnDrawGizmos()
     {
         if (CollsionTransform != null)
@@ -206,4 +206,5 @@ public class RangedWeapon : WeaponBase, IShoot
             Gizmos.DrawWireSphere(c, overlapRadius);
         }       
     }
+    */
 }
