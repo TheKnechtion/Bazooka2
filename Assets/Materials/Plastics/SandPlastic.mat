@@ -21,16 +21,19 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SandPlastic
-  m_Shader: {fileID: -6465566751694194690, guid: 3d1fa6c0681629e4381aaccd646f538d, type: 3}
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _EMISSION
+  - _SPECULAR_SETUP
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -133,8 +136,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Albedo_Color: {r: 1, g: 0.8956062, b: 0.6264151, a: 1}
-    - _BaseColor: {r: 0.043137208, g: 0.35686275, b: 0.05490192, a: 1}
-    - _Color: {r: 0.043137193, g: 0.35686272, b: 0.05490189, a: 1}
+    - _BaseColor: {r: 1, g: 0.91995734, b: 0.572327, a: 1}
+    - _Color: {r: 1, g: 0.9199574, b: 0.572327, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
