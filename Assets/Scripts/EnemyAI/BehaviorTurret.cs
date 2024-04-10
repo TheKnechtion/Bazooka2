@@ -110,10 +110,12 @@ public class BehaviorTurret : EnemyBehavior
                 //Debug.Log("Looking for you...");
 
                 timeToDeagro = DeAggroTime;
-                if (gameObject.transform.rotation.eulerAngles != initRotationEuler)
+                if (gameObject.transform.rotation != initRotation)
                 {
-                    SmoothRotate(initRotationEuler, 9.0f);
+                    SmoothRotate(initRotation, 9.0f);
+                    Debug.Log("Rotating Back");
                 }
+
 
                 break;
             case TurretState.ENGAGED:
@@ -125,9 +127,10 @@ public class BehaviorTurret : EnemyBehavior
                 }
                 else 
                 {
-                    SmoothRotate(enemyLookDirection, 1.0f);
+                    Quaternion quatLook = Quaternion.LookRotation(enemyLookDirection);
+                    SmoothRotate(quatLook, 1.0f);
 
-                    if (gameObject.transform.rotation == LookRotation)
+                    if (gameObject.transform.rotation == quatLook)
                     {
                         if (!ChargingShot)
                         {

@@ -292,10 +292,9 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         }
     }
 
-    protected void SmoothRotate(Vector3 target, float speed)
+    protected void SmoothRotate(Quaternion target, float speed)
     {
-        LookRotation = Quaternion.LookRotation(target);
-        gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, LookRotation, speed);
+        gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, target, speed);
     }
 
     IEnumerator Smoothrotate(Vector3 target, float speed, float time)
