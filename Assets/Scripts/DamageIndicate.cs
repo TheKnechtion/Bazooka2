@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class DamageIndicate : MonoBehaviour
 {
-    [SerializeField] private Material[] materials;
+    //Materials of statuses
+    [SerializeField] private Material[] SwapMaterials;
+    
+    //Base material array that will be reverted to
+    private Material[] BaseMaterialArray;
 
-    //[SerializeField] Material defaultMaterial, damageMaterial;
-    private Material bodyMaterial;
+    //This 'added' material signifies the entity takes more than 1 hit
+    [SerializeField] private Material MoreHP_Material;
+
+    //The one renderer if no renderers are attatched
     private Renderer render;
 
+    //Renderers set via inspector
     [SerializeField] private Renderer[] renderers;
 
     private EnemyBehavior enemy; //The specific enemy we are affecting;
-    private PlayerInfo player;
+    private PlayerInfo player; //The Player, if this component is attachted to player
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +30,12 @@ public class DamageIndicate : MonoBehaviour
 
         if (render != null)
         {
-            materials[0] = render.material;
+            BaseMaterialArray = render.materials;
+            //materials = render.material;
+        }
+        else if (renderers.Length > 0)
+        {
+            BaseMaterialArray = renderers[0].materials;
         }
 
         if (gameObject.tag == "Player")
@@ -40,6 +52,23 @@ public class DamageIndicate : MonoBehaviour
             {
                 enemy = en;
                 enemy.OnTakeDamage += OnDamaged;
+
+                if (enemy.health > 1 && MoreHP_Material != null)
+                {
+                    Material[] MoreHp = new Material[BaseMaterialArray.Length + 1];
+                    for (int i = 0; i < BaseMaterialArray.Length; i++)
+                    {
+                        MoreHp[i] = BaseMaterialArray[i];
+                    }
+                    MoreHp[MoreHp.Length - 1] = MoreHP_Material;
+
+                    BaseMaterialArray = MoreHp;
+
+                    for (int i = 0; i < renderers.Length; i++)
+                    {
+                        renderers[i].materials = BaseMaterialArray;
+                    }
+                }
             }
         }    
     
@@ -59,12 +88,22 @@ public class DamageIndicate : MonoBehaviour
     }
     private IEnumerator indicateDamage(Renderer render)
     {
-        //Debug.Log("Changing materal");
-        render.material = materials[1];
+        //Grabs 1st element in material array
+        render.material = SwapMaterials[1];
 
         yield return new WaitForSeconds(0.5f);
 
-        //Debug.Log("Default materal");
-        render.material = materials[0];
+        if (enemy != null)
+        {
+            if (enemy.health < 2)
+            {
+                Material[] lowHealth = new Material[BaseMaterialArray.Length];
+                lowHealth[0] = BaseMaterialArray[0];
+                BaseMaterialArray = lowHealth;
+            }
+        }
+
+        //Sets the material array to what it originally was
+        render.materials = BaseMaterialArray;
     }
 }
