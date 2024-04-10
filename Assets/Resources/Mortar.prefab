@@ -481,6 +481,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  swapModel: {fileID: 0}
+  destroyThese: []
+  destroyedMesh: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
 --- !u!54 &2014374645857548040
 Rigidbody:
   m_ObjectHideFlags: 0

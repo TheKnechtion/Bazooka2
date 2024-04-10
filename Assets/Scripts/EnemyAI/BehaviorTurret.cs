@@ -30,6 +30,11 @@ public class BehaviorTurret : EnemyBehavior
     [SerializeField] private float DeAggroTime;
     private float timeToDeagro;
 
+    private bool ChargingShot = false;
+
+    //Renderer for displaying when Enemy will shoot
+    [SerializeField] private LineRenderer laserRenderer;
+
     private bool inRange;
     private bool isTurning;
     private bool swapDirection;
@@ -60,7 +65,8 @@ public class BehaviorTurret : EnemyBehavior
         rightTurnQuat = Quaternion.Euler(rightTurn);
 
         //Pass the weapon script that attacthed to the object
-        weaponGrabber = gameObject.GetComponent<DataBaseWeaponGrabber>();
+        //weaponGrabber = gameObject.GetComponent<DataBaseWeaponGrabber>();
+        weaponController.OvverideFireRate(0.0f);
 
         turretState = TurretState.SEARCHING;
     }
@@ -112,7 +118,7 @@ public class BehaviorTurret : EnemyBehavior
                 break;
             case TurretState.ENGAGED:
                 //Debug.Log("I SEE YOU");
-                StopAllCoroutines();
+                //StopAllCoroutines();
                 if (!isAggrod)
                 {
                     turretState = TurretState.LOSTSIGHT;
@@ -123,7 +129,12 @@ public class BehaviorTurret : EnemyBehavior
 
                     if (gameObject.transform.rotation == LookRotation)
                     {
-                        HandleShooting();
+                        if (!ChargingShot)
+                        {
+                            ChargingShot = true;
+                            StartCoroutine(ShootRoutine(1, 0, 0.8f));
+                        }
+
                     }
                 }
                 break;
@@ -142,7 +153,7 @@ public class BehaviorTurret : EnemyBehavior
         //Debug.Log(playerWasSpotted);
         //Debug.Log("To Deagro: "+timeToDeagro);
         //Debug.Log("Ref Deagro: "+DeAggroTime);
-
+        //Debug.Log(turretState);
         #endregion
     }
 
@@ -206,6 +217,36 @@ public class BehaviorTurret : EnemyBehavior
         float viewRad = (degree) * Mathf.Deg2Rad;
         return new Vector3(Mathf.Sin(viewRad), 0, Mathf.Cos(viewRad));
     }
+
+    private IEnumerator ShootRoutine(float start, float end, float chargeTime)
+    {
+        float t = 0.0f;
+        Debug.Log("Chargiing");
+
+        while (t < chargeTime)
+        {
+            if (laserRenderer != null)
+            {
+                laserRenderer.widthMultiplier = Mathf.Lerp(start, end, t/chargeTime);
+
+                Vector3 dir = enemyLookDirection;
+                dir.y = 0;
+                laserRenderer.SetPosition(1, new Vector3(0,0, distanceToPlayer));
+            }
+
+            t += Time.deltaTime;
+            Debug.Log("Running");
+            yield return null;
+        }
+
+        Debug.Log("Shootlikn");
+
+        HandleShooting();
+
+        ChargingShot = false;
+        yield return null;
+    }
+
 
     /*
     protected override void OnDrawGizmosSelected()

@@ -18,9 +18,12 @@ public class EnemyWeaponController : MonoBehaviour
         }
     }
 
-    void Update()
+    public void OvverideFireRate(float newFireRate)
     {
-        
+        if (weapon != null)
+        {
+            weapon.fireRate = newFireRate;
+        }
     }
 
     public void ShootWeapon()
