@@ -68,6 +68,12 @@ public class BehaviorTurret : EnemyBehavior
         //weaponGrabber = gameObject.GetComponent<DataBaseWeaponGrabber>();
         weaponController.OvverideFireRate(0.0f);
 
+        if (laserRenderer != null)
+        {
+            laserRenderer.widthMultiplier = 0.01f;
+            laserRenderer.SetPosition(1, transform.forward * 0f);
+        }
+
         turretState = TurretState.SEARCHING;
     }
 
@@ -102,7 +108,14 @@ public class BehaviorTurret : EnemyBehavior
 
         //float time = Time.deltaTime;
 
-        HandleEnemyAggro();
+        if (PlayerInfo.instance != null && PlayerInfo.instance.HeatlthState != PlayerHealthState.DEAD)
+        {
+            HandleEnemyAggro();
+        }
+        else
+        {
+            turretState = TurretState.SEARCHING;
+        }
 
         switch (turretState)
         {
@@ -135,7 +148,7 @@ public class BehaviorTurret : EnemyBehavior
                         if (!ChargingShot)
                         {
                             ChargingShot = true;
-                            StartCoroutine(ShootRoutine(1, 0, 0.8f));
+                            StartCoroutine(ShootRoutine(1, 0, 1.3f));
                         }
 
                     }
