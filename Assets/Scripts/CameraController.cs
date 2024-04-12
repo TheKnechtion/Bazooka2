@@ -30,6 +30,6 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.rotation = Quaternion.Euler(lockedRotation);
+        //transform.rotation = Quaternion.Euler(lockedRotation);
     }
 }

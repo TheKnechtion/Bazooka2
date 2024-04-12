@@ -23,6 +23,8 @@ public class Explosive : MonoBehaviour
 
     public event EventHandler CanDestroy;
 
+    public static event EventHandler OnExploded;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +93,7 @@ public class Explosive : MonoBehaviour
             }
         }
 
+        OnExploded.Invoke(this,EventArgs.Empty);
         CanDestroy.Invoke(this, EventArgs.Empty);
     }
 
