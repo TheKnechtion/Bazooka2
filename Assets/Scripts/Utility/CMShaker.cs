@@ -15,45 +15,34 @@ public class CMShaker : MonoBehaviour
         cam = GetComponent<CinemachineVirtualCamera>();
         noiseComponent = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         noiseSource = cam.GetComponent<CinemachineImpulseSource>();
+
+        Explosive.OnExploded += Explosive_OnExploded;
     }
 
-    private void Update()
+    private void Explosive_OnExploded(object sender, System.EventArgs e)
     {
-        GetInput();
+        ShakeCam();
     }
-
-    private void GetInput()
-    {
-        if (Input.GetKey(KeyCode.F))
-        {
-            ShakeCam();
-        }
-    }
-
     private void ShakeCam()
     {
-        StartCoroutine(ShakeRoutine(1.3f, 0.03f));
+        StartCoroutine(ShakeRoutine(0.3f, 2.5f));
     }
 
     private IEnumerator ShakeRoutine(float shakeTime, float max)
     {
+        Debug.Log("Shaking");
         float t = 0.0f;
-        Vector3 basePos = transform.position;
+        noiseComponent.m_AmplitudeGain = max;
 
         while (t < shakeTime)
         {
-            float x = UnityEngine.Random.Range(-max, max);
-            float y = UnityEngine.Random.Range(-max, max);
-
-            transform.position = new Vector3(transform.position.x + x,
-                transform.position.y + y, 
-                transform.position.z);
-
             t += Time.deltaTime;
+
+            Debug.Log(noiseComponent.m_AmplitudeGain);
             yield return null;
         }
+        noiseComponent.m_AmplitudeGain = 0.0f;
 
-        transform.position = basePos;
         yield return null;
     }
 }
