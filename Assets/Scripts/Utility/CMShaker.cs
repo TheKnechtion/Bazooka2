@@ -16,10 +16,11 @@ public class CMShaker : MonoBehaviour
         noiseComponent = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         noiseSource = cam.GetComponent<CinemachineImpulseSource>();
 
-        Explosive.OnExploded += Explosive_OnExploded;
+        Explosive.OnExploded += CameraShake;
+        PlayerInfo.GlobalDamge += CameraShake;
     }
 
-    private void Explosive_OnExploded(object sender, System.EventArgs e)
+    private void CameraShake(object sender, System.EventArgs e)
     {
         ShakeCam();
     }
@@ -44,5 +45,9 @@ public class CMShaker : MonoBehaviour
         noiseComponent.m_AmplitudeGain = 0.0f;
 
         yield return null;
+    }
+    private void OnDestroy()
+    {
+        Explosive.OnExploded -= CameraShake;
     }
 }

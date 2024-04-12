@@ -65,6 +65,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     public bool ArmoredTarget { get; set; }
 
     public event EventHandler OnTakeDamage;
+    public static event EventHandler GlobalDamge;
     public static event EventHandler OnPlayerHpChange;
     public static event EventHandler OnPlayerSpawn;
     public static event EventHandler OnPlayerWeaponChange;
@@ -246,6 +247,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
             currentHP = (currentHP >= 0) ? currentHP : 0;
 
             OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
+            GlobalDamge.Invoke(this, EventArgs.Empty);
         }        
     }
     
