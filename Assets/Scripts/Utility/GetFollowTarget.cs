@@ -12,6 +12,14 @@ public class GetFollowTarget : MonoBehaviour
     GameObject playerObj;
     CinemachineVirtualCamera cam;
 
+    [SerializeField] private float X_Offset;
+    [SerializeField] private float Y_Offset;
+    [SerializeField] private float Z_Offset;
+
+    [SerializeField] private float X_Damping;
+    [SerializeField] private float Y_Damping;
+    [SerializeField] private float Z_Damping;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -37,6 +45,13 @@ public class GetFollowTarget : MonoBehaviour
 
     private void SetCameraBodyDamping()
     {
+        cam.AddCinemachineComponent<CinemachineTransposer>();
+        cam.AddCinemachineComponent<CinemachineTransposer>().m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;
+
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.x = X_Offset;
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y = Y_Offset;
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = Z_Offset;
+
         cam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
         cam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
         cam.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;

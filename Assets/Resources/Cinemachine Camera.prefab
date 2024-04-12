@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4582164237629518054}
   - component: {fileID: 6722259771855152137}
   - component: {fileID: 2792339163384177195}
-  - component: {fileID: 5803886812265001392}
   - component: {fileID: -729411465038724138}
   m_Layer: 0
   m_Name: Cinemachine Camera
@@ -88,6 +87,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff74b457472c4eae1394457f9a3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  X_Offset: 0
+  Y_Offset: 13
+  Z_Offset: -9
+  X_Damping: 0
+  Y_Damping: 0
+  Z_Damping: 0
 --- !u!114 &2792339163384177195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,18 +108,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
---- !u!114 &5803886812265001392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075577247767363820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce27886d33568fd4d8cb55ef1cbf39e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-729411465038724138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,8 +171,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9080446877069390026}
   - component: {fileID: 262171014767852408}
-  - component: {fileID: 4768551407380178002}
-  - component: {fileID: -2458805817125269840}
   - component: {fileID: -6184099778000212016}
   m_Layer: 0
   m_Name: cm
@@ -215,52 +206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4768551407380178002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4244248669510062435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 13, z: -9}
-  m_XDamping: 0.4
-  m_YDamping: 0.4
-  m_ZDamping: 0.4
-  m_AngularDampingMode: 0
-  m_PitchDamping: 0
-  m_YawDamping: 0
-  m_RollDamping: 0
-  m_AngularDamping: 0
---- !u!114 &-2458805817125269840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4244248669510062435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 0.5, y: -0.4, z: 0}
-  VerticalArmLength: 0.4
-  CameraSide: 1
-  CameraDistance: 2
-  CameraCollisionFilter:
-    serializedVersion: 2
-    m_Bits: 0
-  IgnoreTag: 
-  CameraRadius: 0.2
-  DampingIntoCollision: 0
-  DampingFromCollision: 2
 --- !u!114 &-6184099778000212016
 MonoBehaviour:
   m_ObjectHideFlags: 0
