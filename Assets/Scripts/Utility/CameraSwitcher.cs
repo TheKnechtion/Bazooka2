@@ -26,6 +26,7 @@ public class CameraSwitcher : MonoBehaviour
     private CinemachineVirtualCamera currentOBJCamera;
 
     [SerializeField] private float CameraDuration = 3.5f;
+    [SerializeField] private float CamDurationCutscene = 8.0f;
 
     private int disablePriority, activePriority;
 
@@ -56,6 +57,7 @@ public class CameraSwitcher : MonoBehaviour
         //}   
 
         //Debug.Log("My camera count " + sceneCameras.Count);
+       
     }
 
     private void changedScene(Scene arg0, Scene arg1)
@@ -74,7 +76,10 @@ public class CameraSwitcher : MonoBehaviour
         currentOBJCamera = findCamera(cameraToActivate);
         currentOBJCamera.Priority = activePriority;
 
-        yield return new WaitForSeconds(CameraDuration);
+        
+            yield return new WaitForSeconds(CameraDuration);
+        
+        
         currentOBJCamera.Priority = disablePriority;
         currentOBJCamera = null;
         OnCameraDisable?.Invoke(this, EventArgs.Empty);

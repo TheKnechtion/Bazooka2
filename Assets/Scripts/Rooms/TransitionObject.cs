@@ -10,7 +10,11 @@ public class TransitionObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        OnEndReached?.Invoke(this, EventArgs.Empty);
+        if (other.CompareTag("Player"))
+        {
+            OnEndReached?.Invoke(this, EventArgs.Empty);
+        }
+       
     }
 
     //Using layers for Collion.
