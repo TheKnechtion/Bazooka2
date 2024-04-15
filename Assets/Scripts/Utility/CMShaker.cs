@@ -38,8 +38,6 @@ public class CMShaker : MonoBehaviour
         while (t < shakeTime)
         {
             t += Time.deltaTime;
-
-            Debug.Log(noiseComponent.m_AmplitudeGain);
             yield return null;
         }
         noiseComponent.m_AmplitudeGain = 0.0f;
@@ -49,5 +47,6 @@ public class CMShaker : MonoBehaviour
     private void OnDestroy()
     {
         Explosive.OnExploded -= CameraShake;
+        PlayerInfo.GlobalDamge -= CameraShake;
     }
 }
