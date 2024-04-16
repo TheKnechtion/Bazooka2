@@ -230,6 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8806821842907508061}
   - component: {fileID: 927860128819676726}
+  - component: {fileID: 2092864178784956398}
   m_Layer: 7
   m_Name: Trail
   m_TagString: Untagged
@@ -246,7 +247,7 @@ Transform:
   m_GameObject: {fileID: 8093436392987995724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -273,7 +274,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 95de9dec86a7f2648b452e6d7bb73671, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -294,7 +295,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 5
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -304,7 +305,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.034194946
+        value: 0.1609497
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -356,3 +357,16 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &2092864178784956398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8093436392987995724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f54c1b7ebd00447af3ef237fd5f403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DissipateTime: 1.69

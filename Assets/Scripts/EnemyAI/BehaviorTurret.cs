@@ -30,6 +30,8 @@ public class BehaviorTurret : EnemyBehavior
     [SerializeField] private float DeAggroTime;
     private float timeToDeagro;
 
+    [SerializeField] private float ChargeTime = 1.3f;
+
     private bool ChargingShot = false;
 
     //Renderer for displaying when Enemy will shoot
@@ -148,7 +150,7 @@ public class BehaviorTurret : EnemyBehavior
                         if (!ChargingShot)
                         {
                             ChargingShot = true;
-                            StartCoroutine(ShootRoutine(1, 0, 1.3f));
+                            StartCoroutine(ShootRoutine(1, 0, ChargeTime));
                         }
 
                     }

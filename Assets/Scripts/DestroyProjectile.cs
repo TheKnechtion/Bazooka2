@@ -15,7 +15,10 @@ public class DestroyProjectile : MonoBehaviour
 
     private int ExlcudeFromRaycastMask;
 
+    //Used for Decal setting
     public static event EventHandler<Tuple<Vector3, Quaternion, Transform>> ProjectileDestroyed;
+
+    public event EventHandler InstanceDetroyed;
     void Start()
     {
         //These are bitmask layers to EXCLUDE for setting the damage decals
@@ -55,6 +58,7 @@ public class DestroyProjectile : MonoBehaviour
                     hit.collider.gameObject.transform);
 
                 ProjectileDestroyed?.Invoke(this, hitData);
+                InstanceDetroyed?.Invoke(this, EventArgs.Empty);
             }
         }
 
