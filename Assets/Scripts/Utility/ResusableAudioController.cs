@@ -14,6 +14,11 @@ public class ResusableAudioController : MonoBehaviour
     /// </summary>
     private Dictionary<string, AudioSource> SoundDictionary;
 
+    /// <summary>
+    /// Automatically plays first clip in Array
+    /// </summary>
+    [SerializeField] private bool PlayFirstClip;
+
     private string MainClip;
 
     private void Awake()
@@ -36,7 +41,10 @@ public class ResusableAudioController : MonoBehaviour
 
     private void Start()
     {
-        SoundDictionary[MainClip].Play();
+        if (PlayFirstClip)
+        {
+            SoundDictionary[MainClip].Play();
+        }
     }
 
     public void PlaySound(string clipName)

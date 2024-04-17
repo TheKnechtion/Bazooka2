@@ -74,6 +74,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     public int RemainingAttempts;
     [SerializeField] private int MaxAttempts;
 
+    private ResusableAudioController playerAudio;
+
     public event EventHandler CheckpointRestarted;
 
     void Awake()
@@ -87,7 +89,13 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         ownedWeapons = new List<WeaponInfo>();
         weaponController = GetComponent<WeaponController>();
 
-        
+        playerAudio = transform.Find("Audio").GetComponent<ResusableAudioController>();
+        if (playerAudio.TryGetComponent<AudioSource>(out AudioSource t))
+        {
+            //2D blend
+            t.spatialBlend = 0.0f;
+        }
+
         AddWeapon("Bazooka");
 
         ArmoredTarget = false;
@@ -154,6 +162,15 @@ public class PlayerInfo:MonoBehaviour, IDamagable
                 break;
             default:
                 break;
+        }
+
+        if (currentHP == 1)
+        {
+            playerAudio.PlaySound("LowHealth");
+        }
+        else
+        {
+            playerAudio.StopSound("LowHealth");
         }
 
         //if the player's hp drops to 0 or less
