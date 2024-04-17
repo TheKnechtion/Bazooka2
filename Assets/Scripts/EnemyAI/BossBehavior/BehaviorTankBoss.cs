@@ -138,15 +138,18 @@ public class BehaviorTankBoss : EnemyBehavior
                 break;
         }
 
-        if (!agent.isStopped)
+        //Only play once aggroed
+        if (initialAggro)
         {
-            TankAudioController.PlaySound("Chase");
+            if (!agent.isStopped)
+            {
+                TankAudioController.PlaySound("Chase");
+            }
+            else
+            {
+                TankAudioController.StopSound("Chase");
+            }
         }
-        else
-        {
-            TankAudioController.StopSound("Chase");
-        }
-
 
         if (PercentHealth(0.5f) && !SoldierMountActive)
         {

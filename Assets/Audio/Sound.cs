@@ -18,4 +18,7 @@ public class Sound
 
     //Loop setting for this sound
     public bool Loop;
+
+    //Sets source max hearing range
+    public float MaxRange = 25;
 }
