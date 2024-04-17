@@ -27,7 +27,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Sound[] MiscArray;
     private Dictionary<string, Sound> MiscSounds;
 
-
     AudioSource audioSource;
     public float weaponsVolume = 0.5f;
     public float themeVolume = 0.01f;

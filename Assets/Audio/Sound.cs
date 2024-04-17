@@ -19,6 +19,12 @@ public class Sound
     //Loop setting for this sound
     public bool Loop;
 
+    //If Pitch should change each time sound is played, IF the current AudioSource Allows for it
+    public bool RandomizePitch;
+
+    [Range(0,3)]
+    public float MaxPitchOffset;
+
     //Sets source max hearing range
     public float MaxRange = 25;
 }
