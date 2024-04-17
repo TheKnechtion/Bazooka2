@@ -24,6 +24,9 @@ public class BouncingProjectile : ProjectileBase
     private bool doSplashDamage;
     private bool exploding;
 
+    //Determines if projectile collision will destroy it
+    public int Priority = 1;
+
     public event EventHandler OnDestroyed;
 
 
@@ -66,6 +69,8 @@ public class BouncingProjectile : ProjectileBase
 
            // transform.rotation = Quaternion.LookRotation(Vector3.up, direction);
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("MetalHit", transform.position);
 
             bounceCount--;
         }
@@ -122,6 +127,10 @@ public class BouncingProjectile : ProjectileBase
                
                 //DeleteProjectile();
             }
+            else
+            {
+                GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("MetalHit", transform.position);
+            }
 
             if (collision.gameObject.TryGetComponent<PlayerManager>(out PlayerManager pm))
             {
@@ -133,10 +142,13 @@ public class BouncingProjectile : ProjectileBase
 
             DeleteProjectile();
         }
-        else if(bounceCount <= 0 || collision.gameObject.tag == "Projectile")
+        else if(collision.gameObject.tag == "Projectile")
         {
-            DealSplashDamage();
-            DeleteProjectile();
+            BouncingProjectile p = collision.gameObject.GetComponent<BouncingProjectile>();
+            if (p != null && p.Priority >= Priority)
+            {
+                DeleteProjectile();
+            }
         }
         else
         {
@@ -162,6 +174,7 @@ public class BouncingProjectile : ProjectileBase
             doSplashDamage = stats.DoSplashDamage;
             ArmorPen = stats.ArmorPen;
             splashDamage = stats.SplashDamage;
+            Priority = stats.Priority;
             splashRadius = stats.SplashRadius;
             bounceCount = stats.BounceCount;
             speed = stats.Speed;
