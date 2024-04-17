@@ -24,6 +24,8 @@ public class WeaponPickup : MonoBehaviour
         if (other.TryGetComponent<WeaponController>(out WeaponController t))
         {
             OnWeaponPickedUp?.Invoke(this, EventArgs.Empty);
+            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("WeaponPickup", transform.position);
+
             t.AddWeapon(weaponPrefab);
             Destroy(gameObject);
         }

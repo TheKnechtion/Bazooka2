@@ -41,6 +41,7 @@ public class Item : MonoBehaviour
         if(other.gameObject.tag == "Player" && itemTag == "Health")
         {
             other.gameObject.GetComponent<PlayerInfo>().Heal_HP(heal);
+            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("HealPickup", transform.position);
             Destroy(this.gameObject);
         }
 

@@ -99,6 +99,8 @@ public class Button_Push : MonoBehaviour
 
             UI_Manager.StopShow_InteractUI();
 
+            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("Button", transform.position);
+
             OnActivated.Invoke();
 
             canActivate = false;

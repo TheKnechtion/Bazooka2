@@ -122,6 +122,8 @@ public class WeaponController:MonoBehaviour
                 ListIncrement();
             }
 
+            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("WeaponSwitch", transform.position);
+
             FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
             //Debug.Log("E pressed" + e.Epressed);
             //Debug.Log("Q pressed" + e.Qpressed);
@@ -200,6 +202,10 @@ public class WeaponController:MonoBehaviour
         if (currentWeapon.currentAmmo > 0)
         {
             currentWeapon.HandleShooting();
+        }
+        else
+        {
+            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("EmptyMag", transform.position);
         }
     }
 

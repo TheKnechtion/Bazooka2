@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -22,6 +23,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip[] painSounds;
     static AudioClip[] painSoundsRef;
 
+    [SerializeField] private Sound[] MiscArray;
+    private Dictionary<string, AudioClip> MiscSounds;
+
+
     AudioSource audioSource;
     public float weaponsVolume = 0.5f;
     public float themeVolume = 0.01f;
@@ -30,7 +35,18 @@ public class AudioManager : MonoBehaviour
     static float painVolumeRef;
 
 
+    private void Awake()
+    {
+        if (MiscArray != null && MiscArray.Length > 0)
+        {
+            MiscSounds = new Dictionary<string, AudioClip>();
 
+            for (int i = 0; i < MiscArray.Length; i++)
+            {
+                MiscSounds.Add(MiscArray[i].Name, MiscArray[i].clip);
+            }
+        }
+    }
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -92,6 +108,17 @@ public class AudioManager : MonoBehaviour
         if (clipToPlay != null)
         {
             AudioSource.PlayClipAtPoint(clipToPlay, position, weaponsVolumeRef);
+        }
+    }
+
+    public void PlayMiscClip(string clipName, Vector3 pos)
+    {
+        if (MiscSounds != null && MiscSounds.Count > 0)
+        {
+            if (MiscSounds.TryGetValue(clipName, out AudioClip clip) )
+            {
+                AudioSource.PlayClipAtPoint(clip, pos);
+            }
         }
     }
 
