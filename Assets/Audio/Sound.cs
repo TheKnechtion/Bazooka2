@@ -11,4 +11,8 @@ public class Sound
 
     //The sound clip
     public AudioClip clip;
+
+    //Volume for specific clip
+    [Range(0,1)]
+    public float Volume;
 }

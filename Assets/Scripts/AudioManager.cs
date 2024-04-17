@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -24,7 +25,7 @@ public class AudioManager : MonoBehaviour
     static AudioClip[] painSoundsRef;
 
     [SerializeField] private Sound[] MiscArray;
-    private Dictionary<string, AudioClip> MiscSounds;
+    private Dictionary<string, Sound> MiscSounds;
 
 
     AudioSource audioSource;
@@ -39,11 +40,11 @@ public class AudioManager : MonoBehaviour
     {
         if (MiscArray != null && MiscArray.Length > 0)
         {
-            MiscSounds = new Dictionary<string, AudioClip>();
+            MiscSounds = new Dictionary<string, Sound>();
 
             for (int i = 0; i < MiscArray.Length; i++)
             {
-                MiscSounds.Add(MiscArray[i].Name, MiscArray[i].clip);
+                MiscSounds.Add(MiscArray[i].Name, MiscArray[i]);
             }
         }
     }
@@ -115,9 +116,9 @@ public class AudioManager : MonoBehaviour
     {
         if (MiscSounds != null && MiscSounds.Count > 0)
         {
-            if (MiscSounds.TryGetValue(clipName, out AudioClip clip) )
+            if (MiscSounds.TryGetValue(clipName, out Sound clip) )
             {
-                AudioSource.PlayClipAtPoint(clip, pos);
+                AudioSource.PlayClipAtPoint(clip.clip, pos, clip.Volume);
             }
         }
     }
