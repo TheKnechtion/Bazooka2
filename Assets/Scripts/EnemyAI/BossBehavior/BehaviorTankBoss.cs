@@ -29,6 +29,8 @@ public class BehaviorTankBoss : EnemyBehavior
     private bool DavinciAtkActive, CanDavinci;
     private bool SoldierMountActive;
 
+    private ResusableAudioController TankAudioController;
+
     private GameObject UI_Reference;
     private HealthBar_UI UI_HealthBar;
 
@@ -38,6 +40,8 @@ public class BehaviorTankBoss : EnemyBehavior
         DavinciAtkActive = false;
         CanDavinci = false;
         SoldierMountActive = false;
+
+        TankAudioController = transform.Find("Audio").GetComponent<ResusableAudioController>();
 
         UI_Reference = GameObject.Find("Canvas");
         UI_HealthBar = UI_Reference.GetComponentInChildren<HealthBar_UI>();
@@ -82,6 +86,8 @@ public class BehaviorTankBoss : EnemyBehavior
 
     protected override void Update()
     {
+        
+
         bodyRotation = gameObject.transform.rotation;
 
         inShootRange = false;
@@ -131,6 +137,16 @@ public class BehaviorTankBoss : EnemyBehavior
             default:
                 break;
         }
+
+        if (!agent.isStopped)
+        {
+            TankAudioController.PlaySound("Chase");
+        }
+        else
+        {
+            TankAudioController.StopSound("Chase");
+        }
+
 
         if (PercentHealth(0.5f) && !SoldierMountActive)
         {

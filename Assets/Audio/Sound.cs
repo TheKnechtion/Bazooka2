@@ -15,4 +15,7 @@ public class Sound
     //Volume for specific clip
     [Range(0,1)]
     public float Volume;
+
+    //Loop setting for this sound
+    public bool Loop;
 }
