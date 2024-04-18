@@ -736,11 +736,15 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 152276e7f391445468f04b1f6cfd5829, type: 3}
     Volume: 0.975
     Loop: 1
+    RandomizePitch: 0
+    MaxPitchOffset: 0
     MaxRange: 5
   - Name: Chase
     clip: {fileID: 8300000, guid: af40d11ac488e3f4c833b36e6893717a, type: 3}
     Volume: 0.237
     Loop: 1
+    RandomizePitch: 0
+    MaxPitchOffset: 0
     MaxRange: 5
   PlayFirstClip: 1
 --- !u!1 &1328281345251879275
@@ -4215,6 +4219,7 @@ MonoBehaviour:
   animController: {fileID: 9100000, guid: d59a7ece786ec65438d99692ac722e95, type: 2}
   weaponProjectileSpawnNode: {fileID: 2414619533619460217}
   SetToAttack: 1
+  MuteDamageAudio: 0
   enemyAttackRange_BecomeAggro: 15
   enemyAttackRange_AttackRange: 12
   isAggrod: 0
@@ -4531,6 +4536,7 @@ MonoBehaviour:
   animController: {fileID: 0}
   weaponProjectileSpawnNode: {fileID: 8737109413264873028}
   SetToAttack: 1
+  MuteDamageAudio: 1
   enemyAttackRange_BecomeAggro: 50
   enemyAttackRange_AttackRange: 20
   isAggrod: 0

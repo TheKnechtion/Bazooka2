@@ -70,6 +70,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected DataBaseWeaponGrabber weaponGrabber;
 
     [SerializeField] protected bool SetToAttack;
+    [SerializeField] protected bool MuteDamageAudio;
 
 
     //Used by the enemy to track how far the player is
@@ -381,14 +382,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         currentState = EnemyState.IDLE;
     }
 
-    /*
-    private void FixedUpdate()
-    {
-        //if the enemy is aggro'd, it will shoot at the player
-        //if (isAggrod == true) { HandleShooting(); }
-    }
-    */
-
     protected virtual void HandleShooting()
     {
         if (weaponController != null)
@@ -430,7 +423,10 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     public virtual void TakeDamage(int passedDamage)
     {
         health -= passedDamage;
-        AudioManager.PlayPainClipAtPosition(this.transform.position);
+        if (!MuteDamageAudio)
+        {
+            AudioManager.PlayPainClipAtPosition(this.transform.position);
+        }
         OnTakeDamage?.Invoke(this, EventArgs.Empty);
     }
 
