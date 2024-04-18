@@ -11,9 +11,14 @@ public class TriggerEvent : MonoBehaviour
     [Header("Things to do when triggered")]
     public UnityEvent TriggerEntered;
     private bool Triggered;
+
+    [Header("Things to do when trigger is exited")]
+    public UnityEvent TriggerExited;
+    private bool TriggeredExit;
     void Start()
     {
         Triggered = false;
+        TriggeredExit = false;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -33,4 +38,6 @@ public class TriggerEvent : MonoBehaviour
         }
 
     }
+
+  
 }

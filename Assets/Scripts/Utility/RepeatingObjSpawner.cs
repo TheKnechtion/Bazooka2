@@ -61,7 +61,7 @@ public class RepeatingObjSpawner : MonoBehaviour
         }
     }
 
-    private void ActivateObject()
+    public void ActivateObject()
     {
         GameObject var;
         if (SpawnStack.Count > 0)
