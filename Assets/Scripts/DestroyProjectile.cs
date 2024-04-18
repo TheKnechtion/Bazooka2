@@ -58,7 +58,6 @@ public class DestroyProjectile : MonoBehaviour
                     hit.collider.gameObject.transform);
 
                 ProjectileDestroyed?.Invoke(this, hitData);
-                InstanceDetroyed?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -69,5 +68,10 @@ public class DestroyProjectile : MonoBehaviour
         }       
 
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        InstanceDetroyed?.Invoke(this, EventArgs.Empty);
     }
 }

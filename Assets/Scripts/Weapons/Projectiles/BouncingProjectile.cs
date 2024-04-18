@@ -19,6 +19,8 @@ public class BouncingProjectile : ProjectileBase
     private Vector3 directionToObjectHit;
     private float distanceToObjectHit;
 
+    [SerializeField] private ParticleSystem CollisionSpark;
+
     private float yNormalBuffer;
 
     private bool doSplashDamage;
@@ -57,6 +59,8 @@ public class BouncingProjectile : ProjectileBase
         }
         else if (bounceCount > 0)
         {
+            CollisionVFX();
+
             isSpawning = false;
 
             collisionNormal = new Vector2(collision.contacts[0].normal.x, collision.contacts[0].normal.z).normalized;
@@ -67,7 +71,7 @@ public class BouncingProjectile : ProjectileBase
 
             direction = new Vector3(direction2D.x, 0, direction2D.y);
 
-           // transform.rotation = Quaternion.LookRotation(Vector3.up, direction);
+            // transform.rotation = Quaternion.LookRotation(Vector3.up, direction);
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
 
             GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("MetalHit", transform.position);
@@ -78,6 +82,16 @@ public class BouncingProjectile : ProjectileBase
         {
             DealSplashDamage();
             DeleteProjectile();
+        }
+    }
+
+    private void CollisionVFX()
+    {
+        if (CollisionSpark != null)
+        {
+            ParticleSystem m = Instantiate(CollisionSpark, transform.position, transform.rotation);
+            m.Play();
+            Destroy(m, 1.0f);
         }
     }
 
@@ -129,6 +143,8 @@ public class BouncingProjectile : ProjectileBase
             }
             else
             {
+                CollisionVFX();
+
                 GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("MetalHit", transform.position);
             }
 
@@ -147,6 +163,8 @@ public class BouncingProjectile : ProjectileBase
             BouncingProjectile p = collision.gameObject.GetComponent<BouncingProjectile>();
             if (p != null && p.Priority >= Priority)
             {
+                CollisionVFX();
+
                 DeleteProjectile();
             }
         }

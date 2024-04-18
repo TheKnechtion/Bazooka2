@@ -156,6 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: a951806a154b7854a9b2cf77d1deea9c, type: 2}
+  CollisionSpark: {fileID: 4996964217189347275, guid: 0798d5608b5675d44a62524f0d228098, type: 3}
+  Priority: 1
 --- !u!114 &66372672346960848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 8093436392987995724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.57}
+  m_LocalPosition: {x: 0, y: 0, z: 0.149}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -274,7 +276,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 95de9dec86a7f2648b452e6d7bb73671, type: 2}
+  - {fileID: 2100000, guid: dd5f1252b1e624e41a0856e1ea8612e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -304,8 +306,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.1609497
+        time: 0.03958791
+        value: 0.11549127
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -317,7 +319,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.8207547, g: 0.5902591, b: 0.05032932, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -369,4 +371,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f54c1b7ebd00447af3ef237fd5f403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DissipateTime: 1.69
+  DissipateTime: 1.14
