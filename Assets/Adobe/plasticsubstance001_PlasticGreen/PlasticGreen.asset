@@ -1,0 +1,348 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed5864476f84ce4b85454db09ca4eaa, type: 3}
+  m_Name: PlasticGreen
+  m_EditorClassIdentifier: 
+  AssetPath: Assets/Adobe/plasticsubstance001.sbsar
+  RawData: {fileID: -244192453324840774, guid: df7b8dcd78110384b8fe9ddf351dbd12, type: 3}
+  Name: PlasticGreen
+  IsRoot: 0
+  FlagedForDelete: 0
+  GUID: fabdd1f4-c5da-4160-9729-f279a362e772
+  Index: 0
+  Input:
+  - rid: 1911539895357407308
+  - rid: 1911539895357407309
+  - rid: 1911539895357407310
+  - rid: 1911539895357407311
+  - rid: 1911539895357407312
+  - rid: 1911539895357407313
+  - rid: 1911539895357407314
+  - rid: 1911539895357407315
+  - rid: 1911539895357407316
+  - rid: 1911539895357407317
+  Output:
+  - Index: 0
+    VirtualOutputIndex: 5
+    Description:
+      Identifier: basecolor
+      Label: basecolor
+      Index: 0
+      Type: 8
+      Channel: baseColor
+    OutputTexture: {fileID: 2800000, guid: 741611d0b07c70143855e056b623f811, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BaseMap
+  - Index: 1
+    VirtualOutputIndex: 6
+    Description:
+      Identifier: normal
+      Label: normal
+      Index: 1
+      Type: 8
+      Channel: normal
+    OutputTexture: {fileID: 2800000, guid: af699d36fe480d34198da26cf4b47a7c, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 0
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BumpMap
+  - Index: 2
+    VirtualOutputIndex: 7
+    Description:
+      Identifier: roughness
+      Label: roughness
+      Index: 2
+      Type: 8
+      Channel: roughness
+    OutputTexture: {fileID: 0}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _RoughnessMap
+  - Index: 3
+    VirtualOutputIndex: 8
+    Description:
+      Identifier: metallic
+      Label: metallic
+      Index: 3
+      Type: 8
+      Channel: metallic
+    OutputTexture: {fileID: 2800000, guid: 18bd167cc0a13284da799a1a2f5b5d3f, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: roughness
+    InvertAssignedAlpha: 1
+    Flags: 0
+    MaterialTextureTarget: _MetallicGlossMap
+  - Index: 4
+    VirtualOutputIndex: 9
+    Description:
+      Identifier: height
+      Label: height
+      Index: 4
+      Type: 8
+      Channel: height
+    OutputTexture: {fileID: 2800000, guid: b086772386f369e49b8c54006208dcbc, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _ParallaxMap
+  HasPhysicalSize: 0
+  PhysicalSize: {x: 0, y: 0, z: 0}
+  EnablePhysicalSize: 0
+  Thumbnail: 
+  HasThumbnail: 0
+  CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Plastic01\" label=\"\" >\n  <presetinput
+    identifier=\"$outputsize\" uid=\"3573908715\" type=\"8\" value=\"10,10\" />\n 
+    <presetinput identifier=\"Roughness_strength_main\" uid=\"2716541051\" type=\"0\"
+    value=\"0.748\" />\n  <presetinput identifier=\"Noise_strength\" uid=\"2716540517\"
+    type=\"0\" value=\"0.218\" />\n  <presetinput identifier=\"Stripes_strength\"
+    uid=\"2716501840\" type=\"0\" value=\"0.412\" />\n  <presetinput identifier=\"Scratches_strength\"
+    uid=\"2716540957\" type=\"0\" value=\"0.191\" />\n  <presetinput identifier=\"Color_1\"
+    uid=\"2716534991\" type=\"3\" value=\"0,0,0,1\" />\n  <presetinput identifier=\"Color_2\"
+    uid=\"2716535004\" type=\"3\" value=\"0.0557916,0.443396,0,1\" />\n </sbspreset>\n"
+  IsRuntimeOnly: 0
+  GenerateAllOutputs: 0
+  GenerateAllMipmaps: 1
+  OutputMaterial: {fileID: 2100000, guid: fb83151d2bc7b9249b8225dfab0524a4, type: 2}
+  DefaultPreset: " <sbspreset pkgurl=\"pkg://Plastic01\" label=\"\" >\n  <presetinput
+    identifier=\"$outputsize\" uid=\"3573908715\" type=\"8\" value=\"10,10\" />\n 
+    <presetinput identifier=\"Roughness_strength_main\" uid=\"2716541051\" type=\"0\"
+    value=\"0.748\" />\n  <presetinput identifier=\"Noise_strength\" uid=\"2716540517\"
+    type=\"0\" value=\"0.218\" />\n  <presetinput identifier=\"Stripes_strength\"
+    uid=\"2716501840\" type=\"0\" value=\"0.412\" />\n  <presetinput identifier=\"Scratches_strength\"
+    uid=\"2716540957\" type=\"0\" value=\"0.191\" />\n  <presetinput identifier=\"Color_1\"
+    uid=\"2716534991\" type=\"3\" value=\"0,0,0,1\" />\n  <presetinput identifier=\"Color_2\"
+    uid=\"2716535004\" type=\"3\" value=\"0.90566,0.842832,0.313279,1\" />\n </sbspreset>\n"
+  MaterialShader: Universal Render Pipeline/Lit
+  RenderTextures: 0
+  OutputRemaped: 0
+  Presets: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1911539895357407308
+      type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 0
+        Description:
+          Identifier: $outputsize
+          Label: $outputsize
+          GuiGroup: 
+          GuiDescription: 
+          Type: 5
+          WidgetType: 0
+        Data: {x: 10, y: 10}
+        NumericalDescription:
+          DefaultValue: {x: 8, y: 8}
+          MinValue: {x: 0, y: 0}
+          MaxValue: {x: 1, y: 1}
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 1911539895357407309
+      type: {class: SubstanceInputFloat2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 1
+        Description:
+          Identifier: $pixelsize
+          Label: $pixelsize
+          GuiGroup: 
+          GuiDescription: 
+          Type: 1
+          WidgetType: 0
+        Data: {x: 1, y: 1}
+        NumericalDescription:
+          DefaultValue: {x: 1, y: 1}
+          MinValue: {x: 0, y: 0}
+          MaxValue: {x: 1, y: 1}
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 1911539895357407310
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 2
+        Description:
+          Identifier: $randomseed
+          Label: $randomseed
+          GuiGroup: 
+          GuiDescription: 
+          Type: 4
+          WidgetType: 0
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 1911539895357407311
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 3
+        Description:
+          Identifier: Roughness_strength_main
+          Label: Roughness_strength_main
+          GuiGroup: 
+          GuiDescription: Main roughness strength
+          Type: 0
+          WidgetType: 1
+        Data: 0.748
+        NumericalDescription:
+          DefaultValue: 0.75
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 1911539895357407312
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 4
+        Description:
+          Identifier: Noise_strength
+          Label: Noise_strength
+          GuiGroup: 
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.218
+        NumericalDescription:
+          DefaultValue: 0.1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 1911539895357407313
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 5
+        Description:
+          Identifier: Stripes_strength
+          Label: Stripes_strength
+          GuiGroup: 
+          GuiDescription: Strength of the stripes in the roughness map
+          Type: 0
+          WidgetType: 1
+        Data: 0.412
+        NumericalDescription:
+          DefaultValue: 0.4
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 1911539895357407314
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 6
+        Description:
+          Identifier: Scratches_strength
+          Label: Scratches_strength
+          GuiGroup: 
+          GuiDescription: Strength of the scratches
+          Type: 0
+          WidgetType: 1
+        Data: 0.191
+        NumericalDescription:
+          DefaultValue: 0.6
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 1911539895357407315
+      type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 7
+        Description:
+          Identifier: Color_1
+          Label: Color_1
+          GuiGroup: 
+          GuiDescription: 
+          Type: 3
+          WidgetType: 3
+        Data: {x: 0, y: 0, z: 0, w: 1}
+        NumericalDescription:
+          DefaultValue: {x: 0.0253748, y: 0.0706114, z: 0.117647, w: 1}
+          MinValue: {x: 0, y: 0, z: 0, w: 0}
+          MaxValue: {x: 1, y: 1, z: 1, w: 1}
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 1911539895357407316
+      type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 8
+        Description:
+          Identifier: Color_2
+          Label: Color_2
+          GuiGroup: 
+          GuiDescription: 
+          Type: 3
+          WidgetType: 3
+        Data: {x: 0.055791564, y: 0.4433962, z: 0, w: 1}
+        NumericalDescription:
+          DefaultValue: {x: 0, y: 0.00969848, z: 0.0196078, w: 1}
+          MinValue: {x: 0, y: 0, z: 0, w: 0}
+          MaxValue: {x: 1, y: 1, z: 1, w: 1}
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 1911539895357407317
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 9
+        Description:
+          Identifier: Roughness_to_color
+          Label: Roughness_to_color
+          GuiGroup: 
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.4
+        NumericalDescription:
+          DefaultValue: 0.4
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
