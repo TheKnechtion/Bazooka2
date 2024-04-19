@@ -95,9 +95,9 @@ public class DamageIndicate : MonoBehaviour
 
         if (enemy != null)
         {
-            if (enemy.health < 2)
+            if (enemy.health < 2 && BaseMaterialArray.Length > 1)
             {
-                Material[] lowHealth = new Material[BaseMaterialArray.Length];
+                Material[] lowHealth = new Material[BaseMaterialArray.Length - 1];
                 lowHealth[0] = BaseMaterialArray[0];
                 BaseMaterialArray = lowHealth;
             }
