@@ -205,6 +205,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cc87e922f310d934cab58fb37da3c23c, type: 3}
     Volume: 0.525
     Loop: 1
+    RandomizePitch: 0
+    MaxPitchOffset: 0
+    MaxRange: 25
   PlayFirstClip: 0
 --- !u!1 &5477387087782886923
 GameObject:
@@ -1120,7 +1123,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 001d280d53aa4c54fb10aa6ae3c0b1cc, type: 2}
+  - {fileID: 2100000, guid: fb83151d2bc7b9249b8225dfab0524a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2023,7 +2026,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 001d280d53aa4c54fb10aa6ae3c0b1cc, type: 2}
+  - {fileID: 2100000, guid: fb83151d2bc7b9249b8225dfab0524a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

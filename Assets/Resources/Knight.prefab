@@ -700,6 +700,7 @@ MonoBehaviour:
   animController: {fileID: 9100000, guid: d59a7ece786ec65438d99692ac722e95, type: 2}
   weaponProjectileSpawnNode: {fileID: 8466442086576113033}
   SetToAttack: 1
+  MuteDamageAudio: 0
   enemyAttackRange_BecomeAggro: 15
   enemyAttackRange_AttackRange: 12
   isAggrod: 0
@@ -775,7 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84202e5a44c91e47b38820fc8763b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponObj: {fileID: 2251360093364778229, guid: f84032e1017234949a8b9188780fd4aa, type: 3}
+  weaponObj: {fileID: 2731649532199139399, guid: b3984adf677d9d94fb28149e68a1eb65, type: 3}
   weaponLocation: {fileID: 284480843051698280}
 --- !u!1 &3840226527533530000
 GameObject:
@@ -1441,6 +1442,7 @@ MonoBehaviour:
   SwapMaterials:
   - {fileID: 2100000, guid: 7e74baf2f3413d84888231853290903d, type: 2}
   - {fileID: 2100000, guid: 93bf5c6f38110334e886f1c5e2b2fa89, type: 2}
+  MoreHP_Material: {fileID: 0}
   renderers:
   - {fileID: 6165977650010543441}
   - {fileID: 5894115957014006739}
