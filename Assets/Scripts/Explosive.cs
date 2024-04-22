@@ -19,7 +19,9 @@ public class Explosive : MonoBehaviour
     /// </summary>
     private PlayAndDestroy particleSystem;
 
-    //private ParticleSystem VFXRadius;
+    [SerializeField] private float ShakeRadiusCheck = 2.0f;
+    private const int PlayerBitMask = 1 << 8;
+    private Collider[] NearByPlayerCheck = new Collider[2];
 
     public event EventHandler CanDestroy;
 
@@ -55,12 +57,6 @@ public class Explosive : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        temp.transform.rotation = Quaternion.Euler(Vector3.zero);
-    }
-
-
     public void Explode()
     {
         temp.transform.SetParent(null);
@@ -93,7 +89,18 @@ public class Explosive : MonoBehaviour
             }
         }
 
-        OnExploded.Invoke(this,EventArgs.Empty);
+        //Check if player is nearby explosion to Camera Shake
+        if (Physics.OverlapSphereNonAlloc(transform.position, ShakeRadiusCheck, NearByPlayerCheck, PlayerBitMask) > 0)
+        {
+            for (int i = 0; i < NearByPlayerCheck.Length; i++)
+            {
+                if (NearByPlayerCheck[i] != null && NearByPlayerCheck[i].TryGetComponent<PlayerInfo>(out PlayerInfo t))
+                {
+                    OnExploded.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
         CanDestroy.Invoke(this, EventArgs.Empty);
     }
 
@@ -101,5 +108,9 @@ public class Explosive : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, ExplosionRadius);
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, ShakeRadiusCheck);
+
     }
 }

@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public static float dragObjectSpeed = 1.0f;
     public static float heldObjectSpeed = 1.0f;
 
+    [SerializeField] private float ForceMultiplier = 25;
+
     float dashCooldown;
 
     Animator movementAnimator;
@@ -125,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
         //this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement * acceleration;
 
-        this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*25f);
+        this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*ForceMultiplier);
 
         currentPosition = transform.position;
     }

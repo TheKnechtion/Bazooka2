@@ -186,6 +186,7 @@ MonoBehaviour:
   Damage: 100
   myCollider: {fileID: 0}
   ExplosionFXPrefab: {fileID: 8870557704796583337, guid: 733be0938895ab04b9a3158c43de02db, type: 3}
+  ShakeRadiusCheck: 18
 --- !u!114 &3285338959018307062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +205,7 @@ MonoBehaviour:
   destroyedMesh: {fileID: 0}
   destroyEffect: {fileID: 0}
   smokeEffect: {fileID: 0}
-  FuseTime: 3
+  fuseTime: 0
   explosive: {fileID: 0}
   meshObject: {fileID: 6342719732654357591, guid: 2dee651bc9a13524894384838aeb2a74, type: 3}
   fuseMaterial: {fileID: 2100000, guid: 51584d5d90062734680930a26873776b, type: 2}
