@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float ForceMultiplier = 25;
 
+    [SerializeField] private Transform GroundCheckTransform;
+    private const int GroundBitMask = (1<<9);
+    private const float GroundCheckRadius = 1.0f;
+
     float dashCooldown;
 
     Animator movementAnimator;
@@ -34,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     public static event EventHandler OnPlayerMoved;
 
 
-    Rigidbody player_rb;
+    private Rigidbody player_rb;
 
     WeaponController weaponController;
 
@@ -79,16 +83,22 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    float acceleration = 0;
+    private void Update()
+    {
+        if (!CheckGrounded())
+        {
+            player_rb.drag = 0.0f;
+        }
+        else
+        {
+            player_rb.drag = 5.0f;
+        }
+    }
 
-    // Update is called once per frame
+    float acceleration = 0;
     void FixedUpdate()
     {
-
-        
-
         moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
-
         /*
         if(moveInput.magnitude > 0 && acceleration < 1f)
         {
@@ -103,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             acceleration -= 0.1f;
         }
         */
-        
+
         /*
         if (!isStopped)
         {
@@ -147,7 +157,10 @@ public class PlayerMovement : MonoBehaviour
         slowSpeed = 1.0f;
     }
 
-
+    private bool CheckGrounded()
+    {
+        return Physics.CheckSphere(GroundCheckTransform.position, GroundCheckRadius, GroundBitMask);
+    }
 
     private void OnEnable()
     {
@@ -162,4 +175,9 @@ public class PlayerMovement : MonoBehaviour
         _playerController.PlayerMovement.Disable();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(GroundCheckTransform.position, GroundCheckRadius);
+    }
 }

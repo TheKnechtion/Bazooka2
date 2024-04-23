@@ -83,8 +83,8 @@ public class Navigation : MonoBehaviour, INavComponent
                     agent.SetDestination(transform.position);
                 }
 
-                if (distance < stoppingDistance)
-                    StartCoroutine(backUP());
+                //if (distance < stoppingDistance)
+                //    StartCoroutine(backUP());
 
             }
             else
@@ -155,10 +155,7 @@ public class Navigation : MonoBehaviour, INavComponent
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     public void MoveTo(Vector3 t)

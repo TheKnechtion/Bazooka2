@@ -240,8 +240,9 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
             case EnemyState.ATTACK:                
                 if (nav.isActiveAndEnabled && nav != null)
                 {
-                    nav.StopMovement();
+                    //nav.StopMovement();
                 }
+
                 //verticalAngle = GetVerticalAngleToPlayer(transform.forward, playerPosition);
                 verticalAngle = AngleToPlayer(distanceToPlayer, enemyPosition, playerPosition);
                 if (verticalAngle < maxAimingAngle)
