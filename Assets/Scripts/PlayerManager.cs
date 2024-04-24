@@ -13,6 +13,9 @@ public class PlayerManager : MonoBehaviour
     public static PlayerController _playerController;
     WeaponController weaponController;
 
+    private PlayerInfo refPlayerInfo;
+    private bool isVulnerable;
+
     bool pressed;
 
     //store the current player position
@@ -75,7 +78,7 @@ public class PlayerManager : MonoBehaviour
         
         }
         
-
+        refPlayerInfo = GetComponent<PlayerInfo>();
 
         DontDestroyOnLoad(this.gameObject);
 
@@ -91,7 +94,7 @@ public class PlayerManager : MonoBehaviour
         weaponController.FinishedWeaponChange += UpdateCurrentWeaponInfo;
         Ammo_PickUp_Item.pickedUpAmmo += UpdateCurrentWeaponInfo;
         MaxProjOnScreen_Increase_PickUp.pickedUpAmmo += UpdateCurrentWeaponInfo;
-
+        refPlayerInfo.OnVulnerableChange += OnVulnerabilityChange;
     }
 
     public static Vector2 mouseDelta;
@@ -102,10 +105,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-
-        CameraSwitcher.OnCameraEnable += cameraSwitched;
-        CameraSwitcher.OnCameraDisable += cameraReturned;
-
         _playerController.PlayerActions.Shoot.performed += HandleShooting;
         _playerController.PlayerActions.Shoot.canceled -= HandleShooting;
 
@@ -137,12 +136,24 @@ public class PlayerManager : MonoBehaviour
 
         SceneManager.activeSceneChanged += SceneChanged;
     }
-
+    
     private void SceneChanged(Scene arg0, Scene arg1)
     {
         SetWeaponUsability(true);
     }
+    private void OnVulnerabilityChange(object sender, bool e)
+    {
+        isVulnerable = e;
 
+        if (e)
+        {
+            _playerController.PlayerActions.Disable();
+        }
+        else
+        {
+            _playerController.PlayerActions.Enable();
+        }
+    }
     public static RangedWeapon currentWeapon_ref;
 
     private void UpdateCurrentWeaponInfo(object sender, EventArgs e)
@@ -159,17 +170,6 @@ public class PlayerManager : MonoBehaviour
             Epressed = Keyboard.current.eKey.wasPressedThisFrame
         }); //Used for detecting weapon switch
     }
-
-    private void cameraReturned(object sender, EventArgs e)
-    {
-        _playerController.PlayerActions.Enable();
-    }
-
-    private void cameraSwitched(object sender, EventArgs e)
-    {
-        _playerController.PlayerActions.Disable();
-    }
-
 
     private void PlayerAim(InputAction.CallbackContext e)
     {

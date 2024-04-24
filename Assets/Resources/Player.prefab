@@ -1112,6 +1112,7 @@ GameObject:
   - component: {fileID: 7917691548880034559}
   - component: {fileID: 7917691548891630475}
   - component: {fileID: 1540853200643895019}
+  - component: {fileID: 2214193176922924283}
   m_Layer: 8
   m_Name: US_body_infantry
   m_TagString: Player
@@ -1221,12 +1222,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SwapMaterials:
   - {fileID: 2100000, guid: 001d280d53aa4c54fb10aa6ae3c0b1cc, type: 2}
-  - {fileID: 2100000, guid: 42f5bfd3ccd8ccb48b85933550f833e9, type: 2}
+  - {fileID: 2100000, guid: 2aacd22263ce15d44939acc40c416b96, type: 2}
   MoreHP_Material: {fileID: 0}
   renderers:
   - {fileID: 7917691548891630489}
   - {fileID: 7917691548891630475}
   - {fileID: 7917691548891630495}
+--- !u!114 &2214193176922924283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917691548880127711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d03c90f40fc9f48916206cd775326b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InvulnerableMat: {fileID: 2100000, guid: 5324d61527f060347806133c871dddcf, type: 2}
 --- !u!1 &7917691548880127713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,6 +1590,7 @@ MonoBehaviour:
   modifiedSpeed: 0
   ForceMultiplier: 100
   GroundCheckTransform: {fileID: 6749659013904559403}
+  DisableMovement: 0
 --- !u!114 &3654569959057878488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1795,7 +1810,7 @@ MonoBehaviour:
   playerLookDirection: {x: 0, y: 0, z: 0}
   state: 0
   RemainingAttempts: 1
-  MaxAttempts: 0
+  MaxAttempts: 3
 --- !u!114 &6410629799103784124
 MonoBehaviour:
   m_ObjectHideFlags: 0

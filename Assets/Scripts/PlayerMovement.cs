@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     private const int GroundBitMask = (1<<9);
     private const float GroundCheckRadius = 1.0f;
 
+    public bool DisableMovement = false;
+
     float dashCooldown;
 
     Animator movementAnimator;
@@ -98,7 +100,11 @@ public class PlayerMovement : MonoBehaviour
     float acceleration = 0;
     void FixedUpdate()
     {
-        moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
+        moveInput = Vector3.zero;
+        if (!DisableMovement)
+        {
+            moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
+        }
         /*
         if(moveInput.magnitude > 0 && acceleration < 1f)
         {

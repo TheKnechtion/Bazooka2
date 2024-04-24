@@ -78,6 +78,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
     public event EventHandler CheckpointRestarted;
 
+    public event EventHandler<bool> OnVulnerableChange;
+
     void Awake()
     {
         _instance = this;
@@ -107,6 +109,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
         state = PlayerState.VULNERABLE;
         healthState = PlayerHealthState.ALIVE;
+        RemainingAttempts = MaxAttempts;
 
         OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
 
@@ -130,17 +133,18 @@ public class PlayerInfo:MonoBehaviour, IDamagable
      * When the camera changes to look at an objective, we disable
      * the players controls and make them invulnerbale so that
      * they don't take damage,
-     */
-    private void cameraReturned(object sender, EventArgs e)
-    {        
-        state = PlayerState.VULNERABLE;
-    }
-
+     */    
     private void cameraSwitched(object sender, EventArgs e)
     {
         state = PlayerState.INVULNERABLE;
+        OnVulnerableChange.Invoke(this, true);
+        gameObject.GetComponent<PlayerMovement>().DisableMovement = true;
     }
-
+    private void cameraReturned(object sender, EventArgs e)
+    {
+        StartCoroutine(TemporaryInvulnerable(1.5f));
+        gameObject.GetComponent<PlayerMovement>().DisableMovement = false;
+    }
     private void Update()
     {
         _instance = this;
@@ -346,7 +350,16 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         }
 
         state = PlayerState.VULNERABLE;
+        OnVulnerableChange.Invoke(this, false);
 
         yield return null;
+    }
+
+    private void OnDestroy()
+    {
+        CameraSwitcher.OnCameraEnable -= cameraSwitched;
+        CameraSwitcher.OnCameraDisable -= cameraReturned;
+        GameManager.OnPlayerWin -= OnWin;
+        MenuStartGame.OnRestart -= OnLevelRestart;
     }
 }
