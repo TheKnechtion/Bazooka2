@@ -18,15 +18,20 @@ public class CMShaker : MonoBehaviour
 
         Explosive.OnExploded += CameraShake;
         PlayerInfo.GlobalDamge += CameraShake;
+        DestroyProjectile.ProjectileCameraShake += CameraShakeLow;
     }
 
     private void CameraShake(object sender, System.EventArgs e)
     {
-        ShakeCam();
+        ShakeCam(0.3f, 2.5f);
     }
-    private void ShakeCam()
+    private void CameraShakeLow(object sender, System.EventArgs e)
     {
-        StartCoroutine(ShakeRoutine(0.3f, 2.5f));
+        ShakeCam(0.2f, 3f);
+    }
+    private void ShakeCam(float shakeTime, float max)
+    {
+        StartCoroutine(ShakeRoutine(shakeTime, max));
     }
 
     private IEnumerator ShakeRoutine(float shakeTime, float max)

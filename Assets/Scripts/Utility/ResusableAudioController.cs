@@ -35,6 +35,7 @@ public class ResusableAudioController : MonoBehaviour
                 a.spatialBlend = 1;
                 a.loop = Clips[i].Loop;
                 a.maxDistance = Clips[i].MaxRange;
+                a.spatialBlend = Clips[i].SpatialBlend;
                 SoundDictionary.Add(Clips[i].Name, a);
             }
         }

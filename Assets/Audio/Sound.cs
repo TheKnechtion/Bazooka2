@@ -19,6 +19,11 @@ public class Sound
     //Loop setting for this sound
     public bool Loop;
 
+    //Used to mix between 2D and 3D blend on Audio Source
+    [Tooltip("0 -> 2D | 1 -> 3D")]
+    [Range(0,1)]
+    public float SpatialBlend;
+
     //If Pitch should change each time sound is played, IF the current AudioSource Allows for it
     public bool RandomizePitch;
 

@@ -40,6 +40,8 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
     [SerializeField] private float endingWidth;
     private LineRenderer laserRenderer;
 
+    private ResusableAudioController AudioController;
+
     private Vector3 targetPos;
     private bool userKilled;
     private bool targetingActive;
@@ -71,6 +73,7 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
         MortarBody = GetComponent<DestroyableObject>();
         MortarBody.OnDestroyed += MortarDestroyed;
         
+        AudioController = GetComponentInChildren<ResusableAudioController>();
 
         SpawnEnemy();
 
@@ -108,16 +111,25 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
     private IEnumerator TrackAndShoot()
     {
         targetingActive = true;
+        bool SoundActivated = false;
+
+        OnParticleCall?.Invoke(this, EventArgs.Empty);
 
         ToggleLaser(true);
+        AudioController.PlaySound("MortarFire");
 
         while (timeUntilShoot < shootDelay)
         {
             timeUntilShoot += Time.deltaTime;
             SetLaserWidth(startingWidth, endingWidth);
 
-            yield return null;
+            if (!SoundActivated && timeUntilShoot/shootDelay > 0.7f)
+            {
+                SoundActivated = true;
+                AudioController.PlaySound("MortarFall");
+            }
 
+            yield return null;
         }
 
         ShootMortar();
@@ -152,7 +164,6 @@ public class MortarBehavior : MonoBehaviour, IParticleCaller
     }
     private void ShootMortar()
     {
-        OnParticleCall?.Invoke(this, EventArgs.Empty);
         GameObject var = Instantiate(AmmoPrefab, targetPos, Quaternion.identity);
         var.transform.rotation = Quaternion.Euler(90, 0, 0);
     }

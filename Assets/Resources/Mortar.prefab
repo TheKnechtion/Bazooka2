@@ -32,6 +32,68 @@ Transform:
   - {fileID: 6701407038079033303}
   m_Father: {fileID: 584421701640095168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2601391173792503122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2938870279708045795}
+  - component: {fileID: 6139230170033314831}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2938870279708045795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2601391173792503122}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 584421701640095168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6139230170033314831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2601391173792503122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355ed8afecf60e54eb671c921e61af92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Clips:
+  - Name: MortarFire
+    clip: {fileID: 8300000, guid: 9796b0e3385d5d7488a2c7f787e1de89, type: 3}
+    Volume: 1
+    Loop: 0
+    SpatialBlend: 0.978
+    RandomizePitch: 0
+    MaxPitchOffset: 0
+    MaxRange: 100
+  - Name: MortarFall
+    clip: {fileID: 8300000, guid: e4450edf14261a042bb6f9f2a382893a, type: 3}
+    Volume: 0.569
+    Loop: 0
+    SpatialBlend: 1
+    RandomizePitch: 0
+    MaxPitchOffset: 0
+    MaxRange: 100
+  PlayFirstClip: 0
 --- !u!1 &2626080126436534380
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +503,7 @@ Transform:
   - {fileID: 3196684528520890640}
   - {fileID: 3566421347421792242}
   - {fileID: 6840011397347229775}
+  - {fileID: 2938870279708045795}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2258102450101985965

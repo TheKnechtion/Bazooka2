@@ -13,12 +13,18 @@ public class DestroyProjectile : MonoBehaviour
 
     [SerializeField] private float LifeTime;
 
+    [SerializeField] private bool CamShakeOnDestroy;
+
     private int ExlcudeFromRaycastMask;
+
+    private const int PlayerMask = (1 << 8);
 
     //Used for Decal setting
     public static event EventHandler<Tuple<Vector3, Quaternion, Transform>> ProjectileDestroyed;
 
     public event EventHandler InstanceDetroyed;
+
+    public static event EventHandler ProjectileCameraShake;
     void Start()
     {
         //These are bitmask layers to EXCLUDE for setting the damage decals
@@ -46,6 +52,14 @@ public class DestroyProjectile : MonoBehaviour
     private void Bullet_OnDestroyed(object sender, System.EventArgs e)
     {
         AudioManager.PlayClipAtPosition("explosion_sound",transform.position);
+
+        if (CamShakeOnDestroy)
+        {
+            if (Physics.CheckSphere(transform.position, 2.5f, PlayerMask))
+            {
+                ProjectileCameraShake.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         //Set the explosion Decal position here    
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 3.0f, ExlcudeFromRaycastMask))

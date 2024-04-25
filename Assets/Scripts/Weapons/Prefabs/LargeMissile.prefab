@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyVFX: {fileID: 1559265251090958766, guid: ccce2e5cc0c4ac94aaf28ff03fd665d9, type: 3}
   LifeTime: 3
+  CamShakeOnDestroy: 1
 --- !u!114 &8501456781112791428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: bbaa05a5871070546a8212cae906c4aa, type: 2}
+  CollisionSpark: {fileID: 0}
+  Priority: 1
 --- !u!1 &6296992368923251148
 GameObject:
   m_ObjectHideFlags: 0
