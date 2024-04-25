@@ -13,6 +13,10 @@ public class DamageIndicate : MonoBehaviour
     //This 'added' material signifies the entity takes more than 1 hit
     [SerializeField] private Material MoreHP_Material;
 
+    //Possible sub-meshes
+    private MeshFilter meshFilter;
+    private MeshFilter[] SubMeshes;
+
     //The one renderer if no renderers are attatched
     private Renderer render;
 
@@ -25,6 +29,8 @@ public class DamageIndicate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        meshFilter = GetComponent<MeshFilter>();
+
         if (renderers.Length == 0)
          render = GetComponent<Renderer>();
 
@@ -89,7 +95,8 @@ public class DamageIndicate : MonoBehaviour
     private IEnumerator indicateDamage(Renderer render)
     {
         //Grabs 1st element in material array
-        render.material = SwapMaterials[1];
+
+        render.materials = SwapMaterials;
 
         yield return new WaitForSeconds(0.5f);
 

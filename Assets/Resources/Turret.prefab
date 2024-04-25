@@ -1595,6 +1595,7 @@ MonoBehaviour:
   animController: {fileID: 9100000, guid: d59a7ece786ec65438d99692ac722e95, type: 2}
   weaponProjectileSpawnNode: {fileID: 0}
   SetToAttack: 0
+  MuteDamageAudio: 0
   enemyAttackRange_BecomeAggro: 12
   enemyAttackRange_AttackRange: 12
   isAggrod: 0
@@ -1612,6 +1613,7 @@ MonoBehaviour:
   AimingTime: 1.5
   TurningAngle: 0
   DeAggroTime: 2
+  ChargeTime: 1.3
   laserRenderer: {fileID: 8012288522163274017}
 --- !u!195 &277832867746025131
 NavMeshAgent:
@@ -1798,7 +1800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SwapMaterials:
   - {fileID: 2100000, guid: 7e74baf2f3413d84888231853290903d, type: 2}
-  - {fileID: 2100000, guid: 93bf5c6f38110334e886f1c5e2b2fa89, type: 2}
+  - {fileID: 2100000, guid: 2aacd22263ce15d44939acc40c416b96, type: 2}
   MoreHP_Material: {fileID: 0}
   renderers:
   - {fileID: 8743258792967525637}

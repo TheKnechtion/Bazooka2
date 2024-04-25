@@ -831,8 +831,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwapMaterials:
-  - {fileID: 1878205680589490958, guid: 9e7fa1e7b36e6064e8f1ab17939dc5ef, type: 3}
-  - {fileID: 2100000, guid: 93bf5c6f38110334e886f1c5e2b2fa89, type: 2}
+  - {fileID: 2100000, guid: b3cfe3f89972f5d48b9e4e935715c936, type: 2}
+  - {fileID: 2100000, guid: 2aacd22263ce15d44939acc40c416b96, type: 2}
   MoreHP_Material: {fileID: 0}
   renderers:
   - {fileID: 6607098211967909495}
@@ -2580,7 +2580,7 @@ MonoBehaviour:
   SwapMaterials:
   - {fileID: 2100000, guid: 7e74baf2f3413d84888231853290903d, type: 2}
   - {fileID: 2100000, guid: 93bf5c6f38110334e886f1c5e2b2fa89, type: 2}
-  MoreHP_Material: {fileID: 2100000, guid: aae38cd7420477946ad4be2bf114e158, type: 2}
+  MoreHP_Material: {fileID: 0}
   renderers:
   - {fileID: 5948612838056959314}
   - {fileID: 7813075765275330193}
@@ -3591,7 +3591,6 @@ GameObject:
   - component: {fileID: 1733085524551462732}
   - component: {fileID: 6912793641262604081}
   - component: {fileID: 4081149124847566557}
-  - component: {fileID: 5865717537734108700}
   m_Layer: 10
   m_Name: SD_Tiger_I_Body
   m_TagString: Untagged
@@ -3643,7 +3642,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: b3cfe3f89972f5d48b9e4e935715c936, type: 2}
-  - {fileID: 2100000, guid: 1fd29ed615d9fa748b55a80b04e29d76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3665,21 +3663,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5865717537734108700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7761843441035551206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d815ba2c0b5b6d459d8e717e0fa73ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SwapMaterials: []
-  MoreHP_Material: {fileID: 0}
-  renderers: []
 --- !u!1 &7982767600580975085
 GameObject:
   m_ObjectHideFlags: 0
@@ -3898,8 +3881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwapMaterials:
-  - {fileID: 2100000, guid: 7e74baf2f3413d84888231853290903d, type: 2}
-  - {fileID: 2100000, guid: 93bf5c6f38110334e886f1c5e2b2fa89, type: 2}
+  - {fileID: 2100000, guid: b3cfe3f89972f5d48b9e4e935715c936, type: 2}
+  - {fileID: 2100000, guid: 2aacd22263ce15d44939acc40c416b96, type: 2}
   MoreHP_Material: {fileID: 0}
   renderers:
   - {fileID: 4081149124847566557}
