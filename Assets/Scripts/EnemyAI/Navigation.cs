@@ -16,7 +16,7 @@ public class Navigation : MonoBehaviour, INavComponent
     public float stoppingDistance;
     protected const float stopCheckradius = 1.5f;
 
-    [SerializeField] protected bool DisableMovement;
+    public bool DisableMovement;
 
     public event EventHandler OnStoppedMoving;
 

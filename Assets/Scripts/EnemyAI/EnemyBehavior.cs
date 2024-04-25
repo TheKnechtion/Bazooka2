@@ -82,8 +82,9 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
     protected float timeBetweenShots;
 
     //Used to determine how far the player has to be for the enemy to stop attacking    
-    [SerializeField] protected float enemyAttackRange_BecomeAggro = 15.0f;
-    [SerializeField] protected float enemyAttackRange_AttackRange = 12.0f;
+    public float enemyAttackRange_BecomeAggro = 15.0f;
+    public float enemyAttackRange_AttackRange = 12.0f;
+
     public bool isAggrod, inShootRange;
     private bool lockedOn;
 
@@ -119,7 +120,7 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
 
     [Tooltip("Set the max VERTICAL aiming angle for enemies")]
     [Range(0f, 60f)]
-    [SerializeField] private float maxAimingAngle;
+    public float maxAimingAngle;
 
     protected virtual void Awake()
     {

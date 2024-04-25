@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyWeaponController : MonoBehaviour
 {
     [Header("Enemies Weapon")]
-    [SerializeField] private GameObject weaponObj;
+    public GameObject weaponObj;
     [SerializeField] private Transform weaponLocation;
     private RangedWeapon weapon;
 
