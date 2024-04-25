@@ -148,10 +148,17 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         {
             weaponController = weapCon;
         }
+
+        //sets the initial state of an enemy to docile
+        isAggrod = false;
+        inShootRange = false;
+        lockedOn = false;
+        ArmoredTarget = false;
+        setStats();
     }
     protected virtual void Start()
     {
-        setStats();
+        health = maxHealth;
 
         agent = GetComponent<NavMeshAgent>();
 
@@ -166,13 +173,6 @@ public class EnemyBehavior : MonoBehaviour, IDamagable
         //create's the correct weapon for an enemy based on the spawned enemy's name
         //currentEnemyWeapon = weaponController.MakeWeapon(enemyName);
         
-
-        //sets the initial state of an enemy to docile
-        isAggrod = false;
-        inShootRange = false;
-        lockedOn = false;
-        ArmoredTarget= false;
-
         nav = GetComponent<Navigation>();
         nav.OnStoppedMoving += StoppedMoving;
         //nav.stoppingDistance = enemyAttackRange_AttackRange;

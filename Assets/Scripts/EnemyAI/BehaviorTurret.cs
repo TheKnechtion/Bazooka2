@@ -46,10 +46,12 @@ public class BehaviorTurret : EnemyBehavior
 
     private float timeToTurn;
 
-    // Start is called before the first frame update
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     protected override void Start()
     {
-        setStats();
         SetFOV_Angle(FOV_Angle);
 
         timeToTurn = 1.5f;

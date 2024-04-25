@@ -6,18 +6,30 @@ public class EnemyWeaponController : MonoBehaviour
 {
     [Header("Enemies Weapon")]
     public GameObject weaponObj;
+
+    private GameObject weaponInstance;
+
     [SerializeField] private Transform weaponLocation;
     private RangedWeapon weapon;
 
-    void Start()
+    void Awake()
     {
         if (weaponObj != null)
         {
-            GameObject temp = Instantiate(weaponObj, weaponLocation);
-            weapon = temp.GetComponent<RangedWeapon>();
+            InitWeapon(weaponObj);
         }
     }
+    public void InitWeapon(GameObject weaponPrefab)
+    {
+        if (weaponInstance != null)
+        {
+            Destroy(weaponInstance);
+            weaponInstance = null;
+        }
 
+        weaponInstance = Instantiate(weaponPrefab, weaponLocation);
+        weapon = weaponInstance.GetComponent<RangedWeapon>();
+    }
     public void OvverideFireRate(float newFireRate)
     {
         if (weapon != null)
