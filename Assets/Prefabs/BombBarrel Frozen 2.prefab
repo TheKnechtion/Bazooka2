@@ -169,9 +169,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4922319674696345548}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4089880540551093825}
   m_SourcePrefab: {fileID: 100100000, guid: 8e11425b76a7071448e45e0597b17df7, type: 3}
 --- !u!4 &6002749996016428781 stripped
 Transform:
@@ -291,20 +288,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &4089880540551093825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6342719732654357591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 151d8e34a058aaf4c97dc6ae79813a50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objSize: 1.5
-  objName: Exp. Barrel
-  colliders:
-  - {fileID: 2776448973882591829}
-  - {fileID: 2026108803334132700}
