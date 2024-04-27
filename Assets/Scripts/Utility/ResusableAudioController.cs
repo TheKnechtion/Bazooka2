@@ -32,7 +32,7 @@ public class ResusableAudioController : MonoBehaviour
                 AudioSource a = gameObject.AddComponent<AudioSource>();
                 a.clip = Clips[i].clip;
                 a.volume = Clips[i].Volume;
-                a.spatialBlend = 1;
+                a.spatialBlend = Clips[i].SpatialBlend;
                 a.loop = Clips[i].Loop;
                 a.maxDistance = Clips[i].MaxRange;
                 a.spatialBlend = Clips[i].SpatialBlend;

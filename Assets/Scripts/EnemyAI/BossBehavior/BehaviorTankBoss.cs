@@ -18,6 +18,7 @@ public class BehaviorTankBoss : EnemyBehavior
 
     public static event EventHandler OnTankKilled;
     public event EventHandler InstanceTankKilled;
+    public static event EventHandler OnCaughtAggro;
 
     public static UnityEvent OnTankKilledUEvent;
 
@@ -85,9 +86,7 @@ public class BehaviorTankBoss : EnemyBehavior
     }
 
     protected override void Update()
-    {
-        
-
+    {    
         bodyRotation = gameObject.transform.rotation;
 
         inShootRange = false;
@@ -174,6 +173,7 @@ public class BehaviorTankBoss : EnemyBehavior
         {
             if (!initialAggro)
             {
+                //OnCaughtAggro?.Invoke(this, EventArgs.Empty);
                 UI_HealthBar.ToggleHpBar(true);
                 initialAggro = true;
             }

@@ -185,8 +185,8 @@ public class WeaponDatabase
         tankWeapon.doesBounce = false;
         tankWeapon.isHoming = false;
 
-        tankWeapon.damage = 1;
-        tankWeapon.splashDamage = 2;
+        tankWeapon.damage = 2;
+        tankWeapon.splashDamage = 0;
         tankWeapon.maxProjectilesOnScreen = 1;
         tankWeapon.numberOfProjectilesPerShot = 1;
         tankWeapon.numberOfBounces = 0;

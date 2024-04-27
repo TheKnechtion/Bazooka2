@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 3878814541159673855}
   - component: {fileID: 3126766247059316367}
   - component: {fileID: 8913507921051545083}
-  - component: {fileID: 4267855796418546214}
   m_Layer: 10
   m_Name: SD_Tiger_I_Barrel
   m_TagString: Untagged
@@ -139,19 +138,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 32, y: 31.99997, z: 59.94606}
   m_Center: {x: 0.0000028510033, y: 95.99914, z: 406.8305}
---- !u!114 &4267855796418546214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164059327364709227}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c594d9b85cc3cf4f82dde6cc3b47662, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DamageAmount: 0
 --- !u!1 &247894528699229006
 GameObject:
   m_ObjectHideFlags: 0

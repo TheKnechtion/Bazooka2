@@ -74,6 +74,11 @@ public class AudioManager : MonoBehaviour
         audioSource.Play();
     }
 
+    public void StopTheme()
+    {
+        audioSource.Stop();
+    }
+
     static AudioClip clipToPlay;
 
     public static void PlayClipAtPosition(string clip, Vector3 position)
