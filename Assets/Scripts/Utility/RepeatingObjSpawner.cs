@@ -57,7 +57,10 @@ public class RepeatingObjSpawner : MonoBehaviour
         else
         {
             currentSpawnTime = 0.0f;
-            ActivateObject();
+            if (PossibleObjects != null && PossibleObjects.Length > 0)
+            {
+                ActivateObject();
+            }
         }
     }
 
