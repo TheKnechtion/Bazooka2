@@ -20,7 +20,7 @@ public class MusicLoop : MonoBehaviour
     {
         IntroSource = CreateSource(Music_Intro);
         LoopSource = CreateSource(Music_Loop);
-        //OutroSource = CreateSource(Music_Outro);
+        OutroSource = CreateSource(Music_Outro);
     }
 
     private void Start()
@@ -29,8 +29,18 @@ public class MusicLoop : MonoBehaviour
         {
             StartMusic();
         }
-    }
 
+        BehaviorTankBoss.OnCaughtAggro += StartEvents;
+        BehaviorTankBoss.OnTankKilled += StopEvents;
+    }
+    private void StartEvents(object sender, System.EventArgs e)
+    {
+        StartMusic();
+    }
+    private void StopEvents(object sender, System.EventArgs e)
+    {
+        StopMusic();
+    }
     private AudioSource CreateSource(Sound newSound)
     {
         AudioSource a = gameObject.AddComponent<AudioSource>();
@@ -108,12 +118,15 @@ public class MusicLoop : MonoBehaviour
                 yield return null;
             }
         }
-        else
-        {
-            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayTheme();
-        }
+
+        GameObject.Find("GameManager").GetComponent<AudioManager>().PlayTheme();
 
         yield return null;
     }
 
+    private void OnDestroy()
+    {
+        BehaviorTankBoss.OnCaughtAggro -= StartEvents;
+        BehaviorTankBoss.OnTankKilled -= StopEvents;
+    }
 }

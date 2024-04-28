@@ -173,7 +173,7 @@ public class BehaviorTankBoss : EnemyBehavior
         {
             if (!initialAggro)
             {
-                //OnCaughtAggro?.Invoke(this, EventArgs.Empty);
+                OnCaughtAggro?.Invoke(this, EventArgs.Empty);
                 UI_HealthBar.ToggleHpBar(true);
                 initialAggro = true;
             }

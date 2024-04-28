@@ -12,13 +12,13 @@ public static class LevelManager
     public static event EventHandler OnNewScene;
     public static void AddNextScenes(SceneScriptable next)
     {
-        Debug.Log("Next scenes loaded");
+        //Debug.Log("Next scenes loaded");
         NextScenes = next;
     }
 
     public static void EnterNewScene(string nextScene)
     {
-        Debug.Log("Moving to "+nextScene);
+        //Debug.Log("Moving to "+nextScene);
 
         OnNewScene?.Invoke(null, EventArgs.Empty);
 

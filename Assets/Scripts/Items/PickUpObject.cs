@@ -72,10 +72,17 @@ public class PickUpObject : MonoBehaviour
     {
         if (other.transform.tag == "Player" && other.transform.gameObject.GetComponent<PlayerManager>().CanCarryObjectOnBack)
         {
-            UI_Manager.Show_InteractUI($"Pick Up {objName}");
-            other.transform.gameObject.GetComponent<PlayerManager>().CanCarryObjectOnBack = false;
-            canPickUp = true;
-            playerCollider = other;
+            if (other.GetComponent<PlayerInfo>().HeatlthState == PlayerHealthState.ALIVE)
+            {
+                UI_Manager.Show_InteractUI($"Pick Up {objName}");
+                other.transform.gameObject.GetComponent<PlayerManager>().CanCarryObjectOnBack = false;
+                canPickUp = true;
+                playerCollider = other;
+            }            
+            else
+            {
+                UI_Manager.StopShow_InteractUI();
+            }
         }
         else if (other.transform.tag != "Player")
         {

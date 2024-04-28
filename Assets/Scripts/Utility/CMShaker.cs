@@ -36,7 +36,6 @@ public class CMShaker : MonoBehaviour
 
     private IEnumerator ShakeRoutine(float shakeTime, float max)
     {
-        Debug.Log("Shaking");
         float t = 0.0f;
         noiseComponent.m_AmplitudeGain = max;
 
