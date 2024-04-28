@@ -23,6 +23,8 @@ public class Button : MonoBehaviour, IActivate
     private CameraSwitcher camManager;
     [SerializeField] private bool usesCamera;
 
+    [SerializeField] private float TransitionTime = 3.5f;
+
     public UnityEvent doThis;
 
     private void Awake()
@@ -58,7 +60,7 @@ public class Button : MonoBehaviour, IActivate
 
 
             if (usesCamera)
-             camManager.SwitchToCamera(connectedCamera);
+             camManager.SwitchToCamera(connectedCamera, TransitionTime);
         }
     }
 

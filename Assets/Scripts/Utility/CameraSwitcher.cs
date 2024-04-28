@@ -19,8 +19,6 @@ public class CameraSwitcher : MonoBehaviour
      *          - raise event to return to playing state
      */
 
-
-    //[SerializeField] private CinemachineVirtualCamera[] sceneCameras;
     [SerializeField] private static List<CinemachineVirtualCamera> sceneCameras = new List<CinemachineVirtualCamera>();
 
     private CinemachineVirtualCamera currentOBJCamera;
@@ -49,15 +47,6 @@ public class CameraSwitcher : MonoBehaviour
         {
             cam.Priority = disablePriority;
         }
-
-        //Array
-        //for (int i = 0; i < sceneCameras.Length; i++)
-        //{
-        //    sceneCameras[i].Priority = disablePriority;
-        //}   
-
-        //Debug.Log("My camera count " + sceneCameras.Count);
-       
     }
 
     private void changedScene(Scene arg0, Scene arg1)
@@ -65,11 +54,29 @@ public class CameraSwitcher : MonoBehaviour
         //sceneCameras.Clear();
     }
 
+    #region Transition Invokers
+    /// <summary>
+    /// This transitions camera with cusdtom time for duration
+    /// </summary>
+    /// <param name="incomingCamera"></param>
+    /// <param name="duration"></param>
+    public void SwitchToCamera(CinemachineVirtualCamera incomingCamera, float duration)
+    {
+        OnCameraEnable?.Invoke(this, EventArgs.Empty);
+        StartCoroutine(switchCamera(incomingCamera, duration));
+    }
+    
+
+    /// <summary>
+    /// This transitions camera with default time 3.5f duration
+    /// </summary>
+    /// <param name="incomingCamera"></param>
     public void SwitchToCamera(CinemachineVirtualCamera incomingCamera)
     {
         OnCameraEnable?.Invoke(this, EventArgs.Empty);
         StartCoroutine(switchCamera(incomingCamera));
     }
+    #endregion
 
     private IEnumerator switchCamera(CinemachineVirtualCamera cameraToActivate) 
     {
@@ -77,7 +84,7 @@ public class CameraSwitcher : MonoBehaviour
         currentOBJCamera.Priority = activePriority;
 
         
-            yield return new WaitForSeconds(CameraDuration);
+        yield return new WaitForSeconds(CameraDuration);
         
         
         currentOBJCamera.Priority = disablePriority;
@@ -86,19 +93,23 @@ public class CameraSwitcher : MonoBehaviour
 
         yield return null;
     }
+    private IEnumerator switchCamera(CinemachineVirtualCamera cameraToActivate, float duration)
+    {
+        currentOBJCamera = findCamera(cameraToActivate);
+        currentOBJCamera.Priority = activePriority;
 
+
+        yield return new WaitForSeconds(duration);
+
+
+        currentOBJCamera.Priority = disablePriority;
+        currentOBJCamera = null;
+        OnCameraDisable?.Invoke(this, EventArgs.Empty);
+
+        yield return null;
+    }
     private CinemachineVirtualCamera findCamera(CinemachineVirtualCamera cameraIWant)
     {
-        //Array
-        //for (int i = 0; i < sceneCameras.Length; i++)
-        //{
-        //    if (ReferenceEquals(cameraIWant, sceneCameras[i]))
-        //    {
-        //        return sceneCameras[i];
-        //    }
-        //}
-
-        //List
         foreach (CinemachineVirtualCamera cam in sceneCameras)
         {
             if (ReferenceEquals(cameraIWant, cam))
