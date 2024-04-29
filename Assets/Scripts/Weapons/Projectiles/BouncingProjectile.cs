@@ -168,15 +168,19 @@ public class BouncingProjectile : ProjectileBase
                 DeleteProjectile();
             }
         }
+        else if (collision.gameObject.CompareTag("ActivatableObject"))
+        {
+            collision.gameObject.GetComponent<Button>().Activate();
+            DeleteProjectile();
+        }
+        else if (collision.gameObject.CompareTag("LimitedBounceObject"))
+        {
+            collision.gameObject.GetComponent<LimitedBounceObject>().ProjectileCollision();
+        }
         else
         {
             Bounce(collision);
         }
-
-        //if (collision.gameObject.tag == "DestroyableObject") { collision.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage); }
-        if (collision.gameObject.tag == "LimitedBounceObject") { collision.gameObject.GetComponent<LimitedBounceObject>().ProjectileCollision(); }
-        if (collision.gameObject.tag == "ActivatableObject") { collision.gameObject.GetComponent<Button>().Activate(); }
-        //collision.gameObject.GetComponent<Button>().Activate(); 
     }
     protected override void setStats()
     {
