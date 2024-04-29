@@ -74,7 +74,7 @@ public class BouncingProjectile : ProjectileBase
             // transform.rotation = Quaternion.LookRotation(Vector3.up, direction);
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
 
-            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("MetalHit", transform.position);
+            AudioManager.PlayMiscClip("MetalHit", transform.position);
 
             bounceCount--;
         }
@@ -145,7 +145,7 @@ public class BouncingProjectile : ProjectileBase
             {
                 CollisionVFX();
 
-                GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("MetalHit", transform.position);
+                AudioManager.PlayMiscClip("MetalHit", transform.position);
             }
 
             if (collision.gameObject.TryGetComponent<PlayerManager>(out PlayerManager pm))

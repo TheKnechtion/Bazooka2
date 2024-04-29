@@ -33,6 +33,8 @@ public class RangedWeapon : WeaponBase, IShoot
 
     private bool userIsPlayer;
 
+    [SerializeField] private bool UseMiscSound;
+
     private void Awake()
     {
         setStats();
@@ -102,7 +104,15 @@ public class RangedWeapon : WeaponBase, IShoot
         time = fireRate;
 
         //Instantiate projectile prefab that we have
-        AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
+
+        if (UseMiscSound)
+        {
+            AudioManager.PlayMiscClip(stats.fireWeaponSound, transform.position);
+        }
+        else
+        {
+            AudioManager.PlayClipAtPosition(stats.fireWeaponSound, shootPoint.position);
+        }
 
         GameObject newProjectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
 

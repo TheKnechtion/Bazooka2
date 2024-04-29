@@ -5,13 +5,15 @@ using UnityEngine.Events;
 
 public class MusicLoop : MonoBehaviour
 {
-    [SerializeField] private Sound Music_Intro;
-    [SerializeField] private Sound Music_Loop;
-    [SerializeField] private Sound Music_Outro;
+    public Sound Music_Intro;
+    public Sound Music_Loop;
+    public Sound Music_Outro;
 
     private AudioSource IntroSource;
     private AudioSource LoopSource;
     private AudioSource OutroSource;
+
+    public bool BossMusic;
 
     [SerializeField] private bool StartOnAwake;
     private bool MusicPlaying;
@@ -25,22 +27,19 @@ public class MusicLoop : MonoBehaviour
 
     private void Start()
     {
+        /*
         if (StartOnAwake)
         {
             StartMusic();
         }
-
-        BehaviorTankBoss.OnCaughtAggro += StartEvents;
-        BehaviorTankBoss.OnTankKilled += StopEvents;
-    }
-    private void StartEvents(object sender, System.EventArgs e)
-    {
-        StartMusic();
-    }
-    private void StopEvents(object sender, System.EventArgs e)
-    {
-        StopMusic();
-    }
+        
+        if (BossMusic)
+        {
+            BehaviorTankBoss.OnCaughtAggro += StartingEvents;
+            BehaviorTankBoss.OnTankKilled += StoppingEvents;
+        }
+        */
+    }    
     private AudioSource CreateSource(Sound newSound)
     {
         AudioSource a = gameObject.AddComponent<AudioSource>();
@@ -54,46 +53,40 @@ public class MusicLoop : MonoBehaviour
         return a;
     }
 
-
-    private void HandleInput()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            StartCoroutine(StartMusicCoroutine());
-            //LoopSource.Play();
-        }
-        else if (Input.GetKeyDown(KeyCode.G))
-        {
-            StopAllCoroutines();
-            StartCoroutine(StopMusicCoroutine());
-        }
-    }
-
     public void StartMusic()
     {
+        StopAllCoroutines();
+
         StartCoroutine(StartMusicCoroutine());
     }
 
-    public void StopMusic()
+    public void StopMusic(bool ReturnToBase)
     {
         StopAllCoroutines();
-        StartCoroutine(StopMusicCoroutine());
+        StartCoroutine(StopMusicCoroutine(ReturnToBase));
     }
 
     private IEnumerator StartMusicCoroutine()
     {
         MusicPlaying = true;
-        GameObject.Find("GameManager").GetComponent<AudioManager>().StopTheme();
+
+        GameObject gm = GameObject.Find("GameManager");
+        if (gm != null)
+        {
+            gm.GetComponent<AudioManager>().StopTheme();
+        }
 
         if (IntroSource != null)
         {
             IntroSource.Play();
+
+            while (IntroSource.isPlaying)
+            {
+                yield return null;
+            }
         }
 
-        while (IntroSource.isPlaying)
-        {
-            yield return null;
-        }
+        
 
         if (LoopSource != null)
         {
@@ -103,7 +96,7 @@ public class MusicLoop : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator StopMusicCoroutine()
+    private IEnumerator StopMusicCoroutine(bool ReturnBaseMusic)
     {
         MusicPlaying = false;
 
@@ -119,14 +112,15 @@ public class MusicLoop : MonoBehaviour
             }
         }
 
-        GameObject.Find("GameManager").GetComponent<AudioManager>().PlayTheme();
+        if (ReturnBaseMusic)
+        {
+            GameObject gm = GameObject.Find("GameManager");
+            if (gm != null)
+            {
+                gm.GetComponent<AudioManager>().PlayTheme();
+            }
+        }
 
         yield return null;
-    }
-
-    private void OnDestroy()
-    {
-        BehaviorTankBoss.OnCaughtAggro -= StartEvents;
-        BehaviorTankBoss.OnTankKilled -= StopEvents;
     }
 }

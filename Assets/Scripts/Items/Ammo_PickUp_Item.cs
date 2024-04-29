@@ -19,7 +19,8 @@ public class Ammo_PickUp_Item : MonoBehaviour
 
             }
 
-            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("AmmoPickup", transform.position);
+            //GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("AmmoPickup", transform.position);
+            AudioManager.PlayMiscClip("AmmoPickup", transform.position);
 
             //other.gameObject.GetComponent<PlayerManager>().GainAmmo(amountToGain);
             //pickedUpAmmo?.Invoke(this, EventArgs.Empty);

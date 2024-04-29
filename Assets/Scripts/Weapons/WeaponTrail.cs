@@ -63,5 +63,4 @@ public class WeaponTrail : MonoBehaviour
         FullyDisipated = true;
         yield return null;
     }
-
 }

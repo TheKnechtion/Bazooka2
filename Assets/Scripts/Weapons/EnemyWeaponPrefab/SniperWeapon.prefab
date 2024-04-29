@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 21c06123dc856bc45b2a85a8f91037fc, type: 2}
+  CollsionTransform: {fileID: 0}
   weaponName: 
   fireRate: 2
   walkMultiplier: 0
@@ -61,6 +62,7 @@ MonoBehaviour:
   time: 0
   barrelObstructed: 0
   EnemyVersion: 1
+  UseMiscSound: 1
 --- !u!65 &2044203129919258236
 BoxCollider:
   m_ObjectHideFlags: 0

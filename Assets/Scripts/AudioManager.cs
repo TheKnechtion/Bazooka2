@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
     static AudioClip[] painSoundsRef;
 
     [SerializeField] private Sound[] MiscArray;
-    private Dictionary<string, Sound> MiscSounds;
+    private static Dictionary<string, Sound> MiscSounds;
 
     AudioSource audioSource;
     public float weaponsVolume = 0.5f;
@@ -46,19 +46,18 @@ public class AudioManager : MonoBehaviour
                 MiscSounds.Add(MiscArray[i].Name, MiscArray[i]);
             }
         }
-    }
-    private void Start()
-    {
+
         audioSource = GetComponent<AudioSource>();
-        PlayTheme();
         bazookaSoundRef = bazookaSound;
         explosionSoundRef = explosionSound;
         hitSoundRef = hitSound;
-        clickSoundRef=clickSound;
+        clickSoundRef = clickSound;
         engineSoundRef = engineSound;
-        painSoundsRef=painSounds;
-    }
+        painSoundsRef = painSounds;
 
+        PlayTheme();
+
+    }
     float loopClipTime;
     private void Update()
     {
@@ -116,11 +115,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayMiscClip(string clipName, Vector3 pos)
+    public static void PlayMiscClip(string clipName, Vector3 pos)
     {
         if (MiscSounds != null && MiscSounds.Count > 0)
         {
-            if (MiscSounds.TryGetValue(clipName, out Sound clip) )
+            if (MiscSounds.TryGetValue(clipName, out Sound clip))
             {
                 AudioSource.PlayClipAtPoint(clip.clip, pos, clip.Volume);
             }

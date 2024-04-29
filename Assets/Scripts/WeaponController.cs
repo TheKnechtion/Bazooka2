@@ -122,7 +122,7 @@ public class WeaponController:MonoBehaviour
                 ListIncrement();
             }
 
-            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("WeaponSwitch", transform.position);
+            AudioManager.PlayMiscClip("WeaponSwitch", transform.position);
 
             FinishedWeaponChange?.Invoke(this, EventArgs.Empty);
             //Debug.Log("E pressed" + e.Epressed);
@@ -205,7 +205,7 @@ public class WeaponController:MonoBehaviour
         }
         else
         {
-            GameObject.Find("GameManager").GetComponent<AudioManager>().PlayMiscClip("EmptyMag", transform.position);
+            AudioManager.PlayMiscClip("EmptyMag", transform.position);
         }
     }
 

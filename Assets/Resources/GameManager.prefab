@@ -130,7 +130,7 @@ MonoBehaviour:
     MaxRange: 25
   - Name: AmmoPickup
     clip: {fileID: 8300000, guid: c0d034c6c222a044dbc478e4e5091331, type: 3}
-    Volume: 0.383
+    Volume: 0.662
     Loop: 0
     SpatialBlend: 0
     RandomizePitch: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
     MaxRange: 25
   - Name: HealPickup
     clip: {fileID: 8300000, guid: 8fa10eaf9f4894247affc2d74ad922ef, type: 3}
-    Volume: 0.383
+    Volume: 0.662
     Loop: 0
     SpatialBlend: 0
     RandomizePitch: 0
@@ -157,6 +157,14 @@ MonoBehaviour:
     Volume: 1
     Loop: 0
     SpatialBlend: 0
+    RandomizePitch: 1
+    MaxPitchOffset: 1.12
+    MaxRange: 25
+  - Name: SniperShot
+    clip: {fileID: 8300000, guid: 0ae278413c0ba4b4482ad7fd9c430520, type: 3}
+    Volume: 1
+    Loop: 0
+    SpatialBlend: 0.118
     RandomizePitch: 1
     MaxPitchOffset: 1.12
     MaxRange: 25

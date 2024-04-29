@@ -18,6 +18,7 @@ public class BehaviorTankBoss : EnemyBehavior
 
     public static event EventHandler OnTankKilled;
     public event EventHandler InstanceTankKilled;
+    
     public static event EventHandler OnCaughtAggro;
 
     public static UnityEvent OnTankKilledUEvent;

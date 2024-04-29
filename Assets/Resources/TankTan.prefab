@@ -720,20 +720,20 @@ MonoBehaviour:
   Clips:
   - Name: Idle
     clip: {fileID: 8300000, guid: 152276e7f391445468f04b1f6cfd5829, type: 3}
-    Volume: 0.975
+    Volume: 0.5
     Loop: 1
-    SpatialBlend: 1
+    SpatialBlend: 0.812
     RandomizePitch: 0
     MaxPitchOffset: 0
-    MaxRange: 5
+    MaxRange: 10
   - Name: Chase
     clip: {fileID: 8300000, guid: af40d11ac488e3f4c833b36e6893717a, type: 3}
-    Volume: 0.237
+    Volume: 0.5
     Loop: 1
-    SpatialBlend: 1
+    SpatialBlend: 0.903
     RandomizePitch: 0
     MaxPitchOffset: 0
-    MaxRange: 5
+    MaxRange: 10
   PlayFirstClip: 1
 --- !u!1 &1328281345251879275
 GameObject:
