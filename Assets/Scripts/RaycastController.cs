@@ -22,6 +22,7 @@ public class RaycastController : MonoBehaviour
 
     float cursorVariable;
 
+    private const int HitMask = 9;
 
     Vector3 projectionVector;
     public static Vector3 shootVector;
@@ -74,6 +75,8 @@ public class RaycastController : MonoBehaviour
     Color darkRed = new Color(0.77f, 0.00f, 0.00f);
     Color lightRed = new Color(1.00f, 0.42f, 0.42f);
 
+    Color lightOrange = new Color(1f, 0.835f, 0.482f);
+    Color darkOrange = new Color(0.94f, 0.64f, 0f);
 
 
     bool isAiming = false;
@@ -96,6 +99,8 @@ public class RaycastController : MonoBehaviour
             boundlessLookVector = new Vector3(boundlessLookVector.x, 0, boundlessLookVector.z);
             boundlessLookVector = positionOne + (15.0f * boundlessLookVector);
             lineRenderer.SetPosition(1, boundlessLookVector);
+
+            SetLineColor(lightGreen, darkGreen);
 
             UpdateShootVector(boundlessLookVector);
         }
@@ -124,7 +129,9 @@ public class RaycastController : MonoBehaviour
             //check for object from cursor to game object
             if (Physics.Raycast(AimCursor.cursorLocation, AimCursor.cursorVector, out hit))
             {
-                if (hit.transform.gameObject.CompareTag("ActivatableObject") || hit.transform.gameObject.CompareTag("LimitedBounceObject") || hit.transform.gameObject.TryGetComponent<IDamagable>(out IDamagable componentTwo))
+                if (hit.transform.gameObject.CompareTag("ActivatableObject") || 
+                    hit.transform.gameObject.CompareTag("LimitedBounceObject") || 
+                    hit.transform.gameObject.TryGetComponent<IDamagable>(out IDamagable componentTwo))
                 {
                     AimCursor.cursorImage.color = lightRed;
                 }
@@ -139,9 +146,21 @@ public class RaycastController : MonoBehaviour
 
     void lineHitTest(RaycastHit hitThis)
     {
-        if (hitThis.transform.gameObject.CompareTag("ActivatableObject") || hitThis.transform.gameObject.CompareTag("LimitedBounceObject") || hitThis.transform.gameObject.TryGetComponent<IDamagable>(out IDamagable component))
+        if (hitThis.transform.gameObject.CompareTag("ActivatableObject") ||
+            hitThis.transform.gameObject.CompareTag("LimitedBounceObject"))             
         {
             SetLineColor(lightRed, darkRed);
+        }
+        else if (hitThis.transform.gameObject.TryGetComponent<IDamagable>(out IDamagable com))
+        {
+            if (com.ArmoredTarget || hitThis.transform.gameObject.layer == HitMask)
+            {
+                SetLineColor(lightOrange, darkOrange);
+            }
+            else
+            {
+                SetLineColor(lightRed, darkRed);
+            }
         }
         else
         {
