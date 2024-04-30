@@ -32,6 +32,8 @@ public class WeaponController:MonoBehaviour
 
     [SerializeField] private Transform weaponLocation;
 
+    private Transform ParentTransform;
+
     public GameObject currentWeaponPrefab;
     public RangedWeapon currentWeapon;
     int weaponIndex;
@@ -52,6 +54,8 @@ public class WeaponController:MonoBehaviour
 
     private void Awake()
     {
+        ParentTransform = gameObject.transform;
+
         if (Player)
         {
             WeaponArray = new GameObject[prefabRefernceArray.Length];
@@ -129,6 +133,11 @@ public class WeaponController:MonoBehaviour
             //Debug.Log("Q pressed" + e.Qpressed);
         }
         
+    }
+
+    private void Update()
+    {
+        currentWeapon.gameObject.transform.rotation = ParentTransform.rotation;
     }
 
     private void FixedUpdate()

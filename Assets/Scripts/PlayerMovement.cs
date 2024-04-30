@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     float dashCooldown;
 
+    //Movement
     Animator movementAnimator;
     public static Vector3 playerMovement;
 
@@ -139,13 +140,32 @@ public class PlayerMovement : MonoBehaviour
         //basic player movement
         //moves the game object this script is attached to based on WASD input 
 
-        movementAnimator.SetFloat("MovementSpeed", playerMovement.magnitude);
+        SetAnimatorValues(playerMovement);
 
         //this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement * acceleration;
 
-        this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement*ForceMultiplier);
+        this.gameObject.GetComponent<Rigidbody>().AddForce(playerMovement * ForceMultiplier);
 
         currentPosition = transform.position;
+    }
+
+    private void SetAnimatorValues(Vector3 movement)
+    {
+        Debug.Log("Magniude: "+movement.magnitude);
+        movementAnimator.SetFloat("MovementSpeed", movement.magnitude);
+
+        float horizontal = Vector3.Dot(transform.forward, movement.normalized);
+        
+        if (horizontal > 0)
+        {
+            movementAnimator.SetFloat("InputAxisX", movement.normalized.x);
+            movementAnimator.SetFloat("InputAxisY", movement.normalized.z);
+        }
+        else
+        {
+            movementAnimator.SetFloat("InputAxisX", -movement.normalized.x);
+            movementAnimator.SetFloat("InputAxisY", -movement.normalized.z);
+        }
     }
 
     float tempSpeed;
