@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyVFX: {fileID: 0}
   LifeTime: 3
+  CamShakeOnDestroy: 0
 --- !u!54 &6363951894643702198
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -276,7 +277,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd5f1252b1e624e41a0856e1ea8612e3, type: 2}
+  - {fileID: 2100000, guid: 4d80ea56788f81b4e8158fc8dfc9f9ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
