@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     //Movement
     Animator movementAnimator;
     public static Vector3 playerMovement;
+    private const float DirectionThreshold = 0.6f;
 
     public static Vector3 currentPosition;
 
@@ -106,6 +107,10 @@ public class PlayerMovement : MonoBehaviour
         {
             moveInput = _playerController.PlayerMovement.Movement.ReadValue<Vector2>();
         }
+
+        SetAnimatorValues(moveInput);
+
+
         /*
         if(moveInput.magnitude > 0 && acceleration < 1f)
         {
@@ -140,7 +145,6 @@ public class PlayerMovement : MonoBehaviour
         //basic player movement
         //moves the game object this script is attached to based on WASD input 
 
-        SetAnimatorValues(playerMovement);
 
         //this.gameObject.GetComponent<Rigidbody>().velocity = playerMovement * acceleration;
 
@@ -151,21 +155,41 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetAnimatorValues(Vector3 movement)
     {
-        Debug.Log("Magniude: "+movement.magnitude);
         movementAnimator.SetFloat("MovementSpeed", movement.magnitude);
 
-        float horizontal = Vector3.Dot(transform.forward, movement.normalized);
+        float animX = movement.normalized.x;
+        float animY = movement.normalized.y;
+
+        float verticalDot = Vector3.Dot(transform.forward, Vector3.forward);
+        float horizontalDot = Vector3.Dot(transform.forward, Vector3.right);
+        //Debug.Log(verticalDot);
+
         
-        if (horizontal > 0)
+        if (verticalDot > DirectionThreshold)
         {
-            movementAnimator.SetFloat("InputAxisX", movement.normalized.x);
-            movementAnimator.SetFloat("InputAxisY", movement.normalized.z);
+            movementAnimator.SetFloat("InputAxisX", animX);
+            movementAnimator.SetFloat("InputAxisY", animY);
         }
-        else
+        else if (verticalDot < DirectionThreshold && verticalDot > -DirectionThreshold)
         {
-            movementAnimator.SetFloat("InputAxisX", -movement.normalized.x);
-            movementAnimator.SetFloat("InputAxisY", -movement.normalized.z);
+            //Facing right
+            //if (horizontalDot > DirectionThreshold)
+            //{
+            //    movementAnimator.SetFloat("InputAxisX", -animY);
+            //    movementAnimator.SetFloat("InputAxisY", animX);
+            //}
+            //else //Facing left
+            //{
+            //    movementAnimator.SetFloat("InputAxisX", animY);
+            //    movementAnimator.SetFloat("InputAxisY", -animX);
+            //}
         }
+        else if (verticalDot <= -DirectionThreshold)
+        {
+            movementAnimator.SetFloat("InputAxisX", -animX);
+            movementAnimator.SetFloat("InputAxisY", -animY);
+        }
+        
     }
 
     float tempSpeed;
