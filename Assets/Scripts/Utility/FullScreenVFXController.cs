@@ -7,9 +7,11 @@ public class FullScreenVFXController : MonoBehaviour
 {
     [SerializeField] private VignetteSO DamageVFX;
     [SerializeField] private VignetteSO CheckpointVFX;
+    [SerializeField] private VignetteSO HealVFX;
 
     [SerializeField] private float QuickTransition = 0.3f;
     [SerializeField] private float TransitionTime = 1.3f;
+
 
     [Header("Render Feature")]
     [SerializeField] private ScriptableRendererFeature FullScreenEffect;
@@ -48,6 +50,11 @@ public class FullScreenVFXController : MonoBehaviour
     public void SetCheckpointEffect()
     {
         StartCoroutine(SwapEffect(CheckpointVFX, DamageActive));
+    }
+
+    public void SetHealEffect()
+    {
+        StartCoroutine(SwapEffect(HealVFX, DamageActive));
     }
 
     public void ResetEffect()

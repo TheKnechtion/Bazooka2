@@ -45,7 +45,7 @@ public class BehaviorTankBoss : EnemyBehavior
 
         TankAudioController = transform.Find("Audio").GetComponent<ResusableAudioController>();
 
-        UI_Reference = GameObject.Find("Canvas");
+        UI_Reference = GameObject.Find("MainCanvas");
         UI_HealthBar = UI_Reference.GetComponentInChildren<HealthBar_UI>();
         UI_HealthBar.UpdateHealthbar(health / maxHealth);
 
