@@ -157,20 +157,24 @@ public class PlayerMovement : MonoBehaviour
     {
         movementAnimator.SetFloat("MovementSpeed", movement.magnitude);
 
+        float prevX = movementAnimator.GetFloat("InputAxisX");
+        float prevY = movementAnimator.GetFloat("InputAxisY");
+
         float animX = movement.normalized.x;
         float animY = movement.normalized.y;
 
-        float verticalDot = Vector3.Dot(transform.forward, Vector3.forward);
         float horizontalDot = Vector3.Dot(transform.forward, Vector3.right);
-        //Debug.Log(verticalDot);
+        float verticalDot = Vector3.Dot(transform.forward, Vector3.forward);
 
-        
+        prevX = Mathf.Lerp(prevX, animX, Time.deltaTime * 50);
+        prevY = Mathf.Lerp(prevY, animY, Time.deltaTime * 50);
+
         if (verticalDot > DirectionThreshold)
         {
-            movementAnimator.SetFloat("InputAxisX", animX);
-            movementAnimator.SetFloat("InputAxisY", animY);
+            movementAnimator.SetFloat("InputAxisX", prevX);
+            movementAnimator.SetFloat("InputAxisY", prevY);
         }
-        else if (verticalDot < DirectionThreshold && verticalDot > -DirectionThreshold)
+        else if (verticalDot < DirectionThreshold && verticalDot >= -DirectionThreshold)
         {
             //Facing right
             //if (horizontalDot > DirectionThreshold)
@@ -184,10 +188,10 @@ public class PlayerMovement : MonoBehaviour
             //    movementAnimator.SetFloat("InputAxisY", -animX);
             //}
         }
-        else if (verticalDot <= -DirectionThreshold)
+        else if (verticalDot < -DirectionThreshold)
         {
-            movementAnimator.SetFloat("InputAxisX", -animX);
-            movementAnimator.SetFloat("InputAxisY", -animY);
+            movementAnimator.SetFloat("InputAxisX", -prevX);
+            movementAnimator.SetFloat("InputAxisY", -prevY);
         }
         
     }
