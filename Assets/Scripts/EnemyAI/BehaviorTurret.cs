@@ -241,7 +241,7 @@ public class BehaviorTurret : EnemyBehavior
     private IEnumerator ShootRoutine(float start, float end, float chargeTime)
     {
         float t = 0.0f;
-        Debug.Log("Chargiing");
+        //Debug.Log("Chargiing");
 
         while (t < chargeTime)
         {
@@ -255,11 +255,11 @@ public class BehaviorTurret : EnemyBehavior
             }
 
             t += Time.deltaTime;
-            Debug.Log("Running");
+            //Debug.Log("Running");
             yield return null;
         }
 
-        Debug.Log("Shootlikn");
+        //Debug.Log("Shootlikn");
 
         HandleShooting();
 

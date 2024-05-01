@@ -18,12 +18,13 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player") && !Activated)
         {
+            FullScreenVFXController.instance.SetCheckpointEffect();
+
             Debug.Log("Checkpoint ACtivated");
             Activated = true;
 
             other.GetComponent<PlayerInfo>().SetCheckpointPos(RestartPos);
             //Update the currentCheckpoint location to this instances
-            //Vector3 Pos
         }
     }
 }

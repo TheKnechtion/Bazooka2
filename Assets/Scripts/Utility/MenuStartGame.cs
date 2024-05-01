@@ -31,10 +31,12 @@ public class MenuStartGame : MonoBehaviour
         Destroy(v);
         GameObject w = GameObject.Find("Follow Camera");
         Destroy(w);
-        GameObject e = GameObject.Find("Canvas");
+        GameObject e = GameObject.Find("MainCanvas");
         Destroy(e);
         GameObject d = GameObject.Find("DecalPool");
         Destroy(d);
+        GameObject fs = GameObject.Find("FullscreenVFX");
+        Destroy(fs);
 
     }
 

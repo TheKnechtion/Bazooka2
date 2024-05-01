@@ -74,9 +74,10 @@ public class PauseManager : MonoBehaviour
     {
         ResumeGame();
 
+        GameObject.Find("MainCanvas").transform.Find("Replay").GetComponent<MenuStartGame>().DestroyCurrentUI();
+
         SceneManager.LoadScene(0);
     }
-
 
     private void OnEnable()
     {

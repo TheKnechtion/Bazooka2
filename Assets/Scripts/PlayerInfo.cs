@@ -235,6 +235,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     }
     public void CheckpointRespawn()
     {
+        FullScreenVFXController.instance.ResetEffect();
+
         healthState = PlayerHealthState.ALIVE;
 
         CheckpointRestarted?.Invoke(this, EventArgs.Empty);
@@ -244,6 +246,7 @@ public class PlayerInfo:MonoBehaviour, IDamagable
         gameObject.GetComponent<PlayerManager>().enabled = true;
         gameObject.GetComponent<WeaponController>().enabled = true;
         gameObject.GetComponent<Animator>().SetBool("Dead", false);
+
 
         StartCoroutine(TemporaryInvulnerable(1.0f));
         currentHP = maximumHP;
@@ -267,6 +270,11 @@ public class PlayerInfo:MonoBehaviour, IDamagable
 
             currentHP = (currentHP >= 0) ? currentHP : 0;
 
+            if (currentHP == 1)
+            {
+                FullScreenVFXController.instance.SetDamageEffect();
+            }
+
             OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
             GlobalDamge.Invoke(this, EventArgs.Empty);
         }        
@@ -276,6 +284,8 @@ public class PlayerInfo:MonoBehaviour, IDamagable
     {
         currentHP += amount;
         currentHP = (maximumHP < currentHP) ? maximumHP : currentHP;
+
+        FullScreenVFXController.instance.ResetEffect();
 
         OnPlayerHpChange?.Invoke(this, EventArgs.Empty);
     }

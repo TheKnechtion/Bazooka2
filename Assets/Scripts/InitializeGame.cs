@@ -36,10 +36,14 @@ public class InitializeGame : MonoBehaviour
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Cinemachine Camera")), "Follow Camera"));
 
             //UI
-            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "Canvas"));
+            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("Canvas")), "MainCanvas"));
 
             //Decal Pool
             dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("DecalPool")), "DecalPool"));
+
+            //Fullscreen VFX
+            dontDestroyOnLoadGameObjects.Add(SetGameObjectName(Instantiate(LoadPrefabFromString("FullscreenVFX")), "FullscreenVFX"));
+
         }
 
         if (NextScenes != null)
