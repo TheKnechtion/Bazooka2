@@ -19,8 +19,8 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player") && !Activated)
         {
             FullScreenVFXController.instance.SetCheckpointEffect();
+            AudioManager.PlayMiscClip("Checkpoint", transform.position);
 
-            Debug.Log("Checkpoint ACtivated");
             Activated = true;
 
             other.GetComponent<PlayerInfo>().SetCheckpointPos(RestartPos);

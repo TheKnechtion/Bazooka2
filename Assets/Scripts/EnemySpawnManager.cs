@@ -160,11 +160,14 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void SpawnEnemyByTag(Transform spawnNode, string name)
     {
-        //load the appropriate enemy prefab based on the enemy name
-        tempGameObject = LoadResource(name);
+        if (name != null)
+        {
+            //load the appropriate enemy prefab based on the enemy name
+            tempGameObject = LoadResource(name);
 
-        //instantiate the prefab at the passed in position (an enemy spawn node)
-        tempGameObject = Instantiate(tempGameObject,spawnNode.position, spawnNode.rotation);
+            //instantiate the prefab at the passed in position (an enemy spawn node)
+            tempGameObject = Instantiate(tempGameObject, spawnNode.position, spawnNode.rotation);
+        }        
     }
 
     public void UpdateEnemyCount()
