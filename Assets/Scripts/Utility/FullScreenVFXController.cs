@@ -30,6 +30,7 @@ public class FullScreenVFXController : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
     }
     private void Start()
