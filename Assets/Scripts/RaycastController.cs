@@ -33,12 +33,18 @@ public class RaycastController : MonoBehaviour
         PlayerManager.OnPlayerAim += StartAiming;
         PlayerManager.OnPlayerStopAim += StopAiming;
         //projectionVector = GunBarrelLocation.transform.position - AimCursor.cursorLocation;
+
+        CameraSwitcher.OnCameraEnable += CameraSwitched;
+        CameraSwitcher.OnCameraDisable += CameraReturned;
     }
-
-    
-
-
-    // Update is called once per frame
+    private void CameraSwitched(object sender, EventArgs e)
+    {
+        lineRenderer.enabled = false;
+    }
+    private void CameraReturned(object sender, EventArgs e)
+    {
+        lineRenderer.enabled = true;
+    }
     void Update()
     {
         positionOne = GunBarrelLocation.transform.position;
@@ -221,7 +227,10 @@ public class RaycastController : MonoBehaviour
         
     }
 
+    private void OnDestroy()
+    {
 
+    }
 }
 
 
