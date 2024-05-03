@@ -36,14 +36,25 @@ public class RaycastController : MonoBehaviour
 
         CameraSwitcher.OnCameraEnable += CameraSwitched;
         CameraSwitcher.OnCameraDisable += CameraReturned;
+
+        if (lineRenderer != null)
+        {
+            lineRenderer.enabled = true;
+        }
     }
     private void CameraSwitched(object sender, EventArgs e)
     {
-        lineRenderer.enabled = false;
+        if (lineRenderer != null)
+        {
+            lineRenderer.enabled = false;
+        }
     }
     private void CameraReturned(object sender, EventArgs e)
     {
-        lineRenderer.enabled = true;
+        if (lineRenderer != null)
+        {
+            lineRenderer.enabled = true;
+        }
     }
     void Update()
     {
