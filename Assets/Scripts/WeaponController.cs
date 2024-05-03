@@ -243,6 +243,13 @@ public class WeaponController:MonoBehaviour
 
         return true;
     }
+    public void RefillAllWeapons(int m)
+    {
+        for (int i = 0; i < WeaponArray.Length; i++)
+        {
+            WeaponArray[i].GetComponent<RangedWeapon>().GainAmmo(m);
+        }
+    }
 
     //Utility for finding appropriate weapon data based on passed in string
     public WeaponInfo MakeWeapon(string weaponName)

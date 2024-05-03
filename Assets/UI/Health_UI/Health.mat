@@ -36,6 +36,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AmmoIcon:
+        m_Texture: {fileID: 2800000, guid: c5cbdeba7f8d29143a2dfeca53348e47, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -76,6 +80,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NumberIcon:
+        m_Texture: {fileID: 2800000, guid: 100b4ef75098f4b4d9b234ae41a0181f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -92,6 +100,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 61d1c96c72294034989d8376397c33d6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_37f3e05142654b93b987a487c554a172_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 81bfc5e0830fcd84b9f45b339fe7e424, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_41f7c4a5e59d4bc39e67bd7d16fca52a_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 9cebd62661d86b14e8cddd5b066f4163, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -100,8 +112,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: 5ea0947d1e720aa4eb75ede948abc6e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_88b32e770c484f10ad3c0ca2bb5479ac_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e6ec92128a1c8a54f947f5f4496b87a1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_94a298fb28f545d28f9655f264c412c2_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: b0563b4f4d034fb4b8e687ff90266b2f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_a2390a6630b643acb7ac93890e11cd80_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 76c5e23cb8db1d544bb7ce32a378b6de, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_da7db0d3ccd941e1bc16c0d5d2cca5af_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: bc39543fe5ca6d2498ff9fc418296273, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -110,6 +134,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Turkey_Icon:
         m_Texture: {fileID: 2800000, guid: 5ec8dcb616d592640a7fec825dd923c6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Weapon:
+        m_Texture: {fileID: 2800000, guid: 2e103a0db88280b448206c31377eac25, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WeaponIcon:
+        m_Texture: {fileID: 2800000, guid: 2e9cbccf994b8034992d31fb3d760529, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -175,6 +207,7 @@ Material:
     - _Heart_Two_Unlocked: 1
     - _IsHeartOneUnlocked: 1
     - _IsHeartTwoUnlocked: 1
+    - _IsInfinite: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005

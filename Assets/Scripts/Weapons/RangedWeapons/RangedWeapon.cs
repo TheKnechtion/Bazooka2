@@ -17,6 +17,7 @@ public class RangedWeapon : WeaponBase, IShoot
     public int maxActiveProjectiles;
     public int maxAmmo;
     public int currentAmmo;
+    public bool isInfinite;
     private GameObject newProjectile;
 
     private Collider[] barrelBuffer;
@@ -101,7 +102,14 @@ public class RangedWeapon : WeaponBase, IShoot
     }
     public void Shoot()
     {
+        if (userIsPlayer && currentAmmo == 0)
+        {
+            return;
+        }
+
+
         time = fireRate;
+
 
         //Instantiate projectile prefab that we have
 
@@ -121,6 +129,7 @@ public class RangedWeapon : WeaponBase, IShoot
             if (!infiniteAmmo)
             {
                 currentAmmo--;
+                OnPlayerShoot?.Invoke(this, EventArgs.Empty);
             }
             newProjectile.AddComponent<PlayerProjectile>();
         }
@@ -201,6 +210,8 @@ public class RangedWeapon : WeaponBase, IShoot
                 walkMultiplier = stats.walkMultiplier;
                 maxActiveProjectiles = stats.maxActiveAmount;
                 infiniteAmmo = stats.InfiniteAmmo;
+                isInfinite = stats.InfiniteAmmo;
+
             }
 
             projectilePrefab = stats.projectilePrefab;
