@@ -156,6 +156,23 @@ public class BouncingProjectile : ProjectileBase
                 }
             }
 
+            if (collision.gameObject.CompareTag("ActivatableObject"))
+            {
+                if (collision.gameObject.TryGetComponent<Button>(out Button b))
+                {
+                    b.Activate();
+                }
+                else
+                {
+                    Button childButton = collision.gameObject.GetComponentInChildren<Button>();
+
+                    if (childButton != null)
+                    {
+                        childButton.Activate();
+                    }
+                }
+            }
+
             DeleteProjectile();
         }
         else if(collision.gameObject.tag == "Projectile")
