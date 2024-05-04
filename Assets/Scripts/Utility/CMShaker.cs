@@ -52,5 +52,7 @@ public class CMShaker : MonoBehaviour
     {
         Explosive.OnExploded -= CameraShake;
         PlayerInfo.GlobalDamge -= CameraShake;
+        DestroyProjectile.ProjectileCameraShake -= CameraShakeLow;
+
     }
 }
