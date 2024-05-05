@@ -31,7 +31,8 @@ public class CameraSwitcher : MonoBehaviour
     public static event EventHandler OnCameraEnable;
     public static event EventHandler OnCameraDisable;
 
-
+    public static event EventHandler OnDisableUICam;
+    public static event EventHandler OnEnableUICam;
     
 
     void Start()
@@ -60,10 +61,15 @@ public class CameraSwitcher : MonoBehaviour
     /// </summary>
     /// <param name="incomingCamera"></param>
     /// <param name="duration"></param>
-    public void SwitchToCamera(CinemachineVirtualCamera incomingCamera, float duration)
+    public void SwitchToCamera(CinemachineVirtualCamera incomingCamera, float duration, bool StopUI = true)
     {
+        if (StopUI)
+        {
+            OnDisableUICam?.Invoke(this, EventArgs.Empty);
+        }
+
         OnCameraEnable?.Invoke(this, EventArgs.Empty);
-        StartCoroutine(switchCamera(incomingCamera, duration));
+        StartCoroutine(switchCamera(incomingCamera, duration, StopUI));
     }
     
 
@@ -78,7 +84,7 @@ public class CameraSwitcher : MonoBehaviour
     }
     #endregion
 
-    private IEnumerator switchCamera(CinemachineVirtualCamera cameraToActivate) 
+    private IEnumerator switchCamera(CinemachineVirtualCamera cameraToActivate, bool StopUI = true) 
     {
         currentOBJCamera = findCamera(cameraToActivate);
         currentOBJCamera.Priority = activePriority;
@@ -89,11 +95,16 @@ public class CameraSwitcher : MonoBehaviour
         
         currentOBJCamera.Priority = disablePriority;
         currentOBJCamera = null;
+
+        if (StopUI)
+        {
+            OnEnableUICam?.Invoke(this, EventArgs.Empty);
+        }
         OnCameraDisable?.Invoke(this, EventArgs.Empty);
 
         yield return null;
     }
-    private IEnumerator switchCamera(CinemachineVirtualCamera cameraToActivate, float duration)
+    private IEnumerator switchCamera(CinemachineVirtualCamera cameraToActivate, float duration, bool StopUI = true)
     {
         currentOBJCamera = findCamera(cameraToActivate);
         currentOBJCamera.Priority = activePriority;
@@ -104,6 +115,12 @@ public class CameraSwitcher : MonoBehaviour
 
         currentOBJCamera.Priority = disablePriority;
         currentOBJCamera = null;
+
+        if (StopUI)
+        {
+            OnEnableUICam?.Invoke(this, EventArgs.Empty);
+        }
+
         OnCameraDisable?.Invoke(this, EventArgs.Empty);
 
         yield return null;

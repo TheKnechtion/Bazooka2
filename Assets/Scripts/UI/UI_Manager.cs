@@ -146,8 +146,8 @@ public class UI_Manager : MonoBehaviour
         WeaponPickup.OnWeaponPickedUp += OnWeaponPickedUp;
         Item.OnWeaponPickUp += Item_OnWeaponPickUp;
 
-        CameraSwitcher.OnCameraEnable += CameraSwitched;
-        CameraSwitcher.OnCameraDisable += CameraReturned;
+        CameraSwitcher.OnDisableUICam += CameraSwitched; //Disables this
+        CameraSwitcher.OnEnableUICam += CameraReturned; //Renenables this
 
         populateTextArray();
 
@@ -312,11 +312,17 @@ public class UI_Manager : MonoBehaviour
 
     public static void Show_RoomSelect()
     {
-        RoomSelectScreenRef.SetActive(true);
+        if (RoomSelectScreenRef != null)
+        {
+            RoomSelectScreenRef.SetActive(true);
+        }
     }
     public static void StopShow_RoomSelect()
     {
-        RoomSelectScreenRef.SetActive(false);
+        if (RoomSelectScreenRef != null)
+        {
+            RoomSelectScreenRef.SetActive(false);
+        }
     }
 
     private IEnumerator PromptForSeconds(GameObject textObj, float secondsActive)
@@ -408,7 +414,7 @@ public class UI_Manager : MonoBehaviour
         WeaponPickup.OnWeaponPickedUp -= OnWeaponPickedUp;
         Item.OnWeaponPickUp -= Item_OnWeaponPickUp;
 
-        CameraSwitcher.OnCameraEnable -= CameraSwitched;
-        CameraSwitcher.OnCameraDisable -= CameraReturned;
+        CameraSwitcher.OnDisableUICam -= CameraSwitched; 
+        CameraSwitcher.OnEnableUICam -= CameraReturned;
     }
 }
