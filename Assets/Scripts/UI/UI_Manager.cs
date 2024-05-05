@@ -146,6 +146,9 @@ public class UI_Manager : MonoBehaviour
         WeaponPickup.OnWeaponPickedUp += OnWeaponPickedUp;
         Item.OnWeaponPickUp += Item_OnWeaponPickUp;
 
+        CameraSwitcher.OnCameraEnable += CameraSwitched;
+        CameraSwitcher.OnCameraDisable += CameraReturned;
+
         populateTextArray();
 
 
@@ -164,7 +167,15 @@ public class UI_Manager : MonoBehaviour
 
     }
 
-    
+    private void CameraReturned(object sender, EventArgs e)
+    {
+        gameObject.SetActive(true);
+    }
+
+    private void CameraSwitched(object sender, EventArgs e)
+    {
+        gameObject.SetActive(false);
+    }
 
     bool atStart = true;
 
@@ -396,5 +407,8 @@ public class UI_Manager : MonoBehaviour
 
         WeaponPickup.OnWeaponPickedUp -= OnWeaponPickedUp;
         Item.OnWeaponPickUp -= Item_OnWeaponPickUp;
+
+        CameraSwitcher.OnCameraEnable -= CameraSwitched;
+        CameraSwitcher.OnCameraDisable -= CameraReturned;
     }
 }

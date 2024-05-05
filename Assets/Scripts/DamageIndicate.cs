@@ -36,6 +36,7 @@ public class DamageIndicate : MonoBehaviour
 
         if (render != null)
         {
+            gameObject.SetActive(true);
             BaseMaterialArray = render.materials;
             //materials = render.material;
         }
