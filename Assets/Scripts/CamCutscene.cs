@@ -16,6 +16,8 @@ public class CamCutscene : MonoBehaviour
 
     [SerializeField] private float CameraDuration = 3.5f;
 
+    [SerializeField] private bool StopsUI = true;
+
     private void Awake()
     {
       
@@ -31,7 +33,7 @@ public class CamCutscene : MonoBehaviour
     public void Activate()
     {
         if (usesCamera)
-            camManager.SwitchToCamera(connectedCamera, CameraDuration);
+            camManager.SwitchToCamera(connectedCamera, CameraDuration, StopsUI);
     }
         
 }
