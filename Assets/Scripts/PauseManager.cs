@@ -48,6 +48,7 @@ public class PauseManager : MonoBehaviour
         else
         {
             PauseMenu.SetActive(false);
+            Cursor.visible = false;
 
             Time.timeScale = 1.0f;
             GamePaused = false;
@@ -65,6 +66,8 @@ public class PauseManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
 
         PauseMenu.SetActive(false);
+
+        Cursor.visible = false;
 
         OnPause?.Invoke(this, EventArgs.Empty);
     }
